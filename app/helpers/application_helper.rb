@@ -15,15 +15,15 @@ module ApplicationHelper
   end
 
   def profile_nav_link_class
-    params[:controller] == 'users' && params[:action] == 'edit' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+    params[:controller] == 'devise/registrations' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def sign_up_nav_link_class
-    params[:controller] == 'users' && params[:action] == 'sign_up' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+    params[:controller] == 'devise/registrations' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def login_nav_link_class
-    params[:controller] == 'users' && params[:action] == 'sign_in' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+    params[:controller] == 'devise/sessions' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def logout_nav_link_class
