@@ -6,6 +6,11 @@
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
         <%= @projects_subheader %>
+        <% if current_user.blank? %>
+          <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to volunteer.
+        <% elsif !current_user.has_complete_profile? %>
+          <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to like projects.
+        <% end %>
       </p>
     </div>
     <div class="ml-4 mt-4 flex-shrink-0">
@@ -33,8 +38,19 @@
                 <%= project.name %>
               </div>
               <div class="ml-2 flex-shrink-0 flex">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  1 like
+                <% project_volunteer_class = project.volunteered_users.count > 0 ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800" %>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
+                  <% if project.volunteered_users.count == 0 %>
+                    no volunteers
+                  <% else %>
+                    <%= pluralize(project.volunteered_users.count, 'volunteer') %>
+                  <% end %>
+
+                  <% if current_user.blank? %>
+                    - sign up to volunteer
+                  <% elsif !current_user.has_complete_profile? %>
+                    - complete your profile to volunteer
+                  <% end %>
                 </span>
               </div>
             </div>

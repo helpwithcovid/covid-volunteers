@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def profile_nav_link_class
-    params[:controller] == 'devise/registrations' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+    params[:controller] == 'users/registrations' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def sign_up_nav_link_class

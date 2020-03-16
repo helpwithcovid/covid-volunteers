@@ -5,10 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
-  has_many :likes
-  has_many :liked_projects, through: :likes, source: :project
+  has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
-  def liked_project? project
-    self.liked_projects.where(id: project.id).exists?
+  def volunteered_project? project
+    self.volunteered_projects.where(id: project.id).exists?
+  end
+
+  def has_complete_profile?
+    self.about.present? && self.profile_links.present? && self.location.present?
   end
 end

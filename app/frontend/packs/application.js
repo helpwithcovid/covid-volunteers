@@ -19,3 +19,5 @@ const imagePath = (name) => images(name, true)
 // Tailwind.
 import './stylesheets.css'
 
+// Main App.
+require('../covid')
