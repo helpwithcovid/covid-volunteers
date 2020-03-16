@@ -33,11 +33,9 @@
                 <%= project.name %>
               </div>
               <div class="ml-2 flex-shrink-0 flex">
-                <% if current_user && current_user.liked_project?(project) %>
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    1 like
-                  </span>
-                <% end %>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  1 like
+                </span>
               </div>
             </div>
             <div class="mt-2 sm:flex sm:justify-between">
