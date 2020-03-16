@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'projects#index'
 
-  resources :home, only: :index
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+  
   resources :projects do
     collection do
       get :liked
