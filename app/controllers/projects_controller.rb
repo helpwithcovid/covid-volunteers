@@ -9,10 +9,10 @@ class ProjectsController < ApplicationController
     @projects_subheader = 'These projects were posted by the community and looking for help.'
   end
 
-  def liked
-    @projects = current_user.liked.reverse
-    @projects_header = 'Liked Projects'
-    @projects_subheader = 'These projects were liked (favorited) by you.'
+  def volunteered
+    @projects = current_user.volunteered_projects.reverse
+    @projects_header = 'Volunteered Projects'
+    @projects_subheader = 'These are the projects where you volunteered.'
     render action: 'index'
   end
 

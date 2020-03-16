@@ -9,7 +9,7 @@
         <% if current_user.blank? %>
           <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to volunteer.
         <% elsif !current_user.has_complete_profile? %>
-          <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to like projects.
+          <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to volunteer.
         <% end %>
       </p>
     </div>

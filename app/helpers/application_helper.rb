@@ -6,8 +6,8 @@ module ApplicationHelper
     params[:controller] == 'projects' && params[:action] == 'index' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
-  def liked_projects_nav_link_class
-    params[:controller] == 'projects' && params[:action] == 'liked' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+  def volunteered_projects_nav_link_class
+    params[:controller] == 'projects' && params[:action] == 'volunteered' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def own_projects_nav_link_class

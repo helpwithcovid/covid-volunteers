@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   resources :projects do
     collection do
-      get :liked
+      get :volunteered
       get :own
     end
 
