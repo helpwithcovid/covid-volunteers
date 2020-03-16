@@ -13,4 +13,20 @@ module ApplicationHelper
   def own_projects_nav_link_class
     params[:controller] == 'projects' && params[:action] == 'own' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
+
+  def profile_nav_link_class
+    params[:controller] == 'users' && params[:action] == 'edit' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+  end
+
+  def sign_up_nav_link_class
+    params[:controller] == 'users' && params[:action] == 'sign_up' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+  end
+
+  def login_nav_link_class
+    params[:controller] == 'users' && params[:action] == 'sign_in' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+  end
+
+  def logout_nav_link_class
+    NAV_LINK_INACTIVE_CLASS
+  end
 end

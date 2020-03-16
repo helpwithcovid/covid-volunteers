@@ -47,7 +47,7 @@
           Description
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @project.description %>
+          <%= simple_format @project.description %>
         </dd>
       </div>
 
@@ -56,7 +56,7 @@
           Participants
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @project.participants %>
+          <%= simple_format @project.participants %>
         </dd>
       </div>
 
@@ -65,7 +65,7 @@
           Looking for
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @project.looking_for %>
+          <%= simple_format @project.looking_for %>
         </dd>
       </div>
 

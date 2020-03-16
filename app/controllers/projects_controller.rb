@@ -1,21 +1,23 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = Project.all.reverse
     @projects_header = 'All Projects'
     @projects_subheader = 'These projects were posted by the community and looking for help.'
   end
 
   def liked
-    @projects = current_user.liked
+    @projects = current_user.liked.reverse
     @projects_header = 'Liked Projects'
     @projects_subheader = 'These projects were liked (favorited) by you.'
     render action: 'index'
   end
 
   def own
-    @projects = current_user.projects
+    @projects = current_user.projects.reverse
     @projects_header = 'Own Projects'
     @projects_subheader = 'These are the projects you created.'
     render action: 'index'
@@ -35,6 +37,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        Rails.logger.error @project.errors.inspect
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

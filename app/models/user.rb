@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
-  has_many :liked_projects, through: :like
+  has_many :likes
+  has_many :liked_projects, through: :likes, source: :project
 
   def liked_project? project
-    current_user.liked_projects.where(id: project.id).exists?
+    self.liked_projects.where(id: project.id).exists?
   end
 end
