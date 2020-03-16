@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
+  has_many :volunteers
   has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
-  def volunteered_project? project
+  def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
   end
 

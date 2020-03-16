@@ -8,5 +8,9 @@ Rails.application.routes.draw do
       get :liked
       get :own
     end
+
+    member do
+      post :toggle_volunteer
+    end
   end
 end

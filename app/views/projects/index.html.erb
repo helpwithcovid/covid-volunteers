@@ -37,7 +37,7 @@
               <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
                 <%= project.name %>
               </div>
-              <div class="ml-2 flex-shrink-0 flex">
+              <div class="ml-4 flex-shrink-0 flex">
                 <% project_volunteer_class = project.volunteered_users.count > 0 ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800" %>
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
                   <% if project.volunteered_users.count == 0 %>
@@ -67,8 +67,8 @@
                   </svg>
                   <%= project.location.present? ? project.location : 'Remote' %>
                 </div>
-                </div>
-                <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
+              </div>
+              <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
                 <span>
                   created
                   <time><%= distance_of_time_in_words_to_now project.created_at %> ago</time>

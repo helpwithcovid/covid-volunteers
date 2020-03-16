@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer ]
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
 
   def index
     @projects = Project.all.reverse
@@ -68,6 +68,18 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_volunteer
+    if @project.volunteered_users.include?(current_user)
+      @project.volunteers.where(user: current_user).destroy_all
+      flash[:notice] = "We've removed you from the list of volunteered people."
+    else
+      @project.volunteered_users << current_user
+      flash[:notice] = "Thanks for volunteering! The project owners will be alerted."
+    end
+
+    redirect_to project_path(@project)
   end
 
   private
