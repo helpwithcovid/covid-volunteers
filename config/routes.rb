@@ -3,5 +3,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :home, only: :index
-  resources :projects
+  resources :projects do
+    collection do
+      get :liked
+      get :own
+    end
+  end
 end

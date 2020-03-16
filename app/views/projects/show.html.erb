@@ -1,9 +1,45 @@
-<div class="bg-white shadow overflow-hidden sm:rounded-lg">
-  <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
-    <h3 class="text-lg leading-6 font-medium text-gray-900">
-      <%= @project.name %>
-    </h3>
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <div class="flex items-center">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          <%= @project.name %> project
+        </h3>
+      </div>
+    </div>
+    <div class="ml-4 mt-4 flex-shrink-0 flex">
+      <% if current_user == @project.user %>
+        <span class="ml-3 inline-flex rounded-md shadow-sm">
+          <%= link_to edit_project_path(@project) do %>
+            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+              <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" clip-rule="evenodd"/>
+              </svg>
+              <span>
+                Edit
+              </span>
+            </button>
+          <% end %>
+        </span>
+      <% else %>
+        <span class="ml-3 inline-flex rounded-md shadow-sm">
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" clip-rule="evenodd"/>
+            </svg>
+            <span>
+              Like
+            </span>
+          </button>
+        </span>
+      <% end %>
+    </div>
   </div>
+</div>
+
+<br/>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
   <div>
     <dl>
       <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -30,6 +66,15 @@
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
           <%= @project.looking_for %>
+        </dd>
+      </div>
+
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Location
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @project.location %>
         </dd>
       </div>
     </dl>

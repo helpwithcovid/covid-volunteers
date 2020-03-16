@@ -3,6 +3,22 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @projects_header = 'All Projects'
+    @projects_subheader = 'These projects were posted by the community and looking for help.'
+  end
+
+  def liked
+    @projects = current_user.liked
+    @projects_header = 'Liked Projects'
+    @projects_subheader = 'These projects were liked (favorited) by you.'
+    render action: 'index'
+  end
+
+  def own
+    @projects = current_user.projects
+    @projects_header = 'Own Projects'
+    @projects_subheader = 'These are the projects you created.'
+    render action: 'index'
   end
 
   def show
@@ -15,6 +31,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
+    @project.user = current_user
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -24,6 +42,9 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
   end
 
   def update
@@ -54,6 +75,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for)
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :location)
     end
 end
