@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   resources :admin do
     collection do
-      post :delete_project
       post :delete_user
     end
   end

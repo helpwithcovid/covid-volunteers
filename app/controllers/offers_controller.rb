@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
+  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
     @offers = Offer.all.order('created_at DESC').all
@@ -44,8 +45,6 @@ class OffersController < ApplicationController
     end
   end
 
-  # DELETE /offers/1
-  # DELETE /offers/1.json
   def destroy
     @offer.destroy
     respond_to do |format|
@@ -63,5 +62,12 @@ class OffersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def offer_params
       params.fetch(:offer, {}).permit(:name, :description, :limitations, :redemption, :location)
+    end
+
+    def ensure_owner_or_admin
+      if current_user != @offer.user && !current_user.is_admin?
+        flash[:error] = "Apologies, you don't have access to this."
+        redirect_to offers_path
+      end
     end
 end

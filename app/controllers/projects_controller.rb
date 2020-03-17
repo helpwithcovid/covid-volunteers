@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer ]
 
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
+  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
     @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC')
@@ -68,7 +69,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -97,5 +98,12 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :location)
+    end
+
+    def ensure_owner_or_admin
+      if current_user != @project.user && !current_user.is_admin?
+        flash[:error] = "Apologies, you don't have access to this."
+        redirect_to projects_path
+      end
     end
 end
