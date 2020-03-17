@@ -5,8 +5,8 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all.reverse
-    @projects_header = 'All Projects'
-    @projects_subheader = 'These projects were posted by the community and looking for help.'
+    @projects_header = 'COVID-19 projects looking for volunteers'
+    @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
   end
 
   def volunteered
