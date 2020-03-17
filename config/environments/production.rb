@@ -66,6 +66,11 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  aws_credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_ACCESS_KEY_ID'])
+  Aws::Rails.add_action_mailer_delivery_method(:aws_ses, credentials: aws_credentials, region: ENV['AWS_REGION'])
+  
+  config.action_mailer.delivery_method = :aws_ses
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

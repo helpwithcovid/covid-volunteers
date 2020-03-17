@@ -58,3 +58,7 @@ gem 'devise'
 
 # Auto link.
 gem 'rinku'
+
+# Sending emails.
+gem 'aws-sdk'
+gem 'aws-sdk-rails'

@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :projects
-  has_many :volunteers
+  has_many :projects, dependent: :destroy
+  has_many :volunteers, dependent: :destroy
   has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
   def volunteered_for_project? project
@@ -20,8 +20,8 @@ class User < ApplicationRecord
     return true if self.visibility == true
     return true if user == self
 
-    user_volunteered_to_own_projects = user.volunteered_projects.where(user_id: self.id).exists?
-    return true if user_volunteered_to_own_projects
+    user_volunteered_to_self_projects = user.volunteered_projects.where(user_id: self.id).exists?
+    return true if user_volunteered_to_self_projects
 
     false
   end
