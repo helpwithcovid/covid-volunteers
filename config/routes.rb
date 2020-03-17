@@ -11,11 +11,17 @@ Rails.application.routes.draw do
     collection do
       get :volunteered
       get :own
-      get :test_errors
     end
 
     member do
       post :toggle_volunteer
+    end
+  end
+
+  resources :admin do
+    collection do
+      post :delete_project
+      post :delete_user
     end
   end
 end

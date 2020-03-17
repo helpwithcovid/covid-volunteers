@@ -11,13 +11,13 @@
       </div>
       <div class="flex">
         <div class="hidden sm:ml-6 sm:flex">
-          <%= render partial: 'layouts/nav-links', locals: {variant: 'DESKTOP'} %>
+          <%= render partial: 'layouts/nav_links', locals: { variant: 'DESKTOP' } %>
         </div>
       </div>
     </div>
   </div>
   <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
-    <div class="pt-2 pb-3"><%= render partial: 'layouts/nav-links', locals: {variant: 'MOBILE'} %>
+    <div class="pt-2 pb-3"><%= render partial: 'layouts/nav_links', locals: { variant: 'MOBILE' } %>
     </div>
   </div>
 </nav>

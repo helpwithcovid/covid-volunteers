@@ -78,6 +78,18 @@
           <% end %>
         <% end %>
       <% end %>
+
+      <% if current_user && current_user.is_admin? %>
+        <%= link_to delete_project_admin_index_path(project_id: @project.id), method: :post, data: { confirm: "Are you want to you want to delete this project?" } do %>
+          <span class="ml-3 inline-flex rounded-md shadow-sm">
+            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+              <span>
+                Delete
+              </span>
+            </button>
+          </span>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
