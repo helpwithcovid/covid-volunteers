@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     collection do
       get :volunteered
       get :own
+      get :test_errors
     end
 
     member do

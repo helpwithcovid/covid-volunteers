@@ -117,4 +117,11 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: '[HelpWithCovid] ',
+    sender_address: %{"HelpWithCovid" <no-reply@helpwithcovid.com>},
+    exception_recipients: %w{radu.spineanu@gmail.com}
+  }
 end
