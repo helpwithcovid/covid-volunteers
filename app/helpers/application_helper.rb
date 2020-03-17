@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def profile_nav_link_class
-    params[:controller] == 'users/registrations' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+    params[:controller] == 'users/registrations' && [ 'edit', 'update' ].include?(params[:action]) ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def sign_up_nav_link_class
@@ -24,6 +24,10 @@ module ApplicationHelper
 
   def login_nav_link_class
     params[:controller] == 'devise/sessions' ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
+  end
+
+  def volunteers_nav_link_class
+    params[:controller] == 'users/registrations' && [ 'index' ].include?(params[:action]) ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS
   end
 
   def logout_nav_link_class

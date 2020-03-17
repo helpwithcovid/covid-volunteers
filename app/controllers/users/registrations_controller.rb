@@ -4,6 +4,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
 
+  def index
+    @users = User.where(visibility: true).all
+  end
+
+  def show
+    @user = User.find(params[:id])
+     
+    if @user.blank?
+      flash[:error] = 'Sorry, no such user.'
+      redirect_to projects_path
+      return
+    end
+
+    if !@user.is_visible_to_user?(current_user)
+      flash[:error] = 'Sorry, no such user.'
+      redirect_to projects_path
+      return
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -47,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :about, :profile_links, :location, :visibility ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility ])
   end
 
   # The path used after sign up.

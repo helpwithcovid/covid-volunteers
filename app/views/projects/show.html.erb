@@ -87,7 +87,7 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
   <div>
     <dl>
-      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Description
         </dt>
@@ -96,7 +96,7 @@
         </dd>
       </div>
 
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Participants
         </dt>
@@ -105,7 +105,7 @@
         </dd>
       </div>
 
-      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Looking for
         </dt>
@@ -114,7 +114,7 @@
         </dd>
       </div>
 
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Location
         </dt>
@@ -125,3 +125,20 @@
     </dl>
   </div>
 </div>
+
+<% if current_user == @project.user && @project.volunteered_users.count > 0 %>
+  <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
+    <div class="bg-white px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Volunteers
+      </h3>
+    </div>
+      
+    <ul>
+      <% @project.volunteers.each do |volunteer| %>
+        <% user = volunteer.user %>
+        <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: volunteer } %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

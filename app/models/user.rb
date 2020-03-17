@@ -15,4 +15,14 @@ class User < ApplicationRecord
   def has_complete_profile?
     self.about.present? && self.profile_links.present? && self.location.present?
   end
+
+  def is_visible_to_user?(user)
+    return true if self.visibility == true
+    return true if user == self
+
+    user_volunteered_to_own_projects = user.volunteered_projects.where(user_id: self.id).exists?
+    return true if user_volunteered_to_own_projects
+
+    false
+  end
 end

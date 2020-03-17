@@ -14,6 +14,13 @@
             <%= link_to own_projects_path, class: "ml-8 #{own_projects_nav_link_class}" do %>
               Your Projects
             <% end %>
+          <% end %>
+
+          <%= link_to volunteers_path, class: "ml-8 #{volunteers_nav_link_class}" do %>
+            Volunteers
+          <% end %>
+
+          <% if current_user %>
             <%= link_to edit_user_registration_path, class: "ml-8 #{profile_nav_link_class}" do %>
               Profile
             <% end %>

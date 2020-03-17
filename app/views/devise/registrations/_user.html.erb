@@ -1,0 +1,35 @@
+<li class="border-t border-gray-200">
+  <%= link_to profile_path(user.id), class: "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out" do %> 
+    <div class="px-4 py-4 sm:px-6">
+      <div class="flex items-center justify-between">
+        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+          <%= user.name %> / <%= user.email %>
+        </div>
+      </div>
+      <div class="mt-2 sm:flex sm:justify-between">
+        <div class="text-sm leading-5 text-gray-500">
+          <%= simple_format user.about %>
+        </div>
+      </div>
+      <div class="mt-4 sm:flex sm:justify-between">
+        <div class="sm:flex">
+          <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
+            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+            <%= user.location.present? ? user.location : 'Remote' %>
+          </div>
+        </div>
+        <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
+          <span>
+            <% if volunteer %>
+              applied <time><%= distance_of_time_in_words_to_now volunteer.created_at %> ago</time>
+            <% else %>
+              created <time><%= distance_of_time_in_words_to_now user.created_at %> ago</time>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>

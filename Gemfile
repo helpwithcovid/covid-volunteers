@@ -55,3 +55,6 @@ gem 'pg'
 
 # Authentication.
 gem 'devise'
+
+# Auto link.
+gem 'rinku'
