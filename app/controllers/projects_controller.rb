@@ -24,6 +24,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.csv { send_data @project.volunteered_users.to_csv, filename: "volunteers-#{Date.today}.csv" }
+    end
   end
 
   def new

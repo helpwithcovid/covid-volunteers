@@ -1,3 +1,5 @@
+require 'csv'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -28,5 +30,17 @@ class User < ApplicationRecord
 
   def is_admin?
     ADMINS.include?(self.email)
+  end
+
+  def self.to_csv
+    attributes = %w{email about profile_links location}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.find_each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
   end
 end
