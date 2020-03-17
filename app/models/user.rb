@@ -25,4 +25,8 @@ class User < ApplicationRecord
 
     false
   end
+
+  def is_admin?
+    ADMINS.include?(self.email)
+  end
 end

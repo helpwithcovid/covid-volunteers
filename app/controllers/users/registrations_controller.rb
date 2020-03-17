@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [ :update ]
 
   def index
-    @users = User.where(visibility: true).all
+    @users = User.where(visibility: true).order('created_at DESC').all
   end
 
   def show

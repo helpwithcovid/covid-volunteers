@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
 
   def index
-    @projects = Project.all.reverse
+    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC')
     @projects_header = 'COVID-19 projects looking for volunteers'
     @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
   end
