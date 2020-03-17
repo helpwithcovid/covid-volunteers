@@ -1,42 +1,23 @@
 <nav x-data="{ open: false }" class="bg-white shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <div class="flex">
         <div class="hidden sm:ml-6 sm:flex">
-          <%= link_to projects_path, class: "#{all_projects_nav_link_class}" do %>
-            All Projects
-          <% end %>
-
-          <% if current_user %>
-            <%= link_to volunteered_projects_path, class: "ml-8 #{volunteered_projects_nav_link_class}" do %>
-              Volunteered Projects
-            <% end %>
-            <%= link_to own_projects_path, class: "ml-8 #{own_projects_nav_link_class}" do %>
-              Your Projects
-            <% end %>
-          <% end %>
-
-          <%= link_to volunteers_path, class: "ml-8 #{volunteers_nav_link_class}" do %>
-            Volunteers
-          <% end %>
-
-          <% if current_user %>
-            <%= link_to edit_user_registration_path, class: "ml-8 #{profile_nav_link_class}" do %>
-              Profile
-            <% end %>
-            <%= link_to destroy_user_session_path, method: :delete, class: "ml-8 #{logout_nav_link_class}" do %>
-              Log out
-            <% end %>
-          <% else %>
-            <%= link_to new_user_registration_path, class: "ml-8 #{sign_up_nav_link_class}" do %>
-              Sign up
-            <% end %>
-            <%= link_to new_user_session_path, class: "ml-8 #{login_nav_link_class}" do %>
-              Log in
-            <% end %>
-          <% end %>
+          <%= render partial: 'layouts/nav-links', locals: {variant: 'DESKTOP'} %>
         </div>
       </div>
+    </div>
+  </div>
+  <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
+    <div class="pt-2 pb-3"><%= render partial: 'layouts/nav-links', locals: {variant: 'MOBILE'} %>
     </div>
   </div>
 </nav>
