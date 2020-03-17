@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CovidVolunteers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'stylesheets', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'styelsheets', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
@@ -18,7 +19,7 @@
       <div class="py-10">
         <main>
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <%= yield %>    
+            <%= yield %>
           </div>
         </main>
       </div>
