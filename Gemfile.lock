@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/smartinez87/exception_notification
+  revision: c05410766dc581f7a897abe44f28b698810534ab
+  specs:
+    exception_notification (4.4.0)
+      actionmailer (>= 4.0, < 7)
+      activesupport (>= 4.0, < 7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1107,6 +1115,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  exception_notification!
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg
