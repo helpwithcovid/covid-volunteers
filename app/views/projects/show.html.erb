@@ -27,8 +27,12 @@
           <% volunteer_emails = @project.volunteer_emails %>
 
           <span class="ml-3 inline-flex rounded-md shadow-sm">
-            <%= mail_to volunteer_emails[0], cc: volunteer_emails[1..-1].join(', ') do %>
+            <%= mail_to current_user.email, bcc: volunteer_emails.join(', ') do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+                <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
                 <span>
                   Send email to volunteers
                 </span>
@@ -39,6 +43,9 @@
           <span class="ml-3 inline-flex rounded-md shadow-sm">
             <%= link_to project_path(@project, format: 'csv') do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+                <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
                 <span>
                   Export volunteers to CSV
                 </span>
@@ -137,7 +144,7 @@
           Who is already working on this
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= simple_format @project.participants, class: 'mb-3' %>
+          <%= simple_format Rinku.auto_link(@project.participants, :all, 'class="text-indigo-500"'), class: 'mb-3' %>
         </dd>
       </div>
 
