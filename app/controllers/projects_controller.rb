@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
     else
       @project.volunteered_users << current_user
 
-      ProjectMailer.with(project: @project, user: current_user).new_volunteer.deliver_now if current_user.email.include?('radu.spineanu')
+      ProjectMailer.with(project: @project, user: current_user).new_volunteer.deliver_now
 
       flash[:notice] = "Thanks for volunteering! The project owners will be alerted."
     end
