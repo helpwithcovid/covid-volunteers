@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
+  has_many :offers
+
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
   end

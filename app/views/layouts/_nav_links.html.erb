@@ -15,6 +15,11 @@
   Volunteers
 <% end %>
 
+<%= link_to offers_path, class: "#{offers_nav_link_class(variant)}" do %>
+  Offers
+<% end %>
+
+
 <% if current_user %>
   <%= link_to edit_user_registration_path, class: "#{profile_nav_link_class(variant)}" do %>
     Profile

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :offers
+
   resources :admin do
     collection do
       post :delete_project
