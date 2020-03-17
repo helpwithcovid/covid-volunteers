@@ -11,17 +11,23 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
   </head>
 
-  <body class="min-h-screen bg-gray-100">
-    <div class="min-h-screen bg-gray-100">
+  <body class="flex flex-col min-h-screen h-full bg-gray-100">
+    <div class="flex-1 bg-gray-100">
       <%= render partial: 'layouts/nav' %>
 
       <div class="py-10">
-        <main>
+        <main class="flex-grow">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <%= yield %>    
           </div>
         </main>
       </div>
     </div>
+
+    <footer class="w-full border-t border-gray-200 px-5 py-5">
+      <div class="text-center text-gray-500 text-sm">
+        Made in San Francisco. Email us: <%= mail_to 'helpwithcovid@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %>. 
+      </div>
+    </footer>
   </body>
 </html>
