@@ -1,3 +1,4 @@
 ADMINS = [
-  'radu.spineanu@gmail.com'
+  'radu.spineanu@gmail.com',
+  'liamjweld@gmail.com'
 ]
