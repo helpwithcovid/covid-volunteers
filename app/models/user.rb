@@ -21,9 +21,11 @@ class User < ApplicationRecord
   end
 
   def is_visible_to_user?(user)
-    return true if self.visibility == true
-    return true if user == self
+    return false if user.blank?
 
+    return true if self.visibility == true  
+    return true if user == self
+  
     user_volunteered_to_self_projects = user.volunteered_projects.where(user_id: self.id).exists?
     return true if user_volunteered_to_self_projects
 
