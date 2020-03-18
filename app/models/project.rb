@@ -7,6 +7,10 @@ class Project < ApplicationRecord
 
   acts_as_taggable_on :skills
 
+  pg_search_scope :skill_search, associated_against: {
+    skills: [:name]
+  }
+
   def volunteer_emails
     self.volunteered_users.collect { |u| u.email }
   end

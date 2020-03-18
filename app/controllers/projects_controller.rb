@@ -9,8 +9,14 @@ class ProjectsController < ApplicationController
 
   def index
     params[:page] ||= 1
+    
+    filtered_projects = Project
+    if (params[:skill].present?)
+      filtered_projects = Project.skill_search(params[:skill]).reorder(nil)
+    end
 
-    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    @projects = filtered_projects.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
