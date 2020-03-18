@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   before_action :set_all_skills, only: [ :edit, :new ]
   
   # need to be lower case so that skills are checked in checkbox
-  ALL_SKILLS = ['software engineer', 'science', 'social', 'sports'].map(&:downcase).freeze
+  ALL_SKILLS = ['Medical', 'Software', 'Finance', 'Anything'].map(&:downcase).freeze
 
   def index
     params[:page] ||= 1
