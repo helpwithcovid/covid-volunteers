@@ -47,6 +47,17 @@
         </dd>
       </div>
 
+      <% if @user.tag_list.present? %>
+        <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Skills you got
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @user.tag_list %>
+          </dd>
+        </div>
+      <% end %>
+
       <div class="bg-gray-50 px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Interesting links

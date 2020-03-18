@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
-
+  before_action :set_all_skills, only: [:new, :edit]
   def index
     @users = User.where(visibility: true).order('created_at DESC').all
   end
@@ -58,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -67,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility, :tag_list => [] ])
   end
 
   # The path used after sign up.
@@ -89,5 +89,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params.delete(:current_password)
       resource.update_without_password(params)
     end
+  end
+
+  def set_all_skills
+    @all_skills = ::ProjectsController::ALL_SKILLS
   end
 end
