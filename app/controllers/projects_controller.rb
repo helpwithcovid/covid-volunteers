@@ -1,23 +1,39 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
-    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC')
+    params[:page] ||= 1
+
+    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
+    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+
     @projects_header = 'COVID-19 projects looking for volunteers'
     @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
   end
 
   def volunteered
-    @projects = current_user.volunteered_projects.reverse
+    params[:page] ||= 1
+
+    @projects = current_user.volunteered_projects.page(params[:page]).per(25)
+    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
+    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+
     @projects_header = 'Volunteered Projects'
     @projects_subheader = 'These are the projects where you volunteered.'
     render action: 'index'
   end
 
   def own
-    @projects = current_user.projects.reverse
+    params[:page] ||= 1
+
+    @projects = current_user.projects.page(params[:page]).per(25)
+
+    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
+    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+
     @projects_header = 'Own Projects'
     @projects_subheader = 'These are the projects you created.'
     render action: 'index'
