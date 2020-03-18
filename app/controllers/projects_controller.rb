@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   def index
     params[:page] ||= 1
 
-    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(50)
+    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   def volunteered
     params[:page] ||= 1
 
-    @projects = current_user.volunteered_projects.page(params[:page]).per(params[:per])
+    @projects = current_user.volunteered_projects.page(params[:page]).per(25)
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   def own
     params[:page] ||= 1
 
-    @projects = current_user.projects.page(params[:page]).per(params[:per])
+    @projects = current_user.projects.page(params[:page]).per(25)
 
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
