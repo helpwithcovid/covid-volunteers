@@ -1,5 +1,8 @@
+
 <% if page.current? %>
-<td class="cur"><span class="csb" style="background-position:-53px 0;width:20px"></span><%= page %></td>
+	<button type="button" class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 z-10 outline-none border-blue-300 shadow-outline-blue active:bg-gray-100 text-gray-700 transition ease-in-out duration-150">
+	  <%= page %>
+	</button>
 <% else %>
-<td><%= link_to raw(%Q[<span class="csb ch" style="background-position:-74px 0;width:20px"></span>#{page}]), url, :class => 'fl', :remote => remote %></td>
+	<%= link_to raw(%Q[<button type="button" class="hidden md:inline-flex -ml-px relative items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">#{page}</button>]), url, :class => 'fl', :remote => remote %>
 <% end %>
