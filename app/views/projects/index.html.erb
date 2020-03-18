@@ -32,7 +32,7 @@
     <ul>
       <% @projects.each_with_index do |project, idx| %>
         <li class="border-t border-gray-200">
-          <%= link_to project_path(project), class: "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out" do %>
+          <%= link_to project_path(project), class: "block transition duration-150 ease-in-out #{project_row_class project}" do %>
             <div class="px-4 py-4 sm:px-6">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
