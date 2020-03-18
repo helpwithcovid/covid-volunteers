@@ -1,5 +1,5 @@
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap">
     <div class="ml-4 mt-4">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <%= @project.name %> project
@@ -11,9 +11,9 @@
       <% end %>
     </div>
 
-    <div class="ml-4 mt-4 flex-shrink-0 flex">
+    <div class="flex flex-shrink-0 flex-wrap max-w-full">
       <% if current_user == @project.user %>
-        <span class="ml-3 inline-flex rounded-md shadow-sm">
+        <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
           <%= link_to edit_project_path(@project) do %>
             <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
               <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -29,7 +29,7 @@
         <% if @project.volunteered_users.count > 0 %>
           <% volunteer_emails = @project.volunteer_emails %>
 
-          <span class="ml-3 inline-flex rounded-md shadow-sm">
+          <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
             <%= mail_to current_user.email, bcc: volunteer_emails.join(', ') do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
                 <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -43,7 +43,7 @@
             <% end %>
           </span>
 
-          <span class="ml-3 inline-flex rounded-md shadow-sm">
+          <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
             <%= link_to project_path(@project, format: 'csv') do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
                 <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -57,7 +57,7 @@
           </span>
         <% end %>
       <% else %>
-        <span class="ml-3 inline-flex py-2 text-sm text-gray-700">
+        <span class="ml-3 inline-flex py-2 text-sm text-gray-700 mt-4 self-center">
           <% if @project.volunteered_users.count == 0 %>
             no volunteers
           <% else %>
@@ -71,7 +71,7 @@
 
         <% if current_user.blank? %>
           <%= link_to new_user_registration_path do %>
-            <span class="ml-3 inline-flex rounded-md shadow-sm">
+            <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
                 <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
@@ -85,7 +85,7 @@
         <% elsif current_user.has_complete_profile? %>
           <% if current_user.volunteered_for_project?(@project) %>
             <%= link_to toggle_volunteer_project_path(@project), method: :post do %>
-              <span class="ml-3 inline-flex rounded-md shadow-sm">
+              <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
                 <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:shadow-outline-orange focus:border-orange-700 active:bg-orange-700">
                   <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
@@ -98,7 +98,7 @@
             <% end %>
           <% else %>
             <%= link_to toggle_volunteer_project_path(@project), method: :post, data: { confirm: "Are you sure you want to volunteer? The project owner will be alerted." } do %>
-              <span class="ml-3 inline-flex rounded-md shadow-sm">
+              <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
                 <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
                   <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
@@ -115,7 +115,7 @@
 
       <% if current_user && (@project.user == current_user || current_user.is_admin?) %>
         <%= link_to project_path(project_id: @project.id), method: :delete, data: { confirm: "Are you sure you want to delete this project?" } do %>
-          <span class="ml-3 inline-flex rounded-md shadow-sm">
+          <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
             <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
               <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -193,7 +193,7 @@
         Volunteers
       </h3>
     </div>
-      
+
     <ul>
       <% @project.volunteers.each do |volunteer| %>
         <% user = volunteer.user %>
