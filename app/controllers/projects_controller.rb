@@ -2,6 +2,10 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
+  before_action :set_all_skills, only: [ :edit, :update, :create ]
+  
+  # need to be lower case so that skills are checked in checkbox
+  ALL_SKILLS = ['software engineer', 'science', 'social', 'sports'].map(&:downcase).freeze
 
   def index
     params[:page] ||= 1
@@ -112,7 +116,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location)
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :tag_list => [])
     end
 
     def ensure_owner_or_admin
@@ -120,5 +124,9 @@ class ProjectsController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
+    end
+
+    def set_all_skills
+      @all_skills = ALL_SKILLS
     end
 end
