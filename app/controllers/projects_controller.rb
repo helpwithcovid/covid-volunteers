@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer ]
-
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
 
@@ -97,7 +96,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :location)
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location)
     end
 
     def ensure_owner_or_admin
