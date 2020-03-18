@@ -1,3 +1,14 @@
+<% if @project.errors.any? %>
+  <div class="bg-red-100 text-red-900 my-4 p-4">
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <div class="mt-6 sm:mt-5">
   <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
@@ -47,6 +58,18 @@
   </div>
 
   <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="funding_amount" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Funding
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "funding_amount", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">Tell us how much you need for your project. We will do our best to help projects that make progress get the funding they need.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="username" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Location
     </label>
@@ -69,5 +92,5 @@
       </div>
       <p class="mt-2 text-sm text-gray-500">You'll get an email when a volunteer applies, but perhaps there is another way, like email or discord.</p>
     </div>
-  </div> 
+  </div>
 </div>

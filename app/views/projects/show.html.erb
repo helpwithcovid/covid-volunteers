@@ -172,6 +172,17 @@
         </dd>
       </div>
 
+      <% if @project.funding_amount %>
+        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Funding
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= number_to_currency @project.funding_amount %>
+          </dd>
+        </div>
+      <% end %>
+
       <% if @project.contact.present? %>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm leading-5 font-medium text-gray-500">
@@ -193,7 +204,7 @@
         Volunteers
       </h3>
     </div>
-      
+
     <ul>
       <% @project.volunteers.each do |volunteer| %>
         <% user = volunteer.user %>
