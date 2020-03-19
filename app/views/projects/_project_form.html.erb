@@ -60,14 +60,14 @@
               <% ALL_SKILLS.each do |skill| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { :multiple => true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
+                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
-                    <label class="font-medium text-gray-700">
+                    <label for="project_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
                       <%= skill %>
                     </label>
                   </div>
-                </div>          
+                </div>
               <% end %>
             </div>
           </div>
@@ -82,7 +82,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Skills needed
+              Project type
             </legend>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -90,14 +90,14 @@
               <% ALL_PROJECT_TYPES.each do |project_type| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                  <%= f.check_box :project_type_list, { :multiple => true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, project_type, nil %>
+                  <%= f.check_box :project_type_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, project_type, nil %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
-                    <label class="font-medium text-gray-700">
+                    <label for="project_project_type_list_<%= project_type.downcase.gsub('&', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
                       <%= project_type %>
                     </label>
                   </div>
-                </div>          
+                </div>
               <% end %>
             </div>
           </div>
@@ -128,5 +128,5 @@
       </div>
       <p class="mt-2 text-sm text-gray-500">You'll get an email when a volunteer applies, but perhaps there is another way, like email or discord.</p>
     </div>
-  </div> 
+  </div>
 </div>

@@ -36,14 +36,14 @@
               <% ALL_SKILLS.each do |skill| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { :multiple => true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
+                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
-                    <label class="font-medium text-gray-700">
+                    <label for="user_skill_list_<%= skill.downcase.gsub('&', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
                       <%= skill %>
                     </label>
                   </div>
-                </div>          
+                </div>
               <% end %>
             </div>
           </div>
