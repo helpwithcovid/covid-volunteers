@@ -27,9 +27,19 @@
 
 <br/>
 <% if @show_filter %>
-  <%= render partial: 'filters', locals: {label: 'Filter project by skills needed', filter_by: 'skill', skills: ALL_SKILLS} %>
-  <%= render partial: 'filters', locals: {label: 'Filter by project type', filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
-
+  <div x-data="{ open: <%= params[:filters_open].present? %> }">
+    <div class="block mb-4">
+      <nav class="flex flex-row-reverse">
+        <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200 fill-current flex-no-wrap" @click.prevent="open = !open" >
+          <%= inline_svg_pack_tag('media/svgs/filter.svg', class: 'h-4 inline-block') %> Filter projects
+        </a>
+      </nav>
+    </div>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden">
+      <%= render partial: 'filters', locals: {label: 'Filter project by skills needed', filter_by: 'skill', skills: ALL_SKILLS} %>
+      <%= render partial: 'filters', locals: {label: 'Filter by project type', filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
+    </div>
+  </div>
 <% end %>
 
 <% if @projects.present? %>

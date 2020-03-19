@@ -16,6 +16,8 @@ require('channels')
 //
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+const svgs = require.context('../svgs', true)
+const svgPath = (name) => svgs(name, true)
 
 // Tailwind.
 import './stylesheets.css'
