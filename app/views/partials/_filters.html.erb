@@ -5,9 +5,9 @@
         <%= label %>
       </h3>
       <p class="mt-4 text-sm leading-5 text-gray-500 flex flex-wrap justify-center">
-        <%= render partial: 'partials/filter-badge', locals: {label: 'Show all', url: "/#{model}?filters_open=true", color: 'gray'} %>
+        <%= filter_badge label: 'Show all', model: model, color: 'gray' %>
         <% skills.each do |skill|%>
-          <%= render partial: 'partials/filter-badge', locals: {label: skill, url: "/#{model}?#{filter_by}=#{CGI.escape(skill)}&filters_open=true"} %>
+          <%= filter_badge label: skill, model: model, filter_by: filter_by %>
         <% end %>
       </p>
     </div>
