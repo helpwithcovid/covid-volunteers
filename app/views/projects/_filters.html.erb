@@ -1,0 +1,15 @@
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <%= label %>
+      </h3>
+      <p class="mt-4 text-sm leading-5 text-gray-500 flex flex-wrap justify-center">
+        <%= render partial: 'filter-badge', locals: {label: 'Show all', url: "/projects", color: 'gray'} %>
+        <% skills.each do |skill|%>
+          <%= render partial: 'filter-badge', locals: {label: skill, url: "/projects?#{filter_by}=#{skill}"} %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
