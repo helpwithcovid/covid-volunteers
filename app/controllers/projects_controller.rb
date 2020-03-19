@@ -7,9 +7,7 @@ class ProjectsController < ApplicationController
     params[:page] ||= 1
     
     filtered_projects = Project
-    if (params[:skill].present?)
-      filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil)
-    end
+    filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
 
     @projects = filtered_projects.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
 
