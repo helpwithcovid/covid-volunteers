@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   
   def index
     params[:page] ||= 1
+    @show_filter = true
     
     filtered_projects = Project
     filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
