@@ -43,6 +43,20 @@
 
 <br/>
 
+<div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Filter by project type
+      </h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">   
+        <%= link_to 'Show all', "/projects", :class => 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-gray-100 text-gray-800' %>
+        <% ALL_PROJECT_TYPES.each do |project_type|%>
+        <%= link_to project_type, "/projects?project_type=#{project_type}", :class => 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-gray-100 text-gray-800' %>
+        <% end %>
+      </p>
+    </div>
+</div>
+
 <% if @projects.present? %>
   <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>

@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
     
     filtered_projects = Project
     filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
+    filtered_projects = Project.project_type_search(params[:project_type].downcase).reorder(nil) if params[:project_type].present?
 
     @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
 
@@ -116,7 +117,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :skill_list => [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin
