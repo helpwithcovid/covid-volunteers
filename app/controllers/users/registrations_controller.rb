@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
-  before_action :set_all_skills, only: [:new, :edit]
+
   def index
     @users = User.where(visibility: true).order('created_at DESC').all
   end
@@ -89,9 +89,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params.delete(:current_password)
       resource.update_without_password(params)
     end
-  end
-
-  def set_all_skills
-    @all_skills = ::ProjectsController::ALL_SKILLS
   end
 end

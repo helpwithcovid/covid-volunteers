@@ -2,17 +2,13 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
-  before_action :set_all_skills, only: [ :edit, :new ]
   
-  # need to be lower case so that skills are checked in checkbox
-  ALL_SKILLS = ['Medical', 'Software', 'Finance', 'Anything'].map(&:downcase).freeze
-
   def index
     params[:page] ||= 1
     
     filtered_projects = Project
     if (params[:skill].present?)
-      filtered_projects = Project.skill_search(params[:skill]).reorder(nil)
+      filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil)
     end
 
     @projects = filtered_projects.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
@@ -130,9 +126,5 @@ class ProjectsController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
-    end
-
-    def set_all_skills
-      @all_skills = ALL_SKILLS
     end
 end

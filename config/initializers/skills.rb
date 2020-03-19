@@ -1,0 +1,2 @@
+# need to be lower case so that skills are checked in checkbox
+ALL_SKILLS = [ 'Software', 'Biology', 'Biotech', 'Medicine', 'Mechanics & Electronics', 'Funding', 'Content',  'Manufacturing', 'PM', 'Anything' ].freeze

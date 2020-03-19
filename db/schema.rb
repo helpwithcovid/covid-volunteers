@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_143210) do
+ActiveRecord::Schema.define(version: 2020_03_18_215539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "offers", force: :cascade do |t|
     t.integer "user_id"
@@ -29,13 +36,15 @@ ActiveRecord::Schema.define(version: 2020_03_18_143210) do
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "description", default: "", null: false
     t.string "participants", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "goal", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "location", default: "", null: false
     t.string "contact", default: "", null: false
+    t.boolean "highlight", default: false, null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
