@@ -8,7 +8,6 @@
     classes = 'bg-indigo-100 text-indigo-800'
     classes += ' bg-indigo-200' if request.fullpath == URI::encode(url)
   end
-
  %>
 <a href="<%= url %>" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 mb-2 mr-2 <%= classes %>">
   <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">

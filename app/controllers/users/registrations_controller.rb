@@ -5,12 +5,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [ :update ]
 
   def index
-    @users = User.where(visibility: true).order('created_at DESC').all
+    filtered_users = User
+    filtered_users = filtered_users.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
+
+    @users = filtered_users.where(visibility: true).order('created_at DESC').all
+
+    @show_filter = true
   end
 
   def show
     @user = User.find(params[:id])
-     
+
     if @user.blank?
       flash[:error] = 'Sorry, no such user.'
       redirect_to projects_path

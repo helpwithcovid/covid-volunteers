@@ -5,9 +5,9 @@
         <%= label %>
       </h3>
       <p class="mt-4 text-sm leading-5 text-gray-500 flex flex-wrap justify-center">
-        <%= render partial: 'filter-badge', locals: {label: 'Show all', url: "/projects?filters_open=true", color: 'gray'} %>
+        <%= render partial: 'partials/filter-badge', locals: {label: 'Show all', url: "/#{model}?filters_open=true", color: 'gray'} %>
         <% skills.each do |skill|%>
-          <%= render partial: 'filter-badge', locals: {label: skill, url: "/projects?#{filter_by}=#{skill}&filters_open=true"} %>
+          <%= render partial: 'partials/filter-badge', locals: {label: skill, url: "/#{model}?#{filter_by}=#{skill}&filters_open=true"} %>
         <% end %>
       </p>
     </div>

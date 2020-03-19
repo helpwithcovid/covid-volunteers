@@ -1,4 +1,4 @@
-<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
   <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-4">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -25,7 +25,6 @@
   </div>
 </div>
 
-<br/>
 <% if @show_filter %>
   <div x-data="{ open: <%= params[:filters_open].present? %> }">
     <div class="block mb-4">
@@ -36,8 +35,8 @@
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
-      <%= render partial: 'filters', locals: {label: 'Filter project by skills needed', filter_by: 'skill', skills: ALL_SKILLS} %>
-      <%= render partial: 'filters', locals: {label: 'Filter by project type', filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skill', skills: ALL_SKILLS} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
     </div>
   </div>
 <% end %>
