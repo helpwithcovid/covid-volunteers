@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :admin do
     collection do
       post :delete_user
+      post :toggle_highlight
     end
   end
 end

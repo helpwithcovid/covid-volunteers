@@ -6,7 +6,11 @@ class ProjectsController < ApplicationController
   def index
     params[:page] ||= 1
 
-    @projects = Project.left_joins(:volunteers).group(:id).order('COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    filtered_projects = Project
+    filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
+
+    @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
@@ -112,7 +116,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :funding_amount)
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :skill_list => [], :funding_amount)
     end
 
     def ensure_owner_or_admin

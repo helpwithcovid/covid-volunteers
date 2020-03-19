@@ -32,13 +32,13 @@
     <ul>
       <% @projects.each_with_index do |project, idx| %>
         <li class="border-t border-gray-200">
-          <%= link_to project_path(project), class: "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out" do %> 
+          <%= link_to project_path(project), class: "block transition duration-150 ease-in-out #{project_row_class project}" do %>
             <div class="px-4 py-4 sm:px-6">
-              <div class="flex items-center justify-between">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
                   <%= project.name %>
                 </div>
-                <div class="ml-4 flex-shrink-0 flex">
+                <div class="mt-2 md:mt-0 md:ml-4 flex-shrink-0 flex">
                   <% project_volunteer_class = project.volunteered_users.count > 0 ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800" %>
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
                     <% if project.volunteered_users.count == 0 %>

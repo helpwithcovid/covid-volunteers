@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= render 'layouts/head_content' %>
+
     <%= stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -19,6 +21,12 @@
       <div class="py-10">
         <main class="flex-grow">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <% flash.each do |type, msg| %>
+              <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
+                <span class="block sm:inline"><%= msg %></span>
+              </div>
+            <% end %>
+
             <%= yield %>
           </div>
         </main>
@@ -27,7 +35,7 @@
 
     <footer class="w-full border-t border-gray-200 px-5 py-5">
       <div class="text-center text-gray-500 text-sm">
-        Made in San Francisco. Email us: <%= mail_to 'helpwithcovid@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %> or join the <%= link_to 'Discord', 'https://discord.gg/mgupDG', target: '_blank', class: 'text-indigo-500' %> group.
+        Made in San Francisco. Email us: <%= mail_to 'helpwithcovid@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %> or join the <%= link_to 'Discord', 'https://discord.gg/s7eV8R', target: '_blank', class: 'text-indigo-500' %> group.
       </div>
     </footer>
   </body>

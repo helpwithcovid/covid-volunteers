@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
   has_many :offers
-
+  acts_as_taggable_on :skills
+  
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
   end
@@ -22,8 +23,9 @@ class User < ApplicationRecord
 
   def is_visible_to_user?(user)
     return true if self.visibility == true
+    return false if user.blank?
     return true if user == self
-
+  
     user_volunteered_to_self_projects = user.volunteered_projects.where(user_id: self.id).exists?
     return true if user_volunteered_to_self_projects
 

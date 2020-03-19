@@ -29,10 +29,10 @@
 
 <br/>
 
-<div class="bg-white shadow overflow-hidden sm:rounded-lg">
-  <div>
+<div class="bg-white shadow overflow-hidden  sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-0">
     <dl>
-      <div class="bg-gray-50 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Name
         </dt>
@@ -40,8 +40,7 @@
           <%= @offer.name %>
         </dd>
       </div>
-
-      <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Description
         </dt>
@@ -49,8 +48,7 @@
           <%= simple_format @offer.description, class: 'mb-3' %>
         </dd>
       </div>
-
-      <div class="bg-gray-50 px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Limitations
         </dt>
@@ -58,8 +56,7 @@
           <%= simple_format @offer.limitations, class: 'mb-3' %>
         </dd>
       </div>
-
-      <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           How to redeem it
         </dt>
@@ -67,8 +64,7 @@
           <%= simple_format @offer.redemption, class: 'mb-3' %>
         </dd>
       </div>
-
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Location
         </dt>
