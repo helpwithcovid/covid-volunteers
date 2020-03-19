@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def index
     filtered_users = User
-    filtered_users = filtered_users.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
+    filtered_users = filtered_users.tagged_with(params[:skill]) if params[:skill].present?
 
     @users = filtered_users.where(visibility: true).order('created_at DESC').all
 

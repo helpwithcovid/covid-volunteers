@@ -8,9 +8,8 @@ class ProjectsController < ApplicationController
     @show_filter = true
 
     filtered_projects = Project
-    filtered_projects = filtered_projects.skill_search(params[:skill].downcase) if params[:skill].present?
-    filtered_projects = filtered_projects.project_type_search(params[:project_type].downcase) if params[:project_type].present?
-    filtered_projects = filtered_projects.reorder(nil)
+    filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
+    filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
 
     @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
 

@@ -1,7 +1,6 @@
 require 'csv'
 
 class User < ApplicationRecord
-  include PgSearch::Model
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,10 +12,6 @@ class User < ApplicationRecord
 
   has_many :offers
   acts_as_taggable_on :skills
-
-  pg_search_scope :skill_search, associated_against: {
-    skills: [:name]
-  }
 
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?

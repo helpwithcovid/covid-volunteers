@@ -26,7 +26,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'kaminari'
 gem 'acts-as-taggable-on'
-gem 'pg_search'
 gem 'inline_svg'
 
 group :development, :test do
