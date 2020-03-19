@@ -2,11 +2,15 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
-
+  
   def index
     params[:page] ||= 1
+    
+    filtered_projects = Project
+    filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
 
-    @projects = Project.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
@@ -112,7 +116,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location)
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :skill_list => [])
     end
 
     def ensure_owner_or_admin
