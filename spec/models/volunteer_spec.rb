@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Volunteer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "works" do
+    user = create(:user)
+    project = create(:project)
+    volunteer = build(:volunteer, user: user, project: project)
+    expect(volunteer.valid?).to eq(true)
+  end
 end
