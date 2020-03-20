@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     collection do
       post :delete_user
       post :toggle_highlight
+      get 'dashboard', to: 'admin#dashboard'
     end
   end
 end

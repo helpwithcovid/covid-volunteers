@@ -27,6 +27,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'inline_svg'
+gem "chartkick"
+gem "groupdate"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

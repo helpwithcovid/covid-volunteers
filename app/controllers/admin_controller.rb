@@ -15,4 +15,7 @@ class AdminController < ApplicationController
 
     redirect_to project_path(@project)
   end
+
+  def dashboard
+  end
 end

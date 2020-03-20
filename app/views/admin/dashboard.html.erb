@@ -1,0 +1,8 @@
+Number of new projects each day
+<%= line_chart Project.group_by_day(:created_at).count %>
+
+Number of new users each day
+<%= line_chart User.group_by_day(:created_at).count %>
+
+Number of new volunteers recruited each day
+<%= line_chart Volunteer.group_by_day(:created_at).count %>
