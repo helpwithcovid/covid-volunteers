@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{email about profile_links location}
+    attributes = %w{email about profile_links location level_of_availability}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
