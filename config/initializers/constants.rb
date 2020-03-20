@@ -10,7 +10,11 @@ ALL_PROJECT_TYPES = [
   'Treatment R&D', 
   'Help out communities', 
   'Map volunteers to needs',
-  'News and information', 
+  'News and information',
+  'E-Learning',
+  'Job placement',
+  'Mental health',
+  'Social giving',
   'Other'
   ].freeze
 
