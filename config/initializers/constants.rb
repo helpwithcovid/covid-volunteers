@@ -5,8 +5,9 @@ ALL_PROJECT_TYPES = [
   'Track the outbreak', 
   'Help out neighbours', 
   'News and information', 
-  'Medical supplies', 
-  'Test the virus', 
+  'Medical supplies',
+  'Treatment R&D', 
+  'Scale testing',
   'Other'
   ].freeze
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
