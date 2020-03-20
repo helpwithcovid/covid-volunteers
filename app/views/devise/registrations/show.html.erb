@@ -27,9 +27,9 @@
 <br/>
 
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-  <div>
+  <div class="px-4 py-5 sm:p-0">
     <dl>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Email
         </dt>
@@ -37,8 +37,7 @@
           <%= @user.email %>
         </dd>
       </div>
-
-      <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           About
         </dt>
@@ -46,9 +45,8 @@
           <%= simple_format @user.about, class: 'mb-3' %>
         </dd>
       </div>
-
       <% if @user.skill_list.present? %>
-        <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Skills
           </dt>
@@ -59,7 +57,7 @@
       <% end %>
 
       <% if @user.level_of_availability.present? %>
-        <div class="px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Level of Availability
           </dt>
@@ -69,7 +67,7 @@
         </div>
       <% end %>
 
-      <div class="bg-gray-50 px-4 pt-5 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Interesting links
         </dt>
@@ -77,13 +75,12 @@
           <%= simple_format Rinku.auto_link(@user.profile_links, :all, 'class="text-indigo-500"'), class: 'mb-3' %>
         </dd>
       </div>
-
-      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Location
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= simple_format @user.location, class: 'mb-2' %>
+          <%= @user.location %>
         </dd>
       </div>
     </dl>
