@@ -36,6 +36,10 @@ class User < ApplicationRecord
     ADMINS.include?(self.email)
   end
 
+  def to_param
+    [id, name.parameterize].join("-")
+  end
+
   def self.to_csv
     attributes = %w{email about profile_links location level_of_availability}
 

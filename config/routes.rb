@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'users', to: 'users/registrations#index', as: 'volunteers'
     get 'users/:id', to: 'users/registrations#show', as: 'profile'
   end
-  
+
   get "/projects/p/:page" => "projects#index", as: 'projects_with_pagination'
 
   resources :projects do
