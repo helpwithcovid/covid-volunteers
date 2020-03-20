@@ -45,6 +45,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    actionview-encoded_mail_to (1.0.9)
+      rails
     activejob (6.0.2.2)
       activesupport (= 6.0.2.2)
       globalid (>= 0.3.6)
@@ -1148,6 +1150,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview-encoded_mail_to
   acts-as-taggable-on
   aws-sdk
   aws-sdk-rails
