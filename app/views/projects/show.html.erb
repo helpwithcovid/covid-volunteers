@@ -206,7 +206,7 @@
           <%= @project.location %>
         </dd>
       </div>
-        <% if @project.contact.present? %>
+      <% if @project.contact.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How to get in touch
@@ -228,7 +228,7 @@
       <% end %>
 
       <% if @project.project_type_list.present? %>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Project type
           </dt>
