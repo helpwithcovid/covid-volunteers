@@ -26,7 +26,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+
+# Display SVG's
 gem 'inline_svg'
+
+# Linting
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-performance', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
