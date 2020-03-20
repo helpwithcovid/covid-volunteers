@@ -6,13 +6,13 @@
         <span class="font-medium"><%= @index_from %></span>
           to
         <span class="font-medium"><%= @index_to %></span>
-	      of
-	      <span class="font-medium"><%= @projects.total_count %></span>
-	      results
-	   </p>
+        of
+        <span class="font-medium"><%= @total_count %></span>
+        results
+    </p>
   </div>
 </div>
-  
+
 <%= paginator.render do -%>
   <div class="flex-1 flex justify-between sm:hidden">
     <% if !current_page.first? %>

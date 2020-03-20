@@ -42,5 +42,7 @@
     <% @users.each_with_index do |user, idx| %>
       <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
     <% end %>
+
+    <%= paginate @users %>
   </ul>
 </div>
