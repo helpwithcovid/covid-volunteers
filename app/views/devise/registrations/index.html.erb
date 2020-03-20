@@ -1,4 +1,4 @@
-<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
   <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-4">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -20,7 +20,20 @@
   </div>
 </div>
 
-<br/>
+<% if @show_filter %>
+  <div x-data="{ open: <%= params[:filters_open].present? %> }">
+    <div class="block mb-4">
+      <nav class="flex flex-row-reverse">
+        <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200 fill-current flex-no-wrap" @click.prevent="open = !open" >
+          <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
+        </a>
+      </nav>
+    </div>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden">
+      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skill', skills: ALL_SKILLS} %>
+    </div>
+  </div>
+<% end %>
 
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
   <ul>
