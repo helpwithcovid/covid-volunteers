@@ -3,10 +3,15 @@ ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'On
 
 ALL_PROJECT_TYPES = [ 
   'Track the outbreak', 
-  'Help out neighbours', 
+  'Reduce spread',
+  'Scale testing',
+  'Medical facilities',
+  'Medical equipments',
+  'Treatment R&D', 
+  'Help out communities', 
+  'Map volunteers to needs',
   'News and information', 
-  'Medical supplies', 
-  'Test the virus', 
   'Other'
   ].freeze
+
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50

@@ -3,7 +3,7 @@
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">
         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-          <%= user.name %> / <%= user.email %>
+          <%= user.name %> / <%= mail_to user.email, nil, encode: 'javascript' %>
         </div>
       </div>
       <div class="mt-2 sm:flex sm:justify-between">
