@@ -5,10 +5,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [ :update ]
 
   def index
+    params[:page] ||= 1
+
     filtered_users = User
     filtered_users = filtered_users.tagged_with(params[:skill]) if params[:skill].present?
 
-    @users = filtered_users.where(visibility: true).order('created_at DESC').all
+    @users = filtered_users.where(visibility: true).order('created_at DESC').page(params[:page]).per(25)
+
+    @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
+    @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
+    @total_count = @users.total_count
 
     @show_filter = true
   end

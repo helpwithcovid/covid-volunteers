@@ -30,10 +30,20 @@
 <% if @show_filter %>
   <div x-data="{ open: <%= params[:filters_open].present? %> }">
     <div class="block mb-4">
-      <nav class="flex flex-row-reverse">
+      <nav class="flex justify-between">
         <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200 fill-current flex-no-wrap" @click.prevent="open = !open" >
           <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
         </a>
+        <% if @show_search_bar %>
+          <div class="w-64">
+            <%= form_with url: projects_path, local: true, method: :get do |form| %>
+              <div class="relative rounded-md shadow-sm">
+                <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
+                <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'absolute inset-auto right-0 top-0 translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
