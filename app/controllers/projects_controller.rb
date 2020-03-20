@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'COVID-19 projects looking for volunteers'
     @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
+    @page_title = 'All Projects'
   end
 
   def volunteered
@@ -29,6 +30,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'Volunteered Projects'
     @projects_subheader = 'These are the projects where you volunteered.'
+    @page_title = 'Volunteered Projects'
     render action: 'index'
   end
 
@@ -42,6 +44,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'Own Projects'
     @projects_subheader = 'These are the projects you created.'
+    @page_title = 'Own Projects'
     render action: 'index'
   end
 
