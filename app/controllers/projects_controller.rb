@@ -6,12 +6,17 @@ class ProjectsController < ApplicationController
   def index
     params[:page] ||= 1
     @show_filter = true
+    @show_search_bar = true
 
     filtered_projects = Project
     filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
     filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
-
-    @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    if params[:query].present?
+      grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+    else
+      grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
+    end
+    @projects = grouped_projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
 
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min

@@ -27,6 +27,22 @@
   </div>
 </div>
 
+<% if @show_search_bar %>
+  <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+      <div class="col-md-1 col-md-offset-3">
+        <%= form_with url: projects_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
+          <div class="row form-group">
+            <div class="col-sm-4">
+              <%= form.text_field :query, placeholder: "Search", size: 100, data: { behavior: "autocomplete" }, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% if @show_filter %>
   <div x-data="{ open: <%= params[:filters_open].present? %> }">
     <div class="block mb-4">
