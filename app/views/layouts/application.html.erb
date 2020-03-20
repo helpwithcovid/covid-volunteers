@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Help With COVID 19 - a clearing house for projects and volunteers that want to help with the COVID-19 crisis.</title>
+    <title><%= content_for(:share_title).present? ? content_for(:share_title)+' | ' : '' %> Help With COVID 19 - a clearing house for projects and volunteers that want to help with the COVID-19 crisis.</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -35,7 +35,7 @@
 
     <footer class="w-full border-t border-gray-200 px-5 py-5">
       <div class="text-center text-gray-500 text-sm">
-        Made in San Francisco. Email us: <%= mail_to 'helpwithcovid@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %> or join the <%= link_to 'Discord', 'https://discord.gg/s7eV8R', target: '_blank', class: 'text-indigo-500' %> group.
+        Made in San Francisco. Email us: <%= mail_to 'helpwithcovid@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %> or join the <%= link_to 'Discord', 'https://discord.gg/875AhXS', target: '_blank', class: 'text-indigo-500' %> group.
       </div>
     </footer>
   </body>

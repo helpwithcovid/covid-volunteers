@@ -1,20 +1,14 @@
-const covid = {
+import Cookies from 'js-cookie'
 
+const Covid = {
   initialize() {
-    incrementNode.addEventListener('click', (event) => {
-      event.preventDefault();
-      const currentValue = inputNode.value;
-      inputNode.value = parseInt(currentValue, 0) + 1;
-    });
-
-    decrementNode.addEventListener('click', (event) => {
-      event.preventDefault();
-      const currentValue = inputNode.value;
-      if (currentValue > 0) {
-        inputNode.value = parseInt(currentValue, 0) - 1;
-      }
+    $( document ).on('turbolinks:load', () => {
+      $('#disable_funding_alert').click(() => {
+        Cookies.set('funding_alert', false, { expires: 99999 })
+        $('#disable_funding_container').remove();
+      })
     });
   }
 };
   
-export default covid;
+export default Covid

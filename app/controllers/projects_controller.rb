@@ -5,9 +5,11 @@ class ProjectsController < ApplicationController
 
   def index
     params[:page] ||= 1
+    @show_filter = true
 
     filtered_projects = Project
-    filtered_projects = Project.skill_search(params[:skill].downcase).reorder(nil) if params[:skill].present?
+    filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
+    filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
 
     @projects = filtered_projects.left_joins(:volunteers).group(:id).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
 
@@ -16,6 +18,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'COVID-19 projects looking for volunteers'
     @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
+    @page_title = 'All Projects'
   end
 
   def volunteered
@@ -27,6 +30,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'Volunteered Projects'
     @projects_subheader = 'These are the projects where you volunteered.'
+    @page_title = 'Volunteered Projects'
     render action: 'index'
   end
 
@@ -40,6 +44,7 @@ class ProjectsController < ApplicationController
 
     @projects_header = 'Own Projects'
     @projects_subheader = 'These are the projects you created.'
+    @page_title = 'Own Projects'
     render action: 'index'
   end
 
@@ -116,7 +121,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :funding_amount, :skill_list => [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :funding_amount, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin

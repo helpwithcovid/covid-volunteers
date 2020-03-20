@@ -1,3 +1,4 @@
+<%- share_title "Project #{@project.name}" %>
 
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
   <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap">
@@ -7,7 +8,7 @@
       </h3>
       <% if current_user && @project.user == current_user %>
         <p class="mt-1 text-sm leading-5 text-gray-500">
-          Use <%= link_to "HWC's Discord", "https://discord.gg/BFRRcE", class: "text-indigo-500", target: "_blank" %> to manage your project communication.
+          Use <%= link_to "HWC's Discord", "https://discord.gg/875AhXS", class: "text-indigo-500", target: "_blank" %> to manage your project communication.
         </p>
       <% end %>
     </div>
@@ -148,9 +149,30 @@
   </div>
 </div>
 
-<br/>
+<% if current_user && @project.volunteered_users.count >= VOLUNTEERS_REQUIRED_FOR_FUNDING && @project.user == current_user && !cookies[:funding_alert] %>
+  <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_funding_container">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Apply for funding
+      </h3>
+      <div class="mt-2 text-sm leading-5 text-gray-500">
+        <p>
+          The <%= link_to "COVID-19 Task Force", "www.covid19-response.com", _target: "_blank", class: "text-indigo-500" %> offers HWC projects that reach a certain threshold of volunteers the ability to apply for funding and resources from donors and investors. The TF is made up of epidemiologists, virologist, operators, and investors that are vetting the highest impact ideas to combat COVID-19.
+        </p>
+      </div>
+      <div class="flex justify-between mt-3 text-sm leading-5">
+        <%= link_to "https://forms.gle/5gLZBUueYxZYynrP8", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
+          Submit an application here &rarr;
+        <% end %>
+        <%= link_to "javascript:void(0)", id: "disable_funding_alert", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
+          Don't show this again
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<div class="bg-white shadow overflow-hidden  sm:rounded-lg">
+<div class="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
   <div class="px-4 py-5 sm:p-0">
     <dl>
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2">
@@ -214,6 +236,17 @@
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @project.skill_list %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @project.project_type_list.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Project type
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @project.project_type_list %>
           </dd>
         </div>
       <% end %>

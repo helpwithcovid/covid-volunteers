@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :offers
   acts_as_taggable_on :skills
-  
+
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
   end
@@ -25,7 +25,7 @@ class User < ApplicationRecord
     return true if self.visibility == true
     return false if user.blank?
     return true if user == self
-  
+
     user_volunteered_to_self_projects = user.volunteered_projects.where(user_id: self.id).exists?
     return true if user_volunteered_to_self_projects
 
@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{email about profile_links location}
+    attributes = %w{email about profile_links location level_of_availability}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

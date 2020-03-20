@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  include PgSearch::Model
   belongs_to :user
 
   has_many :volunteers, dependent: :destroy
@@ -7,10 +6,7 @@ class Project < ApplicationRecord
 
   validates :funding_amount, numericality: true
   acts_as_taggable_on :skills
-
-  pg_search_scope :skill_search, associated_against: {
-    skills: [:name]
-  }
+  acts_as_taggable_on :project_types
 
   def volunteer_emails
     self.volunteered_users.collect { |u| u.email }

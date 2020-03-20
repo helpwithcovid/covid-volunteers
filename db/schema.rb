@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_215539) do
+ActiveRecord::Schema.define(version: 2020_03_19_064535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "offers", force: :cascade do |t|
     t.integer "user_id"
@@ -36,9 +29,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_215539) do
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "participants", default: "", null: false
     t.string "description", default: "", null: false
-    t.string "goal", default: "", null: false
+    t.string "participants", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -93,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_215539) do
     t.string "profile_links", default: "", null: false
     t.boolean "visibility", default: false
     t.string "name", default: "", null: false
+    t.string "level_of_availability"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
