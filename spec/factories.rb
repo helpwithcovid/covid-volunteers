@@ -2,7 +2,14 @@ FactoryBot.define do
 
   factory :user do
     name { "Bob Isok" }
-    email  { "spacecat@example.com" }
+    sequence(:email) {|n|
+      # puts "HI"; puts n.inspect; "user#{n}@example.com"
+      gen = "user_#{rand(1000)}@factory.com"
+      while User.where(email: gen).exists?
+        gen = "user_#{rand(1000)}@factory.com"
+      end
+      gen
+    }
     password { "df823jls18fk350f" }
   end
 

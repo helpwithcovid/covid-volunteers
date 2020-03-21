@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :user
 
-  include PgSearch
+  include PgSearch::Model
 
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy

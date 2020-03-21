@@ -1,5 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'factory is valid' do
+    user = FactoryBot.create(:user)
+    offer = FactoryBot.build(:offer, user: user)
+    expect(offer).to be_valid
+  end
+
+  it 'is invalid without a user' do
+    offer = FactoryBot.build(:offer, user: nil)
+    expect(offer).to_not be_valid
+  end
 end
