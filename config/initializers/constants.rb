@@ -18,5 +18,12 @@ ALL_PROJECT_TYPES = [
   'Other'
   ].freeze
 
+ALL_PROJECT_PROGRESS = [
+  'Just Started',
+  'Already have a service',
+  'Getting there, need more volunteers',
+  'Have volunteers, need more funding'
+]
+
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

@@ -51,6 +51,7 @@
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
       <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skill', skills: ALL_SKILLS} %>
       <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter by progress', model: 'projects',filter_by: 'progress', skills: ALL_PROJECT_PROGRESS} %>
     </div>
   </div>
 <% end %>

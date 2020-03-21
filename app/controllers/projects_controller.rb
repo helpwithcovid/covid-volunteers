@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
     filtered_projects = Project
     filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
     filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
+    filtered_projects = filtered_projects.where(progress: params[:progress]) if params[:progress].present?
+
     if params[:query].present?
       grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
     else
@@ -127,7 +129,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :skill_list => [], :project_type_list => [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location,:progress, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin
