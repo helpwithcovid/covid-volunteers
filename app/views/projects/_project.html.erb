@@ -29,7 +29,7 @@
       </div>
       <% if project.project_type_list.present? %>
         <div class="flex content-center flex-wrap mt-2">
-          <%= badges_for_project_types project%>
+          <%= skill_badges project.project_type_list, show: 3 %>
         </div>
       <% end %>
       <div class="mt-2 sm:flex sm:justify-between">

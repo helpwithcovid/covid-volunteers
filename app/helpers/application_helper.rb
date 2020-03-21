@@ -88,4 +88,11 @@ module ApplicationHelper
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes}
   end
+
+  def skill_badges(items, **args)
+    show = args[:show].present? ? args[:show] : items.count
+    extra = items.count > show ? items.dup.drop(show).count : nil
+
+    render partial: 'partials/skill_badges', locals: {items: items.take(show), extra: extra}
+  end
 end
