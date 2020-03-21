@@ -61,4 +61,4 @@ Help is welcome! We are communicating on [Discord](https://discord.gg/875AhXS) i
 
 # License
 
-MIT?
+MIT
