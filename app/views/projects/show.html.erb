@@ -234,7 +234,7 @@
             How to get in touch
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= Rinku.auto_link(@project.contact, :all, 'class="text-indigo-500"').html_safe %>
+            <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500"').html_safe %>
           </dd>
         </div>
       <% end %>
