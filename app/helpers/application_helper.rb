@@ -72,7 +72,10 @@ module ApplicationHelper
     label = args[:label]
     model = args[:model]
     filter_by = args[:filter_by]
-    url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
+
+    if model.present?
+      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
+    end
 
     case args[:color]
     when 'gray'
