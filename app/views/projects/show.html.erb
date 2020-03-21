@@ -65,10 +65,6 @@
           <% else %>
             <%= pluralize(@project.volunteered_users.count, 'volunteer') %>
           <% end %>
-
-          <% if current_user && !current_user.has_complete_profile? %>
-            - complete your profile to volunteer
-          <% end %>
         </span>
 
         <% if current_user.blank? %>
@@ -84,7 +80,17 @@
               </button>
             </span>
           <% end %>
-        <% elsif current_user.has_complete_profile? %>
+        <% elsif !current_user.has_complete_profile? %>
+          <%= link_to edit_user_registration_path do %>
+            <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+                <span>
+                  Complete your profile to volunteer
+                </span>
+              </button>
+            </span>
+          <% end %>
+        <% else %>
           <% if current_user.volunteered_for_project?(@project) %>
             <%= link_to toggle_volunteer_project_path(@project), method: :post do %>
               <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
