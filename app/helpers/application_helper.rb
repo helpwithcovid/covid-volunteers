@@ -53,10 +53,13 @@ module ApplicationHelper
     nav_link_inactive_class(variant)
   end
 
+  def discord_nav_link_class(variant = 'DESKTOP')
+    nav_link_inactive_class(variant)
+  end
+
   def alert_container_class_for_flash_type type
     base_class = 'border px-4 py-3 rounded relative'
 
-    Rails.logger.error type
     if [ 'alert', 'error'].include?(type)
       base_class += ' bg-red-100 border-red-400 text-red-700'
     elsif type == 'notice'
