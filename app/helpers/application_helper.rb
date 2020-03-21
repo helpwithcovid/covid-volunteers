@@ -72,7 +72,10 @@ module ApplicationHelper
     label = args[:label]
     model = args[:model]
     filter_by = args[:filter_by]
-    url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
+
+    if model.present?
+      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
+    end
 
     case args[:color]
     when 'gray'
@@ -84,5 +87,12 @@ module ApplicationHelper
     end
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes}
+  end
+
+  def skill_badges(items, **args)
+    show = args[:show].present? ? args[:show] : items.count
+    extra = items.count > show ? items.dup.drop(show).count : nil
+
+    render partial: 'partials/skill_badges', locals: {items: items.take(show), extra: extra}
   end
 end
