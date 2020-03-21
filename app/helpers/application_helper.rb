@@ -68,13 +68,10 @@ module ApplicationHelper
     base_class
   end
 
-  def filter_badge(**args)
-    label = args[:label]
-    model = args[:model]
-    filter_by = args[:filter_by]
+  def filter_badge(label: nil, model: nil, is_link: true, filter_by: nil, color: nil)
     url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
 
-    case args[:color]
+    case color
     when 'gray'
       classes = 'bg-gray-100 text-gray-800'
       classes += ' bg-gray-200' if request.fullpath == url
@@ -83,6 +80,6 @@ module ApplicationHelper
       classes += ' bg-indigo-200' if request.fullpath == url
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes}
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, is_link: is_link}
   end
 end

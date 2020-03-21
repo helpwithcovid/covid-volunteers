@@ -256,9 +256,7 @@
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <% @project.project_types.map(&:name).each do |project_type| %>
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100">
-                <%= link_to project_type, projects_path(project_type: project_type) %>
-              </span>
+              <%= filter_badge label: project_type, model: 'projects', filter_by: 'project_type' %>
             <% end %>
           </dd>
         </div>
