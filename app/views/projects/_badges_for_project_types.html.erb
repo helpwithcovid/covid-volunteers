@@ -1,0 +1,8 @@
+<% project_types.each do |type| %>
+  <div class="mr-2">
+    <%= filter_badge label: type %>
+  </div>
+<% end %>
+<div class="mr-2">
+  <%= filter_badge label: "and #{extra} more", color: 'gray' if extra %>
+</div>
