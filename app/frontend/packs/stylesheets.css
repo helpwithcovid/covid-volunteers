@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vertical-spacing-2 >*+* {
+  @apply mb-2;
+}
+
