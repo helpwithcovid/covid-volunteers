@@ -23,4 +23,42 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe 'GET #new' do
+    it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+  describe 'POST #create' do
+    it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+  describe 'PUT #update' do
+    it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+
+  describe 'DELETE #destroy' do
+    it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+
+
 end
