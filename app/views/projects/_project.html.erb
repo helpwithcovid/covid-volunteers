@@ -27,9 +27,14 @@
           <%= simple_format project.description, class: 'mb-2' %>
         </div>
       </div>
+      <% if project.skill_list.present? %>
+        <div class="flex content-center flex-wrap mt-2">
+          <%= skill_badges project.skill_list, limit: 3, color: 'blue' %>
+        </div>
+      <% end %>
       <% if project.project_type_list.present? %>
         <div class="flex content-center flex-wrap mt-2">
-          <%= skill_badges project.project_type_list, show: 3 %>
+          <%= skill_badges project.project_type_list, limit: 3 %>
         </div>
       <% end %>
       <div class="mt-2 sm:flex sm:justify-between">

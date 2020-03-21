@@ -71,7 +71,7 @@ module ApplicationHelper
     base_class
   end
 
-  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil)
+  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     if model.present?
       url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
     end
@@ -80,18 +80,20 @@ module ApplicationHelper
     when 'gray'
       classes = 'bg-gray-100 text-gray-800'
       classes += ' bg-gray-200' if request.fullpath == url
+    when 'blue'
+      classes = 'bg-blue-100 text-blue-800'
+      classes += ' bg-blue-200' if request.fullpath == url
     when nil
       classes = 'bg-indigo-100 text-indigo-800'
       classes += ' bg-indigo-200' if request.fullpath == url
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes}
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
-  def skill_badges(items, show: nil)
-    show ||= items.count
-    extra = items.count > show ? items.dup.drop(show).count : nil
+  def skill_badges(items, limit: nil, color: 'gray', title: title)
+    limit ||= items.count
 
-    render partial: 'partials/skill_badges', locals: {items: items.take(show), extra: extra}
+    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
   end
 end

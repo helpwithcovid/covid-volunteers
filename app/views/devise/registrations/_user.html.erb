@@ -13,7 +13,7 @@
       </div>
       <% if user.skill_list.present? %>
         <div class="flex content-center flex-wrap mt-2">
-          <%= skill_badges user.skill_list, show: 3 %>
+          <%= skill_badges user.skill_list, limit: 3 %>
         </div>
       <% end %>
       <div class="mt-2 sm:flex sm:justify-between">
