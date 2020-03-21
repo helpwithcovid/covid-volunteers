@@ -9,7 +9,7 @@ class Project < ApplicationRecord
   acts_as_taggable_on :skills
   acts_as_taggable_on :project_types
 
-  pg_search_scope :search, against: %i(name description participants looking_for location highlight), using: { tsearch: { any_word: true } }
+  pg_search_scope :search, against: %i(name description participants looking_for location highlight progress), using: { tsearch: { any_word: true } }
 
   def to_param
     [id, name.parameterize].join("-")
