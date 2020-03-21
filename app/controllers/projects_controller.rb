@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     @total_count = @projects.total_count
 
     @projects_header = 'COVID-19 projects looking for volunteers'
-    @projects_subheader = 'These projects were posted by the community. Volunteer yourself or create a new one.'
+    @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
     @page_title = 'All Projects'
   end
 

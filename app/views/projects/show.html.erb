@@ -149,6 +149,27 @@
   </div>
 </div>
 
+<% if current_user && @project.volunteered_users.count < MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER && @project.user == current_user && !cookies[:highlight_projects_alert] %>
+  <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_highlight_projects_container">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Validated or established project with large impact?
+      </h3>
+      <div class="mt-2 text-sm leading-5 text-gray-500">
+        <p>
+          We try our best to surface interesting projects with lots of potential that just need a bit of a boost. Write to us if that's the case.
+        </p>
+      </div>
+      <div class="flex justify-between mt-3 text-sm leading-5">
+        <%= mail_to "helpwithcovid@gmail.com", "Submit an application here &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
+        <%= link_to "javascript:void(0)", id: "disable_highlight_projects_alert", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
+          Don't show this again
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% if current_user && @project.volunteered_users.count >= VOLUNTEERS_REQUIRED_FOR_FUNDING && @project.user == current_user && !cookies[:funding_alert] %>
   <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_funding_container">
     <div class="px-4 py-5 sm:p-6">
