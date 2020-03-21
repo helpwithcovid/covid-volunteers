@@ -50,3 +50,15 @@ Then go to [http://localhost:3000](http://localhost:3000) to view app
 ```
 rails spec
 ```
+
+# Contributing
+
+Help is welcome! We are communicating on [Discord](https://discord.gg/875AhXS) in the #hwc-development channel
+
+1. Fork the project
+1. Create a branch with your changes
+1. Submit a pull request
+
+# License
+
+MIT?
