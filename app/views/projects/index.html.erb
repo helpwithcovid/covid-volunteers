@@ -78,7 +78,7 @@
                     <% if current_user.blank? %>
                       - sign up to volunteer
                     <% elsif !current_user.has_complete_profile? %>
-                      - complete your profile to volunteer
+                      -&nbsp;<%= link_to 'complete your profile to volunteer', edit_user_registration_path, class: 'text-indigo-500' %>
                     <% end %>
                   </span>
                 </div>
