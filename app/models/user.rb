@@ -6,12 +6,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  include PgSearch
+
   has_many :projects, dependent: :destroy
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroy
 
   has_many :offers
   acts_as_taggable_on :skills
+
+  pg_search_scope :search, against: %i(name email about location level_of_availability), using: { tsearch: { any_word: true } }
 
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
