@@ -58,55 +58,8 @@
 <% if @projects.present? %>
   <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>
-      <% @projects.each_with_index do |project, idx| %>
-        <li class="border-t border-gray-200">
-          <%= link_to project_path(project), class: "block transition duration-150 ease-in-out #{project_row_class project}" do %>
-            <div class="px-4 py-4 sm:px-6">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                  <%= project.name %>
-                </div>
-                <div class="mt-2 md:mt-0 md:ml-4 flex-shrink-0 flex">
-                  <% project_volunteer_class = project.volunteered_users.count > 0 ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800" %>
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
-                    <% if project.volunteered_users.count == 0 %>
-                      no volunteers
-                    <% else %>
-                      <%= pluralize(project.volunteered_users.count, 'volunteer') %>
-                    <% end %>
-
-                    <% if current_user.blank? %>
-                      - sign up to volunteer
-                    <% elsif !current_user.has_complete_profile? %>
-                      - complete your profile to volunteer
-                    <% end %>
-                  </span>
-                </div>
-              </div>
-              <div class="mt-2 sm:flex sm:justify-between">
-                <div class="text-sm leading-5 text-gray-500">
-                  <%= simple_format project.description, class: 'mb-2' %>
-                </div>
-              </div>
-              <div class="mt-2 sm:flex sm:justify-between">
-                <div class="sm:flex">
-                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
-                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                    </svg>
-                    <%= project.location.present? ? project.location : 'Remote' %>
-                  </div>
-                </div>
-                <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
-                  <span>
-                    created
-                    <time><%= distance_of_time_in_words_to_now project.created_at %> ago</time>
-                  </span>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </li>
+      <% @projects.each do |project| %>
+        <%= render partial: 'project', locals: { project: project,  } %>
       <% end %>
     </ul>
 
