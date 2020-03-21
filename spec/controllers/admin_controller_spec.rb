@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe AdminController, type: :controller do
+  let!(:user){ FactoryBot.create(:user) }
+  let!(:admin){ User.where(email: ADMINS[0]).first || FactoryBot.create(:user, email: ADMINS[0]) }
 
   describe 'POST #delete_user' do
-    let!(:user){ FactoryBot.create(:user) }
-    let!(:admin){ User.where(email: ADMINS[0]).first || FactoryBot.create(:user, email: ADMINS[0]) }
     let!(:valid_params){ { user_id: user.to_param } }
 
     # TODO refactor to account for shared `ensure_admin` filter
@@ -43,9 +43,8 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe 'POST #toggle_highlight' do
-    let!(:user){ FactoryBot.create(:user) }
     let!(:project){ FactoryBot.create(:project, user: user) }
-    let!(:valid_params){ { project_id: user.to_param} }
+    let!(:valid_params){ { project_id: project.to_param} }
 
     it 'calls ensure_admin' do
       expect(controller).to receive(:ensure_admin)
@@ -53,6 +52,7 @@ RSpec.describe AdminController, type: :controller do
     end
 
     it 'highlights if project is not currently highlighted. highlit? highlighted' do
+      sign_in(admin)
       expect(project.highlight?).to eq(false)
       post :toggle_highlight, params: valid_params
       expect(response).to redirect_to(project_path(project))
@@ -61,10 +61,12 @@ RSpec.describe AdminController, type: :controller do
     end
 
     it 'unhighlights if project was already highlighted' do
-      expect(project.highlight?).to eq(true)
-      post :toggle_highlight, params: valid_params
-      expect(response).to redirect_to(project_path(project))
-      expect(project.reload.highlight?).to eq(false)
+      sign_in(admin)
+      active_project = FactoryBot.create(:project, user: user, highlight: true)
+      expect(active_project.highlight?).to eq(true)
+      post :toggle_highlight, params: { project_id: active_project.to_param }
+      expect(response).to redirect_to(project_path(active_project))
+      expect(active_project.reload.highlight?).to eq(false)
       expect(flash[:notice]).to match(/Removed highlight/)
     end
   end
