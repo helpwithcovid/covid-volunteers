@@ -3,8 +3,9 @@ class AdminController < ApplicationController
 
   def delete_user
     @user = User.find(params[:user_id])
-    @user.destroy if @user
+    @user.destroy!
 
+    flash[:notice] = "User deleted"
     redirect_to volunteers_path
   end
 
@@ -13,6 +14,14 @@ class AdminController < ApplicationController
     @project.highlight = !@project.highlight
     @project.save
 
+    flash[:notice] = @project.highlight? ? "Project highlighted" : "Removed highlight on project"
     redirect_to project_path(@project)
   end
+
+  private
+
+  def ensure_admin
+    redirect_to projects_path if !current_user || !current_user.is_admin?
+  end
+
 end
