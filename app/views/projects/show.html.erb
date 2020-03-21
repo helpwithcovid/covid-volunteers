@@ -219,7 +219,7 @@
           <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
         </dd>
       </div>
-      <% if @project.progress %>
+      <% if @project.progress.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How far along it is
@@ -229,7 +229,7 @@
           </dd>
         </div>
       <% end %>
-      <% if @project.docs_and_demo %>
+      <% if @project.docs_and_demo.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Demo, mockups, or documentation
@@ -247,7 +247,7 @@
           <%= simple_format @project.looking_for, class: 'mb-3' %>
         </dd>
       </div>
-      <% if @project.number_of_volunteers %>
+      <% if @project.number_of_volunteers.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Number of volunteers
