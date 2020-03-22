@@ -1,8 +1,8 @@
 <% partial_classes = "inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 #{classes}" %>
 <% if url.present? %>
-  <a href="<%= url %>" class="<%= partial_classes %>">
+  <a href="<%= url %>" class="<%= partial_classes %>" title="<%= title %>">
 <% else %>
-  <div class="<%= partial_classes %>">
+  <div class="<%= partial_classes %>" title="<%= title %>">
 <% end %>
   <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
     <circle cx="4" cy="4" r="3" />

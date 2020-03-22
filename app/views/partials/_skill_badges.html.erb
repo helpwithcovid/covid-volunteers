@@ -1,8 +1,12 @@
-<% items.each do |type| %>
+<% visible, hidden = items.take(limit), items.drop(limit) %>
+
+<% visible.each do |type| %>
   <div class="mr-2">
-    <%= filter_badge label: type %>
+    <%= filter_badge label: type, color: color %>
   </div>
 <% end %>
-<div class="mr-2">
-  <%= filter_badge label: "and #{extra} more", color: 'gray' if extra %>
-</div>
+<% if hidden.present? %>
+  <div class="mr-2">
+    <%= filter_badge label: "and #{hidden.size} more", color: 'gray', title: hidden.join(", ") %>
+  </div>
+<% end %>
