@@ -33,7 +33,7 @@
             <%= skill_badges project.project_type_list, limit: 3 %>
           <% end %>
           <% if project.skill_list.present? %>
-            <span class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">looking for &nbsp;</span>
+            <span class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0 font-bold">looking for &nbsp;</span>
             <%= skill_badges project.skill_list, limit: 3, color: 'blue' %>
           <% end %>
         </div>
