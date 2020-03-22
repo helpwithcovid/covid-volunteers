@@ -12,7 +12,7 @@
         </div>
       </div>
       <% if user.skill_list.present? %>
-        <div class="flex content-center flex-wrap mt-2">
+        <div class="flex content-center flex-wrap mt-2 space-x-right-2">
           <%= skill_badges user.skill_list, limit: 3, color: 'blue' %>
         </div>
       <% end %>
