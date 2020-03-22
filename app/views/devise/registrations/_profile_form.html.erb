@@ -124,6 +124,16 @@
                   <p class="text-gray-500">I want my information (including my email) to be visible in the public directory.</p>
                 </div>
               </div>
+              <br />
+              <div class="relative flex items-start">
+                <div class="absolute flex items-center h-5">
+                  <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+                </div>
+                <div class="pl-7 text-sm leading-5">
+                  <%= f.label 'pair_with_projects', 'Pair me with Projects', class: 'font-medium text-gray-700' %>
+                  <p class="text-gray-500">I want to be paired with relevant projects based on my skills</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
