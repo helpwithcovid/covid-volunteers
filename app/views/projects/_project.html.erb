@@ -30,10 +30,12 @@
       <% if project.project_type_list.present? || project.skill_list.present?  %>
         <div class="flex flex-col md:flex-row items-start justify-between">
           <div class="flex flex-col  flex-1 justify-end flex-wrap mt-2">
-            <div class="mt-2 text-sm leading-5 text-gray-500 sm:mt-0 font-bold">Helping with: </div>
-            <div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
-              <%= skill_badges project.project_type_list, limit: 3 %>
-            </div>
+            <% if project.project_type_list.present? %>
+              <div class="mt-2 text-sm leading-5 text-gray-500 sm:mt-0 font-bold">Helping with: </div>
+              <div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
+                <%= skill_badges project.project_type_list, limit: 3 %>
+              </div>
+            <% end %>
           </div>
           <% if project.skill_list.present? %>
             <div class="flex flex-col md:justify-end flex-wrap mt-2">
