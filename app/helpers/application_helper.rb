@@ -91,9 +91,9 @@ module ApplicationHelper
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: title)
+  def skill_badges(items, limit: nil, color: 'indigo', title: title, align: 'left')
     limit ||= items.count
 
-    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
+    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title, align: align}
   end
 end
