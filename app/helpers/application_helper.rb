@@ -83,7 +83,7 @@ module ApplicationHelper
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
       classes += ' bg-blue-200' if request.fullpath == url
-    when nil
+    else
       classes = 'bg-indigo-100 text-indigo-800'
       classes += ' bg-indigo-200' if request.fullpath == url
     end
@@ -91,7 +91,7 @@ module ApplicationHelper
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
-  def skill_badges(items, limit: nil, color: 'gray', title: title)
+  def skill_badges(items, limit: nil, color: 'indigo', title: title)
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
