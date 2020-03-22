@@ -91,7 +91,23 @@ module ApplicationHelper
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: title)
+  def skill_badge(label: nil, model: nil, applied_skills: [], title: nil)
+    applied = applied_skills.include? label
+
+    if applied
+      applied_skills_str = applied_skills.filter{|el| el != label}.map{|s| CGI.escape s}.join(',')
+    else
+      applied_skills_str = (applied_skills + [label]).map{|s| CGI.escape s}.join(',')
+    end
+    url = "/#{model}?skills=#{applied_skills_str}&filters_open=true"
+
+    classes = 'bg-indigo-100 text-indigo-800'
+    classes += ' bg-indigo-200' if applied
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+
+    end
+
+  def skill_badges(items, limit: nil, color: 'indigo', title: title, align: 'left')
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}

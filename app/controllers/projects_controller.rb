@@ -8,9 +8,11 @@ class ProjectsController < ApplicationController
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
+    @applied_skills = (params[:skills] or '').split(',')
+    @applied_types = (params[:project_type] or '').split(',')
 
     filtered_projects = Project
-    filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
+    filtered_projects = filtered_projects.tagged_with(@applied_skills) if params[:skills].present?
     filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
     if params[:query].present?
       grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)

@@ -1,0 +1,19 @@
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Filter project by skills needed
+      </h3>
+      <div class="mt-4 text-sm leading-5 text-gray-500 flex flex-wrap justify-center">
+        <div class="mb-2 mr-2">
+          <%= filter_badge label: 'Show all', model: 'project', color: 'gray' %>
+        </div>
+        <% skills.each do |skill|%>
+          <div class="mb-2 mr-2">
+            <%= skill_badge label: skill, model: 'projects', applied_skills: @applied_skills %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
