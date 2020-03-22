@@ -29,7 +29,7 @@
       </div>
       <% if project.project_type_list.present? || project.skill_list.present?  %>
         <div class="flex flex-row items-start">
-          <% if project.skill_list.present? %>
+          <% if project.project_type_list.present? %>
             <div class="flex w-3/5 content-top flex-wrap mt-2">
               <%= skill_badges project.project_type_list, limit: 3 %>
             </div>
