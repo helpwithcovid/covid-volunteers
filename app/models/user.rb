@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  include PgSearch
+  include PgSearch::Model
 
   has_many :projects, dependent: :destroy
   has_many :volunteers, dependent: :destroy
