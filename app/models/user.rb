@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :offers
   acts_as_taggable_on :skills
 
-  pg_search_scope :search, against: %i(name email about location level_of_availability), using: { tsearch: { any_word: true } }
+  pg_search_scope :search, against: %i(name email about location level_of_availability)
 
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
