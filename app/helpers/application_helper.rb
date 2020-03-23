@@ -73,7 +73,7 @@ module ApplicationHelper
 
   def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     if model.present?
-      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}&filters_open=true"
+      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}"
     end
 
     case color

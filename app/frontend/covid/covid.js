@@ -13,7 +13,23 @@ const Covid = {
         $('#disable_highlight_projects_container').remove();
       })
     });
+  },
+  toggleFiltersOpen() {
+    let filtersOpen;
+    switch (Cookies.get('filters_open')) {
+      default:
+      case null:
+      case undefined:
+      case 'true':
+        filtersOpen = true
+        break;
+      case false:
+      case 'false':
+        filtersOpen = false
+        break;
+    }
+    Cookies.set('filters_open', !filtersOpen);
   }
 };
-  
+
 export default Covid

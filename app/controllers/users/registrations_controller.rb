@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
+  before_action :set_filters_open, only: :index
 
   def index
     params[:page] ||= 1
@@ -24,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
     @total_count = @users.total_count
 
-    @show_filter = true
+    @show_filters = true
   end
 
   def show
