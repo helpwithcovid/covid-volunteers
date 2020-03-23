@@ -55,4 +55,8 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def active_for_authentication?
+    super && !self.deactivated
+  end
 end
