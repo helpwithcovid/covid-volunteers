@@ -18,4 +18,30 @@ class Project < ApplicationRecord
   def volunteer_emails
     self.volunteered_users.collect { |u| u.email }
   end
+
+  def volunteered_users_count
+    volunteered_users.count
+  end
+
+  def serializable_hash(options={})
+    super(
+      only: [
+        :id,
+        :name,
+        :description,
+        :participants,
+        :goal,
+        :looking_for,
+        :location,
+        :contact,
+        :highlight,
+        :progress,
+        :docs_and_demo,
+        :number_of_volunteers,
+        :created_at,
+        :updated_at
+      ],
+      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
+    )
+  end
 end

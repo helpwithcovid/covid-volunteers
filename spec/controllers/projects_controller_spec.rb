@@ -12,6 +12,16 @@ RSpec.describe ProjectsController, type: :controller do
       expect(response).to be_successful
       expect(assigns(:projects)).to include(project)
     end
+
+    it 'returns json' do
+      get :index, format: 'json'
+      json = JSON.parse(response.body)
+      expect(response).to be_successful
+      expect(json[0]["name"]).to eq(project.name)
+      expect(json[0]["description"]).to eq(project.description)
+      expect(json[0]["location"]).to eq(project.location)
+      expect(json[0]["to_param"]).to eq(project.to_param)
+    end
   end
 
   describe 'GET #show' do
@@ -20,6 +30,16 @@ RSpec.describe ProjectsController, type: :controller do
       get :show, params: { id: project.to_param }
       expect(response).to be_successful
       expect(assigns(:project)).to eq(project)
+    end
+
+    it 'returns json' do
+      get :show, params: { id: project.to_param }, format: 'json'
+      json = JSON.parse(response.body)
+      expect(response).to be_successful
+      expect(json["name"]).to eq(project.name)
+      expect(json["description"]).to eq(project.description)
+      expect(json["location"]).to eq(project.location)
+      expect(json["to_param"]).to eq(project.to_param)
     end
   end
 
