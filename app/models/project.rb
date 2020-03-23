@@ -24,6 +24,24 @@ class Project < ApplicationRecord
   end
 
   def serializable_hash(options={})
-    super(methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list])
+    super(
+      only: [
+        :id,
+        :name,
+        :description,
+        :participants,
+        :goal,
+        :looking_for,
+        :location,
+        :contact,
+        :highlight,
+        :progress,
+        :docs_and_demo,
+        :number_of_volunteers,
+        :created_at,
+        :updated_at
+      ],
+      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
+    )
   end
 end
