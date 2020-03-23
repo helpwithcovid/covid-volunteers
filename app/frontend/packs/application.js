@@ -24,5 +24,6 @@ import './stylesheets.css'
 
 // Main App.
 import Covid from '../covid'
+window.Covid = Covid
 Covid.initialize();
 

@@ -27,11 +27,11 @@
   </div>
 </div>
 
-<% if @show_filter %>
-  <div x-data="{ open: <%= params[:filters_open].present? %> }">
+<% if @show_filters %>
+  <div x-data="{ open: <%= @filters_open %> }">
     <div class="block mb-4">
       <nav class="flex flex-col sm:flex-row justify-between">
-        <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="open = !open" >
+        <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
           <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
         </a>
         <% if @show_search_bar %>
