@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
     member do
       post :toggle_volunteer
+      get :volunteers
     end
   end
 

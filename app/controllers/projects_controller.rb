@@ -1,11 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own ]
-  before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer ]
-  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
-
-  before_action :authenticate_user!, :ensure_owner_or_admin,
-    only: [:show],
-    if: Proc.new { |c| c.request.format.csv? }
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own, :volunteers ]
+  before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers ]
+  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
 
   def index
     params[:page] ||= 1
@@ -70,8 +66,13 @@ class ProjectsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.csv { send_data @project.volunteered_users.to_csv, filename: "volunteers-#{Date.today}.csv" }
       format.json { render json: @project }
+    end
+  end
+
+  def volunteers
+    respond_to do |format|
+      format.csv { send_data @project.volunteered_users.to_csv, filename: "volunteers-#{Date.today}.csv" }
     end
   end
 
