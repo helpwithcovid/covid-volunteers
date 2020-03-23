@@ -93,10 +93,9 @@ module ApplicationHelper
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     query_string = build_query_string(get_query_params.filter{|k, _| k!= filter_by})
     url = "/#{model}?#{query_string}"
-    applied = get_query_params[filter_by].length == 0
 
     classes = 'bg-gray-100 text-gray-800'
-    classes += ' bg-gray-200' if applied
+    classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
@@ -128,7 +127,7 @@ module ApplicationHelper
     return params_array.join('&')
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: title, align: 'left')
+  def skill_badges(items, limit: nil, color: 'indigo', title: title)
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
