@@ -4,9 +4,7 @@ path = 'http://localhost:3000/projects?skills=Biology,Software&project_types=Tra
 
 RSpec.describe ApplicationHelper do
   let(:request) { double('request', fullpath: path) }
-  let(:no_skills_request) { double('request', fullpath: no_skills_path) }
   before  { allow(helper).to receive(:request).and_return(request) }
-
 
   it 'gets query params' do
     params = get_query_params

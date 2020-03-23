@@ -101,6 +101,7 @@ module ApplicationHelper
   end
 
   def get_query_params
+    # return a Params-like hash that only has query params, and returns an empty array when accessing a nonexistent key
     query_params = Hash.new {|k| Array.new}
     return query_params if not URI.parse(request.fullpath).query
     return CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
