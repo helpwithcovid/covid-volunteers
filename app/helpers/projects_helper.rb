@@ -5,7 +5,7 @@ module ProjectsHelper
     project_class = 'border-2 border-orange-300 bg-orange-100' if project.highlight
   end
 
-  def sortable(title, column, direction)
+  def projects_sortable(title, column, direction)
     direction = sort_direction == "asc" ? "desc" : "asc"
     icon = sort_direction == 'desc' ? 'down' : 'up'
     path = projects_path + "?sort=#{column}&direction=#{direction}"
