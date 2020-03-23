@@ -31,10 +31,7 @@ class ProjectsController < ApplicationController
         @total_count = @projects.total_count
       end
       format.json do
-        render json: @projects.as_json(
-          only: [:name, :description, :location, :created_at],
-          methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
-        )
+        render json: @projects
       end
     end
   end
@@ -70,6 +67,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @project.volunteered_users.to_csv, filename: "volunteers-#{Date.today}.csv" }
+      format.json { render json: @project }
     end
   end
 

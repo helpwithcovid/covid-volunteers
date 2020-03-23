@@ -22,4 +22,8 @@ class Project < ApplicationRecord
   def volunteered_users_count
     volunteered_users.count
   end
+
+  def serializable_hash(options={})
+    super(methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list])
+  end
 end
