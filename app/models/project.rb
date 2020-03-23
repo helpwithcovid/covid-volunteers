@@ -18,4 +18,8 @@ class Project < ApplicationRecord
   def volunteer_emails
     self.volunteered_users.collect { |u| u.email }
   end
+
+  def volunteered_users_count
+    volunteered_users.count
+  end
 end

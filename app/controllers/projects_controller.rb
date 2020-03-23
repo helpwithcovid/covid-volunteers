@@ -16,15 +16,27 @@ class ProjectsController < ApplicationController
     else
       grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
     end
-    @projects = grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC').page(params[:page]).per(25)
+    @projects = grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
 
-    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
-    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
-    @total_count = @projects.total_count
+    respond_to do |format|
+      format.html do
+        @projects_header = 'COVID-19 projects looking for volunteers'
+        @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
+        @page_title = 'All Projects'
 
-    @projects_header = 'COVID-19 projects looking for volunteers'
-    @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
-    @page_title = 'All Projects'
+        @projects = @projects.page(params[:page]).per(25)
+
+        @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
+        @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+        @total_count = @projects.total_count
+      end
+      format.json do
+        render json: @projects.as_json(
+          only: [:name, :description, :location, :created_at],
+          methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
+        )
+      end
+    end
   end
 
   def volunteered
