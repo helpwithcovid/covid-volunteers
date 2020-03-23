@@ -9,11 +9,11 @@ class ProjectsController < ApplicationController
     @show_filters = true
     @show_search_bar = true
     @applied_skills = (params[:skills] or '').split(',')
-    @applied_types = (params[:project_type] or '').split(',')
+    @applied_types = (params[:project_types] or '').split(',')
 
     filtered_projects = Project
-    filtered_projects = filtered_projects.tagged_with(@applied_skills) if params[:skills].present?
-    filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
+    filtered_projects = filtered_projects.tagged_with(@applied_skills) if @applied_skills.length > 0
+    filtered_projects = filtered_projects.tagged_with(@applied_types) if @applied_types.length > 0
     if params[:query].present?
       grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
     else

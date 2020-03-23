@@ -73,39 +73,60 @@ module ApplicationHelper
 
   def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     if model.present?
-      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}"
+      query_string = build_query_string(toggle_filter(filter_by, label))
+      url = "/#{model}?#{query_string}"
     end
 
+    applied = get_query_params[filter_by].include? label
     case color
-    when 'gray'
-      classes = 'bg-gray-100 text-gray-800'
-      classes += ' bg-gray-200' if request.fullpath == url
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
-      classes += ' bg-blue-200' if request.fullpath == url
+      classes += ' bg-blue-200' if applied
     else
       classes = 'bg-indigo-100 text-indigo-800'
-      classes += ' bg-indigo-200' if request.fullpath == url
+      classes += ' bg-indigo-200' if applied
     end
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
-  def skill_badge(label: nil, model: nil, applied_skills: [], title: nil)
-    applied = applied_skills.include? label
+  def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
+    query_string = build_query_string(get_query_params.filter{|k, _| k!= filter_by})
+    url = "/#{model}?#{query_string}"
+    applied = get_query_params[filter_by].length == 0
 
-    if applied
-      applied_skills_str = applied_skills.filter{|el| el != label}.map{|s| CGI.escape s}.join(',')
-    else
-      applied_skills_str = (applied_skills + [label]).map{|s| CGI.escape s}.join(',')
-    end
-    url = "/#{model}?skills=#{applied_skills_str}&filters_open=true"
+    classes = 'bg-gray-100 text-gray-800'
+    classes += ' bg-gray-200' if applied
 
-    classes = 'bg-indigo-100 text-indigo-800'
-    classes += ' bg-indigo-200' if applied
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+  end
 
+  def get_query_params
+    query_params = Hash.new {|k| Array.new}
+    return query_params if not URI.parse(request.fullpath).query
+    return CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
+      acc[el[0]] = el[1][0].split(',')
+      acc
     end
+  end
+
+  def toggle_filter(filter_key, filter)
+    query_params = get_query_params
+    filters = get_query_params[filter_key]
+    toggled = filters.include?(filter) ? filters.filter{|el| el != filter} : filters + [filter]
+    query_params[filter_key] = toggled
+    return query_params
+  end
+
+  def build_query_string(query_params)
+    query_params['filters_open'] = ['true']
+    params_array = query_params.map do |k, v|
+      next if v.length == 0
+      value = v.map{|s| CGI.escape s}.join(',')
+      "#{k}=#{value}"
+    end
+    return params_array.join('&')
+  end
 
   def skill_badges(items, limit: nil, color: 'indigo', title: title, align: 'left')
     limit ||= items.count
