@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def set_filters_open
     @filters_open = case cookies['filters_open']
-                    when nil
+                    when 'nil'
                     when true
                     when 'true'
                       true
