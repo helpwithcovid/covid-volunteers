@@ -51,6 +51,17 @@
   </div>
 <% end %>
 
+<br/>
+<div class="row">
+  <div class="columns large-12">
+    <ul class="button-group">
+      Sort by: &nbsp;
+      <li><%= sortable 'Latest', 'created_at', 'asc' %></li>
+    </ul>
+  </div>
+</div>
+<br/>
+
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
   <ul>
     <% @users.each_with_index do |user, idx| %>

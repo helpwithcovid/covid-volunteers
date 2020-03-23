@@ -96,4 +96,5 @@ module ApplicationHelper
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
   end
+
 end
