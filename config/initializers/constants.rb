@@ -17,22 +17,7 @@ ALL_PROJECT_TYPES = [
   'News and information',
   'Social giving',
   'Other'
-  ].freeze
-
-PROJECT_SORT_HASH = {
-  latest_up:        'created_at ASC, highlight DESC',
-  latest_down:      'created_at DESC, highlight DESC',
-  volunteers_up:    'number_of_volunteers ASC, highlight DESC',
-  volunteers_down:  'number_of_volunteers DESC, highlight DESC',
-  default:          'highlight DESC, COUNT(volunteers.id) DESC, created_at DESC'
-}
-
-VOLUNTEERS_SORT_HASH = {
-  latest_up:        'created_at ASC',
-  latest_down:      'created_at DESC',
-  default:          'created_at DESC'
-}
-
+].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

@@ -10,18 +10,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @show_search_bar = true
 
-    filtered_users = User
-    filtered_users = filtered_users.tagged_with(params[:skill]) if params[:skill].present?
-
-    sort = get_sort_params(params[:sort], params[:direction])
+    @users = User
+    @users = @users.tagged_with(params[:skill]) if params[:skill].present?
 
     if params[:query].present?
-      grouped_users = filtered_users.search(params[:query])
+      @users = @users.search(params[:query])
     else
-      grouped_users = filtered_users
+      @users = @users
     end
 
-    @users = grouped_users.where(visibility: true).order(sort).page(params[:page]).per(25)
+    @users = @users.order(get_order_param) if params[:sort_by]
+
+    @users = @users.where(visibility: true).page(params[:page]).per(25)
 
     @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
@@ -113,17 +113,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def get_sort_params(sort, direction)
-    hash_key =
-      case [sort, direction]
-        when ['created_at', 'ASC']
-          :latest_up
-        when ['created_at', 'DESC']
-          :latest_down
-        else
-          :default
-      end
-    VOLUNTEERS_SORT_HASH[hash_key]
+  def get_order_param
+    return 'created_at desc' if params[:sort_by] == 'latest'
+    return 'created_at asc' if params[:sort_by] == 'earliest'
   end
-
 end

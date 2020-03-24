@@ -29,41 +29,37 @@
 
 <% if @show_filters %>
   <div x-data="{ open: <%= @filters_open %>, sortOpen: false}">
-    <div class="block mb-4">
+    <div class="block mb-4 relative">
       <nav class="flex flex-col sm:flex-row justify-between">
         <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
           <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
         </a>
-        <div class="flex">
-        <% if @show_search_bar %>
-          <div class="w-full sm:w-64">
-            <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
-              <div class="relative rounded-md shadow-sm">
-                <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
-                <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
-                  <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+        <div class="flex flex-col md:flex-row-reverse">
+          <%= sort_by_button %>
+
+          <%= sort_drop_down do %>
+            <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
+            <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
+            <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
+          <% end %>
+          <% if @show_search_bar %>
+            <div class="w-full sm:w-64">
+              <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
+                <div class="relative rounded-md shadow-sm">
+                  <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
+                  <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
+                    <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-        <a href="#" :class="{'bg-gray-200': sortOpen}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="sortOpen = !sortOpen">
-          <%= inline_svg_pack_tag('media/svgs/sort-descending.svg', class: 'h-4 inline-block') %> Sort
-        </a>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
       <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skill', skills: ALL_SKILLS} %>
       <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_type', skills: ALL_PROJECT_TYPES} %>
-    </div>
-    <div :class="{'block': sortOpen, 'hidden': !sortOpen}" class="w-40 ml-auto">
-      <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
-        <ul class="-ml-4 -mt-4">
-          <li><%= projects_sortable_select 'Latest', 'created_at', 'ASC' %></li>
-          <li><%= projects_sortable_select 'Volunteers Needed', 'number_of_volunteers', 'ASC' %></li>
-        </ul>
-      </div>
     </div>
   </div>
 <% end %>

@@ -9,17 +9,19 @@ class ProjectsController < ApplicationController
     @show_filters = true
     @show_search_bar = true
 
-    sort = get_sort_params(params[:sort], params[:direction])
+    @projects = Project
+    @projects = @projects.tagged_with(params[:skill]) if params[:skill].present?
+    @projects = @projects.tagged_with(params[:project_type]) if params[:project_type].present?
 
-    filtered_projects = Project
-    filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
-    filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
     if params[:query].present?
-      grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+      @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
     else
-      grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
+      @projects = @projects.left_joins(:volunteers).group(:id)
     end
-    @projects = grouped_projects.includes(:project_types, :skills).order(sort)
+
+    @projects = @projects.order(get_order_param) if params[:sort_by]
+
+    @projects = @projects.includes(:project_types, :skills)
 
     respond_to do |format|
       format.html do
@@ -155,21 +157,8 @@ class ProjectsController < ApplicationController
       end
     end
 
-    def get_sort_params(sort, direction)
-      hash_key =
-        case [sort, direction]
-          when ['created_at', 'ASC']
-            :latest_up
-          when ['created_at', 'DESC']
-            :latest_down
-          when ['number_of_volunteers', 'ASC']
-            :volunteers_up
-          when ['number_of_volunteers', 'DESC']
-            :volunteers_down
-          else
-            :default
-        end
-      PROJECT_SORT_HASH[hash_key]
+    def get_order_param
+      return 'created_at desc' if params[:sort_by] == 'latest'
+      return 'volunteers.count asc' if params[:sort_by] == 'volunteers_needed'
     end
-
 end

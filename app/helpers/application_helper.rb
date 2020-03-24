@@ -97,4 +97,37 @@ module ApplicationHelper
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
   end
 
+  def sort_drop_down(&block)
+    render layout: 'partials/sort-drop-down' do
+      capture(&block)
+    end
+  end
+
+  def sort_drop_down_option(path, title, sort_by)
+    new_params = params.permit(:sort_by, :skill, :project_type).dup
+    classes = 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900'
+
+    if params[:sort_by].present?
+      if params[:sort_by] == sort_by
+        new_params.delete :sort_by
+        # active state
+        classes += ' bg-gray-100 text-gray-900'
+      else
+        new_params[:sort_by] = sort_by
+      end
+    else
+      new_params[:sort_by] = sort_by
+    end
+
+    path = path + "?#{new_params.to_query}" if new_params.present?
+    link_to path, class: classes do
+      title
+    end
+  end
+
+  def sort_by_button
+    link_to '#', class: "px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0 md:ml-4 #{'bg-gray-300' if params[:sort_by].present?}", ':class': "{'bg-gray-200': sortOpen}", '@click.prevent': 'sortOpen = !sortOpen' do
+      "#{inline_svg_pack_tag('media/svgs/sort-descending.svg', class: 'h-4 inline-block')} Sort".html_safe
+    end
+  end
 end
