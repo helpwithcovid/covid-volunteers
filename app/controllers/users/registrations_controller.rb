@@ -13,13 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     filtered_users = User
     filtered_users = filtered_users.tagged_with(params[:skill]) if params[:skill].present?
 
+    sort = params[:sort] ? "#{sanitize_sort_column(params[:sort])} #{sanitize_sort_direction(params[:direction])}" : 'created_at DESC'
+
     if params[:query].present?
       grouped_users = filtered_users.search(params[:query])
     else
       grouped_users = filtered_users
     end
 
-    @users = grouped_users.where(visibility: true).order('created_at DESC').page(params[:page]).per(25)
+    @users = grouped_users.where(visibility: true).order(sort).page(params[:page]).per(25)
 
     @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
@@ -110,4 +112,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.update_without_password(params)
     end
   end
+
+  def sanitize_sort_column(string)
+    %w[created_at].include?(string) ? string : 'created_at'
+  end
+
+  def sanitize_sort_direction(string)
+    %w[ASC DESC].include?(string) ? string : 'ASC'
+  end
+
 end

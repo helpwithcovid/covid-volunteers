@@ -4,16 +4,13 @@ class ProjectsController < ApplicationController
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
 
-  helper_method :sort_direction
-
   def index
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
 
-    sort = params[:sort] ? "#{params[:sort]} #{sort_direction}" : "highlight DESC, COUNT(volunteers.id) DESC, created_at DESC"
+    sort = params[:sort] ? "#{sanitize_sort_column(params[:sort])} #{sanitize_sort_direction(params[:direction])}" : 'highlight DESC, COUNT(volunteers.id) DESC, created_at DESC'
 
-    print "Here I am #{sort}"
     filtered_projects = Project
     filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
     filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
@@ -158,7 +155,13 @@ class ProjectsController < ApplicationController
       end
     end
 
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    def sanitize_sort_column(string)
+      %w[created_at number_of_volunteers].include?(string) ? string : 'created_at'
     end
+
+    def sanitize_sort_direction(string)
+      %w[ASC DESC].include?(string) ? string : 'ASC'
+    end
+
+
 end
