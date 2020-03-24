@@ -6,7 +6,7 @@ module RegistrationsHelper
     path = volunteers_path + "?sort=#{column}&direction=#{direction}"
 
     link_to path, class: 'button small black', id: column do
-      "#{title} &nbsp; <i class=fi-arrow-#{icon}></i>".html_safe
+      "#{title} &nbsp; <i class=media/svgs/drop-#{icon}-arrow.svg></i>".html_safe
     end
   end
 

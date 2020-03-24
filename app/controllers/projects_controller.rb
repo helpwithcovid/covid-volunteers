@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     @show_filters = true
     @show_search_bar = true
 
-    sort = params[:sort] ? "#{sanitize_sort_column(params[:sort])} #{sanitize_sort_direction(params[:direction])}" : 'highlight DESC, COUNT(volunteers.id) DESC, created_at DESC'
+    sort = get_sort_params(params[:sort], params[:direction])
 
     filtered_projects = Project
     filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
@@ -155,13 +155,21 @@ class ProjectsController < ApplicationController
       end
     end
 
-    def sanitize_sort_column(string)
-      %w[created_at number_of_volunteers].include?(string) ? string : 'created_at'
+    def get_sort_params(sort, direction)
+      hash_key =
+        case [sort, direction]
+          when ['created_at', 'ASC']
+            :latest_up
+          when ['created_at', 'DESC']
+            :latest_down
+          when ['number_of_volunteers', 'ASC']
+            :volunteers_up
+          when ['number_of_volunteers', 'DESC']
+            :volunteers_down
+          else
+            :default
+        end
+      PROJECT_SORT_HASH[hash_key]
     end
-
-    def sanitize_sort_direction(string)
-      %w[ASC DESC].include?(string) ? string : 'ASC'
-    end
-
 
 end

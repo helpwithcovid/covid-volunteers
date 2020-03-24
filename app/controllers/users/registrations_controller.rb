@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     filtered_users = User
     filtered_users = filtered_users.tagged_with(params[:skill]) if params[:skill].present?
 
-    sort = params[:sort] ? "#{sanitize_sort_column(params[:sort])} #{sanitize_sort_direction(params[:direction])}" : 'created_at DESC'
+    sort = get_sort_params(params[:sort], params[:direction])
 
     if params[:query].present?
       grouped_users = filtered_users.search(params[:query])
@@ -113,12 +113,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def sanitize_sort_column(string)
-    %w[created_at].include?(string) ? string : 'created_at'
-  end
-
-  def sanitize_sort_direction(string)
-    %w[ASC DESC].include?(string) ? string : 'ASC'
+  def get_sort_params(sort, direction)
+    hash_key =
+      case [sort, direction]
+        when ['created_at', 'ASC']
+          :latest_up
+        when ['created_at', 'DESC']
+          :latest_down
+        else
+          :default
+      end
+    VOLUNTEERS_SORT_HASH[hash_key]
   end
 
 end
