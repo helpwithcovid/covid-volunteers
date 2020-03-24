@@ -81,5 +81,6 @@ gem 'exception_notification', git: 'https://github.com/smartinez87/exception_not
 
 #Search
 gem 'pg_search'
+
 # Email obfuscation
-gem 'actionview-encoded_mail_to'
+gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-encoded_mail_to', branch: 'feature/fix-vanilla-mail-to'

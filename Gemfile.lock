@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/mirko314/actionview-encoded_mail_to
+  revision: 98baa1cc54e5c860c720f261e4b3dc94e80d5c21
+  branch: feature/fix-vanilla-mail-to
+  specs:
+    actionview-encoded_mail_to (1.0.9)
+      rails
+
+GIT
   remote: https://github.com/smartinez87/exception_notification
   revision: c05410766dc581f7a897abe44f28b698810534ab
   specs:
@@ -45,8 +53,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    actionview-encoded_mail_to (1.0.9)
-      rails
     activejob (6.0.2.2)
       activesupport (= 6.0.2.2)
       globalid (>= 0.3.6)
@@ -1180,7 +1186,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview-encoded_mail_to
+  actionview-encoded_mail_to!
   acts-as-taggable-on
   aws-sdk
   aws-sdk-rails
