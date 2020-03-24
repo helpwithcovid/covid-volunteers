@@ -25,15 +25,13 @@ class User < ApplicationRecord
     self.about.present? && self.profile_links.present? && self.location.present?
   end
 
-  def is_visible_to_user?(user)
+  def is_visible_to_user?(user_trying_view)
     return true if self.visibility == true
-    return false if user.blank?
-    return true if user == self
+    return false if user_trying_view.blank?
+    return true if user_trying_view == self
 
-    user_volunteered_to_self_projects = user.volunteered_projects.where(user_id: self.id).exists?
-    return true if user_volunteered_to_self_projects
-
-    false
+    # Check if this user volunteered for any project by user_trying_view.
+    return self.volunteered_projects.where(user_id: user_trying_view.id).exists?
   end
 
   def is_admin?
