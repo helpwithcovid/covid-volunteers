@@ -9,6 +9,12 @@ Volunteer Details:
 
 Name: <%= @user.name %>
 Email: <%= @user.email %>
+<%- if @user.skill_list.present? %>
+Skills: <%= @user.skill_list.join(', ') %>
+<%- end -%>
+<%- if @user.level_of_availability.present? %>
+Level of Availability: <%= @user.level_of_availability %>
+<%- end -%>
 
 About:
 <%= @user.about %>
@@ -19,8 +25,6 @@ Notes:
 <%- if @project.volunteered_users.count >= VOLUNTEERS_REQUIRED_FOR_FUNDING %>
 * ** Since you have over <%= VOLUNTEERS_REQUIRED_FOR_FUNDING %> volunteers you can now apply for funding. Visit your project page. **
 <%- end -%>
-* We have added "How to get in touch" to the project set up page. Feel free to add a communication method such as Slack/Discord channel if you would like open discussion with your volunteers.
-* We have added "Skills required" tags to the project set up page. Adding this information will help people discover projects they are a good fit for easily.
 
 - Your friends at helpwithcovid.com
 For any feedback or questions regarding helpwithcovid.com, let us know at https://discord.gg/875AhXS.
