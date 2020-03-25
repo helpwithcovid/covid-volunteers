@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params[:page] ||= 1
 
     @show_search_bar = true
+    @show_sorting_options = true
 
     @users = User
     @users = @users.tagged_with(params[:skill]) if params[:skill].present?

@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
+    @show_sorting_options = true
 
     @projects = Project
     @projects = @projects.tagged_with(params[:skill]) if params[:skill].present?

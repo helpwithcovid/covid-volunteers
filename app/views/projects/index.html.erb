@@ -34,14 +34,7 @@
         <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
           <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
         </a>
-        <div class="flex flex-col md:flex-row-reverse">
-          <%= sort_by_button %>
-
-          <%= sort_drop_down do %>
-            <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
-            <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
-            <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
-          <% end %>
+        <div class="flex flex-col md:flex-row">
           <% if @show_search_bar %>
             <div class="w-full sm:w-64">
               <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
@@ -51,6 +44,16 @@
                     <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
                   </div>
                 </div>
+              <% end %>
+            </div>
+          <% end %>
+          <% if @show_sorting_options %>
+            <div class="ml-2 flex">
+              <%= sort_drop_down do %>
+                <%= sort_drop_down_option(projects_path, 'Sort by') %>
+                <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
+                <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
+                <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
               <% end %>
             </div>
           <% end %>
