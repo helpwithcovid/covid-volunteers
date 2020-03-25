@@ -17,7 +17,7 @@ ALL_PROJECT_TYPES = [
   'News and information',
   'Social giving',
   'Other'
-  ].freeze
+].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

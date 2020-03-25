@@ -96,4 +96,30 @@ module ApplicationHelper
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
   end
+
+  def sort_drop_down(&block)
+    render layout: 'partials/sort-drop-down' do
+      capture(&block)
+    end
+  end
+
+  def sort_drop_down_option(path, title, sort_by = nil)
+    new_params = params.permit(:sort_by, :skill, :project_type).dup
+
+    case params[:sort_by]
+    when sort_by
+      new_params.delete :sort_by
+      active = true
+    else
+      new_params[:sort_by] = sort_by
+    end
+
+    if sort_by.nil?
+      new_params.delete :sort_by
+    end
+
+    path = path + "?#{new_params.to_query}" if new_params.present?
+
+    "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
+  end
 end

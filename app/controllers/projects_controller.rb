@@ -8,16 +8,21 @@ class ProjectsController < ApplicationController
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
+    @show_sorting_options = true
 
-    filtered_projects = Project
-    filtered_projects = filtered_projects.tagged_with(params[:skill]) if params[:skill].present?
-    filtered_projects = filtered_projects.tagged_with(params[:project_type]) if params[:project_type].present?
+    @projects = Project
+    @projects = @projects.tagged_with(params[:skill]) if params[:skill].present?
+    @projects = @projects.tagged_with(params[:project_type]) if params[:project_type].present?
+
     if params[:query].present?
-      grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+      @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
     else
-      grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
+      @projects = @projects.left_joins(:volunteers).group(:id)
     end
-    @projects = grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+
+    @projects = @projects.order(get_order_param) if params[:sort_by]
+
+    @projects = @projects.includes(:project_types, :skills)
 
     respond_to do |format|
       format.html do
@@ -151,5 +156,10 @@ class ProjectsController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
+    end
+
+    def get_order_param
+      return 'created_at desc' if params[:sort_by] == 'latest'
+      return 'volunteers.count asc' if params[:sort_by] == 'volunteers_needed'
     end
 end
