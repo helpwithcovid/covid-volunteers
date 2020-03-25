@@ -107,14 +107,11 @@ module ApplicationHelper
     new_params = params.permit(:sort_by, :skill, :project_type).dup
     classes = 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900'
 
-    if params[:sort_by].present?
-      if params[:sort_by] == sort_by
-        new_params.delete :sort_by
-        # active state
-        classes += ' bg-gray-100 text-gray-900'
-      else
-        new_params[:sort_by] = sort_by
-      end
+    case params[:sort_by]
+    when sort_by
+      new_params.delete :sort_by
+      # active state
+      classes += ' bg-gray-100 text-gray-900'
     else
       new_params[:sort_by] = sort_by
     end
