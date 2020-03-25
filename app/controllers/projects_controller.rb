@@ -162,7 +162,7 @@ class ProjectsController < ApplicationController
       if params[:sort_by]
         @projects = @projects.order(get_order_param)
       else
-        $projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+        @projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
       end
 
       @projects.includes(:project_types, :skills)
