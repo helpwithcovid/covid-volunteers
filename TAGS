@@ -1,309 +1,0 @@
-
-app/mailers/project_mailer.rb,144
-class ProjectMailer < ApplicationMailerProjectMailer1,0
-  def new_volunteernew_volunteer2,0
-  def volunteer_outreachvolunteer_outreach9,0
-
-app/mailers/application_mailer.rb,67
-class ApplicationMailer < ActionMailer::BaseApplicationMailer1,0
-
-app/models/project.rb,1092
-class Project < ApplicationRecordProject1,0
-  belongs_to :useruser2,0
-  belongs_to :useruser=2,0
-  belongs_to :userbuild_user2,0
-  belongs_to :usercreate_user2,0
-  belongs_to :usercreate_user!2,0
-  has_many :volunteers, dependent: :destroyvolunteers6,0
-  has_many :volunteers, dependent: :destroyvolunteers=6,0
-  has_many :volunteers, dependent: :destroyvolunteer_ids6,0
-  has_many :volunteers, dependent: :destroyvolunteer_ids=6,0
-  has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroyvolunteered_users7,0
-  has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroyvolunteered_users=7,0
-  has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroyvolunteered_user_ids7,0
-  has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroyvolunteered_user_ids=7,0
-  def to_paramto_param14,0
-  def volunteer_emailsvolunteer_emails18,0
-  def volunteered_users_countvolunteered_users_count22,0
-  def serializable_hash(options={})serializable_hash26,0
-
-app/models/offer.rb,204
-class Offer < ApplicationRecordOffer1,0
-  belongs_to :useruser2,0
-  belongs_to :useruser=2,0
-  belongs_to :userbuild_user2,0
-  belongs_to :usercreate_user2,0
-  belongs_to :usercreate_user!2,0
-
-app/models/volunteer.rb,404
-class Volunteer < ApplicationRecordVolunteer1,0
-  belongs_to :useruser2,0
-  belongs_to :useruser=2,0
-  belongs_to :userbuild_user2,0
-  belongs_to :usercreate_user2,0
-  belongs_to :usercreate_user!2,0
-  belongs_to :projectproject3,0
-  belongs_to :projectproject=3,0
-  belongs_to :projectbuild_project3,0
-  belongs_to :projectcreate_project3,0
-  belongs_to :projectcreate_project!3,0
-
-app/models/application_record.rb,67
-class ApplicationRecord < ActiveRecord::BaseApplicationRecord1,0
-
-app/models/user.rb,1476
-class User < ApplicationRecordUser3,0
-  has_many :projects, dependent: :destroyprojects11,0
-  has_many :projects, dependent: :destroyprojects=11,0
-  has_many :projects, dependent: :destroyproject_ids11,0
-  has_many :projects, dependent: :destroyproject_ids=11,0
-  has_many :volunteers, dependent: :destroyvolunteers12,0
-  has_many :volunteers, dependent: :destroyvolunteers=12,0
-  has_many :volunteers, dependent: :destroyvolunteer_ids12,0
-  has_many :volunteers, dependent: :destroyvolunteer_ids=12,0
-  has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroyvolunteered_projects13,0
-  has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroyvolunteered_projects=13,0
-  has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroyvolunteered_project_ids13,0
-  has_many :volunteered_projects, through: :volunteers, source: :project, dependent: :destroyvolunteered_project_ids=13,0
-  has_many :offersoffers15,0
-  has_many :offersoffers=15,0
-  has_many :offersoffer_ids15,0
-  has_many :offersoffer_ids=15,0
-  def volunteered_for_project? projectvolunteered_for_project?20,0
-  def has_complete_profile?has_complete_profile?24,0
-  def is_visible_to_user?(user)is_visible_to_user?28,0
-  def is_admin?is_admin?39,0
-  def to_paramto_param43,0
-  def self.to_csvto_csv47,0
-  def active_for_authentication?active_for_authentication?59,0
-
-app/jobs/application_job.rb,58
-class ApplicationJob < ActiveJob::BaseApplicationJob1,0
-
-app/controllers/application_controller.rb,123
-class ApplicationController < ActionController::BaseApplicationController1,0
-  def set_filters_openset_filters_open4,0
-
-app/controllers/offers_controller.rb,357
-class OffersController < ApplicationControllerOffersController1,0
-  def indexindex6,0
-  def showshow10,0
-  def newnew13,0
-  def editedit17,0
-  def createcreate20,0
-  def updateupdate36,0
-  def destroydestroy48,0
-    def set_offerset_offer58,0
-    def offer_paramsoffer_params63,0
-    def ensure_owner_or_adminensure_owner_or_admin67,0
-
-app/controllers/home_controller.rb,86
-class HomeController < ApplicationControllerHomeController1,0
-  def indexindex2,0
-
-app/controllers/users/registrations_controller.rb,557
-class Users::RegistrationsController < Devise::RegistrationsControllerRegistrationsController3,0
-class Users::RegistrationsController < Devise::RegistrationsControllerUsers::RegistrationsController3,0
-  def indexindex8,0
-  def showshow35,0
-  def configure_account_update_paramsconfigure_account_update_params93,0
-  def after_sign_up_path_for(resource)after_sign_up_path_for98,0
-  def update_resource(resource, params)update_resource107,0
-  def get_sort_params(sort, direction)get_sort_params118,0
-  def get_order_paramget_order_param131,0
-
-app/controllers/admin_controller.rb,182
-class AdminController < ApplicationControllerAdminController1,0
-  def delete_userdelete_user4,0
-  def toggle_highlighttoggle_highlight12,0
-  def ensure_adminensure_admin23,0
-
-app/controllers/projects_controller.rb,554
-class ProjectsController < ApplicationControllerProjectsController1,0
-  def indexindex7,0
-  def volunteeredvolunteered44,0
-  def ownown57,0
-  def showshow71,0
-  def volunteersvolunteers78,0
-  def newnew84,0
-  def createcreate88,0
-  def editedit104,0
-  def updateupdate107,0
-  def destroydestroy119,0
-  def toggle_volunteertoggle_volunteer127,0
-    def set_projectset_project144,0
-    def project_paramsproject_params149,0
-    def ensure_owner_or_adminensure_owner_or_admin153,0
-    def get_order_paramget_order_param160,0
-
-app/helpers/projects_helper.rb,96
-module ProjectsHelperProjectsHelper1,0
-  def project_row_class(project)project_row_class2,0
-
-app/helpers/registrations_helper.rb,51
-module RegistrationsHelperRegistrationsHelper2,0
-
-app/helpers/meta_tag_helper.rb,355
-module MetaTagHelperMetaTagHelper3,0
-  def title(content)title4,0
-  def share_img(content)share_img8,0
-  def share_url(content)share_url12,0
-  def share_desc(content)share_desc16,0
-  def share_title(content)share_title20,0
-  def share_twitter_card_type(content)share_twitter_card_type24,0
-  def dynamic_fav_ico(content)dynamic_fav_ico28,0
-
-app/helpers/offers_helper.rb,37
-module OffersHelperOffersHelper1,0
-
-app/helpers/admin_helper.rb,35
-module AdminHelperAdminHelper1,0
-
-app/helpers/home_helper.rb,33
-module HomeHelperHomeHelper1,0
-
-app/helpers/application_helper.rb,1474
-module ApplicationHelperApplicationHelper1,0
-  def nav_link_active_class(variant = 'DESKTOP')nav_link_active_class2,0
-  def nav_link_inactive_class(variant = 'DESKTOP')nav_link_inactive_class11,0
-  def all_projects_nav_link_class(variant = 'DESKTOP')all_projects_nav_link_class20,0
-  def volunteered_projects_nav_link_class(variant = 'DESKTOP')volunteered_projects_nav_link_class24,0
-  def own_projects_nav_link_class(variant = 'DESKTOP')own_projects_nav_link_class28,0
-  def profile_nav_link_class(variant = 'DESKTOP')profile_nav_link_class32,0
-  def sign_up_nav_link_class(variant = 'DESKTOP')sign_up_nav_link_class36,0
-  def login_nav_link_class(variant = 'DESKTOP')login_nav_link_class40,0
-  def volunteers_nav_link_class(variant = 'DESKTOP')volunteers_nav_link_class44,0
-  def offers_nav_link_class(variant = 'DESKTOP')offers_nav_link_class48,0
-  def logout_nav_link_class(variant = 'DESKTOP')logout_nav_link_class52,0
-  def discord_nav_link_class(variant = 'DESKTOP')discord_nav_link_class56,0
-  def alert_container_class_for_flash_type typealert_container_class_for_flash_type60,0
-  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)filter_badge74,0
-  def skill_badges(items, limit: nil, color: 'indigo', title: title)skill_badges94,0
-  def sort_drop_down(&block)sort_drop_down100,0
-  def sort_drop_down_option(path, title, sort_by)sort_drop_down_option106,0
-  def sort_by_buttonsort_by_button121,0
-
-app/channels/application_cable/connection.rb,195
-module ApplicationCableApplicationCable1,0
-  class Connection < ActionCable::Connection::BaseConnection2,0
-  class Connection < ActionCable::Connection::BaseApplicationCable::Connection2,0
-
-app/channels/application_cable/channel.rb,177
-module ApplicationCableApplicationCable1,0
-  class Channel < ActionCable::Channel::BaseChannel2,0
-  class Channel < ActionCable::Channel::BaseApplicationCable::Channel2,0
-
-config/application.rb,177
-module CovidVolunteersCovidVolunteers19,0
-  class Application < Rails::ApplicationApplication20,0
-  class Application < Rails::ApplicationCovidVolunteers::Application20,0
-
-config/initializers/admins.rb,22
-ADMINS = [ADMINS1,0
-
-config/initializers/constants.rb,600
-ALL_SKILLS = [ 'Software', 'Biology', 'Biotech', 'Medicine', 'Mechanics & Electronics', 'Funding', 'Content',  'Manufacturing', 'PM', 'Anything' ].freezeALL_SKILLS1,0
-ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'Only on Weekends', 'Full Time' ].freezeALL_AVAILABILITY2,0
-ALL_NUMBER_OF_VOLUNTEERS = [ '1-10', '10-50', '50-100', '100+' ]ALL_NUMBER_OF_VOLUNTEERS3,0
-ALL_PROJECT_TYPES = [ALL_PROJECT_TYPES5,0
-VOLUNTEERS_REQUIRED_FOR_FUNDING = 50VOLUNTEERS_REQUIRED_FOR_FUNDING22,0
-MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER23,0
-
-spec/mailers/previews/project_mailer_preview.rb,161
-class ProjectMailerPreview < ActionMailer::PreviewProjectMailerPreview2,0
-  def new_volunteernew_volunteer3,0
-  def volunter_outreachvolunter_outreach10,0
-
-db/migrate/20200318143209_change_collation_for_tag_names.acts_as_taggable_on_engine.rb,216
-  class ChangeCollationForTagNames < ActiveRecord::Migration[4.2]; endChangeCollationForTagNames5,0
-  class ChangeCollationForTagNames < ActiveRecord::Migration; endChangeCollationForTagNames7,0
-  def upup10,0
-
-db/migrate/20200318143207_add_taggings_counter_cache_to_tags.acts_as_taggable_on_engine.rb,258
-  class AddTaggingsCounterCacheToTags < ActiveRecord::Migration[4.2]; endAddTaggingsCounterCacheToTags3,0
-  class AddTaggingsCounterCacheToTags < ActiveRecord::Migration; endAddTaggingsCounterCacheToTags5,0
-  def self.upup8,0
-  def self.downdown17,0
-
-db/migrate/20200321205731_add_progress_to_projects.rb,109
-class AddProgressToProjects < ActiveRecord::Migration[6.0]AddProgressToProjects1,0
-  def changechange2,0
-
-db/migrate/20200317215331_create_offers.rb,91
-class CreateOffers < ActiveRecord::Migration[6.0]CreateOffers1,0
-  def changechange2,0
-
-db/migrate/20200316012101_add_location_to_projects.rb,109
-class AddLocationToProjects < ActiveRecord::Migration[6.0]AddLocationToProjects1,0
-  def changechange2,0
-
-db/migrate/20200316183014_add_more_fields_to_users.rb,107
-class AddMoreFieldsToUsers < ActiveRecord::Migration[6.0]AddMoreFieldsToUsers1,0
-  def changechange2,0
-
-db/migrate/20200315231312_devise_create_users.rb,101
-class DeviseCreateUsers < ActiveRecord::Migration[6.0]DeviseCreateUsers3,0
-  def changechange4,0
-
-db/migrate/20200321210730_add_volunteers_number_to_projects.rb,125
-class AddVolunteersNumberToProjects < ActiveRecord::Migration[6.0]AddVolunteersNumberToProjects1,0
-  def changechange2,0
-
-db/migrate/20200318143208_add_missing_taggable_index.acts_as_taggable_on_engine.rb,234
-  class AddMissingTaggableIndex < ActiveRecord::Migration[4.2]; endAddMissingTaggableIndex3,0
-  class AddMissingTaggableIndex < ActiveRecord::Migration; endAddMissingTaggableIndex5,0
-  def self.upup8,0
-  def self.downdown12,0
-
-db/migrate/20200315235813_create_projects.rb,95
-class CreateProjects < ActiveRecord::Migration[6.0]CreateProjects1,0
-  def changechange2,0
-
-db/migrate/20200318143210_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb,227
-  class AddMissingIndexesOnTaggings < ActiveRecord::Migration[4.2]; endAddMissingIndexesOnTaggings3,0
-  class AddMissingIndexesOnTaggings < ActiveRecord::Migration; endAddMissingIndexesOnTaggings5,0
-  def changechange8,0
-
-db/migrate/20200322121011_add_pair_users_field.rb,101
-class AddPairUsersField < ActiveRecord::Migration[6.0]AddPairUsersField1,0
-  def changechange2,0
-
-db/migrate/20200318143205_acts_as_taggable_on_migration.acts_as_taggable_on_engine.rb,242
-  class ActsAsTaggableOnMigration < ActiveRecord::Migration[4.2]; endActsAsTaggableOnMigration3,0
-  class ActsAsTaggableOnMigration < ActiveRecord::Migration; endActsAsTaggableOnMigration5,0
-  def self.upup8,0
-  def self.downdown33,0
-
-db/migrate/20200318215539_add_highlight_to_users.rb,105
-class AddHighlightToUsers < ActiveRecord::Migration[6.0]AddHighlightToUsers1,0
-  def changechange2,0
-
-db/migrate/20200318000013_add_contact_to_users.rb,101
-class AddContactToUsers < ActiveRecord::Migration[6.0]AddContactToUsers1,0
-  def changechange2,0
-
-db/migrate/20200318143206_add_missing_unique_indices.acts_as_taggable_on_engine.rb,234
-  class AddMissingUniqueIndices < ActiveRecord::Migration[4.2]; endAddMissingUniqueIndices3,0
-  class AddMissingUniqueIndices < ActiveRecord::Migration; endAddMissingUniqueIndices5,0
-  def self.upup8,0
-  def self.downdown18,0
-
-db/migrate/20200316195620_create_volunteers.rb,99
-class CreateVolunteers < ActiveRecord::Migration[6.0]CreateVolunteers1,0
-  def changechange2,0
-
-db/migrate/20200316204207_add_visibility_to_users.rb,107
-class AddVisibilityToUsers < ActiveRecord::Migration[6.0]AddVisibilityToUsers1,0
-  def changechange2,0
-
-db/migrate/20200319064535_add_level_of_availability_to_users.rb,125
-class AddLevelOfAvailabilityToUsers < ActiveRecord::Migration[6.0]AddLevelOfAvailabilityToUsers1,0
-  def changechange2,0
-
-db/migrate/20200323061132_add_deactivated_to_users.rb,109
-class AddDeactivatedToUsers < ActiveRecord::Migration[6.0]AddDeactivatedToUsers1,0
-  def changechange2,0
-
-db/migrate/20200317005612_add_name_to_user.rb,93
-class AddNameToUser < ActiveRecord::Migration[6.0]AddNameToUser1,0
-  def changechange2,0
