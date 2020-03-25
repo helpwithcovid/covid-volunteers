@@ -11,15 +11,7 @@ class ProjectsController < ApplicationController
     @applied_skills = (params[:skills] or '').split(',')
     @applied_types = (params[:project_types] or '').split(',')
 
-    filtered_projects = Project
-    filtered_projects = filtered_projects.tagged_with(@applied_skills) if @applied_skills.length > 0
-    filtered_projects = filtered_projects.tagged_with(@applied_types) if @applied_types.length > 0
-    if params[:query].present?
-      grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
-    else
-      grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
-    end
-    @projects = grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+    @projects = filter_projects
 
     respond_to do |format|
       format.html do
@@ -153,5 +145,17 @@ class ProjectsController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
+    end
+
+    def filter_projects
+      filtered_projects = Project
+      filtered_projects = filtered_projects.tagged_with(@applied_skills) if @applied_skills.length > 0
+      filtered_projects = filtered_projects.tagged_with(@applied_types) if @applied_types.length > 0
+      if params[:query].present?
+        grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+      else
+        grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
+      end
+      grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
     end
 end
