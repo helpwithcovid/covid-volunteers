@@ -73,22 +73,59 @@ module ApplicationHelper
 
   def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     if model.present?
-      url = "/#{model}?#{filter_by}=#{CGI.escape(label)}"
+      query_string = build_query_string(toggle_filter(filter_by, label))
+      url = "/#{model}?#{query_string}"
     end
 
+    applied = get_query_params[filter_by].include? label
     case color
-    when 'gray'
-      classes = 'bg-gray-100 text-gray-800'
-      classes += ' bg-gray-200' if request.fullpath == url
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
-      classes += ' bg-blue-200' if request.fullpath == url
+      classes += ' bg-blue-300' if applied
     else
       classes = 'bg-indigo-100 text-indigo-800'
-      classes += ' bg-indigo-200' if request.fullpath == url
+      classes += ' bg-indigo-300' if applied
     end
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+  end
+
+  def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
+    query_string = build_query_string(get_query_params.filter{|k, _| k!= filter_by})
+    url = "/#{model}"
+    url << "?#{query_string}" if query_string.present?
+
+    classes = 'bg-gray-100 text-gray-800'
+    classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
+
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+  end
+
+  def get_query_params
+    # return a Params-like hash that only has query params, and returns an empty array when accessing a nonexistent key
+    query_params = Hash.new(Array.new)
+    return query_params if not URI.parse(request.fullpath).query
+    CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
+      acc[el[0]] = el[1][0].split(',')
+      acc
+    end
+  end
+
+  def toggle_filter(filter_key, filter)
+    query_params = get_query_params
+    filters = get_query_params[filter_key]
+    toggled = filters.include?(filter) ? filters.filter{|el| el != filter} : filters + [filter]
+    query_params[filter_key] = toggled
+    query_params
+  end
+
+  def build_query_string(query_params)
+    params_array = query_params.map do |k, v|
+      next if v.length == 0
+      value = v.map{|s| CGI.escape s}.join(',')
+      "#{k}=#{value}"
+    end
+    params_array.reject(&:nil?).join('&')
   end
 
   def skill_badges(items, limit: nil, color: 'indigo', title: title)
@@ -104,7 +141,7 @@ module ApplicationHelper
   end
 
   def sort_drop_down_option(path, title, sort_by = nil)
-    new_params = params.permit(:sort_by, :skill, :project_type).dup
+    new_params = params.permit(:sort_by, :skills, :project_types).dup
 
     case params[:sort_by]
     when sort_by

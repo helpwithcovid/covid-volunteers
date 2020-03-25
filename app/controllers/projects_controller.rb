@@ -3,26 +3,13 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
+  before_action :set_projects_query, only: :index
 
   def index
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
     @show_sorting_options = true
-
-    @projects = Project
-    @projects = @projects.tagged_with(params[:skill]) if params[:skill].present?
-    @projects = @projects.tagged_with(params[:project_type]) if params[:project_type].present?
-
-    if params[:query].present?
-      @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
-    else
-      @projects = @projects.left_joins(:volunteers).group(:id)
-    end
-
-    @projects = @projects.order(get_order_param) if params[:sort_by]
-
-    @projects = @projects.includes(:project_types, :skills)
 
     respond_to do |format|
       format.html do
@@ -156,6 +143,29 @@ class ProjectsController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
+    end
+
+    def set_projects_query
+      applied_skills = (params[:skills] or '').split(',')
+      applied_project_types = (params[:project_types] or '').split(',')
+
+      @projects = Project
+      @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
+      @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
+
+      if params[:query].present?
+        @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+      else
+        @projects = @projects.left_joins(:volunteers).group(:id)
+      end
+
+      if params[:sort_by]
+        @projects = @projects.order(get_order_param)
+      else
+        $projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+      end
+
+      @projects.includes(:project_types, :skills)
     end
 
     def get_order_param

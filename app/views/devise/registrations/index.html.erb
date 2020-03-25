@@ -57,7 +57,7 @@
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
-      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skill', skills: ALL_SKILLS} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skills', skills: ALL_SKILLS} %>
     </div>
   </div>
 <% end %>

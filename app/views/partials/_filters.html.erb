@@ -6,7 +6,7 @@
       </h3>
       <div class="mt-4 text-sm leading-5 text-gray-500 flex flex-wrap justify-center">
         <div class="mb-2 mr-2">
-          <%= filter_badge label: 'Show all', model: model, color: 'gray' %>
+          <%= clear_filter_badge label: 'Show all', model: model, color: 'gray', filter_by: filter_by %>
         </div>
         <% skills.each do |skill|%>
           <div class="mb-2 mr-2">

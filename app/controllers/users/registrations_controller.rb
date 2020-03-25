@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @show_sorting_options = true
 
     @users = User
-    @users = @users.tagged_with(params[:skill]) if params[:skill].present?
+    @users = @users.tagged_with(params[:skills]) if params[:skills].present?
 
     if params[:query].present?
       @users = @users.search(params[:query])
