@@ -57,12 +57,14 @@
 
 <% if @projects.present? %>
   <div class="bg-white shadow overflow-hidden sm:rounded-md">
+    <%= paginate @projects %>
+  </div>
+  <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>
       <% @projects.each do |project| %>
         <%= render partial: 'project', locals: { project: project,  } %>
       <% end %>
     </ul>
-
     <%= paginate @projects %>
   </div>
 <% end %>

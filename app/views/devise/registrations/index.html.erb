@@ -52,11 +52,13 @@
 <% end %>
 
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
+  <%= paginate @users %>
+</div>
+<div class="bg-white shadow overflow-hidden sm:rounded-md">
   <ul>
     <% @users.each_with_index do |user, idx| %>
       <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
     <% end %>
-
-    <%= paginate @users %>
   </ul>
+  <%= paginate @users %>
 </div>
