@@ -1,9 +1,9 @@
 <li class="border-t border-gray-200">
-  <%= link_to profile_path(user), class: "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out" do %>
+  <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">
         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-          <%= user.name %> / <%= mail_to user.email, nil, encode: 'javascript' %>
+          <%= link_to user.name, profile_path(user) %> / <%= mail_to user.email, nil, encode: 'javascript' %>
         </div>
       </div>
       <div class="mt-2 sm:flex sm:justify-between">
@@ -36,5 +36,5 @@
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </li>
