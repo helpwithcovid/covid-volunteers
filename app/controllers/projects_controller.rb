@@ -3,15 +3,13 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
+  before_action :set_projects_query, only: :index
 
   def index
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
-    @applied_skills = (params[:skills] or '').split(',')
-    @applied_types = (params[:project_types] or '').split(',')
-
-    @projects = filter_projects
+    @show_sorting_options = true
 
     respond_to do |format|
       format.html do
@@ -147,15 +145,31 @@ class ProjectsController < ApplicationController
       end
     end
 
-    def filter_projects
-      filtered_projects = Project
-      filtered_projects = filtered_projects.tagged_with(@applied_skills) if @applied_skills.length > 0
-      filtered_projects = filtered_projects.tagged_with(@applied_types) if @applied_types.length > 0
+    def set_projects_query
+      applied_skills = (params[:skills] or '').split(',')
+      applied_project_types = (params[:project_types] or '').split(',')
+
+      @projects = Project
+      @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
+      @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
+
       if params[:query].present?
-        grouped_projects = filtered_projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
+        @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
       else
-        grouped_projects = filtered_projects.left_joins(:volunteers).group(:id)
+        @projects = @projects.left_joins(:volunteers).group(:id)
       end
-      grouped_projects.includes(:project_types, :skills).order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+
+      if params[:sort_by]
+        @projects = @projects.order(get_order_param)
+      else
+        $projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
+      end
+
+      @projects.includes(:project_types, :skills)
+    end
+
+    def get_order_param
+      return 'created_at desc' if params[:sort_by] == 'latest'
+      return 'volunteers.count asc' if params[:sort_by] == 'volunteers_needed'
     end
 end

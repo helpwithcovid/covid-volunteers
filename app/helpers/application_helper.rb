@@ -92,7 +92,8 @@ module ApplicationHelper
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     query_string = build_query_string(get_query_params.filter{|k, _| k!= filter_by})
-    url = "/#{model}?#{query_string}"
+    url = "/#{model}"
+    url << "?#{query_string}" if query_string.present?
 
     classes = 'bg-gray-100 text-gray-800'
     classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
@@ -131,5 +132,31 @@ module ApplicationHelper
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
+  end
+
+  def sort_drop_down(&block)
+    render layout: 'partials/sort-drop-down' do
+      capture(&block)
+    end
+  end
+
+  def sort_drop_down_option(path, title, sort_by = nil)
+    new_params = params.permit(:sort_by, :skills, :project_types).dup
+
+    case params[:sort_by]
+    when sort_by
+      new_params.delete :sort_by
+      active = true
+    else
+      new_params[:sort_by] = sort_by
+    end
+
+    if sort_by.nil?
+      new_params.delete :sort_by
+    end
+
+    path = path + "?#{new_params.to_query}" if new_params.present?
+
+    "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
   end
 end

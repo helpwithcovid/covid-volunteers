@@ -25,28 +25,39 @@
 </div>
 
 <% if @show_filters %>
-  <div x-data="{ open: <%= @filters_open %> }">
-    <div class="block mb-4">
+  <div x-data="{ open: <%= @filters_open %>, sortOpen: false }">
+    <div class="block mb-4 relative">
       <nav class="flex flex-col sm:flex-row justify-between">
         <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
           <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
         </a>
-        <% if @show_search_bar %>
-          <div class="w-full sm:w-64">
-            <%= form_with url: volunteers_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
-              <div class="relative rounded-md shadow-sm">
-                <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
-                <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
-                  <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+        <div class="flex flex-col md:flex-row">
+          <% if @show_search_bar %>
+            <div class="w-full sm:w-64">
+              <%= form_with url: volunteers_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
+                <div class="relative rounded-md shadow-sm">
+                  <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
+                  <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
+                    <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <% if @show_sorting_options %>
+            <div class="ml-2 flex">
+              <%= sort_drop_down do %>
+                <%= sort_drop_down_option(volunteers_path, 'Sort by') %>
+                <%= sort_drop_down_option(volunteers_path, 'Latest', 'latest') %>
+                <%= sort_drop_down_option(volunteers_path, 'Earliest', 'earliest') %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
-      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skill', skills: ALL_SKILLS} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skills', skills: ALL_SKILLS} %>
     </div>
   </div>
 <% end %>
