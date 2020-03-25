@@ -81,10 +81,10 @@ module ApplicationHelper
     case color
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
-      classes += ' bg-blue-200' if applied
+      classes += ' bg-blue-300' if applied
     else
       classes = 'bg-indigo-100 text-indigo-800'
-      classes += ' bg-indigo-200' if applied
+      classes += ' bg-indigo-300' if applied
     end
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
@@ -102,9 +102,9 @@ module ApplicationHelper
 
   def get_query_params
     # return a Params-like hash that only has query params, and returns an empty array when accessing a nonexistent key
-    query_params = Hash.new {|k| Array.new}
+    query_params = Hash.new(Array.new)
     return query_params if not URI.parse(request.fullpath).query
-    return CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
+    CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
       acc[el[0]] = el[1][0].split(',')
       acc
     end
@@ -115,17 +115,16 @@ module ApplicationHelper
     filters = get_query_params[filter_key]
     toggled = filters.include?(filter) ? filters.filter{|el| el != filter} : filters + [filter]
     query_params[filter_key] = toggled
-    return query_params
+    query_params
   end
 
   def build_query_string(query_params)
-    query_params['filters_open'] = ['true']
     params_array = query_params.map do |k, v|
       next if v.length == 0
       value = v.map{|s| CGI.escape s}.join(',')
       "#{k}=#{value}"
     end
-    return params_array.join('&')
+    params_array.reject(&:nil?).join('&')
   end
 
   def skill_badges(items, limit: nil, color: 'indigo', title: title)
