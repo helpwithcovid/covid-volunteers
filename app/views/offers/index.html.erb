@@ -7,7 +7,7 @@
         Deals, offers, and benefits from organizations that want to help out with COVID-19.
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
-        Organizations are helping out COVID-19 projects too.
+        Organizations are helping out COVID-19 projects too. Find <%= link_to "more here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'text-indigo-500' %>.
         <% if current_user.blank? %>
           <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to post an offer.
         <% end %>
