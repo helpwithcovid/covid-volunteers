@@ -128,7 +128,7 @@ module ApplicationHelper
     params_array.reject(&:nil?).join('&')
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: title)
+  def skill_badges(items, limit: nil, color: 'indigo', title: '')
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
