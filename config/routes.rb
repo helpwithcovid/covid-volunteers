@@ -30,5 +30,7 @@ Rails.application.routes.draw do
       post :delete_user
       post :toggle_highlight
     end
+
+    resources :volunteer_groups
   end
 end

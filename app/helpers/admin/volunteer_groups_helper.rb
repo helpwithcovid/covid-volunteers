@@ -1,0 +1,2 @@
+module Admin::VolunteerGroupsHelper
+end
