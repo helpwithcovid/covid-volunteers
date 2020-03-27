@@ -74,7 +74,8 @@ module ApplicationHelper
   def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
     if model.present?
       query_string = build_query_string(toggle_filter(filter_by, label))
-      url = "/#{model}?#{query_string}"
+      url = "/#{model}"
+      url << "?#{query_string}" if query_string.present?
     end
 
     applied = get_query_params[filter_by].include? label
@@ -106,6 +107,8 @@ module ApplicationHelper
     query_params = Hash.new(Array.new)
     return query_params if not URI.parse(request.fullpath).query
     CGI.parse(URI.parse(request.fullpath).query).reduce(query_params) do |acc, el|
+      return acc if el[1][0].blank?
+
       acc[el[0]] = el[1][0].split(',')
       acc
     end
