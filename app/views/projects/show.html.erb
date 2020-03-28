@@ -296,6 +296,51 @@
           </dd>
         </div>
       <% end %>
+
+      <% if @project.slack_url.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Slack
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= simple_format Rinku.auto_link(sanitize(@project.slack_url), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @project.discord_url.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Discord
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= simple_format Rinku.auto_link(sanitize(@project.discord_url), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @project.github_url.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Github
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= simple_format Rinku.auto_link(sanitize(@project.github_url), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @project.social_media_links.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Social Media Links
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= simple_format Rinku.auto_link(sanitize(@project.social_media_links), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+
     </dl>
   </div>
 </div>
