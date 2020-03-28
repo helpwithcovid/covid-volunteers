@@ -1007,6 +1007,7 @@ GEM
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gravatar_image_tag (1.2.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     inline_svg (1.7.1)
@@ -1196,6 +1197,7 @@ DEPENDENCIES
   devise
   exception_notification!
   factory_bot_rails
+  gravatar_image_tag
   inline_svg
   jbuilder (~> 2.7)
   kaminari

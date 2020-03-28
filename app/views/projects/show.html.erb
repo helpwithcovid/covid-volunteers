@@ -219,6 +219,17 @@
           <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
         </dd>
       </div>
+      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Project owner
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 sm:pb-3">
+          <%= link_to profile_path(@project.user), class: 'text-indigo-500 flex items-center mt-2 sm:mt-0' do %>
+            <%= gravatar_image_tag @project.user.email, class: 'rounded-full w-12 h-12' %>
+            <span class="ml-2"><%= @project.user.name %></span>
+          <% end %>
+        </dd>
+      </div>
       <% if @project.progress.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
@@ -270,7 +281,7 @@
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How to get in touch
           </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 sm:pb-3">
             <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500"').html_safe %>
           </dd>
         </div>
