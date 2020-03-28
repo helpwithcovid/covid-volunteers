@@ -33,7 +33,7 @@
             <% if project.project_type_list.present? %>
               <div class="mt-2 text-sm leading-5 text-gray-500 sm:mt-0 font-bold">Helping with: </div>
               <div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
-                <%= skill_badges project.project_type_list, limit: 3 %>
+                <%= skill_badges project.project_type_list, limit: 3, model: 'projects', filter_by: 'project_types' %>
               </div>
             <% end %>
           </div>
@@ -41,7 +41,7 @@
             <div class="flex flex-col md:justify-end flex-wrap mt-2">
               <div class="mt-2 text-sm md:text-right leading-5 text-gray-500 sm:mt-0 font-bold">Looking for:</div>
               <div class="flex flex-row flex-wrap md:items-end md:content-end md:justify-end space-x-right-2 md:space-x-right-0 md:space-x-left-2 space-y-top-2">
-                <%= skill_badges project.skill_list, limit: 3, color: 'blue' %>
+                <%= skill_badges project.skill_list, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
               </div>
             </div>
           <% end %>
