@@ -281,7 +281,7 @@
             Skills needed
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-            <%= skill_badges @project.skill_list, color: 'blue' %>
+            <%= skill_badges @project.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
           </dd>
         </div>
       <% end %>
@@ -292,7 +292,7 @@
             Project type
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-            <%= skill_badges @project.project_type_list %>
+            <%= skill_badges @project.project_type_list, model: 'projects', filter_by: 'project_types' %>
           </dd>
         </div>
       <% end %>
