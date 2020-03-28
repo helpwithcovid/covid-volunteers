@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'projects#index'
 
+  get '/about', to: 'home#about', as: 'about'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
