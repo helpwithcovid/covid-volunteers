@@ -131,10 +131,10 @@ module ApplicationHelper
     params_array.reject(&:nil?).join('&')
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: '')
+  def skill_badges(items, limit: nil, color: 'indigo', title: '', model: '', filter_by: '')
     limit ||= items.count
 
-    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title}
+    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title, model: model, filter_by: filter_by}
   end
 
   def sort_drop_down(&block)

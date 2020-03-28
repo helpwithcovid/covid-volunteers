@@ -13,7 +13,7 @@
       </div>
       <% if user.skill_list.present? %>
         <div class="flex content-center flex-wrap mt-2 space-x-right-2">
-          <%= skill_badges user.skill_list, limit: 3, color: 'blue' %>
+          <%= skill_badges user.skill_list, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
         </div>
       <% end %>
       <div class="mt-2 sm:flex sm:justify-between">

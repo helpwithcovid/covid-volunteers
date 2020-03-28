@@ -1,7 +1,7 @@
 <% visible, hidden = items.take(limit), items.drop(limit) %>
 
 <% visible.each do |type| %>
-  <%= filter_badge label: type, color: color %>
+  <%= filter_badge label: type, color: color, model: model, filter_by: filter_by %>
 <% end %>
 <% if hidden.present? %>
   <%= filter_badge label: "and #{hidden.size} more", color: 'gray', title: hidden.join(", ") %>
