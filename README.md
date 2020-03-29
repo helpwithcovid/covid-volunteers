@@ -36,12 +36,13 @@ The stack is:
 
 ### macOS ruby setup
 
-```
+```bash
 brew install rbenv 
 brew install postgresql
 rbenv init
 echo 'eval "$(rbenv init -)"' >> ~/.zshrc 
-rbenv install 2.6.4
+# source profile or restart shell, then:
+rbenv install 2.6.3
 rbenv local 2.6.3
 gem install bundler
 gem install rails
