@@ -39,6 +39,26 @@
           <%= mail_to @user.email, nil, encode: 'javascript', class: 'text-indigo-500' %>
         </dd>
       </div>
+      <% if @user.phone.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Phone
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @user.phone %>
+          </dd>
+        </div>
+      <% end %>
+      <% if @user.affiliation.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Affiliation
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @user.affiliation %>
+          </dd>
+        </div>
+      <% end %>
       <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           About
@@ -47,6 +67,7 @@
           <%= simple_format @user.about, class: 'mb-3' %>
         </dd>
       </div>
+      
       <% if @user.skill_list.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
@@ -65,6 +86,17 @@
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @user.level_of_availability %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @user.resume.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Resume / Headline
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @user.resume %>
           </dd>
         </div>
       <% end %>

@@ -9,11 +9,20 @@ Volunteer Details:
 
 Name: <%= @user.name %>
 Email: <%= @user.email %>
+<%- if @user.phone.present? %>
+Phone: <%= @user.phone %>
+<%- end -%>
+<%- if @user.affiliation.present? %>
+Affiliation: <%= @user.affiliation %>
+<%- end -%>
 <%- if @user.skill_list.present? %>
 Skills: <%= @user.skill_list.join(', ') %>
 <%- end -%>
 <%- if @user.level_of_availability.present? %>
 Level of Availability: <%= @user.level_of_availability %>
+<%- end -%>
+<%- if @user.resume.present? %>
+Resume / Headline: <%= @user.resume %>
 <%- end -%>
 
 About:

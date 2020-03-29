@@ -1,6 +1,6 @@
 <div class="mt-6 sm:mt-5">
   <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+    <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Name
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -12,12 +12,34 @@
   </div>
 
   <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+    <label for="about" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       About you
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5", required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="phone" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Phone
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "phone", placeholder: "xxx-xxx-xxxx", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="affiliation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Affiliation
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "affiliation", placeholder: "Yale College, Yale School of Management, none, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
       </div>
     </div>
   </div>
@@ -80,13 +102,25 @@
         </fieldset>
       </div>
 
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="resume" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Link to resume
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "resume", placeholder: "Link to Google Drive, personal website, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">If you do not have a resume, feel free to write a one-line summary of your experience.</p>
+    </div>
+  </div>
+  
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="profile_links" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Links to places where people can get to know you better
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "profile_links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_area "profile_links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
       </div>
       <p class="mt-2 text-sm text-gray-500">For instance your arxiv, Github, LinkedIn, Twitter, Youtube, or portfolio. One per line.</p>
     </div>
@@ -94,13 +128,13 @@
 
   <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Your ballpark location
+      Your location
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_field "location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"%>
       </div>
-      <p class="mt-2 text-sm text-gray-500">City/State/Country ideally, don't be too specific.</p>
+      <p class="mt-2 text-sm text-gray-500">Around where in New Haven will you be?</p>
     </div>
   </div>
 

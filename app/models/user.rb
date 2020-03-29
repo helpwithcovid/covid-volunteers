@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :offers
   acts_as_taggable_on :skills
 
-  pg_search_scope :search, against: %i(name email about location level_of_availability)
+  pg_search_scope :search, against: %i(name email about location level_of_availability affiliation)
 
   def volunteered_for_project? project
     self.volunteered_projects.where(id: project.id).exists?
@@ -43,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{email about profile_links location level_of_availability}
+    attributes = %w{email about profile_links location level_of_availability phone affiliation resume}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
