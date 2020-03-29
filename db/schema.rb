@@ -40,10 +40,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_073356) do
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
-    t.string "slack_url", default: ""
-    t.string "discord_url", default: ""
-    t.string "github_url", default: ""
-    t.string "social_media_links", default: ""
+    t.string "links", default: ""
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
