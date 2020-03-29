@@ -28,6 +28,8 @@ class Project < ApplicationRecord
       only: [
         :id,
         :name,
+        :organization,
+        :level_of_urgency,
         :description,
         :participants,
         :goal,
