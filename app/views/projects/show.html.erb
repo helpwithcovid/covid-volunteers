@@ -203,6 +203,17 @@
 <div class="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
   <div class="px-4 py-5 sm:p-0">
     <dl>
+      <% if @project.organization? %>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Organization
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= simple_format @project.organization, class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+    
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Description
@@ -211,42 +222,43 @@
           <%= simple_format @project.description, class: 'mb-3' %>
         </dd>
       </div>
-      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+
+      <!-- <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
         <dt class="text-sm leading-5 font-medium text-gray-500">
           Who is already working on this
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
           <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
         </dd>
-      </div>
+      </div> -->
       <% if @project.progress.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+        <!-- <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How far along it is
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format Rinku.auto_link(sanitize(@project.progress), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
           </dd>
-        </div>
+        </div> -->
       <% end %>
       <% if @project.docs_and_demo.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+        <!-- <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Demo, mockups, or documentation
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format Rinku.auto_link(sanitize(@project.docs_and_demo), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
           </dd>
-        </div>
+        </div> -->
       <% end %>
       <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-        <dt class="text-sm leading-5 font-medium text-gray-500">
+        <!-- <dt class="text-sm leading-5 font-medium text-gray-500">
           Tasks that need to get done
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
           <%= simple_format @project.looking_for, class: 'mb-3' %>
         </dd>
-      </div>
+      </div> -->
       <% if @project.number_of_volunteers.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
@@ -265,6 +277,36 @@
           <%= @project.location %>
         </dd>
       </div>
+      <% if @project.start_date.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Start Date
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @project.start_date %>
+          </dd>
+        </div>
+      <% end %>
+      <% if @project.end_date.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            End Date
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @project.end_date %>
+          </dd>
+        </div>
+      <% end %>
+      <% if @project.compensation.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Compensation
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @project.compensation %>
+          </dd>
+        </div>
+      <% end %>
       <% if @project.contact.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">

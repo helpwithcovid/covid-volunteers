@@ -978,6 +978,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
+    bootstrap-datepicker-rails (1.9.0.1)
+      railties (>= 3.0)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -1191,6 +1193,7 @@ DEPENDENCIES
   aws-sdk
   aws-sdk-rails
   bootsnap (>= 1.4.2)
+  bootstrap-datepicker-rails
   byebug
   capybara (>= 2.15)
   devise

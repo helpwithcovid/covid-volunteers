@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_033108) do
     t.string "number_of_volunteers", default: "", null: false
     t.string "organization", default: ""
     t.string "level_of_urgency", default: "", null: false
-    t.string "start_date", default: "N/A"
-    t.string "end_date", default: "N/A"
-    t.string "compensation", default: "N/A"
+    t.string "start_date", default: ""
+    t.string "end_date", default: ""
+    t.string "compensation", default: ""
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
