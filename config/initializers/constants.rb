@@ -1,5 +1,6 @@
 ALL_SKILLS = [ 
-  'Access to car', 
+  'Access to car',
+  'ArcGIS', 
   'Arts and crafts', 
   'BHL (biohazard level) lab certificate', 
   'Childcare', 
