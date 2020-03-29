@@ -13,9 +13,11 @@ ALL_SKILLS = [
   'EPIC access', 
   'Grant writing', 
   'IRB experience', 
+  'Languages other than English',
   'Logistics and supply chain management',
   'Phlebotomy', 
   'Phone bank', 
+  'Software programming',
   'Statistical analysis'
 ].freeze
 ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'Only on Weekends', 'Full Time' ].freeze
