@@ -13,7 +13,7 @@
           Use <%= link_to "HWC's Discord", "https://discord.gg/875AhXS", class: "text-indigo-500", target: "_blank" %> to manage your project communication.
         </p>
       <% elsif @project.user && @project.user.name.present? %>
-        <div class="mt-2">
+        <div class="mt-1">
           <% if @project.user.visibility %>
             <%= link_to profile_path(@project.user), class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
               <%= render partial: 'user_avatar', locals: {user: @project.user} %>
