@@ -10,19 +10,53 @@ The stack is:
 - Tailwind CSS
 - Postgres
 
+# Table of contents
+- [covid-volunteers](#covid-volunteers)
+- [Table of contents](#table-of-contents)
+- [Running app locally](#running-app-locally)
+  - [Setup](#setup)
+    - [Dependencies](#dependencies)
+    - [macOS ruby setup](#macos-ruby-setup)
+    - [Postgres](#postgres)
+    - [Project setup](#project-setup)
+  - [Launch app](#launch-app)
+  - [Running tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
+
 # Running app locally
 
-## Dependencies
+## Setup
+
+### Dependencies
 
 - ruby `2.6.3`
 - bundler `2.1.4`
 - postgres
 
-## Installation
+### macOS ruby setup
+
+```bash
+brew install rbenv 
+brew install postgresql
+rbenv init
+echo 'eval "$(rbenv init -)"' >> ~/.zshrc 
+# source profile or restart shell, then:
+rbenv install 2.6.3
+rbenv local 2.6.3
+gem install bundler
+gem install rails
+rbenv rehash
+```
+
+### Postgres
 
 Install and start postgresql:
 - On macOS, you can use `pg_ctl -D /usr/local/var/postgres start`
 - (To stop postgres use `pg_ctl -D /usr/local/var/postgres stop`)
+
+
+### Project setup 
 
 Install dependencies:
 
