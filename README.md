@@ -37,6 +37,16 @@ Setup the database and seed data:
 rails db:setup
 ```
 
+## Configuration
+
+The following environment variables can be set:
+
+| Environment variable  | Type of value                      | Description                                              |
+|-----------------------|------------------------------------|----------------------------------------------------------|
+| `ADMINS`              | Email addresses separated by a `,` | Gives admin permissions to the listed accounts           |
+| `EXCEPTION_NOTIFIERS` | Email addresses separated by a `,` | Sends technical exceptions to the listed email addresses |
+| `EMAIL_ADDRESS`       | Single email address               | Used to contact your team                                |
+
 ## Launch app
 
 ```
