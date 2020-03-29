@@ -8,6 +8,6 @@ class ProjectMailer < ApplicationMailer
 
   def volunteer_outreach
     @user = params[:user]
-    mail(to: @user.email, reply_to: 'helpwithcovid@gmail.com', subject: "[Help With Covid - action required] Thank you and an update")
+    mail(to: @user.email, reply_to: HWC_EMAIL, subject: "[Help With Covid New Haven - action required] Thank you and an update")
   end
 end

@@ -66,10 +66,15 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  aws_credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
-  Aws::Rails.add_action_mailer_delivery_method(:aws_ses, credentials: aws_credentials, region: ENV['AWS_REGION'])
-  
-  config.action_mailer.delivery_method = :aws_ses
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentiaction: :plain,
+    enable_starttls_auto: true
+  }
 
   config.action_mailer.default_url_options = { :host => 'helpwithcovid.com', protocol: 'http' }
 
@@ -119,8 +124,8 @@ Rails.application.configure do
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   email: {
-    email_prefix: '[HelpWithCovid] ',
-    sender_address: %{"Help With Covid" <no-reply@helpwithcovid.com>},
-    exception_recipients: %w{radu.spineanu@gmail.com}
+    email_prefix: '[HelpWithCovidNewHaven] ',
+    sender_address: %{"Help With Covid New Haven" #{ENV['SMTP_NOREPLY']}},
+    exception_recipients: [ENV['SMTP_USERNAME']]
   }
 end

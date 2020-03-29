@@ -71,6 +71,15 @@ Setup the database and seed data:
 rails db:setup
 ```
 
+Create a `.env` file with the following:
+```
+SMTP_USERNAME=project-email@gmail.com
+SMTP_PASSWORD=email-account-password
+SMTP_NOREPLY=no-reply@domain.com
+```
+
+Replace the text to the right of the `=` with the correct values.
+
 ## Launch app
 
 ```
