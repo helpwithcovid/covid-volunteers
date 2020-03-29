@@ -1,0 +1,19 @@
+<%= link_to user.visibility ? profile_path(user) : 'javascript:void(0)', class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
+  <div class="flex items-center">
+    <div>
+      <%= gravatar_image_tag user.email, class: 'inline-block h-9 w-9 rounded-full' %>
+    </div>
+    <div class="ml-3">
+      <% if user.name.present? %>
+        <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-gray-900">
+          <%= user.name %>
+        </p>
+      <% end %>
+      <% if user.visibility %>
+        <p class="text-xs leading-4 font-medium text-gray-500 group-hover:text-gray-700 group-focus:underline transition ease-in-out duration-150">
+          View profile
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

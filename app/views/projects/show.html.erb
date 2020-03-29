@@ -7,10 +7,15 @@
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <%= @project.name %> project
       </h3>
+
       <% if current_user && @project.user == current_user %>
         <p class="mt-1 text-sm leading-5 text-gray-500">
           Use <%= link_to "HWC's Discord", "https://discord.gg/875AhXS", class: "text-indigo-500", target: "_blank" %> to manage your project communication.
         </p>
+      <% elsif @project.user && @project.user.name.present? %>
+        <div class="mt-2">
+          <%= render partial: 'user-avatar', locals: {user: @project.user} %>
+        </div>
       <% end %>
     </div>
 
@@ -270,7 +275,7 @@
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How to get in touch
           </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 sm:pb-3">
             <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500"').html_safe %>
           </dd>
         </div>
