@@ -14,7 +14,13 @@
         </p>
       <% elsif @project.user && @project.user.name.present? %>
         <div class="mt-2">
-          <%= render partial: 'user-avatar', locals: {user: @project.user} %>
+          <% if @project.user.visibility %>
+            <%= link_to profile_path(@project.user), class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
+              <%= render partial: 'user_avatar', locals: {user: @project.user} %>
+            <% end %>
+          <% else %>
+            <%= render partial: 'user_avatar', locals: {user: @project.user} %>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -282,7 +288,7 @@
       <% end %>
 
       <% if @project.links.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-Uy-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
             Helpful links
           </dt>
