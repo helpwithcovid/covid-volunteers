@@ -39,3 +39,6 @@ yarn-debug.log*
 
 #Ignore IntelliJ
 /.idea/*
+
+#Dotenv
+.env
