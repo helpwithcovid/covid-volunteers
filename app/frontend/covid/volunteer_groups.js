@@ -12,10 +12,10 @@ const VolunteerGroups = {
   },
 
   addVolunteerToGroup(that) {
-    const projectId = $('#volunteer_group_project_id').val();
+    const projectId = $('#project_id').val();
     const chosenUserIds = $('.volunteer-in-group .volunteer-group-user-id').map(function() { return $(this).val() }).toArray();
 
-    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { chosen_user_ids: chosenUserIds }, (data) => {
+    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds }, (data) => {
       const users = data.users;
       let html = '';
 

@@ -14,7 +14,7 @@
 </div>
 
 <%= form_for @volunteer_group do |f| %>
-  <%= f.hidden_field :project_id %>
+  <%= hidden_field_tag 'project_id', @volunteer_group.project_id %>
 
   <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
     <div class="bg-white px-4 py-5  sm:px-6">
@@ -34,7 +34,7 @@
           <% end %>
 
           <span class="ml-3 inline-flex rounded-md shadow-sm">
-            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+            <button type="submit" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
               Assign volunteers
             </button>
           </span>
