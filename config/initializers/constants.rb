@@ -1,4 +1,4 @@
-ALL_SKILLS = [ 'Biology', 'Biotech', 'Content', 'Design', 'Funding', 'Manufacturing', 'Medicine', 'Mechanics & Electronics', 'PM', 'Software', 'Volunteer vetting', 'Anything' ].freeze
+ALL_SKILLS = [ 'Biology', 'Biotech', 'Content', 'Design', 'Funding', 'Localization', 'Manufacturing', 'Medicine', 'Mechanics & Electronics', 'PM', 'Operations', 'Software', 'Volunteer vetting', 'Anything' ].freeze
 ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'Only on Weekends', 'Full Time' ].freeze
 ALL_NUMBER_OF_VOLUNTEERS = [ '1-10', '10-50', '50-100', '100+' ]
 
