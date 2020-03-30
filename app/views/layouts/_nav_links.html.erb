@@ -1,18 +1,18 @@
 <%= link_to projects_path, class: "#{all_projects_nav_link_class(variant)}" do %>
-  All Volunteer Positions
+  All Volunteer Opportunities
 <% end %>
 
 <% if current_user %>
   <%= link_to volunteered_projects_path, class: "#{volunteered_projects_nav_link_class(variant)}" do %>
-    Volunteered Projects
+    Opportunities You've Volunteered For
   <% end %>
   <%= link_to own_projects_path, class: "#{own_projects_nav_link_class(variant)}" do %>
-    Your Projects
+    Opportunities You've Posted
   <% end %>
 <% end %>
 
 <%= link_to volunteers_path, class: "#{volunteers_nav_link_class(variant)}" do %>
-  Volunteers
+  Volunteer Database
 <% end %>
 
 <% if current_user %>

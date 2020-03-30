@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
-    @projects_header = 'Volunteered Projects'
+    @projects_header = 'Opportunities You\'ve Volunteered For'
     @projects_subheader = 'These are the projects where you volunteered.'
     @page_title = 'Volunteered Projects'
     render action: 'index'
@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
-    @projects_header = 'Own Projects'
+    @projects_header = 'Opportunities You\'ve Posted'
     @projects_subheader = 'These are the volunteer positions you created.'
     @page_title = 'Own Projects'
     render action: 'index'
