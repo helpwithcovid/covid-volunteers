@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_230914) do
+ActiveRecord::Schema.define(version: 2020_03_28_073356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_230914) do
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
+    t.string "links", default: ""
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_230914) do
   end
 
   create_table "volunteer_groups", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "project_id"
     t.integer "assigned_user_ids", default: [], null: false, array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
