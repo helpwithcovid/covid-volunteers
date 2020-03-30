@@ -1,0 +1,25 @@
+#to deploy, this goes in /etc/systemd/system, then use systemctl
+
+[Unit]
+Description=covid-volunteers service
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/root/covid-volunteers/app
+User=root
+ExecStart=/usr/share/rvm/bin/rvm in /root/covid-volunteers/ do bundle exec puma -p 3000 -e production
+SyslogIdentifier=helpwithcovid-rails
+# stop by sending only the main process a SIGQUIT signal
+KillMode=process
+KillSignal=SIGQUIT
+# Enable reloading unicorn via HUP signal
+ExecReload=/bin/kill -HUP $MAINPID
+# Try to restart the service after 1 second
+Restart=always
+RestartSec=1
+# Path to Unicorn PID file (as specified in unicorn configuration file)
+#PIDFile=/home/covid-volunteers/app/shared/unicorn.pid
+
+[Install]
+WantedBy=multi-user.target
