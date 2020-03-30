@@ -202,6 +202,47 @@
     </div>
   </div>
 
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+        <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+            <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                Background screening required?
+            </legend>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :background_screening_required, true, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        Yes
+                    </label>
+                    </div>
+                </div>
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :background_screening_required, false, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        No
+                    </label>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+  </div>
+
+
   <div class="mt-6 sm:mt-5">
     <div class="sm:border-t sm:border-gray-200 sm:pt-5">
       <fieldset>
