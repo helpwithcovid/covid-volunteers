@@ -70,17 +70,29 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  # NOTE: This configures the mailer to use gmail for both sending and receiving,
+  # so the no-reply@newhavenhelpwithcovid.com account won't actually be used.
+  # The commented out lines below might be on the right track to fix this, but
+  # it's completely untested.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
     user_name: ENV['SMTP_USERNAME'],
     password: ENV['SMTP_PASSWORD'],
-    authentiaction: :plain,
+    authentication: :plain,
     enable_starttls_auto: true
   }
 
-  config.action_mailer.default_url_options = { :host => 'helpwithcovid.com', protocol: 'http' }
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  address: 'localhost',
+  #  port: 25,
+  #  authentication: :plain,
+  #  enable_starttls_auto: true
+  #}
+
+  config.action_mailer.default_url_options = { :host => 'newhavenhelpwithcovid.com', protocol: 'http' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
