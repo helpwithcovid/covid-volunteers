@@ -32,5 +32,10 @@ module CovidVolunteers
     config.action_view.field_error_proc = Proc.new do |html_tag, instance| 
       html_tag
     end
+
+    # From: https://blog.alex-miller.co/rails/2017/01/07/rails-authenticity-token-and-mobile-safari.html
+    config.action_dispatch.default_headers.merge!(
+      'Cache-Control' => 'no-store, no-cache'
+    )
   end
 end
