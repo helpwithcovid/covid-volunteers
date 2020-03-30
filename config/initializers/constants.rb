@@ -19,5 +19,15 @@ ALL_PROJECT_TYPES = [
   'Other'
 ].freeze
 
+ALL_PROJECT_STATUS = [
+  'Idea',
+  'Brainstorming',
+  'Prototyping',
+  'In development',
+  'In production',
+  'Live',
+  'In the wild'
+].freeze
+
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

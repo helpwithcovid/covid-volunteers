@@ -40,7 +40,8 @@ class Project < ApplicationRecord
         :number_of_volunteers,
         :accepting_volunteers,
         :created_at,
-        :updated_at
+        :updated_at,
+        :status
       ],
       methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
     )
