@@ -13,8 +13,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @projects_header = 'COVID-19 projects in New Haven'
-        @projects_subheader = 'New or established projects helping with the COVID-19 crisis in New Haven. Volunteer yourself or create a new one.'
+        @projects_header = 'New Haven Residents vs. COVID-19'
+        @projects_subheader = 'This is a New Haven-wide volunteer management website, where New Haven residents can volunteer (in-person or remotely) and local non-profits and government can post volunteer needs. Let us unite and fight the pandemic together!'
         @page_title = 'All Projects'
 
         @projects = @projects.page(params[:page]).per(25)
