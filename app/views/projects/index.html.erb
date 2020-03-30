@@ -8,23 +8,42 @@
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
         <%= @projects_subheader %>
-        
+      </p>        
+    </div>
+  </div>
+</div>
+
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Want to volunteer your skills to an existing project?
+      </h3>
         <% if current_user.blank? %>
           <p class="mt-1 text-sm leading-5 text-gray-500"><b>
             <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to volunteer.
           </b></p>
         <% elsif !current_user.has_complete_profile? %>
-          <p class="mt-1 text-sm leading-5 text-gray-500"><b>
-            <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to volunteer. Even if you cannot find a position, you can create a volunteer profile and be included in the database.
-          </b></p>
+          <p class="mt-1 text-sm leading-5 text-gray-500">
+            <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to volunteer. Then, look below for projects. You can also make yourself visible in <%= link_to 'the database', volunteers_path, class: 'text-indigo-500' %>, so that organizers can reach out to you.
+          </p>
         <% elsif current_user.has_complete_profile? %>
-          <p class="mt-1 text-sm leading-5 text-gray-500"><b>
-            Even if you cannot find a position, your volunteer profile is included in <%= link_to 'the database', volunteers_path, class: 'text-indigo-500' %> and hiring managers may reach out to you.
-          </b></p>
+          <p class="mt-1 text-sm leading-5 text-gray-500">
+            Look below for projects that need  volunteers with your skills. You can also make yourself visible in <%= link_to 'the database', volunteers_path, class: 'text-indigo-500' %>, so that organizers can reach out to you.
+          </p>
         <% end %>
-      </p>
     </div>
-    <div class="ml-4 mt-4 flex-shrink-0">
+  </div>
+</div>
+
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Does your project need volunteers?
+      </h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">
+      Get started by creating an account, and listing your project.
       <span class="inline-flex rounded-md shadow-sm">
         <%= link_to new_project_path do %>
           <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
@@ -32,6 +51,7 @@
           </button>
         <% end %>
       </span>
+      </p>        
     </div>
   </div>
 </div>
