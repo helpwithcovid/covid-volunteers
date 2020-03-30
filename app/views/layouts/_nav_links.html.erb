@@ -2,14 +2,12 @@
   All Volunteer Opportunities
 <% end %>
 
-<% if current_user %>
   <%= link_to volunteered_projects_path, class: "#{volunteered_projects_nav_link_class(variant)}" do %>
     Opportunities You've Volunteered For
   <% end %>
   <%= link_to own_projects_path, class: "#{own_projects_nav_link_class(variant)}" do %>
     Opportunities You've Posted
   <% end %>
-<% end %>
 
 <%= link_to volunteers_path, class: "#{volunteers_nav_link_class(variant)}" do %>
   Volunteer Database
