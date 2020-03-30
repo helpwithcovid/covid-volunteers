@@ -121,7 +121,7 @@ class ProjectsController < ApplicationController
 
       ProjectMailer.with(project: @project, user: current_user).new_volunteer.deliver_now
 
-      flash[:notice] = 'Thanks for volunteering! The project owners will be alerted.'
+      flash[:notice] = 'Thanks for volunteering! The hiring manager will be alerted.'
     end
 
     redirect_to project_path(@project)
