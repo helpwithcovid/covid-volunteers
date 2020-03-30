@@ -18,7 +18,11 @@ ALL_SKILLS = [
   'Phlebotomy', 
   'Phone bank', 
   'Software programming',
-  'Statistical analysis'
+  'Statistical analysis',
+  'Survey design',
+  'Interviewing/focus groups',
+  'Data management',
+  'Web development'
 ].freeze
 ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'Only on Weekends', 'Full Time' ].freeze
 ALL_NUMBER_OF_VOLUNTEERS = [ '1-10', '10-50', '50-100', '100+' ]
