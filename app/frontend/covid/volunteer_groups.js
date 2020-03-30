@@ -59,6 +59,11 @@ const VolunteerGroups = {
           ${user.about}
         </div>
       </div>
+      <div class="mt-2 sm:flex sm:justify-between">
+        <div class="text-sm leading-5 text-gray-500">
+          location: ${user.location} / skills: ${user.skill_list ? user.skill_list.join(', '): ''}
+        </div>
+      </div>
     </div>
   </div>
 </li>`;
