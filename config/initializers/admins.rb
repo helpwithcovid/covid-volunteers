@@ -1,6 +1,1 @@
-ADMINS = [
-  'radu.spineanu@gmail.com',
-  'liamjweld@gmail.com',
-  'joe@marsbio.vc',
-  'tinneipang@gmail.com'
-]
+ADMINS = ENV['ADMINS']&.split(',') || []
