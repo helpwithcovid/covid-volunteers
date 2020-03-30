@@ -1190,6 +1190,7 @@ DEPENDENCIES
   acts-as-taggable-on
   aws-sdk
   aws-sdk-rails
+  aws-sdk-s3
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
