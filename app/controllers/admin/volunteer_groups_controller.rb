@@ -31,8 +31,10 @@ class Admin::VolunteerGroupsController < ApplicationController
     @users = User.where('id != ?', @project.user_id)
     @users = @users.where(pair_with_projects: true)
     @users = @users.where.not(id: params[:user_ids])
+    @users = @users.where.not(id: params[:rejected_user_ids])
     @users = @users.where.not(id: @project.volunteers.collect { |v| v.user_id })
     @users = @users.tagged_with(@project.skill_list, any: true)
+    @users = @users.order('RANDOM()')
     @users = @users.limit(10)
 
     respond_to do |format|

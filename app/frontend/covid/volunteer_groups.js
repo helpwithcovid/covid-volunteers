@@ -17,9 +17,10 @@ const VolunteerGroups = {
 
   addVolunteerToGroup(that) {
     const projectId = $('#project_id').val();
+    const currentRejectedUserIds = $('#rejected_user_ids').val().split(',').filter(el => el);
     const chosenUserIds = $('.volunteer-in-group .volunteer-group-user-id').map(function() { return $(this).val() }).toArray();
 
-    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds }, (data) => {
+    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds, rejected_user_ids: currentRejectedUserIds }, (data) => {
       const users = data.users;
       let html = '';
 
@@ -70,6 +71,9 @@ const VolunteerGroups = {
   },
 
   removeVolunteerFromGroup(that) {
+    const rejectedUserId = $(that).find('.volunteer-group-user-id').val();
+    const currentRejectedUserIds = $('#rejected_user_ids').val();
+    $('#rejected_user_ids').val(`${currentRejectedUserIds},${rejectedUserId}`);
     that.remove();
   },
 
