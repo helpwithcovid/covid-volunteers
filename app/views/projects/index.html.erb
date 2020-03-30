@@ -8,10 +8,19 @@
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
         <%= @projects_subheader %>
+        
         <% if current_user.blank? %>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to volunteer.
+          <p class="mt-1 text-sm leading-5 text-gray-500"><b>
+            <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to volunteer.
+          </b></p>
         <% elsif !current_user.has_complete_profile? %>
-          <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to volunteer.
+          <p class="mt-1 text-sm leading-5 text-gray-500"><b>
+            <%= link_to 'Fill out your profile', edit_user_registration_path, class: 'text-indigo-500' %> to volunteer. Even if you cannot find a position, you can create a volunteer profile and be included in the database.
+          </b></p>
+        <% elsif current_user.has_complete_profile? %>
+          <p class="mt-1 text-sm leading-5 text-gray-500"><b>
+            Even if you cannot find a position, your volunteer profile is included in <%= link_to 'the database', volunteers_path, class: 'text-indigo-500' %> and hiring managers may reach out to you.
+          </b></p>
         <% end %>
       </p>
     </div>
