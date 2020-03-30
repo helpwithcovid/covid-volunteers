@@ -230,13 +230,9 @@
           <div class="mt-4 sm:mt-0 sm:col-span-2">
             <div class="max-w-lg">
               <div class="relative flex items-start">
-                <div class="bg-white form-select h-full py-0 pl-3 pr-8 shadow-sm bg-transparent text-gray-500 sm:text-sm sm:leading-5">
-                  <div class="pl-7 text-sm leading-5">
-                    <label class="font-medium text-gray-700">
-                      <%= f.select :status, ALL_PROJECT_STATUS, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" } %>
-                    </label>
-                  </div>
-                </div>
+                <label class="font-medium text-gray-700">
+                  <%= f.select :status, ALL_PROJECT_STATUS, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
+                </label>
               </div>
             </div>
           </div>
