@@ -1,3 +1,13 @@
+<div class="relative flex items-start">
+  <div class="absolute flex items-center h-5">
+    <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+  </div>
+  <div class="pl-7 text-sm leading-5">
+    <%= f.label 'visibility', 'Visibility', class: 'font-medium text-red-700' %>
+    <p class="text-gray-500">I want my information (including my email) to be visible in the directory of volunteers. Any registered user can see this directory.</p>
+  </div>
+</div>
+
 <div class="mt-6 sm:mt-5">
   <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
@@ -166,16 +176,6 @@
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
             <div class="max-w-lg">
-              <div class="relative flex items-start">
-                <div class="absolute flex items-center h-5">
-                  <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
-                </div>
-                <div class="pl-7 text-sm leading-5">
-                  <%= f.label 'visibility', 'Visibility', class: 'font-medium text-gray-700' %>
-                  <p class="text-gray-500">I want my information (including my email) to be visible in the public directory.</p>
-                </div>
-              </div>
-              <br />
               <div class="relative flex items-start">
                 <div class="absolute flex items-center h-5">
                   <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
