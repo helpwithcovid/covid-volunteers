@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def has_complete_profile?
-    self.about.present? && self.profile_links.present? && self.location.present?
+    self.about.present? && self.name.present?
   end
 
   def is_visible_to_user?(user_trying_view)
