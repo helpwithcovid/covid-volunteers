@@ -5,7 +5,7 @@ const VolunteerGroups = {
         VolunteerGroups.addVolunteerToGroup(this);
       })
 
-      $('#volunteer_list').on('click', '.remove-volunteer', function() {
+      $('#volunteer_list').on('click', '.volunteer-in-group', function() {
         VolunteerGroups.removeVolunteerFromGroup(this);
       })
     });
@@ -13,15 +13,16 @@ const VolunteerGroups = {
 
   addVolunteerToGroup(that) {
     const projectId = $('#volunteer_group_project_id').val();
+    const chosenUserIds = $('.volunteer-in-group .volunteer-group-user-id').map(function() { return $(this).val() }).toArray();
 
-    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, (data) => {
+    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { chosen_user_ids: chosenUserIds }, (data) => {
       const users = data.users;
       let html = '';
 
       for (const user of users) {
         const userRow = `
-<li class="border-t border-gray-200 remove-volunteer">
-  <input type="hidden" value="${user.id}" name="volunteer_group[user_ids][]" />
+<li class="border-t border-gray-200 volunteer-in-group">
+  <input type="hidden" value="${user.id}" name="volunteer_group[user_ids][]" class="volunteer-group-user-id" />
   <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">

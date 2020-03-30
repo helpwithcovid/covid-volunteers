@@ -7,7 +7,10 @@ class Admin::VolunteerGroupsController < ApplicationController
   end
 
   def generate_volunteers
-    @users = User.all.sample(10)
+    @users = User.where('id != ?', @project.user_id)
+    @users = @users.where.not(id: params[:chosen_user_ids])
+    @users = @users.tagged_with(@project.skill_list, any: true)
+    @users = @users.limit(10)
 
     respond_to do |format|
       format.json do 
