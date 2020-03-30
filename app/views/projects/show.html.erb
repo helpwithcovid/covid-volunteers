@@ -179,7 +179,7 @@
         </p>
       </div>
       <div class="flex justify-between mt-3 text-sm leading-5">
-        <%= mail_to "helpwithcovid@gmail.com", "Tell about it via email &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
+        <%= mail_to ENV['EMAIL_ADDRESS'], "Tell about it via email &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
         <%= link_to "javascript:void(0)", id: "disable_highlight_projects_alert", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
           Don't show this again
         <% end %>

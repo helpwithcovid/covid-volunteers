@@ -121,6 +121,6 @@ Rails.application.configure do
   email: {
     email_prefix: '[HelpWithCovid] ',
     sender_address: %{"Help With Covid" <no-reply@helpwithcovid.com>},
-    exception_recipients: %w{radu.spineanu@gmail.com}
+    exception_recipients: ENV['EXCEPTION_NOTIFIERS']&.split(',')
   }
 end
