@@ -5,6 +5,10 @@ const VolunteerGroups = {
         VolunteerGroups.addVolunteerToGroup(this);
       })
 
+      $('#volunteers_group_intro_email_button').click(function() {
+        VolunteerGroups.prepareIntroEmail(this);
+      })
+
       $('#volunteer_list').on('click', '.volunteer-in-group', function() {
         VolunteerGroups.removeVolunteerFromGroup(this);
       })
@@ -19,6 +23,11 @@ const VolunteerGroups = {
       const users = data.users;
       let html = '';
 
+      if (data.users.length == 0) {
+        alert("Sorry, couldn't find any matching volunteers.");
+        return;
+      }
+
       for (const user of users) {
         const userRow = `
 <li class="border-t border-gray-200 volunteer-in-group">
@@ -27,7 +36,7 @@ const VolunteerGroups = {
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">
         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-          ${user.name} / ${user.email}
+          <span class="volunteer-name">${user.name}</span> / <span class="volunteer-email">${user.email}</span>
         </div>
         <div class="text-sm leading-5 truncate">
           <a href="javascript:void(0)">
@@ -62,6 +71,44 @@ const VolunteerGroups = {
 
   removeVolunteerFromGroup(that) {
     that.remove();
+  },
+
+  prepareIntroEmail(that) {
+    const projectId = $('#project_id').val();
+    const projectOwnerEmail = $('#project_owner_email').val();
+    const projectName = $('#project_name').val();
+    const volunteers = [];
+    const volunteerEmails = [];
+
+    $('.volunteer-in-group').each((_, el) => {
+      const email = $(el).find('.volunteer-email').text();
+      const name = $(el).find('.volunteer-name').text();
+      volunteers.push({ email, name });
+      volunteerEmails.push(email);
+    });
+
+    const subject = `[Help With Covid] Say Hello to your new volunteers!`;
+
+    let volunteersBody = [];
+    for (const volunteer of volunteers) {
+      volunteersBody.push(`${volunteer.name} / ${volunteer.email}`);
+    }
+
+    let body = `Hi there!
+
+A number of volunteers have graciously agreed to be paired with interesting projects. And ${projectName} (http://helpwithcovid.com/projects/${projectId}) by ${projectOwnerEmail} needs help.
+
+Please meet the newest additions to your volunteer team:
+${volunteersBody.join("\n")}
+
+Feel free to ping us at helpwithcovid@gmail.com if we can help out in any way.
+
+Thank you!
+HWC Core team
+`;
+
+    const mailHref=`mailto:${projectOwnerEmail}?cc=${volunteerEmails.join(',').replace(/\+/g, '%2B')}&subject=${subject}&body=${body.replace(/\n/g, '%0D%0A').replace(/\+/g, '%2B')}`;
+    window.open(mailHref, '_blank');
   },
 };
 

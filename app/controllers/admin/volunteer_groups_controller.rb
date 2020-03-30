@@ -13,6 +13,12 @@ class Admin::VolunteerGroupsController < ApplicationController
       @volunteer_group.assigned_user_ids = params[:volunteer_group][:user_ids]
       @volunteer_group.save
 
+      params[:volunteer_group][:user_ids].each do |user_id|
+        user = User.where(id: user_id).last
+
+        @project.volunteered_users << user unless @project.volunteered_users.include?(user)
+      end
+
       flash[:notice] = 'Volunteers assigned and invitation sent.'
     else
       flash[:error] = 'No volunteers assigned so not doing anything.'
@@ -23,6 +29,7 @@ class Admin::VolunteerGroupsController < ApplicationController
 
   def generate_volunteers
     @users = User.where('id != ?', @project.user_id)
+    @users = @users.where(pair_with_projects: true)
     @users = @users.where.not(id: params[:user_ids])
     @users = @users.where.not(id: @project.volunteers.collect { |v| v.user_id })
     @users = @users.tagged_with(@project.skill_list, any: true)
