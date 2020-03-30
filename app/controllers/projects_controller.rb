@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
     @projects_header = 'Own Projects'
-    @projects_subheader = 'These are the projects you created.'
+    @projects_subheader = 'These are the volunteer positions you created.'
     @page_title = 'Own Projects'
     render action: 'index'
   end

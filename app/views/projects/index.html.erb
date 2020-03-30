@@ -19,7 +19,7 @@
       <span class="inline-flex rounded-md shadow-sm">
         <%= link_to new_project_path do %>
           <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-            Create project
+            Create volunteer position
           </button>
         <% end %>
       </span>
@@ -32,7 +32,7 @@
     <div class="block mb-4 relative">
       <nav class="flex flex-col sm:flex-row justify-between">
         <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
-          <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
+          <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteer positions
         </a>
         <div class="flex flex-col md:flex-row">
           <% if @show_search_bar %>
@@ -61,8 +61,8 @@
       </nav>
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden">
-      <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skills', skills: ALL_SKILLS} %>
-      <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_types', skills: ALL_PROJECT_TYPES} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteer positions by skills needed', model: 'projects', filter_by: 'skills', skills: ALL_SKILLS} %>
+      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteer positions by project type', model: 'projects',filter_by: 'project_types', skills: ALL_PROJECT_TYPES} %>
     </div>
   </div>
 <% end %>
