@@ -89,4 +89,4 @@ gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-e
 gem 'gravatar_image_tag'
 
 # .env
-gem 'dotenv-rails', groups: [ :development ]
+gem 'dotenv-rails', groups: [ :development, :test ]
