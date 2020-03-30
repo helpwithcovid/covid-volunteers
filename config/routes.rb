@@ -26,10 +26,15 @@ Rails.application.routes.draw do
 
   resources :offers
 
-  resources :admin do
-    collection do
-      post :delete_user
-      post :toggle_highlight
+  scope 'admin' do
+    post :delete_user, to: 'admin#delete_user', as: 'delete_user'
+    post :toggle_highlight, to: 'admin#toggle_highlight', as: 'toggle_project_highlight'
+
+    resources :volunteer_groups, module: 'admin' do
+      collection do
+        post :generate_volunteers
+        get :generate_volunteers
+      end
     end
   end
 end

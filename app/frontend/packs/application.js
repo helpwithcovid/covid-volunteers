@@ -26,4 +26,3 @@ import './stylesheets.css'
 import Covid from '../covid'
 window.Covid = Covid
 Covid.initialize();
-
