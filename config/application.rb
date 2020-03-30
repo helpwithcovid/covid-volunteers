@@ -16,7 +16,7 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+Dotenv::Railtie.load if Rails.env == 'development'
 
 module CovidVolunteers
   class Application < Rails::Application
