@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @users = @users.order(get_order_param) if params[:sort_by]
 
-    if current_user.is_admin?
+    if current_user && current_user.is_admin?
       @users = @users.where(visibility: true).page(params[:page]).per(25)
     else
       @users = @users.page(params[:page]).per(25)
