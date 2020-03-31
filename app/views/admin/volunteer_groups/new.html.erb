@@ -7,7 +7,7 @@
         Assign a group of volunteers to <%= @project.name %>
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
-        You can do this multiple times for one project.
+        You can do this multiple times for one project. <%= link_to "View project details.", project_path(@project), target: "_blank", class: "text-indigo-500" %>
       </p>
     </div>
   </div>
@@ -20,7 +20,7 @@
   <%= hidden_field_tag 'rejected_user_ids', '' %>
 
   <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
-    <div class="bg-white px-4 py-5  sm:px-6">
+    <div class="bg-white px-4 py-5 sm:px-6">
       <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
         <div class="ml-4 mt-2">
           <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -52,6 +52,29 @@
         </div>
       </div>
     </div>
+
+    <dl>
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2 border-t border-gray-200">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Tasks that need to get done
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= simple_format @project.looking_for, class: 'mb-3' %>
+        </dd>
+      </div>
+
+      <% if @project.skill_list.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Skills needed
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= @project.skill_list.join(', ')  %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+
 
     <div id="no_volunteer_list" class="px-6 py-4 leading-6 text-gray-500 border-t border-gray-200 text-sm">
       No volunteers assigned yet.
