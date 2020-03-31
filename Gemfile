@@ -90,3 +90,6 @@ gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-e
 
 # Environment variables
 gem 'dotenv-rails'
+
+# Captcha
+gem "recaptcha"
