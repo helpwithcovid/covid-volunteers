@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_232631) do
+ActiveRecord::Schema.define(version: 2020_03_31_000316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_232631) do
     t.string "end_date", default: ""
     t.string "compensation", default: ""
     t.boolean "background_screening_required"
+    t.string "level_of_exposure"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

@@ -202,6 +202,36 @@
     </div>
   </div>
 
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+          <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              Level of Exposure
+            </legend>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+              <% ALL_LEVELS_OF_EXPOSURE.each do |level_of_exposure| %>
+                <div class="relative flex items-start">
+                  <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :level_of_exposure, level_of_exposure, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                  </div>
+                  <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                      <%= level_of_exposure %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
 
   <div class="mt-6 sm:mt-5">
     <div class="sm:border-t sm:border-gray-200 sm:pt-5">
