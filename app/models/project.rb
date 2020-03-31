@@ -11,6 +11,8 @@ class Project < ApplicationRecord
 
   pg_search_scope :search, against: %i(name description participants looking_for location highlight)
 
+  validates :status, inclusion: {in: ALL_PROJECT_STATUS}
+
   def to_param
     [id, name.parameterize].join("-")
   end

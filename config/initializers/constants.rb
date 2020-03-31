@@ -21,12 +21,9 @@ ALL_PROJECT_TYPES = [
 
 ALL_PROJECT_STATUS = [
   'Idea',
-  'Brainstorming',
   'Prototyping',
   'In development',
-  'In production',
-  'Live',
-  'In the wild'
+  'Live'
 ].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
