@@ -16,7 +16,10 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load if Rails.env == 'development'
+# Initialize dotenv before booting the main application
+if Rails.env.development? || Rails.env.test?
+  Dotenv::Railtie.load
+end
 
 module CovidVolunteers
   class Application < Rails::Application
