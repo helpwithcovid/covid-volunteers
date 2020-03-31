@@ -208,6 +208,118 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              Level of Exposure
+            </legend>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+              <% ALL_LEVELS_OF_EXPOSURE.each do |level_of_exposure| %>
+                <div class="relative flex items-start">
+                  <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :level_of_exposure, level_of_exposure, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                  </div>
+                  <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                      <%= level_of_exposure %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <span class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">Guidelines</span>
+          <ul class="list-disc text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              <li>
+                I: No risk/from home
+                <ul class="list-disc pl-8">
+                  <li>M1, M2, M3, M4</li>
+                  <li>Mask production at home</li>
+                  <li>Creating cards/posters/videos of encouragement</li>
+                  <li>Call center staffing from home</li>
+                  <li>Call center staffing if proper social distancing is guaranteed</li>
+                  <li>Check in calls to particularly vulnerable patients and/or to staff who were exposed</li>
+                </ul>
+              </li>
+              <li>II: Low risk and minimal human contact
+                <ul class="list-disc pl-8">
+                  <li>M1, M2, M3, M4</li>
+                </ul>
+              </li>
+              <li>III: Potential for human contact
+                <ul class="list-disc pl-8">
+                  <li>M1, M2, M3, M4</li>
+                  <li>Child care needs of “mission-critical on-site” staff during COVID-19 outbreak</li>
+                  <li>Meal preparation, distributing food, washing dishes</li>
+                  <li>Essential transportation needs for family members</li>
+                </ul>
+              </li>
+              <li>IV: Non-clinical but in hospital or office setting
+                <ul class="list-disc pl-8">
+                  <li>M1, M2, M3, M4</li>
+                  <li>Staff support in non-clinical dept of hospital or office practice (e.g. information desk)</li>
+                  <li>Duties usually performed by hospital volunteers</li>
+                </ul>
+              </li>
+              <li>V: Clinical and direct human contact
+                <ul class="list-disc pl-8">
+                  <li>M3, M4</li>
+                  <li>Thermal imaging of hospital or office entrants</li>
+                  <li>H&P’s, IV’s, blood draws etc</li>
+                </ul>
+              </li>
+          <ul>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+        <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+            <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                Background screening required?
+            </legend>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :background_screening_required, true, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        Yes
+                    </label>
+                    </div>
+                </div>
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :background_screening_required, false, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        No
+                    </label>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+  </div>
+
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+          <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
               Location
             </legend>
           </div>
