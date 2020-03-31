@@ -22,11 +22,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @users = @users.order(get_order_param) if params[:sort_by]
 
-    if current_user && current_user.is_admin?
-      @users = @users.where(visibility: true).page(params[:page]).per(25)
-    else
-      @users = @users.page(params[:page]).per(25)
-    end
+    @users = Kaminari.paginate_array(@users.select {|user| user.is_visible_to_user?(current_user)})
+    @users = @users.page(params[:page]).per(25)
 
     @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
