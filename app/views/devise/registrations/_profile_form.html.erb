@@ -142,7 +142,7 @@
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
             <div>
               <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                Your location
+                <%= render "devise/shared/required", text: 'Your location' %>
               </legend>
             </div>
             <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -150,11 +150,15 @@
                 <% ALL_LOCATIONS.each do |loc| %>
                   <div class="relative flex items-start">
                     <div class="absolute flex items-center h-5">
-                      <%= f.radio_button :location, loc, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                      <%= f.radio_button :location, loc, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
                     </div>
                     <div class="pl-7 text-sm leading-5">
                       <label class="font-medium text-gray-700">
-                        <%= loc %>
+                        <%- if loc != REMOTE_LOCATION %>
+                          <%= loc %>
+                        <%- elsif %>
+                          <%= f.text_field :remote_location, placeholder: "#{REMOTE_LOCATION} (please enter)", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                        <% end %>
                       </label>
                     </div>
                   </div>

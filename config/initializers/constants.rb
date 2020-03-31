@@ -28,7 +28,8 @@ ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'On
 ALL_NUMBER_OF_VOLUNTEERS = [ '1-10', '10-50', '50-100', '100+' ]
 ALL_LEVELS_OF_URGENCY = [ 'Extremely urgent', 'Very urgent', 'Moderately urgent', 'Somewhat urgent', 'Not urgent' ]
 ALL_LEVELS_OF_EXPOSURE = [ 'I', 'II', 'III', 'IV', 'V' ]
-ALL_LOCATIONS = [ 'New Haven (on site)', 'Other Connecticut locales (on site)', 'Remote' ]
+REMOTE_LOCATION = 'Remote'
+ALL_LOCATIONS = [ 'New Haven (on site)', 'Other Connecticut locales (on site)', REMOTE_LOCATION ]
 
 ALL_PROJECT_TYPES = [
   'Contact tracing',

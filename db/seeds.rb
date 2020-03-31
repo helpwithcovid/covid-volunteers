@@ -13,6 +13,7 @@ User.create!(
   password_confirmation: 'password',
   about: 'about section',
   location: 'location section',
+  remote_location: 'remote location section',
   profile_links: 'github.com',
   visibility: true,
   level_of_availability: '2-4 hours a day'
