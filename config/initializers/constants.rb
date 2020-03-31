@@ -31,12 +31,12 @@ ALL_LEVELS_OF_EXPOSURE = [ 'I', 'II', 'III', 'IV', 'V' ]
 ALL_LOCATIONS = [ 'New Haven (on site)', 'Other Connecticut locales (on site)', 'Remote' ]
 
 ALL_PROJECT_TYPES = [
-  'Track the outbreak',
+  'Contact tracing',
   'Reduce spread',
   'Healthcare', 
   'Medical equipment', 
   'Treatment and vaccine R&D', 
-  'E-learning',
+  'Tutoring',
   'Childcare',
   'Delivery',
   'Coordination',
@@ -46,7 +46,9 @@ ALL_PROJECT_TYPES = [
   'Food preparation',
   'Communications',
   'Legal',
+  'Policy',
   'Help out community',
+  'Data gathering',
   'Other'
 ].freeze
 
