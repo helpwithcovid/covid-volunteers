@@ -20,10 +20,10 @@ ALL_PROJECT_TYPES = [
 ].freeze
 
 ALL_PROJECT_STATUS = [
-  'Idea',
-  'Prototyping',
-  'In development',
-  'Live'
+  'Just Started',
+  'In Progress',
+  'Launched',
+  'Actively Recruiting'
 ].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
