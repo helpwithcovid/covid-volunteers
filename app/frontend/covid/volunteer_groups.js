@@ -96,7 +96,7 @@ const VolunteerGroups = {
       volunteerEmails.push(email);
     });
 
-    const subject = `[Help With Covid] Say Hello to your new volunteers!`;
+    const subject = `[Help With Covid] Greetings - Project/Volunteers Introduction`;
 
     let volunteersBody = [];
     for (const volunteer of volunteers) {
@@ -105,18 +105,17 @@ const VolunteerGroups = {
 
     let body = `Hi there!
 
-A number of volunteers have graciously agreed to be paired with interesting projects. And ${projectName} (http://helpwithcovid.com/projects/${projectId}) by ${projectOwnerEmail} needs help.
+Hope you are all doing well! Thank you for all that you are doing to work on a solution for our world and being part of helpwithcovid.com.
 
-Please meet the newest additions to your volunteer team:
-${volunteersBody.join("\n")}
+This project needs your help: ${projectName} (http://helpwithcovid.com/projects/${projectId}) by ${projectOwnerEmail}. I thought you might be able to help. I have included the project owner to this email should have any questions.
 
-Feel free to ping us at helpwithcovid@gmail.com if we can help out in any way.
+Please let me know if you have any questions or concerns.
 
 Thank you!
 HWC Core team
 `;
 
-    const mailHref=`mailto:${projectOwnerEmail}?cc=${volunteerEmails.join(',').replace(/\+/g, '%2B')}&subject=${subject}&body=${body.replace(/\n/g, '%0D%0A').replace(/\+/g, '%2B')}`;
+    const mailHref=`mailto:${projectOwnerEmail}?bcc=${volunteerEmails.join(',').replace(/\+/g, '%2B')}&subject=${subject}&body=${body.replace(/\n/g, '%0D%0A').replace(/\+/g, '%2B')}`;
     window.open(mailHref, '_blank');
   },
 };
