@@ -70,7 +70,9 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
   <ul>
     <% @users.each_with_index do |user, idx| %>
-      <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
+      <%- if user.is_visible_to_user?(current_user) %>
+        <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
+      <%- end %>
     <% end %>
   </ul>
   <%= paginate @users %>
