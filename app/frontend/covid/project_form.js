@@ -1,19 +1,18 @@
-const NewProject = {
+const ProjectForm = {
     initialize() {
       $( document ).on('turbolinks:load', () => {
         if ($('form.new_project,form.edit_project').length > 0) {
             $('#project_accepting_volunteers').on('click', function(e){
-                NewProject.updateState();
+                ProjectForm.updateState();
             });
 
-            NewProject.updateState();
+            ProjectForm.updateState();
         }
       });
     },
 
     updateState() {
         if ($('#project_accepting_volunteers').is(':checked')) {
-            console.log($('.is-accepting-volunteers'));
             $('.is-accepting-volunteers').css('display', '');
             $('#project_looking_for').attr('required', 'required');
         }
@@ -24,4 +23,4 @@ const NewProject = {
     }
 }
 
-export default NewProject;
+export default ProjectForm;
