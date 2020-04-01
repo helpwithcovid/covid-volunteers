@@ -63,7 +63,7 @@ rails spec
 
 # Contributing
 
-Help is welcome! We are communicating on [Discord](https://discord.gg/8nAJfFN) in the #hwc-development channel
+Help is welcome! We are communicating on [Discord](https://discord.gg/8nAJfFN) in the #hwc-com-development channel
 
 1. Fork the project
 1. Create a branch with your changes
