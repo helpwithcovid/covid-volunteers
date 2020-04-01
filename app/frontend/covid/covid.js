@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import VolunteerGroups from './volunteer_groups'
+import NewProject from './new_project'
 
 const Covid = {
   initialize() {
@@ -15,6 +16,7 @@ const Covid = {
       })
     });
     VolunteerGroups.initialize();
+    NewProject.initialize();
   },
   toggleFiltersOpen() {
     let filtersOpen;

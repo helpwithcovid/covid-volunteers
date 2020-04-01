@@ -58,47 +58,6 @@
     </div>
   </div>
 
-  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="looking_for" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      What tasks need to get done?
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "looking_for", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-      </div>
-      <p class="mt-2 text-sm text-gray-500">Tell volunteers how they might help you. Be specific. If it's tech mention the stack.</p>
-    </div>
-  </div>
-
-  <div class="mt-6 sm:mt-5">
-    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-      <fieldset>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-          <div>
-            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Skills needed
-            </legend>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg">
-              <% ALL_SKILLS.each do |skill| %>
-                <div class="relative flex items-start">
-                  <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
-                  </div>
-                  <div class="pl-7 text-sm leading-5">
-                    <label for="project_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
-                      <%= skill %>
-                    </label>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-  </div>
 
   <div class="mt-6 sm:mt-5">
     <div class="sm:border-t sm:border-gray-200 sm:pt-5">
@@ -131,6 +90,67 @@
   </div>
 
   <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+          <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              Are you actively looking for volunteers?
+            </legend>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+              <%= f.check_box :accepting_volunteers %>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 is-accepting-volunteers">
+    <label for="looking_for" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      What tasks need to get done?
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_area "looking_for", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">Tell volunteers how they might help you. Be specific. If it's tech mention the stack.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 is-accepting-volunteers">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+          <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              Skills needed
+            </legend>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+              <% ALL_SKILLS.each do |skill| %>
+                <div class="relative flex items-start">
+                  <div class="absolute flex items-center h-5">
+                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
+                  </div>
+                  <div class="pl-7 text-sm leading-5">
+                    <label for="project_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
+                      <%= skill %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 is-accepting-volunteers">
     <div class="sm:border-t sm:border-gray-200 sm:pt-5">
       <fieldset>
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
