@@ -22,6 +22,12 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]["location"]).to eq(project.location)
       expect(json[0]["to_param"]).to eq(project.to_param)
     end
+
+    it 'filters by accepting_volunteers' do
+      get :index, params: { accepting_volunteers: true }
+      expect(response).to be_successful
+      expect(assigns(:projects)).to_not include(project)
+    end 
   end
 
   describe 'GET #show' do
