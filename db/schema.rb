@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_030212) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "location", default: "", null: false
+    t.string "country", default: "", null: false
     t.string "contact", default: "", null: false
     t.boolean "highlight", default: false, null: false
     t.string "progress", default: "", null: false
