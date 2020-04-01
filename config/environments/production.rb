@@ -44,7 +44,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -121,6 +121,6 @@ Rails.application.configure do
   email: {
     email_prefix: '[HelpWithCovid] ',
     sender_address: %{"Help With Covid" <no-reply@helpwithcovid.com>},
-    exception_recipients: %w{radu.spineanu@gmail.com}
+    exception_recipients: ENV['EXCEPTION_NOTIFIERS']&.split(',')
   }
 end

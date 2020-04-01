@@ -15,6 +15,9 @@ Skills: <%= @user.skill_list.join(', ') %>
 <%- if @user.level_of_availability.present? %>
 Level of Availability: <%= @user.level_of_availability %>
 <%- end -%>
+<%- if @user_volunteered_projects_count > 2 -%>
+Volunteered in: <%= @user_volunteered_projects_count - 1 %> other projects
+<%- end -%>
 
 About:
 <%= @user.about %>

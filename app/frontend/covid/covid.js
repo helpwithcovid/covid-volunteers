@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import './direct-upload'
+import VolunteerGroups from './volunteer_groups'
 
 const Covid = {
   initialize() {
@@ -14,6 +15,7 @@ const Covid = {
         $('#disable_highlight_projects_container').remove();
       })
     });
+    VolunteerGroups.initialize();
   },
   toggleFiltersOpen() {
     let filtersOpen;

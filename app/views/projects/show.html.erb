@@ -7,10 +7,21 @@
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <%= @project.name %> project
       </h3>
+
       <% if current_user && @project.user == current_user %>
         <p class="mt-1 text-sm leading-5 text-gray-500">
           Use <%= link_to "HWC's Discord", "https://discord.gg/875AhXS", class: "text-indigo-500", target: "_blank" %> to manage your project communication.
         </p>
+      <% elsif @project.user && @project.user.name.present? %>
+        <div class="mt-1">
+          <% if @project.user.visibility %>
+            <%= link_to profile_path(@project.user), class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
+              <%= render partial: 'user_avatar', locals: {user: @project.user} %>
+            <% end %>
+          <% else %>
+            <%= render partial: 'user_avatar', locals: {user: @project.user} %>
+          <% end %>
+        </div>
       <% end %>
     </div>
 
@@ -136,10 +147,19 @@
           </span>
         <% end %>
       <% end %>
+    </div>
+  </div>
+</div>
 
-      <% if current_user && current_user.is_admin? %>
-        <%= link_to toggle_highlight_admin_index_path(project_id: @project.id), method: :post do %>
-          <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
+<% if current_user && current_user.is_admin? %>
+  <div class="bg-white mt-6 border-2 border-red-300 bg-red-100 shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Admin area
+      </h3>
+      <div class="flex justify-left mt-3 text-sm leading-5">
+        <%= link_to toggle_project_highlight_path(project_id: @project.id), method: :post do %>
+          <span class="inline-flex rounded-md shadow-sm mt-4">
             <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
               <span>
                 <% if @project.highlight %>
@@ -151,10 +171,20 @@
             </button>
           </span>
         <% end %>
-      <% end %>
+
+        <%= link_to new_volunteer_group_path(project_id: @project.id), target: "_blank" do %>
+          <span class="ml-6 inline-flex rounded-md shadow-sm mt-4">
+            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+              <span>
+                Assign volunteers
+              </span>
+            </button>
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <% if current_user && @project.volunteered_users.count < MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER && @project.user == current_user && !cookies[:highlight_projects_alert] %>
   <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_highlight_projects_container">
@@ -168,7 +198,7 @@
         </p>
       </div>
       <div class="flex justify-between mt-3 text-sm leading-5">
-        <%= mail_to "helpwithcovid@gmail.com", "Tell about it via email &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
+        <%= mail_to ENV['EMAIL_ADDRESS'], "Tell about it via email &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
         <%= link_to "javascript:void(0)", id: "disable_highlight_projects_alert", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
           Don't show this again
         <% end %>
@@ -270,11 +300,23 @@
           <dt class="text-sm leading-5 font-medium text-gray-500">
             How to get in touch
           </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 sm:pb-3">
             <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500"').html_safe %>
           </dd>
         </div>
       <% end %>
+
+      <% if @project.links.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Helpful links
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+          </dd>
+        </div>
+      <% end %>
+
       <% if @project.skill_list.present? %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
@@ -296,11 +338,12 @@
           </dd>
         </div>
       <% end %>
+
     </dl>
   </div>
 </div>
 
-<% if current_user == @project.user && @project.volunteered_users.count > 0 %>
+<% if current_user && @project.volunteered_users.count > 0 && (current_user == @project.user || current_user.is_admin?) %>
   <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
     <div class="bg-white px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">

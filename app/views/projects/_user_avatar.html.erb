@@ -1,0 +1,12 @@
+<div class="flex items-center">
+  <div>
+    <%= gravatar_image_tag user.email, class: 'inline-block h-5 w-5 rounded-full inline-block align-middle' %>
+  </div>
+  <div class="ml-2">
+    <% if user.name.present? %>
+      <p class="text-sm leading-5 font-medium text-gray-700 group-hover:text-gray-900 inline-block align-middle">
+        <%= user.name %>
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :volunteer_group do
+    
+  end
+
 
   factory :user do
     name { "Bob Isok" }

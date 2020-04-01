@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2020_03_29_101014) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "offers", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
@@ -50,8 +57,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_101014) do
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "description", default: "", null: false
     t.string "participants", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "goal", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_101014) do
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
+    t.string "links", default: ""
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -101,6 +110,13 @@ ActiveRecord::Schema.define(version: 2020_03_29_101014) do
     t.string "level_of_availability"
     t.boolean "pair_with_projects", default: false
     t.boolean "deactivated", default: false, null: false
+  end
+
+  create_table "volunteer_groups", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "assigned_user_ids", default: [], null: false, array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "volunteers", force: :cascade do |t|

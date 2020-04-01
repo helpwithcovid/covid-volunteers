@@ -1,0 +1,103 @@
+<%- share_title "New volunteer group for #{@project.name}" %>
+
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+    <div class="ml-4 mt-4">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Assign a group of volunteers to <%= @project.name %>
+      </h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">
+        You can do this multiple times for one project. <%= link_to "View project details.", project_path(@project), target: "_blank", class: "text-indigo-500" %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= form_for @volunteer_group do |f| %>
+  <%= hidden_field_tag 'project_id', @volunteer_group.project_id %>
+  <%= hidden_field_tag 'project_name', @project.name %>
+  <%= hidden_field_tag 'project_owner_email', @project.user.email %>
+  <%= hidden_field_tag 'rejected_user_ids', '' %>
+
+  <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
+    <div class="bg-white px-4 py-5 sm:px-6">
+      <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
+        <div class="ml-4 mt-2">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Project info
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <dl>
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2 border-t border-gray-200">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Tasks that need to get done
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= simple_format @project.looking_for, class: 'mb-3' %>
+        </dd>
+      </div>
+
+      <% if @project.skill_list.present? %>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Skills needed
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+            <%= @project.skill_list.join(', ')  %>
+          </dd>
+        </div>
+      <% end %>
+
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5 border-t border-b border-gray-200">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Location
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @project.location %>
+        </dd>
+      </div>
+    </dl>
+
+    <div class="bg-white px-4 py-5 sm:px-6">
+      <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
+        <div class="ml-4 mt-2">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Volunteers
+          </h3>
+        </div>
+        <div class="ml-4 mt-2 flex-shrink-0">
+          <%= link_to "javascript:void(0)", id: "volunteers_group_intro_email_button" do %>
+            <span class="inline-flex rounded-md shadow-sm">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200">
+                Prepare intro email
+              </button>
+            </span>
+          <% end %>
+
+          <%= link_to "javascript:void(0)", id: "add_volunteers_to_group_button" do %>
+            <span class="ml-3 inline-flex rounded-md shadow-sm">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200">
+                Add ten volunteers
+              </button>
+            </span>
+          <% end %>
+
+          <span class="ml-3 inline-flex rounded-md shadow-sm">
+            <button type="submit" data-confirm="Are you sure you want to assign these volunteers? Make sure you have an email prepared and ready to go." class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+              Assign volunteers
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="no_volunteer_list" class="px-6 py-4 leading-6 text-gray-500 border-t border-gray-200 text-sm">
+      No volunteers assigned yet.
+    </div>
+    <ul id="volunteer_list"></ul>
+  </div>
+</div>
+<% end %>
+

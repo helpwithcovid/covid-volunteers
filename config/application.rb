@@ -16,6 +16,11 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Initialize dotenv before booting the main application
+if Rails.env.development? || Rails.env.test?
+  Dotenv::Railtie.load
+end
+
 module CovidVolunteers
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -30,5 +35,10 @@ module CovidVolunteers
     config.action_view.field_error_proc = Proc.new do |html_tag, instance| 
       html_tag
     end
+
+    # From: https://blog.alex-miller.co/rails/2017/01/07/rails-authenticity-token-and-mobile-safari.html.
+    config.action_dispatch.default_headers.merge!(
+      'Cache-Control' => 'no-store, no-cache'
+    )
   end
 end
