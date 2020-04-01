@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # Redirect www to non-www.
+  if ENV['CANONICAL_HOST']
+    constraints(:host => Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
+      match '/(*path)' => redirect { |params, req| "https://#{ENV['CANONICAL_HOST']}/#{params[:path]}" },  via: [ :get, :post, :put, :delete ]
+    end
+  end
+
   root 'projects#index'
 
   get '/about', to: 'home#about', as: 'about'
