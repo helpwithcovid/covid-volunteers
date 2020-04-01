@@ -11,4 +11,9 @@ RSpec.describe Project, type: :model do
     project = FactoryBot.build(:project, user: nil)
     expect(project).to_not be_valid
   end
+
+  it 'accepting_volunteers defaults true' do
+    project = FactoryBot.build(:project, user: nil)
+    expect(project.accepting_volunteers).to eq(true)
+  end
 end

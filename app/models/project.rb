@@ -38,6 +38,7 @@ class Project < ApplicationRecord
         :progress,
         :docs_and_demo,
         :number_of_volunteers,
+        :accepting_volunteers,
         :created_at,
         :updated_at
       ],

@@ -135,7 +135,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :number_of_volunteers, :links, :skill_list => [], :project_type_list => [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin
@@ -152,7 +152,8 @@ class ProjectsController < ApplicationController
       @projects = Project
       @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
       @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
-
+      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
+      
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
       else
@@ -164,6 +165,7 @@ class ProjectsController < ApplicationController
       else
         @projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
       end
+
 
       @projects = @projects.includes(:project_types, :skills)
     end

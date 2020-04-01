@@ -22,6 +22,22 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]["location"]).to eq(project.location)
       expect(json[0]["to_param"]).to eq(project.to_param)
     end
+
+    it 'filters by ?accepting_volunteers=0' do
+      no_volunteers_project = FactoryBot.create(:project, user: user, accepting_volunteers: false)
+      get :index, params: { accepting_volunteers: "0" }
+      expect(response).to be_successful
+      expect(assigns(:projects)).to include(no_volunteers_project)
+      expect(assigns(:projects)).to_not include(project)
+    end 
+
+    it 'filters by ?accepting_volunteers=1' do
+      no_volunteers_project = FactoryBot.create(:project, user: user, accepting_volunteers: false)
+      get :index, params: { accepting_volunteers: "1" }
+      expect(response).to be_successful
+      expect(assigns(:projects)).to_not include(no_volunteers_project)
+      expect(assigns(:projects)).to include(project)
+    end 
   end
 
   describe 'GET #show' do
@@ -39,21 +55,55 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json["name"]).to eq(project.name)
       expect(json["description"]).to eq(project.description)
       expect(json["location"]).to eq(project.location)
+      expect(json["accepting_volunteers"]).to eq(project.accepting_volunteers)
       expect(json["to_param"]).to eq(project.to_param)
     end
+
+    describe 'Volunteering' do
+      it 'hide volunteer info' do
+        project.number_of_volunteers = "100";
+        project.accepting_volunteers = false
+        project.save
+        get :show, params: { id: project.to_param }
+        expect(response).to be_successful
+        expect(response.body).to_not include("Number of volunteers")
+      end
+
+      it 'show volunteer info' do
+        project.number_of_volunteers = "100";
+        project.accepting_volunteers = true
+        project.save
+        get :show, params: { id: project.to_param }
+        expect(response).to be_successful
+        expect(response.body).to include("Number of volunteers")
+      end
+    end
+
   end
 
   describe 'GET #new' do
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      get :new
+      expect(response).to be_successful
+    end
+
+    it 'redirects you if signed out' do
+      get :new
+      expect(response).to_not be_successful
     end
   end
 
   describe 'GET #edit' do
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      get :edit, params: { id: project.id }
+      expect(response).to be_successful
+    end
+
+    it 'fails if not signed in' do
+      get :edit, params: { id: project.id }
+      expect(response).to_not be_successful
     end
   end
 
@@ -65,12 +115,14 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    it 'works' do
-      pending 'TODO'
-      fail
+    it 'updating accepting_volunteers works' do
+      sign_in user
+      expect(project.accepting_volunteers).to eq(true)
+      put :update, params: { id: project.id, project: { accepting_volunteers: false } }
+      expect(response).to be_redirect
+      expect(assigns(:project).accepting_volunteers).to eq(false)
     end
   end
-
 
   describe 'DELETE #destroy' do
     it 'works' do
