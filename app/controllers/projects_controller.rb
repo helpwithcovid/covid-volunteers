@@ -71,7 +71,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @project.accepting_volunteers = true # default true
   end
 
   def create
@@ -153,10 +152,7 @@ class ProjectsController < ApplicationController
       @projects = Project
       @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
       @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
-
-      if params[:accepting_volunteers].present?
-        @projects = @projects.where(accepting_volunteers: true)
-      end
+      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
       
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
@@ -169,6 +165,7 @@ class ProjectsController < ApplicationController
       else
         @projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
       end
+
 
       @projects = @projects.includes(:project_types, :skills)
     end
