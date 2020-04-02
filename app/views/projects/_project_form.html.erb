@@ -217,4 +217,27 @@
       <p class="mt-2 text-sm text-gray-500">Any other relevant links, for instance GitHub or social media (Twitter/Facebook). One per line.</p>
     </div>
   </div>
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+          <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+              Project status
+            </legend>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+              <div class="relative flex items-start">
+                <label class="font-medium text-gray-700">
+                  <%= f.select :status, ALL_PROJECT_STATUS, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
 </div>
