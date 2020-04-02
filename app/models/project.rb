@@ -3,6 +3,8 @@ class Project < ApplicationRecord
 
   include PgSearch::Model
 
+  validates :name, presence: true
+  
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy
 

@@ -5,6 +5,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   let!(:user){ FactoryBot.create(:user) }
   let!(:project){ FactoryBot.create(:project, user: user) }
+  let(:valid_params) { { project: { name: "My Project Name" } } }
 
   describe 'GET #index' do
     it 'works' do
@@ -109,8 +110,10 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'POST #create' do
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      post :create, params: valid_params
+      expect(assigns(:project)).to be_present 
+      expect(response).to be_redirect
     end
   end
 
