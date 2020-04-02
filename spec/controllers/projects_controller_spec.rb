@@ -24,20 +24,33 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]["to_param"]).to eq(project.to_param)
     end
 
-    it 'filters by ?accepting_volunteers=0' do
-      no_volunteers_project = FactoryBot.create(:project, user: user, accepting_volunteers: false)
-      get :index, params: { accepting_volunteers: "0" }
-      expect(response).to be_successful
-      expect(assigns(:projects)).to include(no_volunteers_project)
-      expect(assigns(:projects)).to_not include(project)
-    end 
+    describe 'Volunteering' do
+      let!(:no_volunteers_project) { FactoryBot.create(:project, user: user, accepting_volunteers: false) }
 
-    it 'filters by ?accepting_volunteers=1' do
-      no_volunteers_project = FactoryBot.create(:project, user: user, accepting_volunteers: false)
-      get :index, params: { accepting_volunteers: "1" }
-      expect(response).to be_successful
-      expect(assigns(:projects)).to_not include(no_volunteers_project)
-      expect(assigns(:projects)).to include(project)
+      it 'filters by ?accepting_volunteers=0' do
+        get :index, params: { accepting_volunteers: "0" }
+        expect(response).to be_successful
+        expect(assigns(:projects)).to include(no_volunteers_project)
+        expect(assigns(:projects)).to_not include(project)
+      end 
+
+      it 'filters by ?accepting_volunteers=1' do
+        get :index, params: { accepting_volunteers: "1" }
+        expect(response).to be_successful
+        expect(assigns(:projects)).to_not include(no_volunteers_project)
+        expect(assigns(:projects)).to include(project)
+      end 
+
+      it 'hides volunteer action item' do
+        get :index
+        expect(response.body.scan('sign up to volunteer').size).to eq(1)
+      end 
+
+      it 'shows volunteer action item' do
+        no_volunteers_project.update_attribute(:accepting_volunteers, true)
+        get :index
+        expect(response.body.scan('sign up to volunteer').size).to eq(2)
+      end 
     end 
   end
 
@@ -77,6 +90,24 @@ RSpec.describe ProjectsController, type: :controller do
         get :show, params: { id: project.to_param }
         expect(response).to be_successful
         expect(response.body).to include("Number of volunteers")
+      end
+
+      it 'shows volunteer button if your profile is complete' do
+        user = FactoryBot.create(:user_complete_profile)
+        sign_in user
+        user.skill_list.add("Design")
+        user.save
+        project.skill_list.add("Design")
+        project.save
+        get :show, params: { id: project.to_param }
+        expect(response.body).to include("volunteers-btn")
+      end
+
+      it 'shows volunteer filled button if you dont have the right skills' do
+        user = FactoryBot.create(:user_complete_profile)
+        sign_in user
+        get :show, params: { id: project.to_param }
+        expect(response.body).to include("volunteers-filled-btn")
       end
     end
 

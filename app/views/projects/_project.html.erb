@@ -8,16 +8,18 @@
         <div class="mt-2 md:mt-0 md:ml-4 flex-shrink-0 flex">
           <% project_volunteer_class = project.volunteered_users.count > 0 ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800" %>
           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
-            <% if project.volunteered_users.count == 0 %>
-              no volunteers
-            <% else %>
-              <%= pluralize(project.volunteered_users.count, 'volunteer') %>
-            <% end %>
+            <% if project.accepting_volunteers? %>
+              <% if project.volunteered_users.count == 0 %>
+                no volunteers
+              <% else %>
+                <%= pluralize(project.volunteered_users.count, 'volunteer') %>
+              <% end %>
 
-            <% if current_user.blank? %>
-              - sign up to volunteer
-            <% elsif !current_user.has_complete_profile? %>
-              - complete your profile to volunteer
+              <% if current_user.blank? %>
+                - sign up to volunteer
+              <% elsif !current_user.has_complete_profile? %>
+                - complete your profile to volunteer
+              <% end %>
             <% end %>
           </span>
         </div>
