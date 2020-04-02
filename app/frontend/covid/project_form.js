@@ -1,8 +1,8 @@
 const ProjectForm = {
     initialize() {
-      $( document ).on('turbolinks:load', () => {
+      $(document).on('turbolinks:load', () => {
         if ($('form.new_project,form.edit_project').length > 0) {
-            $('#project_accepting_volunteers').on('click', function(e){
+            $('input[name="project[accepting_volunteers]"]').on('click', function(e) {
                 ProjectForm.updateState();
             });
 
@@ -12,7 +12,7 @@ const ProjectForm = {
     },
 
     updateState() {
-        if ($('#project_accepting_volunteers').is(':checked')) {
+        if ($('input[name="project[accepting_volunteers]"]:checked').val() == 'true') {
             $('.is-accepting-volunteers').css('display', '');
             $('#project_looking_for').attr('required', 'required');
         }
