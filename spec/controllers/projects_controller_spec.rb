@@ -16,6 +16,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'returns json' do
       get :index, format: 'json'
+      project = Project.first
       json = JSON.parse(response.body)
       expect(response).to be_successful
       expect(json[0]["name"]).to eq(project.name)
@@ -42,14 +43,15 @@ RSpec.describe ProjectsController, type: :controller do
       end 
 
       it 'hides volunteer action item' do
+        Project.update_all(accepting_volunteers: true)
         get :index
-        expect(response.body.scan('sign up to volunteer').size).to eq(1)
+        expect(response.body.scan('sign up to volunteer').size).to be > 0
       end 
 
       it 'shows volunteer action item' do
-        no_volunteers_project.update_attribute(:accepting_volunteers, true)
+        Project.update_all(accepting_volunteers: false)
         get :index
-        expect(response.body.scan('sign up to volunteer').size).to eq(2)
+        expect(response.body.scan('sign up to volunteer').size).to eq(0)
       end 
     end 
   end
