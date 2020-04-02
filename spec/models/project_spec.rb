@@ -8,7 +8,6 @@ RSpec.describe Project, type: :model do
   end
 
   it 'is invalid without a name' do
-    user = FactoryBot.create(:user)
     project = FactoryBot.build(:project, name: nil)
     expect(project).to_not be_valid
   end
