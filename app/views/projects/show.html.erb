@@ -117,17 +117,32 @@
               </span>
             <% end %>
           <% else %>
-            <%= link_to toggle_volunteer_project_path(@project), method: :post, data: { confirm: "Are you sure you want to volunteer? The project owner will be alerted." } do %>
-              <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
-                <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-                  <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
-                  </svg>
-                  <span>
-                    Volunteer
-                  </span>
-                </button>
-              </span>
+            <% if current_user.has_correct_skills?(@project) %>
+              <%= link_to toggle_volunteer_project_path(@project), method: :post, data: { confirm: "Are you sure you want to volunteer? The project owner will be alerted." } do %>
+                <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
+                  <button id="volunteers-btn" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                    <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                    </svg>
+                    <span>
+                      Volunteer
+                    </span>
+                  </button>
+                </span>
+              <% end %>
+            <% else %>
+              <%= link_to edit_user_registration_path, data: { confirm: "It looks like the skills needed for this project do not match your skillset. \n\nIf you think this is incorrect, please update your profile with one of the following skills: \n#{@project.skills.join(', ')}" } do %>
+                <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
+                  <button id="volunteers-filled-btn" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                    <svg class="-ml-1 mr-2 h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                    </svg>
+                    <span>
+                      Volunteers Filled
+                    </span>
+                  </button>
+                </span>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -190,7 +205,7 @@
   <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_highlight_projects_container">
     <div class="px-4 py-5 sm:p-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Validated or established project with large impact?
+        Are you a validated or established project with large impact?
       </h3>
       <div class="mt-2 text-sm leading-5 text-gray-500">
         <p>
@@ -198,7 +213,7 @@
         </p>
       </div>
       <div class="flex justify-between mt-3 text-sm leading-5">
-        <%= mail_to ENV['EMAIL_ADDRESS'], "Tell about it via email &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
+        <%= mail_to ENV['EMAIL_ADDRESS'], "Tell us about your project &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
         <%= link_to "javascript:void(0)", id: "disable_highlight_projects_alert", class: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
           Don't show this again
         <% end %>

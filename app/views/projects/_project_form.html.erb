@@ -97,10 +97,19 @@
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
               Are you actively looking for volunteers?
             </legend>
+            <div class="text-sm text-gray-500">You can always change this later</div>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
             <div class="max-w-lg">
-              <%= f.check_box :accepting_volunteers, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" %>
+              <div class="block">
+                <%= f.radio_button :accepting_volunteers, true, checked: @project.new_record? ? true : @project.accepting_volunteers, class: "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" %>
+                <%= f.label :accepting_volunteers, "Yes - Volunteers will be able to apply.", value: "true", class: "pl-2 text-sm text-gray-700"  %>
+              </div>
+
+              <div class="block">
+                <%= f.radio_button :accepting_volunteers, false, class: "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" %>
+                <%= f.label :accepting_volunteers, "No - We have all the people and resources we need at the moment.", value: "false", class: "pl-2 text-sm text-gray-700" %>
+              </div>
             </div>
           </div>
         </div>
