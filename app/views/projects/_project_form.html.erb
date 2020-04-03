@@ -232,16 +232,13 @@
       Images<br/>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
-
-      <div class="grid grid-cols-3 md:grid-cols-6 gap-4 p-4 js-photoswipe-gallery">
-        <% @project.images.each do |image| %>
-          <%= render partial: 'partials/image-thumbnail', locals: {image: image} %>
-        <% end %>
+      <div class="py-4">
+        <%= render partial: 'partials/image-gallery' %>
       </div>
-      <div class="max-w-lg flex rounded-md shadow-sm mt-4">
+
+      <div class="mt-4">
         <%= f.file_field :images, multiple: true, direct_upload: true %>
       </div>
-      <p class="mt-2 text-sm text-gray-500">Any other relevant links, for instance GitHub or social media (Twitter/Facebook). One per line.</p>
     </div>
   </div>
 

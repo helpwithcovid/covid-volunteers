@@ -94,8 +94,10 @@ class ProjectsController < ApplicationController
 
   def update
     updated = @project.update(project_params)
-    params[:project][:images].each do |image|
-      @project.images.attach image
+    if params[:project][:images].present?
+      params[:project][:images].each do |image|
+        @project.images.attach image
+      end
     end
 
     respond_to do |format|

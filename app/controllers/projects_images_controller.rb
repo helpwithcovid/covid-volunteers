@@ -5,7 +5,7 @@ class ProjectsImagesController < ApplicationController
     @image.purge
 
     respond_to do |format|
-      format.html { redirect_to edit_project_path(@project), notice: 'Image destroyed.' }
+      format.html { redirect_back fallback_location: edit_project_path(@project), notice: 'Image destroyed.' }
       format.json { render :show, location: @project }
     end
   end
