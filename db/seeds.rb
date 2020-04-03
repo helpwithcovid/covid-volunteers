@@ -39,6 +39,11 @@ project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distr
 project1.skill_list.add('Design')
 project1.save
 
-project2 = Project.create!(user: user2, name: 'One Gazillion Masks', description: 'A cool description', accepting_volunteers: false)
+project2 = Project.create!(
+  user: user2,
+  name: 'One Gazillion Masks',
+  description: 'A cool description',
+  accepting_volunteers: false,
+  status: ALL_PROJECT_STATUS[1])
 
 project1.volunteered_users << user3
