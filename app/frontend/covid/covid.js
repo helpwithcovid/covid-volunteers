@@ -2,6 +2,7 @@ import * as ActiveStorage from '@rails/activestorage'
 import Cookies from 'js-cookie'
 import './direct-upload'
 import VolunteerGroups from './volunteer_groups'
+import ProjectForm from './project_form'
 
 const Covid = {
   initialize() {
@@ -17,6 +18,7 @@ const Covid = {
       })
     });
     VolunteerGroups.initialize();
+    ProjectForm.initialize();
   },
   toggleFiltersOpen() {
     let filtersOpen;

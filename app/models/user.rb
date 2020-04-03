@@ -17,12 +17,18 @@ class User < ApplicationRecord
 
   pg_search_scope :search, against: %i(name email about location level_of_availability)
 
-  def volunteered_for_project? project
+  def volunteered_for_project?(project)
     self.volunteered_projects.where(id: project.id).exists?
   end
 
   def has_complete_profile?
     self.about.present? && self.profile_links.present? && self.location.present?
+  end
+
+  def has_correct_skills?(project)
+    project_skills = project.skills.map(&:name)
+    return true if project_skills.include?('Anything')
+    (self.skills.map(&:name) & project.skills.map(&:name)).present?
   end
 
   def is_visible_to_user?(user_trying_view)
@@ -31,7 +37,7 @@ class User < ApplicationRecord
     return true if user_trying_view == self
 
     # Check if this user volunteered for any project by user_trying_view.
-    return self.volunteered_projects.where(user_id: user_trying_view.id).exists?
+    self.volunteered_projects.where(user_id: user_trying_view.id).exists?
   end
 
   def is_admin?
@@ -39,7 +45,7 @@ class User < ApplicationRecord
   end
 
   def to_param
-    [id, name.parameterize].join("-")
+    [id, name.parameterize].join('-')
   end
 
   def self.to_csv
@@ -49,7 +55,7 @@ class User < ApplicationRecord
       csv << attributes
 
       all.find_each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
+        csv << attributes.map { |attr| user.send(attr) }
       end
     end
   end

@@ -7,8 +7,18 @@ RSpec.describe Project, type: :model do
     expect(project).to be_valid
   end
 
+  it 'is invalid without a name' do
+    project = FactoryBot.build(:project, name: nil)
+    expect(project).to_not be_valid
+  end
+
   it 'is invalid without a user' do
     project = FactoryBot.build(:project, user: nil)
     expect(project).to_not be_valid
+  end
+
+  it 'accepting_volunteers defaults true' do
+    project = FactoryBot.build(:project, user: nil)
+    expect(project.accepting_volunteers).to eq(true)
   end
 end

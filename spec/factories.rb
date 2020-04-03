@@ -17,9 +17,16 @@ FactoryBot.define do
     password { "df823jls18fk350f" }
   end
 
+  factory :user_complete_profile, parent: :user do
+    about { "About" }
+    profile_links { "Profile" }
+    location { "location" }
+  end
+
 	factory :project do
-		name { "My First Project" }
-	end
+    name { "My First Project" }
+    status { ALL_PROJECT_STATUS.first }
+  end
 
 	factory :volunteer do
 		# ...

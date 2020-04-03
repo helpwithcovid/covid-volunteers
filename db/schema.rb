@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_101014) do
+ActiveRecord::Schema.define(version: 2020_04_01_143158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2020_03_29_101014) do
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
     t.string "links", default: ""
+    t.string "status", default: "", null: false
+    t.boolean "accepting_volunteers", default: true
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
