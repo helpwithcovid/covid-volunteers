@@ -1,0 +1,13 @@
+<div>
+  <div>
+    <div><%= group[:icon] %></div>
+    <div><%= group[:title] %></div>
+    <div><%= group[:body] %></div>
+    <div>See all <%= group[:projects_count] %> projects</div>
+  </div>
+  <div>
+    <% group[:featured_projects].take(3).each do |project| %>
+      <%= render partial: 'projects/home-project', locals: {project: project} %>
+    <% end %>
+  </div>
+</div>

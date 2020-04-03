@@ -1,0 +1,10 @@
+<div>
+  <div><%= event[:title] %></div>
+  <div><%= event[:date] %></div>
+  <div><%= event[:body] %></div>
+  <div>
+    <%= link_to event[:url] do %>
+      See recording
+    <% end %>
+  </div>
+</div>
