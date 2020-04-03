@@ -1,3 +1,4 @@
+import * as ActiveStorage from '@rails/activestorage'
 import Cookies from 'js-cookie'
 import './direct-upload'
 import VolunteerGroups from './volunteer_groups'

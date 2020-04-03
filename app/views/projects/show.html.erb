@@ -343,6 +343,22 @@
   </div>
 </div>
 
+<% if @project.images.present? %>
+  <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
+    <div class="bg-white px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Images
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-4 p-4 pt-0 js-photoswipe-gallery">
+      <% @project.images.each do |image| %>
+        <%= render partial: 'partials/image-thumbnail', locals: {image: image} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <% if current_user && @project.volunteered_users.count > 0 && (current_user == @project.user || current_user.is_admin?) %>
   <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
     <div class="bg-white px-4 py-5 sm:px-6">

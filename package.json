@@ -2,8 +2,9 @@
   "name": "covid_volunteers",
   "private": true,
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
+    "@rails/activestorage": "^6.0.2",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "@tailwindcss/ui": "^0.1.3",
