@@ -25,6 +25,7 @@ FactoryBot.define do
 
 	factory :project do
     name { "My First Project" }
+    status { ALL_PROJECT_STATUS.first }
   end
 
 	factory :volunteer do

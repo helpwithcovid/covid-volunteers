@@ -5,7 +5,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   let!(:user) { FactoryBot.create(:user) }
   let!(:project) { FactoryBot.create(:project, user: user) }
-  let(:valid_params) { { project: { name: 'My Project Name' } } }
+  let(:valid_params) { { project: { name: 'My Project Name', status: ALL_PROJECT_STATUS.first } } }
 
   describe 'GET #index' do
     it 'works' do
