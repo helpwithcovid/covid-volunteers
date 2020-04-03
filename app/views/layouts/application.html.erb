@@ -29,14 +29,16 @@
   <body class="flex flex-col min-h-screen h-full bg-gray-100">
     <div class="flex-1 bg-gray-100">
       <%= render partial: 'layouts/nav' %>
-      <div class="py-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <% if @show_global_announcements %>
+      <% if @show_global_announcements %>
+        <div class="pt-10">
+          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <%= render "partials/announcements/global_announcement" %>
-        <% end %>
+          </div>
         </div>
-      </div>
-      <div class="py-6">
+      <% else %>
+        <div class="pt-10"></div>
+      <% end %>
+      <div class="pb-10">
         <main class="flex-grow">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <% flash.each do |type, msg| %>
