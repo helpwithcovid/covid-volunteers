@@ -31,11 +31,9 @@
       <%= render partial: 'layouts/nav' %>
       <div class="pt-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <% if request.path == '/offers' %>
-            <%= render "partials/announcements/resources_announcement", locals: { banners: RESOURCE_ANNOUNCEMENTS } %>
-          <% else %>
+          <% if @show_global_announcements %>
             <%= render "partials/announcements/global_announcement" %>
-          <% end %>
+        <% end %>
         </div>
       </div>
       <div class="py-6">

@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
+  before_action :set_global_announcements, only: [ :index, :volunteered, :own, :show, :new, :create ]
+  before_action :show_global_announcements, only: [ :index, :volunteered, :own, :show, :new, :create ]
 
   def index
     params[:page] ||= 1

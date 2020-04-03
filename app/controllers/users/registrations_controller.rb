@@ -4,6 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
   before_action :set_filters_open, only: :index
+  before_action :set_global_announcements, only: [ :index, :update ]
+  before_action :show_global_announcements, only: [ :index, :update ]
+
 
   def index
     params[:page] ||= 1

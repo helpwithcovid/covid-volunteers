@@ -18,4 +18,19 @@ class ApplicationController < ActionController::Base
                       true
                     end
   end
+
+  def set_global_announcements
+    @global_announcement = [
+      {
+        title: 'Resources for your project',
+        sub_title: 'From webinars on How to Scale Volunteers, management playbook, to office hours, offers and more.',
+        cta_text: 'View Resources',
+        cta_url: offers_path
+      }
+    ]
+  end
+
+  def show_global_announcements
+    @show_global_announcements = true
+  end
 end

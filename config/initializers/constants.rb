@@ -43,13 +43,3 @@ RESOURCE_ANNOUNCEMENTS = [
     cta_url: "https://openai.zoom.us/rec/play/vZN-dbuq-m03TNKSsASDAfEtW466J6qs1XQWrvtYxRvmU3QDNVv0NLJGYbffjdiMo1gf68qHVnbe2mOi?continueMode=true"
   }
 ]
-
-GLOBAL_ANNOUNCEMENTS = [
-  {
-    title: 'Resources for your project',
-    sub_title: 'From webinars on How to Scale Volunteers, management playbook, to office hours, offers and more.',
-    cta_text: 'View Resources',
-    # TODO find a better way to pass this
-    cta_url: 'offers'
-  }
-]
