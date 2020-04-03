@@ -1,12 +1,14 @@
 <%- share_title 'Resources' %>
-<% if !RESOURCE_ANNOUNCEMENTS.empty? %>
+
+<% if RESOURCE_ANNOUNCEMENTS.present? %>
   <%= render "partials/announcements/resources_announcement" %>
 <% end %>
+
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
   <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-4">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Resources, deals, offers, and benefits from organizations that want to help out with COVID-19.
+        Resources, deals, and benefits from organizations that want to help out with COVID-19.
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500">
         Organizations are helping out COVID-19 projects too. Find <%= link_to "more here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'text-indigo-500' %>.

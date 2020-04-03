@@ -4,7 +4,6 @@ class OffersController < ApplicationController
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
 
   def index
-    @show_global_announcements = false
     @offers = Offer.all.order('created_at DESC').all
   end
 
