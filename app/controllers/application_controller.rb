@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
                       true
                     end
   end
+
+  def show_global_announcements
+    @show_global_announcements = true
+  end
 end
