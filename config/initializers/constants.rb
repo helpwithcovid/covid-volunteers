@@ -20,6 +20,7 @@ ALL_SKILLS = [
   'Software programming',
   'Statistical analysis',
   'Survey design',
+  'Tutoring',
   'Interviewing/focus groups',
   'Data management',
   'Web development'
