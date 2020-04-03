@@ -20,7 +20,7 @@ const svgs = require.context('../svgs', true)
 const svgPath = (name) => svgs(name, true)
 
 // Tailwind.
-import './../styles/stylesheets.css'
+import './../styles/application.css'
 
 $.fancybox.defaults.infobar = false
 $.fancybox.defaults.toolbar = false
