@@ -34,6 +34,7 @@ class Admin::VolunteerGroupsController < ApplicationController
     @users = @users.where.not(id: params[:rejected_user_ids])
     @users = @users.where.not(id: @project.volunteers.collect { |v| v.user_id })
     @users = @users.tagged_with(@project.skill_list, any: true)
+    @users = @users.search(params[:filter]) if params[:filter].present?
     @users = @users.order('RANDOM()')
     @users = @users.limit(10)
 
