@@ -1,39 +1,45 @@
 <%# hero %>
 <div>
-  <h1>Volunteer for COVID-19 Projects</h1>
-  <h2>We help people find the resources they need</h2>
+  <div class="container">
+    <h1>Volunteer for COVID-19 Projects</h1>
+    <h2>We help people find the resources they need</h2>
 
-  <input type="text" placeholder="Search for projects">
-  <div>We’re <%= @project_count %>+ projects and <%= @volunteer_count %>+ volunteers strong</div>
+    <input type="text" placeholder="Search for projects">
+    <div>We’re <%= @project_count %>+ projects and <%= @volunteer_count %>+ volunteers strong</div>
+  </div>
 </div>
 
 <%# featured-projects %>
 <div>
-  <h3>Featured projects</h3>
-  <% @featured_projects.each do |project| %>
-    <%= render partial: 'projects/home-project', locals: {project: project} %>
-  <% end %>
+  <div class="container">
+    <h3>Featured projects</h3>
+    <% @featured_projects.each do |project| %>
+      <%= render partial: 'projects/home-project', locals: {project: project} %>
+    <% end %>
+  </div>
 </div>
 
-<%# featured groups %>
-<div>
-  <% @featured_groups.each do |group| %>
-    <%= render partial: 'featured-group', locals: {group: group} %>
-  <% end %>
-</div>
+<div class="container">
+  <%# featured groups %>
+  <div>
+    <% @featured_groups.each do |group| %>
+      <%= render partial: 'featured-group', locals: {group: group} %>
+    <% end %>
+  </div>
 
-<%# project groups %>
-<div>
-  <% @project_groups.each do |group| %>
-    <%= render partial: 'project-group', locals: {group: group} %>
-  <% end %>
-</div>
+  <%# project groups %>
+  <div>
+    <% @project_groups.each do |group| %>
+      <%= render partial: 'project-group', locals: {group: group} %>
+    <% end %>
+  </div>
 
 
-<%# upcoming events %>
-<div>
-  <div>Upcoming HWC events</div>
-  <% @events.each do |event| %>
-    <%= render partial: 'event', locals: {event: event} %>
-  <% end %>
+  <%# upcoming events %>
+  <div>
+    <div>Upcoming HWC events</div>
+    <% @events.each do |event| %>
+      <%= render partial: 'event', locals: {event: event} %>
+    <% end %>
+  </div>
 </div>
