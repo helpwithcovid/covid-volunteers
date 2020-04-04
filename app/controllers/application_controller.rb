@@ -48,13 +48,17 @@ class ApplicationController < ActionController::Base
           featured_projects: [],
         },
       ]
-
-      groups.map do |group|
-        group[:featured_projects] = Project.tagged_with(group[:project_skills]).take 9
-        group[:projects_count] = Project.tagged_with(group[:project_skills]).count
-      end
-
-      groups
     end
+
+    groups.map do |group|
+      group[:featured_projects] = Project.tagged_with(group[:project_skills]).take 9
+      group[:projects_count] = Project.tagged_with(group[:project_skills]).count
+    end
+
+    groups
+  end
+
+  def show_global_announcements
+    @show_global_announcements = true
   end
 end
