@@ -1,0 +1,9 @@
+<div>
+  <div><%= group[:title] %></div>
+  <div><%= group[:body] %></div>
+  <div>
+    <%= link_to projects_path(project_types: group[:project_skills].join(',')) do %>
+      See <%= group[:title] %> projects
+    <% end %>
+  </div>
+</div>

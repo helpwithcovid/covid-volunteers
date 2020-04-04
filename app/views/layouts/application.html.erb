@@ -8,7 +8,7 @@
 
     <%= render 'layouts/head_content' %>
 
-    <%= stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
@@ -29,15 +29,17 @@
   <body class="flex flex-col min-h-screen h-full bg-gray-100">
     <div class="flex-1 bg-gray-100">
       <%= render partial: 'layouts/nav' %>
+
       <% if @show_global_announcements %>
         <div class="pt-10">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="container">
             <%= render "partials/announcements/global_announcement" %>
           </div>
         </div>
       <% else %>
         <div class="pt-10"></div>
       <% end %>
+
       <div class="pb-10">
         <main class="flex-grow">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -46,9 +48,9 @@
                 <span class="block sm:inline"><%= msg %></span>
               </div>
             <% end %>
-
-            <%= yield %>
           </div>
+
+          <%= yield %>
         </main>
       </div>
     </div>
