@@ -1,10 +1,6 @@
 <%- share_title 'Resources' %>
 
-<% if RESOURCE_ANNOUNCEMENTS.present? %>
-  <div class="container">
-    <%= render "partials/announcements/resources_announcement" %>
-  </div>
-<% end %>
+<%= render partial: "offers-announcements" if @offers_announcements.present? %>
 
 <div class="container">
   <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 sm:rounded-md">

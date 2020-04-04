@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :remove_global_announcements
+
   def index
     @project_count = (Project.count / 50).floor * 50
     @volunteer_count = (User.count / 100).floor * 100

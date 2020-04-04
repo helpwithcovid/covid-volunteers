@@ -28,34 +28,26 @@
 
   <body class="flex flex-col min-h-screen h-full bg-gray-100">
     <div class="flex-1 bg-gray-100">
-      <%= render partial: 'layouts/nav' %>
-
-      <% if @show_global_announcements %>
-        <div class="pt-10">
-          <div class="container">
-            <%= render "partials/announcements/global_announcement" %>
-          </div>
-        </div>
-      <% else %>
-        <div class="pt-10"></div>
-      <% end %>
-
       <div class="pb-10">
-        <main class="flex-grow">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <% flash.each do |type, msg| %>
-              <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
-                <span class="block sm:inline"><%= msg %></span>
-              </div>
-            <% end %>
-          </div>
-
-          <%= yield %>
-        </main>
+        <%= render partial: 'layouts/nav' %>
       </div>
+
+      <%= render partial: "partials/global-announcements" if @global_announcements.present? %>
+
+      <main class="flex-grow">
+        <div class="container">
+          <% flash.each do |type, msg| %>
+            <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
+              <span class="block sm:inline"><%= msg %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <%= yield %>
+      </main>
     </div>
 
-    <footer class="w-full border-t border-gray-200 px-5 py-5">
+    <footer class="w-full border-t border-gray-200 px-5 py-5 mt-10">
       <div class="text-center text-gray-500 text-sm">
         <%= link_to "About HWC", about_path, class: 'text-indigo-500' %> &ndash;
         <%= link_to "GitHub", "https://github.com/helpwithcovid/covid-volunteers", class: 'text-indigo-500' %> &ndash;
