@@ -1,254 +1,265 @@
 <div class="relative flex items-start">
-  <div class="absolute flex items-center h-5">
-    <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
-  </div>
-  <div class="pl-7 text-sm leading-5">
-    <%= f.label 'visibility', 'Visibility', class: 'font-medium text-red-700' %>
-    <p class="text-gray-500">I want my information (including my email) to be visible in the directory of volunteers. Any registered user can see this directory.</p>
-  </div>
+    <div class="absolute flex items-center h-5">
+        <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+    </div>
+    <div class="pl-7 text-sm leading-5">
+        <%= f.label 'visibility', 'Visibility', class: 'font-medium text-red-700' %>
+        <p class="text-gray-500">I want my information (including my email) to be visible in the directory of volunteers. Any registered user can see this directory.</p>
+    </div>
+</div>
+
+<%# Subscribe to mailchimp %>
+<div class="relative flex items-start mt-6">
+    <div class="absolute flex items-center h-5">
+        <%= f.check_box "newsletter_consent", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+    </div>
+    <div class="pl-7 text-sm leading-5">
+        <%= f.label 'newsletter_consent', 'Newsletter', class: 'font-medium text-red-700' %>
+        <p class="text-gray-500">I consent to receiving emails about the latest volunteer openings.</p>
+    </div>
 </div>
 
 <div class="mt-6 sm:mt-5">
-  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      <%= render "devise/shared/required", text: 'Name' %>
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "name", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-      </div>
-      <p class="mt-2 text-sm text-gray-500">Your full name.</p>
-    </div>
-  </div>
-
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="about" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      <%= render "devise/shared/required", text: 'About you' %>
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5", required: true %>
-      </div>
-    </div>
-  </div>
-
-  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="phone" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Phone
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "phone", placeholder: "xxx-xxx-xxxx", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="affiliation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Affiliation
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "affiliation", placeholder: "Yale College, Yale School of Management, none, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-6 sm:mt-5">
-    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-      <fieldset>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-          <div>
-            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Skills you can help with
-            </legend>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg">
-              <% ALL_SKILLS.each do |skill| %>
-                <div class="relative flex items-start">
-                  <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
-                  </div>
-                  <div class="pl-7 text-sm leading-5">
-                    <label for="user_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
-                      <%= skill %>
-                    </label>
-                  </div>
-                </div>
-              <% end %>
+    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+            <%= render "devise/shared/required", text: 'Name' %>
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg flex rounded-md shadow-sm">
+                <%= f.text_field "name", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
             </div>
-          </div>
+            <p class="mt-2 text-sm text-gray-500">Your full name.</p>
         </div>
-      </fieldset>
+    </div>
+
+    <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="about" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+            <%= render "devise/shared/required", text: 'About you' %>
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg flex rounded-md shadow-sm">
+                <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5", required: true %>
+            </div>
+        </div>
+    </div>
+
+    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="phone" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+            Phone
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg flex rounded-md shadow-sm">
+                <%= f.text_field "phone", placeholder: "xxx-xxx-xxxx", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="affiliation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+            Affiliation
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg flex rounded-md shadow-sm">
+                <%= f.text_field "affiliation", placeholder: "Yale College, Yale School of Management, none, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            </div>
+        </div>
     </div>
 
     <div class="mt-6 sm:mt-5">
-      <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-        <fieldset>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-            <div>
-              <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                Level of Availability
-              </legend>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:col-span-2 mb-4">
-              <div class="max-w-lg">
-                <% ALL_AVAILABILITY.each do |availability| %>
-                  <div class="relative flex items-start">
-                    <div class="absolute flex items-center h-5">
-                      <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+            <fieldset>
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+                    <div>
+                        <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                            Skills you can help with
+                        </legend>
                     </div>
-                    <div class="pl-7 text-sm leading-5">
-                      <label class="font-medium text-gray-700">
-                        <%= availability %>
-                      </label>
+                    <div class="mt-4 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg">
+                            <% ALL_SKILLS.each do |skill| %>
+                            <div class="relative flex items-start">
+                                <div class="absolute flex items-center h-5">
+                                    <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
+                                </div>
+                                <div class="pl-7 text-sm leading-5">
+                                    <label for="user_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
+                                        <%= skill %>
+                                    </label>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="resume" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Link to resume
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "resume", placeholder: "Link to Google Drive, personal website, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
-      <p class="mt-2 text-sm text-gray-500">If you do not have a resume, feel free to write a one-line summary of your experience.</p>
-    </div>
-  </div>
-  
-  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="profile_links" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Links to places where people can get to know you better
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "profile_links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
-      <p class="mt-2 text-sm text-gray-500">For instance your arxiv, Github, LinkedIn, Twitter, Youtube, or portfolio. One per line.</p>
-    </div>
-  </div>
-
-  <div class="mt-6 sm:mt-5">
-      <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-        <fieldset>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-            <div>
-              <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                <%= render "devise/shared/required", text: 'Your location' %>
-              </legend>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg">
-                <% ALL_LOCATIONS.each do |loc| %>
-                  <div class="relative flex items-start">
-                    <div class="absolute flex items-center h-5">
-                      <%= f.radio_button :location, loc, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
-                    </div>
-                    <div class="pl-7 text-sm leading-5">
-                      <label class="font-medium text-gray-700">
-                        <%- if loc != REMOTE_LOCATION %>
-                          <%= loc %>
-                        <%- elsif %>
-                          <%= f.text_field :remote_location, placeholder: "#{REMOTE_LOCATION} (please enter)", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-                        <% end %>
-                      </label>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-  <div class="mt-6 sm:mt-5">
-    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-      <fieldset>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-          <div>
-            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Options
-            </legend>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg">
-              <div class="relative flex items-start">
-                <div class="absolute flex items-center h-5">
-                  <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
                 </div>
-                <div class="pl-7 text-sm leading-5">
-                  <%= f.label 'pair_with_projects', 'Pair me with volunteer positions', class: 'font-medium text-gray-700' %>
-                  <p class="text-gray-500">I want to be paired with relevant volunteer positions based on my skills</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </fieldset>
         </div>
-      </fieldset>
-    </div>
-  </div>
-</div>
 
-<div class="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
-  <div>
-    <h3 class="text-lg leading-6 font-medium text-gray-900">
-      Or change your email/password
-    </h3>
-  </div>
+        <div class="mt-6 sm:mt-5">
+            <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+                <fieldset>
+                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+                        <div>
+                            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                                Level of Availability
+                            </legend>
+                        </div>
+                        <div class="mt-4 sm:mt-0 sm:col-span-2 mb-4">
+                            <div class="max-w-lg">
+                                <% ALL_AVAILABILITY.each do |availability| %>
+                                <div class="relative flex items-start">
+                                    <div class="absolute flex items-center h-5">
+                                        <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                                    </div>
+                                    <div class="pl-7 text-sm leading-5">
+                                        <label class="font-medium text-gray-700">
+                                            <%= availability %>
+                                        </label>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
 
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="email" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      <%= render "devise/shared/required", text: 'Email address' %>
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "email", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-      </div>
-    </div>
-  </div>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                <label for="resume" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                    Link to resume
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg flex rounded-md shadow-sm">
+                        <%= f.text_field "resume", placeholder: "Link to Google Drive, personal website, etc.", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">If you do not have a resume, feel free to write a one-line summary of your experience.</p>
+                </div>
+            </div>
 
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="new_password" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Password
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.password_field :password, autocomplete: "new-password", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
+            <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                <label for="profile_links" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                    Links to places where people can get to know you better
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg flex rounded-md shadow-sm">
+                        <%= f.text_area "profile_links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">For instance your arxiv, Github, LinkedIn, Twitter, Youtube, or portfolio. One per line.</p>
+                </div>
+            </div>
 
-      <p class="mt-2 text-sm text-gray-500">Leave blank if you don't want to change it.</p>
-    </div>
-  </div>
+            <div class="mt-6 sm:mt-5">
+                <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+                    <fieldset>
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+                            <div>
+                                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                                    <%= render "devise/shared/required", text: 'Your location' %>
+                                </legend>
+                            </div>
+                            <div class="mt-4 sm:mt-0 sm:col-span-2">
+                                <div class="max-w-lg">
+                                    <% ALL_LOCATIONS.each do |loc| %>
+                                    <div class="relative flex items-start">
+                                        <div class="absolute flex items-center h-5">
+                                            <%= f.radio_button :location, loc, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                                        </div>
+                                        <div class="pl-7 text-sm leading-5">
+                                            <label class="font-medium text-gray-700">
+                                                <%- if loc != REMOTE_LOCATION %>
+                                                <%= loc %>
+                                                <%- elsif %>
+                                                <%= f.text_field :remote_location, placeholder: "#{REMOTE_LOCATION} (please enter)", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                                                <% end %>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
 
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="password_confirmation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Password confirmation
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.password_field :password_confirmation, autocomplete: "password-confirmation", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
-    </div>
-  </div>
+                <div class="mt-6 sm:mt-5">
+                    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+                        <fieldset>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+                                <div>
+                                    <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                                        Options
+                                    </legend>
+                                </div>
+                                <div class="mt-4 sm:mt-0 sm:col-span-2">
+                                    <div class="max-w-lg">
+                                        <div class="relative flex items-start">
+                                            <div class="absolute flex items-center h-5">
+                                                <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+                                            </div>
+                                            <div class="pl-7 text-sm leading-5">
+                                                <%= f.label 'pair_with_projects', 'Pair me with volunteer positions', class: 'font-medium text-gray-700' %>
+                                                <p class="text-gray-500">I want to be paired with relevant volunteer positions based on my skills</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
 
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="current_password" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Old password
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
+            <div class="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
+                <div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Or change your email/password
+                    </h3>
+                </div>
 
-      <p class="mt-2 text-sm text-gray-500">Only if you are changing your password.</p>
-    </div>
-  </div>
-</div>
+                <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="email" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                        <%= render "devise/shared/required", text: 'Email address' %>
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <%= f.text_field "email", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="new_password" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                        Password
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <%= f.password_field :password, autocomplete: "new-password", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                        </div>
+
+                        <p class="mt-2 text-sm text-gray-500">Leave blank if you don't want to change it.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="password_confirmation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                        Password confirmation
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <%= f.password_field :password_confirmation, autocomplete: "password-confirmation", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="current_password" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                        Old password
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        <div class="max-w-lg flex rounded-md shadow-sm">
+                            <%= f.password_field :current_password, autocomplete: "current-password", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                        </div>
+
+                        <p class="mt-2 text-sm text-gray-500">Only if you are changing your password.</p>
+                    </div>
+                </div>
+            </div>
