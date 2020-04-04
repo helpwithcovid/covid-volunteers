@@ -1,7 +1,7 @@
 <div class="mt-6 sm:mt-5">
   <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Volunteer Position Name
+      Volunteer Position Name<span class="text-red-500">*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
@@ -12,7 +12,7 @@
   
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="organization" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Organization<br/>
+      Organization<span class="text-red-500">*</span><br/>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
@@ -23,7 +23,7 @@
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="description" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Describe your project and the volunteer position.
+      Describe your project and the volunteer position.<span class="text-red-500">*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
@@ -178,7 +178,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Number of volunteers needed
+              Number of volunteers needed<span class="text-red-500">*</span>
             </legend>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -208,7 +208,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Level of Exposure
+              Level of Exposure<span class="text-red-500">*</span>
             </legend>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -280,7 +280,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
             <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                Background screening required?
+                Background screening required?<span class="text-red-500">*</span>
             </legend>
             </div>
             <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -320,7 +320,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Location
+              Location<span class="text-red-500">*</span>
             </legend>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -328,7 +328,7 @@
               <% ALL_LOCATIONS.each do |location| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                    <%= f.radio_button :location, location, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                    <%= f.radio_button :location, location, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
                     <label class="font-medium text-gray-700">

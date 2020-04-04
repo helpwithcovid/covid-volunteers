@@ -92,4 +92,5 @@ gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-e
 gem 'dotenv-rails'
 
 # Captcha
+gem "json", '~> 2.1.0'
 gem "recaptcha"

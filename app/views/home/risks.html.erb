@@ -1,0 +1,89 @@
+<div class="flex flex-col justify-center sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      Levels of Exposure
+    </h2>
+    <p class="mt-8 text-center text-sm leading-5 text-gray-600 max-w">
+      These are the different levels of exposure associated with each volunteer 
+      opportunity listed on this website. Please read the guidelines carefully and take 
+      them into consideration when choosing to volunteer. 
+    </p>
+  </div>
+
+  <div class="flex flex-col mt-6">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <table class="min-w-full">
+          <tbody>
+            <% striped_classes_cycle = [ "bg-white", "bg-gray-50" ] %>
+
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+               I: No risk / from home
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                M1, M2, M3, M4
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-left">
+                Mask production at home<br/>
+                Creating cards/posters/videos of encouragement<br/>
+                Creating cards/posters/videos of encouragement<br/>
+                Call center staffing from home<br/>
+                Call center staffing if proper social distancing is guaranteed<br/>
+                Check-in calls to particularly vulnerable patients and/or to staff who were exposed<br/>
+              </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                II: Low risk and minimal human contact
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                M1, M2, M3, M4
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-left">
+                —
+              </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                III: Potential for human contact
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                M1, M2, M3, M4
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-left">
+                Child care needs of “mission-critical on-site” staff during COVID-19 outbreak<br/>
+                Meal preparation, distributing food, washing dishes<br/>
+                Essential transportation needs for family members<br/>
+              </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                IV: Non-clinical but in hospital or office setting
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                M1, M2, M3, M4
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-left">
+                Staff support in non-clinical dept. of hospital or office practice (e.g. information desk)<br/>
+                Duties usually performed by hospital volunteers<br/>
+              </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                V: Clinical and direct human contact
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                M3, M4
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-left">
+                Thermal imaging of hospital or office entrants<br/>
+                H&P’s, IV’s, blood draws, etc.<br/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
