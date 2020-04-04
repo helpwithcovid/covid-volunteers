@@ -31,16 +31,16 @@
       <%= render partial: 'layouts/nav' %>
 
       <div class="py-10">
-        <main class="flex-grow">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <main>
+          <div class="container">
             <% flash.each do |type, msg| %>
               <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
                 <span class="block sm:inline"><%= msg %></span>
               </div>
             <% end %>
-
-            <%= yield %>
           </div>
+
+          <%= yield %>
         </main>
       </div>
     </div>

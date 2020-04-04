@@ -3,6 +3,9 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   theme: {
     extend: {},
+    container: {
+      center: true,
+    },
   },
   variants: {},
   plugins: [
