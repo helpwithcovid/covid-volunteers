@@ -90,3 +90,6 @@ gem 'gravatar_image_tag'
 
 # .env
 gem 'dotenv-rails', groups: [ :development, :test ]
+
+# Configuration
+gem 'config'
