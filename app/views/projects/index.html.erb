@@ -40,7 +40,7 @@
               <div class="w-full sm:w-64">
                 <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
                   <div class="relative rounded-md shadow-sm">
-                    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
+                    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5 pr-7" %>
                     <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
                       <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
                     </div>

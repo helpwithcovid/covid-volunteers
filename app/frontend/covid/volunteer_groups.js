@@ -19,8 +19,9 @@ const VolunteerGroups = {
     const projectId = $('#project_id').val();
     const currentRejectedUserIds = $('#rejected_user_ids').val().split(',').filter(el => el);
     const chosenUserIds = $('.volunteer-in-group .volunteer-group-user-id').map(function() { return $(this).val() }).toArray();
+    const filter = $('#filter_volunteers').val();
 
-    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds, rejected_user_ids: currentRejectedUserIds }, (data) => {
+    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds, rejected_user_ids: currentRejectedUserIds, filter }, (data) => {
       const users = data.users;
       let html = '';
 
