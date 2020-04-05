@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :remove_global_announcements
+  before_action :hide_global_announcements
 
   def index
     @project_count = Rails.cache.fetch('project_count', expires_in: 1.hour) { Project.count }.tap { |count| (count / 50).floor * 50 }

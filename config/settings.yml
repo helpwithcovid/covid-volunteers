@@ -22,6 +22,12 @@ project_groups:
       - News and information
       - Social giving
 
+global_announcements:
+  - title: Helpful resources for your projects
+    sub_title: We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.
+    cta_text: Browse resources
+    cta_url: /offers
+
 events:
   - title: HWC Volunteer Playbook
     sub_title: A short guide created by our team to help you successfully manager your project and volunteers!

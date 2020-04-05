@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
   before_action :hydrate_project_groups
-  before_action :set_global_announcements
+  before_action :show_global_announcements
 
   def ensure_admin
     redirect_to projects_path if !current_user || !current_user.is_admin?
@@ -21,19 +21,12 @@ class ApplicationController < ActionController::Base
                     end
   end
 
-  def remove_global_announcements
-    @global_announcements = nil
+  def hide_global_announcements
+    @show_global_announcements = false
   end
 
-  def set_global_announcements
-    @global_announcements = [
-      {
-        title: 'Helpful resources for your projects',
-        sub_title: 'We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.',
-        cta_text: 'Browse resources',
-        cta_url: '/offers',
-      }
-    ]
+  def show_global_announcements
+    @show_global_announcements = true
   end
 
   def hydrate_project_groups

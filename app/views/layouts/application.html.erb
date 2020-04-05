@@ -33,7 +33,7 @@
         <%= render partial: 'layouts/nav' %>
       </div>
 
-      <%= render partial: "partials/global-announcements" if @global_announcements.present? %>
+      <%= render partial: "partials/global-announcements" if @show_global_announcements %>
 
       <main class="flex-grow">
         <% if flash.present? %>

@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
-  before_action :remove_global_announcements
+  before_action :hide_global_announcements
 
   def index
     @offers = Offer.all.order('created_at DESC').all
