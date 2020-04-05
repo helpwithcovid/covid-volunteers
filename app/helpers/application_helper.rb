@@ -92,7 +92,7 @@ module ApplicationHelper
       classes += ' bg-indigo-300' if applied
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}, cached: true
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
   end
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
