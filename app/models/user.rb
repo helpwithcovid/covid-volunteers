@@ -97,7 +97,7 @@ class User < ApplicationRecord
   # before saving, we check if the user opted in or out, 
   # if so they will be subscribed or unsubscribed
   # TODO: prevent unnecessary requests to mailchimp by checking the previous state
-  before_save :check_newsletter_consent
+  before_update :check_newsletter_consent
 
   # after sign up, the user will be opted into the newsletter by default
   before_create :opt_into_newsletter_on_sign_up
