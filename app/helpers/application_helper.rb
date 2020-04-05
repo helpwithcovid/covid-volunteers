@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def section_name(name = '')
+    "<div class='text-lg font-bold'>#{name}</div>".html_safe
+  end
+
   def nav_link_active_class(variant = 'DESKTOP')
     case variant
     when 'DESKTOP'
@@ -88,7 +92,7 @@ module ApplicationHelper
       classes += ' bg-indigo-300' if applied
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}, cached: true
   end
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)

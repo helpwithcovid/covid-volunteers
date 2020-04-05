@@ -1,3 +1,17 @@
 @import './tailwindcss/base.css';
 @import './tailwindcss/components.css';
 @import './tailwindcss/utilities.css';
+
+.featured-groups {
+  background-image: url('../svgs/home-hero-triangle.svg');
+  background-size: 100%;
+  background-position: top center;
+}
+
+@media (min-width: 640px) {
+  .featured-groups { padding-top: 10% }
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

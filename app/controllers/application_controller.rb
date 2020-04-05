@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
-  before_action :set_project_groups
+  before_action :hydrate_project_groups
   before_action :set_global_announcements
 
   def ensure_admin
@@ -36,41 +36,12 @@ class ApplicationController < ActionController::Base
     ]
   end
 
-  def set_project_groups
-    @project_groups = Rails.cache.fetch('project_groups', expires_in: 1.hour) do
-      groups = [
-        {
-          title: 'Prevention',
-          body: 'Inform, reduce, and control the spread of the outbreak',
-          project_skills: ['Reduce spread', 'Scale testing'],
-          icon: 'medical',
-          featured: true,
-          featured_projects: [],
-        },
-        {
-          title: 'Medical',
-          body: 'Support our overwhelmed health systems with medical innovation',
-          project_skills: ['Medical facilities', 'Medical equipments'],
-          icon: 'medical',
-          featured: true,
-          featured_projects: [],
-        },
-        {
-          title: 'Community',
-          body: 'Work together to help our stressed communities',
-          project_skills: ['Social giving', 'Help out communities'],
-          icon: 'medical',
-          featured: true,
-          featured_projects: [],
-        },
-      ]
+  def hydrate_project_groups
+    @project_groups = Settings.project_groups
 
-      groups.map do |group|
-        group[:featured_projects] = Project.tagged_with(group[:project_skills]).take 9
-        group[:projects_count] = Project.tagged_with(group[:project_skills]).count
-      end
-
-      groups
+    @project_groups.each do |group|
+      group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.tagged_with(group[:project_skills]).take 3 }
+      group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(group[:project_skills]).count }
     end
   end
 end

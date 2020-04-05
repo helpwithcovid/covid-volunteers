@@ -2,7 +2,6 @@ class OffersController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
-  before_action :set_offers_announcements
   before_action :remove_global_announcements
 
   def index
@@ -71,22 +70,5 @@ class OffersController < ApplicationController
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to offers_path
       end
-    end
-
-    def set_offers_announcements
-      @offers_announcements = [
-        {
-          title: 'HWC Volunteer Playbook',
-          sub_title: 'A short guide created by our team to help you successfully manager your project and volunteers!',
-          cta_text: 'Download playbook',
-          cta_url: 'https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view'
-        },
-        {
-          title: 'Webinar on How to Scale Volunteers',
-          sub_title: 'Glen Moriarty, founder of 7cups on how he manages 320k volunteers.',
-          cta_text: 'View recording',
-          cta_url: 'https://openai.zoom.us/rec/play/vZN-dbuq-m03TNKSsASDAfEtW466J6qs1XQWrvtYxRvmU3QDNVv0NLJGYbffjdiMo1gf68qHVnbe2mOi?continueMode=true'
-        }
-      ]
     end
 end

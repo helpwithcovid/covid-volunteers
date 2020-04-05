@@ -12,6 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <% if Rails.env == 'production' %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -26,7 +27,7 @@
     <% end %>
   </head>
 
-  <body class="flex flex-col min-h-screen h-full bg-gray-100">
+  <body class="flex flex-col min-h-screen h-full bg-gray-100 antialiased">
     <div class="flex-1 bg-gray-100">
       <div class="pb-10">
         <%= render partial: 'layouts/nav' %>
@@ -35,13 +36,15 @@
       <%= render partial: "partials/global-announcements" if @global_announcements.present? %>
 
       <main class="flex-grow">
-        <div class="container">
-          <% flash.each do |type, msg| %>
-            <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
-              <span class="block sm:inline"><%= msg %></span>
-            </div>
-          <% end %>
-        </div>
+        <% if flash.present? %>
+          <div class="container">
+            <% flash.each do |type, msg| %>
+              <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
+                <span class="block sm:inline"><%= msg %></span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
         <%= yield %>
       </main>

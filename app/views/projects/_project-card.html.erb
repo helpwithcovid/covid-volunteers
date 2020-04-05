@@ -1,0 +1,28 @@
+<%= link_to project, class: 'relative block shadow-lg transform transition-transform duration-100 hover:scale-105' do %>
+  <div class="w-full bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo %>);"></div>
+
+  <% if project.status.present? %>
+    <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-2 py-1 text-sm" style="background-color: rgba(0, 0, 0, 0.5);"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %><%= project.status %></div>
+  <% end %>
+
+  <div class="p-4">
+    <div class="text-2xl truncate leading-tight  mb-1"><%= project.name %></div>
+    <div class="text-gray-500 text-sm mb-2 leading-tight" style="height: 50px;"><%= project.description.truncate 150 %></div>
+
+    <% if project.project_types.present? %>
+      <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-2">
+        <div class="flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
+          <% project.project_types.each do |type| %>
+            <%= filter_badge label: type %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="relative flex justify-between text-sm mt-3">
+      <div class="font-bold "><%= project.number_of_volunteers %> <%= 'Volunteer'.pluralize project.number_of_volunteers %></div>
+      <div class="text-gray-500 absolute w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
+      <div><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
+    </div>
+  </div>
+<% end %>

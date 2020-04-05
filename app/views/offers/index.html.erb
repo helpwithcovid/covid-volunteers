@@ -1,6 +1,6 @@
 <%- share_title 'Resources' %>
 
-<%= render partial: "offers-announcements" if @offers_announcements.present? %>
+<%= render partial: "offers-announcements" if Settings.events.present? %>
 
 <div class="container">
   <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 sm:rounded-md">
