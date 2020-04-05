@@ -5,7 +5,7 @@
       <div><%= section_name group[:name] %></div>
       <div class="w-full">
         <%= group[:body] %>
-        <%= link_to projects_path, class: 'float-right text-indigo-700 font-bold group' do %>
+        <%= link_to projects_path(project_types: group[:project_skills].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
           See all <%= group[:projects_count] %> projects <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
         <% end %>
       </div>
