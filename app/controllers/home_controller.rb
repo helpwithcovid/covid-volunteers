@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :hydrate_project_groups
   before_action :hide_global_announcements
 
   def index
@@ -8,4 +9,14 @@ class HomeController < ApplicationController
     @volunteer_count = Rails.cache.fetch('volunteer_count', expires_in: 1.day) { User.count }.tap { |count| (count / 100).floor * 50 }
     @featured_projects = Rails.cache.fetch('featured_projects', expires_in: 1.day) { Project.where(highlight: true).order('RANDOM()').take 3 }
   end
+
+  private
+    def hydrate_project_groups
+      @project_groups = Settings.project_groups
+
+      @project_groups.each do |group|
+        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_skills]).take 3 }
+        group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_skills]).count }
+      end
+    end
 end
