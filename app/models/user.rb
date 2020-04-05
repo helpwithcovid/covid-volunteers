@@ -67,9 +67,9 @@ class User < ApplicationRecord
 
   # this function uses Gibbon and Mailchimp API to subscribe/unsubscribe users
   def subscribe_to_mailchimp(action = true)
-    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+    gibbon = Gibbon::Request.new(api_key: Rails.configuration.mailchimp_api_key)
     gibbon.timeout = 15
-    list_id = ENV['MAILCHIMP_LIST_ID']
+    list_id = Rails.configuration.mailchimp_list_id
 
     response = gibbon.lists(list_id).members(Digest::MD5.hexdigest(self.email)).upsert(body: {
         email_address: self.email, 
