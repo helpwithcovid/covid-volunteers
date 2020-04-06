@@ -47,8 +47,7 @@ project2 = Project.create!(
   name: 'One Gazillion Masks',
   description: 'A cool description',
   highlight: true,
-  accepting_volunteers: false,
-  status: ALL_PROJECT_STATUS[1])
+  accepting_volunteers: false)
 
 project3 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', location: 'Brooklyn', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
 
