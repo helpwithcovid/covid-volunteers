@@ -76,7 +76,7 @@ class Project < ApplicationRecord
       present_group = project_groups.to_a.sort_by { |group| group[1] }.reverse.first.first.downcase
     end
 
-    present_group.present? or 'medical'
+    present_group.present? ? present_group : 'medical'
   end
 
   def cover_photo
