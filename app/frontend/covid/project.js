@@ -18,9 +18,22 @@ const Project = {
     const targetHref = $(that).attr('href');
 
     const headerHTML = "You're about to volunteer";
-    const bodyHTML = 'Are you sure you want to volunteer? The project owner will be alerted.';
+    const bodyHTML = `
+Are you sure? The project owner will be alerted. Optionally you can also send them a note.
 
-    const callback = () => $.post(targetHref);
+<div class="mt-3">
+  <label for="volunteer_note" class="sr-only">Volunteer note</label>
+  <div class="relative rounded-md shadow-sm">
+    <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
+  </div>
+</div>
+`;
+
+    const callback = () => {
+      const volunteerNote = $("#volunteer_note").val();
+      $.post(targetHref, { volunteer_note: volunteerNote });
+    }
+
     Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel' }, { type: 'submit', text: 'Volunteer', callback } ], 'warning');
 
     return false;
