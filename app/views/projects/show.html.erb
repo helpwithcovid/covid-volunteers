@@ -385,7 +385,7 @@
       </div>
 
       <ul>
-        <% @project.volunteers.each do |volunteer| %>
+        <% @project.volunteers.includes(user: :skills).each do |volunteer| %>
           <% user = volunteer.user %>
           <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: volunteer } %>
         <% end %>
