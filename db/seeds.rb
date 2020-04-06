@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -30,14 +32,14 @@ user2 = User.create!(
   level_of_availability: '99-100 hours a day'
 )
 
-user3 = User.create!(email: 'user3@gmail.com', name: 'Luv2Code', password: "password", password_confirmation: "password")
-user4 = User.create!(email: 'user4@gmail.com', name: 'rspineanu', password: "password", password_confirmation: "password")
-user5 = User.create!(email: 'user5@gmail.com', name: 'cpu', password: "password", password_confirmation: "password")
-user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: "password", password_confirmation: "password")
+user3 = User.create!(email: 'user3@gmail.com', name: 'Luv2Code', password: 'password', password_confirmation: 'password')
+user4 = User.create!(email: 'user4@gmail.com', name: 'rspineanu', password: 'password', password_confirmation: 'password')
+user5 = User.create!(email: 'user5@gmail.com', name: 'cpu', password: 'password', password_confirmation: 'password')
+user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'password', password_confirmation: 'password')
 
 
 # PROJECTS
-project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', description: 'A cool description', accepting_volunteers: true)
+project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', description: 'A cool description', accepting_volunteers: true, highlight: true)
 
 project2 = Project.create!(
   user: user2,
@@ -67,16 +69,20 @@ project1.save
 
 # PROJECT CATEGORIES/PROBLEMS
 project1.project_type_list.add('Track the outbreak')
-project1.save
+project5.project_type_list.add('Track the outbreak')
+project2.project_type_list.add('Reduce spread')
 
-project2.project_type_list.add('Scale testing')
-project2.save
+project1.project_type_list.add('Scale testing')
+project3.project_type_list.add('Treatment R&D')
+project4.project_type_list.add('Medical equipments')
 
 project3.project_type_list.add('E-Learning')
-project3.save
-
 project4.project_type_list.add('Social giving')
-project4.save
+project1.project_type_list.add('Map volunteers to needs')
+project5.project_type_list.add('News and information')
 
-project5.project_type_list.add('Medical facilities')
+project1.save
+project2.save
+project3.save
+project4.save
 project5.save
