@@ -7,7 +7,7 @@
 
   <div class="p-4">
     <div class="text-2xl truncate leading-tight  mb-1"><%= project.name %></div>
-    <div class="text-gray-500 text-sm mb-2 leading-tight" style="height: 50px;"><%= project.description.truncate 150 %></div>
+    <div class="text-gray-500 text-sm mb-2 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
 
     <% if project.project_types.present? %>
       <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-2">
@@ -19,10 +19,10 @@
       </div>
     <% end %>
 
-    <div class="relative flex justify-between text-sm mt-3">
-      <div class="font-bold "><%= project.number_of_volunteers %> <%= 'Volunteer'.pluralize project.number_of_volunteers %></div>
-      <div class="text-gray-500 absolute w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
-      <div><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
+    <div class="relative grid grid-cols-3 gap-2 text-sm mt-3">
+      <div class="font-bold"><%= project.number_of_volunteers %> <%= 'Volunteer'.pluralize project.number_of_volunteers %></div>
+      <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
+      <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
     </div>
   </div>
 <% end %>
