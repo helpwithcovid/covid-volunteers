@@ -135,7 +135,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :skill_list => [], :project_type_list => [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, skill_list: [], project_type_list: [])
     end
 
     def ensure_owner_or_admin
@@ -146,13 +146,13 @@ class ProjectsController < ApplicationController
     end
 
     def set_projects_query
-      applied_skills = (params[:skills] or '').split(',')
-      applied_project_types = (params[:project_types] or '').split(',')
+      applied_skills = (params[:skills] || '').split(',')
+      applied_project_types = (params[:project_types] || '').split(',')
 
       @projects = Project
       @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
       @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
-      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
+      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
 
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)
