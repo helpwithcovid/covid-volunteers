@@ -1,5 +1,5 @@
 <%= link_to projects_path, class: "#{all_projects_nav_link_class(variant)}" do %>
-  All Projects
+  Find Projects
 <% end %>
 
 <% if current_user %>
@@ -19,16 +19,9 @@
   Resources
 <% end %>
 
-<%= link_to "https://discord.gg/8nAJfFN", target: "_blank", class: "#{discord_nav_link_class(variant)}" do %>
-  Discord
-<% end %>
-
 <% if current_user %>
   <%= link_to edit_user_registration_path, class: "#{profile_nav_link_class(variant)}" do %>
     Profile
-  <% end %>
-  <%= link_to destroy_user_session_path, method: :delete, class: "#{logout_nav_link_class(variant)}" do %>
-    Log out
   <% end %>
 <% else %>
   <%= link_to new_user_registration_path, class: "#{sign_up_nav_link_class(variant)}" do %>
@@ -38,3 +31,11 @@
     Log in
   <% end %>
 <% end %>
+
+<div class="self-center ml-4 mt-1">
+  <%= link_to new_project_path do %>
+    <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 flex-shrink-0 flex-grow-0">
+      Create project
+    </button>
+  <% end %>
+</div>
