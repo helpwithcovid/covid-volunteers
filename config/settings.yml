@@ -1,13 +1,13 @@
 project_groups:
   - name: Prevention
     body: Inform, reduce, and control the spread of the outbreak
-    project_skills:
+    project_types:
       - Track the outbreak
       - Reduce spread
     color: orange
   - name: Medical
     body: Support our overwhelmed health systems with medical innovation
-    project_skills:
+    project_types:
       - Scale testing
       - Medical facilities
       - Medical equipments
@@ -15,7 +15,7 @@ project_groups:
     color: indigo
   - name: Community
     body: Work together to help our stressed communities
-    project_skills:
+    project_types:
       - E-Learning
       - Job placement
       - Mental health

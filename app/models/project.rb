@@ -69,7 +69,7 @@ class Project < ApplicationRecord
 
     begin
       Settings.project_groups.each do |group|
-        intersection = self.project_type_list.to_a & group['project_skills'].to_a
+        intersection = self.project_type_list.to_a & group['project_types'].to_a
         project_groups[group.name] = intersection.count
       end
 

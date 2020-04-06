@@ -15,8 +15,8 @@ class HomeController < ApplicationController
       @project_groups = Settings.project_groups
 
       @project_groups.each do |group|
-        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_skills], any: true).take 3 }
-        group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_skills], any: true).count }
+        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_types], any: true).take 3 }
+        group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_types], any: true).count }
       end
     end
 end
