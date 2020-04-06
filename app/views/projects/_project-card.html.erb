@@ -19,14 +19,14 @@
       </div>
     <% end %>
 
-    <div class="relative grid grid-cols-2 gap-2 text-sm mt-3">
+    <div class="relative grid grid-cols-3 gap-2 text-sm mt-3">
       <% total_volunteers = project.volunteers.count %>
       <% if total_volunteers > 0 %>
-      <div class="font-bold"><%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %></div>
+        <div class="font-bold"><%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %></div>
       <% end %>
-      <% if false # temporarily disbaling for now %>
-        <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
-      <% end %>
+      
+      <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
+      
       <% if project.location? %>
         <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
       <% end %>
