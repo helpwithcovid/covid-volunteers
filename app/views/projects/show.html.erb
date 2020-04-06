@@ -15,7 +15,7 @@
     </div>
 
     <div class="flex flex-shrink-0 flex-wrap max-w-full">
-      <% if current_user == @project.user || current_user.is_admin? %>
+      <% if current_user == @project.user || (current_user && current_user.is_admin?) %>
         <span class="ml-3 inline-flex rounded-md shadow-sm mt-4">
           <%= link_to edit_project_path(@project) do %>
             <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
