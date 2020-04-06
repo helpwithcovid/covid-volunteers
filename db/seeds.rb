@@ -39,7 +39,7 @@ user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'passwo
 
 
 # PROJECTS
-project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', description: 'A cool description', accepting_volunteers: true, highlight: true)
+project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', location: 'USA', description: 'A cool description', accepting_volunteers: true, highlight: true)
 
 project2 = Project.create!(
   user: user2,
@@ -48,7 +48,7 @@ project2 = Project.create!(
   accepting_volunteers: false,
   status: ALL_PROJECT_STATUS[1])
 
-project3 = Project.create(user: user, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
+project3 = Project.create(user: user, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', location: 'Brooklyn', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
 
 project4 = Project.create(user: user, name: 'Resistbot', description: %{Resistbot is a multipurpose and multifunction chatbot. Right now it's the easiest way to lobby both federal and state officials who are currently crafting a legislative response to the pandemic. Our end goal is to give everyone a voice and able to fight for what they want to see, no matter what it is, from social distancing measures at the state level, to federal UBI stimulus, to no corporate bailouts, to more health care supplies, and more. We've also just built covid-19 specific functionality to inform users of a variety of important information for their home state.}, accepting_volunteers: true, highlight: true)
 
