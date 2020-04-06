@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_04_204305) do
+ActiveRecord::Schema.define(version: 2020_04_05_125534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2020_04_04_204305) do
     t.string "number_of_volunteers", default: "", null: false
     t.string "organization", default: ""
     t.string "level_of_urgency", default: "", null: false
-    t.string "start_date", default: ""
-    t.string "end_date", default: ""
+    t.date "start_date"
+    t.date "end_date"
     t.string "compensation", default: ""
     t.boolean "background_screening_required"
     t.string "level_of_exposure"

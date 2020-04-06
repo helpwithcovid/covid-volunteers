@@ -346,24 +346,24 @@
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Start Date (mm/dd/yy)<br/>
+      Start Date<br/>
       <span class="text-xs">(optional)</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "start_date", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= f.date_field :start_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
       </div>
     </div>
   </div>
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="end_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      End Date (mm/dd/yy)<br/>
+      End Date<br/>
       <span class="text-xs">(optional)</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "end_date", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= f.date_field :end_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
       </div>
     </div>
   </div>
