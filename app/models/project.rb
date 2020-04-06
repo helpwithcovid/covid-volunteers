@@ -64,7 +64,26 @@ class Project < ApplicationRecord
     )
   end
 
+  def project_group
+    project_groups = {}
+
+    begin
+      Settings.project_groups.each do |group|
+        intersection = self.project_type_list.to_a & group['project_skills'].to_a
+        project_groups[group.name] = intersection.count
+      end
+
+      present_group = project_groups.to_a.sort_by { |group| group[1] }.reverse.first.first.downcase
+    end
+
+    present_group.present? or 'medical'
+  end
+
   def cover_photo
-    1.upto(6).map { |index| "/images/sample/projects-#{index}.png" }.sample
+    cover_photo = false
+    if cover_photo.present?
+    else
+      "/images/#{self.project_group}-default.jpg"
+    end
   end
 end

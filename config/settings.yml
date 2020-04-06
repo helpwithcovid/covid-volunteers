@@ -4,6 +4,7 @@ project_groups:
     project_skills:
       - Track the outbreak
       - Reduce spread
+    color: orange
   - name: Medical
     body: Support our overwhelmed health systems with medical innovation
     project_skills:
@@ -11,6 +12,7 @@ project_groups:
       - Medical facilities
       - Medical equipments
       - Treatment R&D
+    color: indigo
   - name: Community
     body: Work together to help our stressed communities
     project_skills:
@@ -21,6 +23,7 @@ project_groups:
       - Map volunteers to needs
       - News and information
       - Social giving
+    color: blue
 
 global_announcements:
   - title: Helpful resources for your projects
