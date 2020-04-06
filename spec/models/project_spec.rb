@@ -48,4 +48,14 @@ RSpec.describe Project, type: :model do
       expect(project.cover_photo('Test')).to eq('/images/test-default.jpg')
     end
   end
+
+  it 'is invalid without a status' do
+    project = FactoryBot.build(:project, status: nil)
+    expect(project).to_not be_valid
+  end
+
+  it 'is invalid with wrong status' do
+    project = FactoryBot.build(:project, status: 'lol')
+    expect(project).to_not be_valid
+  end
 end

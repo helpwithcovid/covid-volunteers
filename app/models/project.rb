@@ -25,8 +25,7 @@ class Project < ApplicationRecord
     end
   end
 
-  # This would be awesome but we have a bunch of sites with no statuses right now.
-  # validates :status, inclusion: { in: ALL_PROJECT_STATUS }
+  validates :status, inclusion: { in: ALL_PROJECT_STATUS }
 
   def to_param
     [id, name.parameterize].join("-")
