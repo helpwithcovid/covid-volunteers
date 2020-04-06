@@ -35,9 +35,9 @@ user4 = User.create!(email: 'user4@gmail.com', name: 'rspineanu', password: "pas
 user5 = User.create!(email: 'user5@gmail.com', name: 'cpu', password: "password", password_confirmation: "password")
 user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: "password", password_confirmation: "password")
 
+
+# PROJECTS
 project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', description: 'A cool description', accepting_volunteers: true)
-project1.skill_list.add('Design')
-project1.save
 
 project2 = Project.create!(
   user: user2,
@@ -46,4 +46,37 @@ project2 = Project.create!(
   accepting_volunteers: false,
   status: ALL_PROJECT_STATUS[1])
 
+project3 = Project.create(user: user, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
+
+project4 = Project.create(user: user, name: 'Resistbot', description: %{Resistbot is a multipurpose and multifunction chatbot. Right now it's the easiest way to lobby both federal and state officials who are currently crafting a legislative response to the pandemic. Our end goal is to give everyone a voice and able to fight for what they want to see, no matter what it is, from social distancing measures at the state level, to federal UBI stimulus, to no corporate bailouts, to more health care supplies, and more. We've also just built covid-19 specific functionality to inform users of a variety of important information for their home state.}, accepting_volunteers: true, highlight: true)
+
+project5 = Project.create(user: user, name: 'Selfie lenses to spread public health into in a fun way project ', description: %{We are a group called Lefty Lenses who have been applying selfie lenses (like the Snapchat puppy filter) to politics for the 2020 election. Our lenses have reached 125M people in 10 weeks, and we've spent $0.}, accepting_volunteers: true, highlight: true)
+
+# VOLUNTEERS
+
 project1.volunteered_users << user3
+project3.volunteered_users << user
+project3.volunteered_users << user2
+project3.volunteered_users << user3
+project3.volunteered_users << user4
+
+# SKILLS
+project1.skill_list.add('Design')
+project1.save
+
+
+# PROJECT CATEGORIES/PROBLEMS
+project1.project_type_list.add('Track the outbreak')
+project1.save
+
+project2.project_type_list.add('Scale testing')
+project2.save
+
+project3.project_type_list.add('E-Learning')
+project3.save
+
+project4.project_type_list.add('Social giving')
+project4.save
+
+project5.project_type_list.add('Medical facilities')
+project5.save
