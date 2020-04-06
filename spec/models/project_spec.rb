@@ -49,6 +49,12 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  it 'it sets default status' do
+    project = FactoryBot.build(:project, status: nil)
+    project.save
+    expect(project.status).to eq(ALL_PROJECT_STATUS.first)
+  end
+
   it 'is invalid without a status' do
     project = FactoryBot.build(:project, status: nil)
     expect(project).to_not be_valid

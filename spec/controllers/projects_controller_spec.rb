@@ -51,6 +51,14 @@ RSpec.describe ProjectsController, type: :controller do
         get :index
         expect(response.body.scan('sign up to volunteer').size).to eq(0)
       end
+
+      it 'shows projects filtered by status' do
+        project.update_attribute(:status, ALL_PROJECT_STATUS.last)
+        project2 = FactoryBot.create(:project, user: user, status: ALL_PROJECT_STATUS.first)
+        get :index, params: { status: ALL_PROJECT_STATUS.last }
+        expect(assigns(:projects)).to include(project)
+        expect(assigns(:projects)).to_not include(project2)
+      end
     end
   end
 
