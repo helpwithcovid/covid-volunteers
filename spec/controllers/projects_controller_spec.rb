@@ -20,7 +20,6 @@ RSpec.describe ProjectsController, type: :controller do
       expect(response).to be_successful
       expect(json[0]['name']).to be_present
       expect(json[0]['description']).to be_present
-      expect(json[0]['location']).to be_present
       expect(json[0]['to_param']).to be_present
     end
 
