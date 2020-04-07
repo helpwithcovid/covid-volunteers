@@ -1,5 +1,7 @@
 require 'csv'
 require 'gibbon'
+require 'net/https'
+require 'json'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -93,6 +95,30 @@ class User < ApplicationRecord
     self.newsletter_consent = true
     subscribe_to_mailchimp(true)
   end   
+
+  # this function checks if this user has completed Blank Slate training
+  def finished_training?
+    uri = URI.parse("https://app.blankslatetechnologies.com/sreo/v0.1/app/covidvolunteers/user/check-status")
+    request = Net::HTTP::Post.new(uri)
+    request.basic_auth("helpwithcovid@gmail.com", "C6XfTc12")
+    request.content_type = "application/json"
+    request.body = JSON.dump({
+      "email" => self.email
+    })
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    result = JSON.parse(response.body)
+    result['finishedAllCards']
+  end
+
+  # <%= image_tag('ex-mark.svg', :size => "30x20") %>
 
   # before saving, we check if the user opted in or out, 
   # if so they will be subscribed or unsubscribed
