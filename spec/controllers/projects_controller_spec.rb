@@ -143,8 +143,11 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'tracks an event' do
       sign_in user
+      expect(controller).to receive(:track_event).with('Project creation started').and_call_original
       get :new
-      expect(session[:track_event]).to eq('Project creation started')
+      # This doesn't work since the GET request sets and deletes the variable within same request
+      # expect(session[:track_event]).to eq('Project creation started')
+      expect(response.body).to match(/Project creation started/)
     end
 
   end
