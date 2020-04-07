@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
+  let(:user) { FactoryBot.build(:user) }
+  let(:project) { FactoryBot.build(:project, user: user) }
+
   it 'factory is valid' do
     user = FactoryBot.create(:user)
     project = FactoryBot.build(:project, user: user)
@@ -20,5 +23,29 @@ RSpec.describe Project, type: :model do
   it 'accepting_volunteers defaults true' do
     project = FactoryBot.build(:project, user: nil)
     expect(project.accepting_volunteers).to eq(true)
+  end
+
+  describe 'Group & Cover photo' do
+    Settings.project_groups.each do |group|
+      group['project_types'].to_a.each do |type|
+        it "#{type} returns #{group.name}" do
+          project.project_type_list.add(type)
+          expect(project.group).to eq(group.name)
+        end
+      end
+    end
+
+    it 'project defaults to medical with no type' do
+      expect(project.group).to eq('Community')
+    end
+
+    it 'returns correct cover photo' do
+      project.project_type_list.add('Reduce spread')
+      expect(project.cover_photo).to eq('/images/prevention-default.jpg')
+    end
+
+    it 'allow override of default cover photo' do
+      expect(project.cover_photo('Test')).to eq('/images/test-default.jpg')
+    end
   end
 end

@@ -1,0 +1,27 @@
+<% Settings.global_announcements.each do |announcement| %>
+  <div class="container">
+    <div class="bg-indigo-600 px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+      <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+        <div class="ml-4 mt-4">
+          <p class="text-base leading-5 font-bold text-white tracking-tight">
+            <%= announcement[:title] %>
+          </p>
+          <p class="mt-1 text-base leading-5 text-white tracking-tight">
+            <%= announcement[:sub_title] %>
+          </p>
+        </div>
+        <div class="ml-4 mt-4 flex-shrink-0">
+          <span class="inline-flex rounded-md shadow-sm">
+            <%= link_to announcement[:cta_url] do %>
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-500 bg-white hover:bg-white focus:outline-none focus:shadow-outline-indigo focus:border-indigo-600 active:bg-white">
+                <%= announcement[:cta_text] %>
+              </button>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
