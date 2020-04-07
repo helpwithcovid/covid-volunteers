@@ -71,12 +71,14 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+
+    track_event 'Project creation started'
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.new(project_params)
 
-    @project.user = current_user
+    track_event 'Project creation complete'
 
     respond_to do |format|
       if @project.save
@@ -122,6 +124,7 @@ class ProjectsController < ApplicationController
       ProjectMailer.with(project: @project, user: current_user, note: params[:volunteer_note]).new_volunteer.deliver_now
 
       flash[:notice] = 'Thanks for volunteering! The project owners will be alerted.'
+      track_event "User volunteered"
     end
 
     redirect_to project_path(@project)

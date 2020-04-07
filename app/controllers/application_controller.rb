@@ -27,4 +27,13 @@ class ApplicationController < ActionController::Base
   def show_global_announcements
     @show_global_announcements = true
   end
+
+  def track_event(action)
+    session[:track_event] = action
+  end
+
+  def pop_event_to_track
+    session.delete(:track_event)
+  end
+  helper_method :pop_event_to_track
 end

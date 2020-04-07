@@ -166,4 +166,8 @@ module ApplicationHelper
 
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
   end
+
+  def google_analytics_id
+    Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
+  end
 end

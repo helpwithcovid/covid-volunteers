@@ -140,6 +140,13 @@ RSpec.describe ProjectsController, type: :controller do
       get :new
       expect(response).to_not be_successful
     end
+
+    it 'sets @track_event' do
+      sign_in user
+      get :new
+      expect(assigns(:track_event)).to eq('Project creation started')
+    end
+
   end
 
   describe 'GET #edit' do
@@ -162,6 +169,12 @@ RSpec.describe ProjectsController, type: :controller do
       expect(assigns(:project)).to be_present
       expect(response).to be_redirect
     end
+
+    it 'sets @track_event' do
+      sign_in(user)
+      post :create, params: valid_params
+      expect(assigns(:track_event)).to eq('Project creation complete')
+    end
   end
 
   describe 'PUT #update' do
@@ -180,4 +193,23 @@ RSpec.describe ProjectsController, type: :controller do
       fail
     end
   end
+
+  describe 'POST #toggle_volunteer' do
+    it 'volunteers you if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'sets @track_event if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'unvolunteers you if you had already volunteered' do
+      pending 'TODO'
+      fail
+    end
+
+  end
+
 end
