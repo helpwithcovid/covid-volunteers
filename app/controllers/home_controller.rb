@@ -14,10 +14,7 @@ class HomeController < ApplicationController
     end
     # Display the volunteers in increments of 100
     @volunteer_count = (@volunteer_count / 100).floor * 100
-
-    @featured_projects = Rails.cache.fetch('featured_projects', expires_in: 1.day) do
-      Project.where(highlight: true).order('RANDOM()').take 3
-    end
+    @featured_projects = Project.where(highlight: true).order('RANDOM()').take 3
   end
 
   private
