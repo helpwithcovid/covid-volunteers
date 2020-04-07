@@ -1,5 +1,5 @@
 <%= link_to project, class: 'relative block shadow-lg transform transition-transform duration-100 hover:scale-105' do %>
-  <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo %>);"></div>
+  <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(local_assigns[:group]) %>);"></div>
 
   <% if project.accepting_volunteers? %>
     <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-2 py-1 text-sm" style="background-color: rgba(0, 0, 0, 0.5);"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %>Actively Recruiting</div>
