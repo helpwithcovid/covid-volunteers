@@ -1,6 +1,5 @@
 // Wait for DOM to be loaded
 $( document ).on('turbolinks:load', function() {
-// Handler for .ready() called
 
 	// Get the modal
 	var modal = document.getElementById("modal");

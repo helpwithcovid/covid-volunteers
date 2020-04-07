@@ -122,8 +122,6 @@ class User < ApplicationRecord
     end
   end
 
-  # <%= image_tag('ex-mark.svg', :size => "30x20") %>
-
   # before saving, we check if the user opted in or out, 
   # if so they will be subscribed or unsubscribed
   # TODO: prevent unnecessary requests to mailchimp by checking the previous state
