@@ -64,7 +64,7 @@ class Project < ApplicationRecord
     )
   end
 
-  def project_group
+  def group
     project_groups = {}
 
     begin
@@ -73,17 +73,17 @@ class Project < ApplicationRecord
         project_groups[group.name] = intersection.count
       end
 
-      present_group = project_groups.to_a.sort_by { |group| group[1] }.reverse.first.first.downcase
+      present_group = project_groups.sort_by { |k, v| v }.reverse.first.first
     end
 
-    present_group.present? ? present_group : 'medical'
+    present_group
   end
 
-  def cover_photo
+  def cover_photo(group_override = nil)
     cover_photo = false
     if cover_photo.present?
     else
-      "/images/#{self.project_group}-default.jpg"
+      "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
     end
   end
 end
