@@ -71,17 +71,15 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-
     track_event 'Project creation started'
   end
 
   def create
     @project = current_user.projects.new(project_params)
 
-    track_event 'Project creation complete'
-
     respond_to do |format|
       if @project.save
+        track_event 'Project creation complete'
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
