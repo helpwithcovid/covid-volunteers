@@ -114,8 +114,12 @@ class User < ApplicationRecord
       http.request(request)
     end
 
-    result = JSON.parse(response.body)
-    result['finishedAllCards']
+    if response.code == "200"
+      result = JSON.parse(response.body)
+      result['finishedAllCards']
+    else
+      false
+    end
   end
 
   # <%= image_tag('ex-mark.svg', :size => "30x20") %>
