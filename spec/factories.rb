@@ -30,6 +30,10 @@ FactoryBot.define do
     status { ALL_PROJECT_STATUS.first }
   end
 
+  factory :project_with_type, parent: :project do
+    project_type_list { ['Track the outbreak'] }
+  end
+
   factory :volunteer do
     # ...
   end
