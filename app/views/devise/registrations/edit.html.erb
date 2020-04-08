@@ -1,38 +1,43 @@
 <%- share_title "Profile" %>
 
-<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <div>
+<div class="container">
+  <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div>
         <div>
-          <h3 class="text-lg leading-6 font-medium text-gray-900">
-            Your profile
-          </h3>
-          <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-            This information will be displayed publicly. Fill everything out to be able to volunteer for projects.
-          </p>
+          <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+              Your profile
+            </h3>
+            <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+              This information will be displayed publicly. Fill everything out to be able to volunteer for projects.
+            </p>
+          </div>
+
+          <div class="mt-6 flex justify-center">
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+          </div>
+
+
+          <%= render partial: 'profile_form', locals: { f: f } %>
         </div>
-
-        <div class="mt-6 flex justify-center">
-          <%= render "devise/shared/error_messages", resource: resource %>
-
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      </div>
+      <div class="mt-8 border-t border-gray-200 pt-5">
+        <div class="flex justify-between">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'inline-flex justify-center py-2 px-4 border border-red-500 text-sm leading-5 font-medium rounded-md text-red-900 hover:text-white bg-white hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-indigo active:bg-red-700 transition duration-150 ease-in-out' do %>
+            Log out
           <% end %>
+          <span class="ml-3 inline-flex rounded-md shadow-sm">
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+              Save profile
+            </button>
+          </span>
         </div>
-
-
-        <%= render partial: 'profile_form', locals: { f: f } %>
       </div>
-    </div>
-    <div class="mt-8 border-t border-gray-200 pt-5">
-      <div class="flex justify-end">
-        <span class="ml-3 inline-flex rounded-md shadow-sm">
-          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-            Save profile
-          </button>
-        </span>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,75 +1,77 @@
 <%- share_title 'Volunteers' %>
 
-<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
-  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
-    <div class="ml-4 mt-4">
-      <h3 class="text-lg leading-6 font-medium text-gray-900">
-        <%= pluralize(User.count, 'volunteer') %> from around the world
-      </h3>
-      <p class="mt-1 text-sm leading-5 text-gray-500">
-        They have all offered to help out with COVID-19 related projects.
-      </p>
-    </div>
-    <div class="ml-4 mt-4 flex-shrink-0">
-      <span class="inline-flex rounded-md shadow-sm">
-        <% if !current_user %>
-          <%= link_to new_user_registration_path do %>
-            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-              Sign up to volunteer
-            </button>
+<div class="container">
+  <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4 sm:rounded-md">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+      <div class="ml-4 mt-4">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          <%= pluralize(User.count, 'volunteer') %> from around the world
+        </h3>
+        <p class="mt-1 text-sm leading-5 text-gray-500">
+          They have all offered to help out with COVID-19 related projects. Looking for a specific skill not here? <%= mail_to "helpwithcovid@gmail.com", "Email us", subject: "[Volunteer request]", target: "_blank", encoding: "javascript", class: "text-indigo-500" %>.
+        </p>
+      </div>
+      <div class="ml-4 mt-4 flex-shrink-0">
+        <span class="inline-flex rounded-md shadow-sm">
+          <% if !current_user %>
+            <%= link_to new_user_registration_path do %>
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                Sign up to volunteer
+              </button>
+            <% end %>
           <% end %>
-        <% end %>
-      </span>
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
-<% if @show_filters %>
-  <div x-data="{ open: <%= @filters_open %>, sortOpen: false }">
-    <div class="block mb-4 relative">
-      <nav class="flex flex-col sm:flex-row justify-between">
-        <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
-          <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
-        </a>
-        <div class="flex flex-col md:flex-row">
-          <% if @show_search_bar %>
-            <div class="w-full sm:w-64">
-              <%= form_with url: volunteers_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
-                <div class="relative rounded-md shadow-sm">
-                  <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5" %>
-                  <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
-                    <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+  <% if @show_filters %>
+    <div x-data="{ open: <%= @filters_open %>, sortOpen: false }">
+      <div class="block mb-4 relative">
+        <nav class="flex flex-col sm:flex-row justify-between">
+          <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
+            <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
+          </a>
+          <div class="flex flex-col md:flex-row">
+            <% if @show_search_bar %>
+              <div class="w-full sm:w-64">
+                <%= form_with url: volunteers_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
+                  <div class="relative rounded-md shadow-sm">
+                    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5 pr-7" %>
+                    <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
+                      <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+                    </div>
                   </div>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-          <% if @show_sorting_options %>
-            <div class="ml-2 flex">
-              <%= sort_drop_down do %>
-                <%= sort_drop_down_option(volunteers_path, 'Sort by') %>
-                <%= sort_drop_down_option(volunteers_path, 'Latest', 'latest') %>
-                <%= sort_drop_down_option(volunteers_path, 'Earliest', 'earliest') %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </nav>
+                <% end %>
+              </div>
+            <% end %>
+            <% if @show_sorting_options %>
+              <div class="ml-2 flex">
+                <%= sort_drop_down do %>
+                  <%= sort_drop_down_option(volunteers_path, 'Sort by') %>
+                  <%= sort_drop_down_option(volunteers_path, 'Latest', 'latest') %>
+                  <%= sort_drop_down_option(volunteers_path, 'Earliest', 'earliest') %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+      <div :class="{'block': open, 'hidden': !open}" class="hidden">
+        <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skills', skills: ALL_SKILLS} %>
+      </div>
     </div>
-    <div :class="{'block': open, 'hidden': !open}" class="hidden">
-      <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skills', skills: ALL_SKILLS} %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
 
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
-  <%= paginate @users %>
-</div>
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
-  <ul>
-    <% @users.each_with_index do |user, idx| %>
-      <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
-    <% end %>
-  </ul>
-  <%= paginate @users %>
+  <div class="bg-white shadow overflow-hidden sm:rounded-md">
+    <%= paginate @users %>
+  </div>
+  <div class="bg-white shadow overflow-hidden sm:rounded-md">
+    <ul>
+      <% @users.each_with_index do |user, idx| %>
+        <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
+      <% end %>
+    </ul>
+    <%= paginate @users %>
+  </div>
 </div>

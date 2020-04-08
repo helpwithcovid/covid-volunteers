@@ -1,10 +1,10 @@
 <nav x-data="{ open: false }" class="bg-white shadow-sm">
-  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+  <div class="container">
     <div class="relative flex justify-between h-16">
-      <a href="/" class="hover:text-indigo-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer">
-        <div class="h-6 w-6 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo.svg') %>')">
+      <a href="/" class="hover:text-indigo-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer -mx-2">
+        <div class="ml-2 sm:ml-0 h-6 w-6 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo.svg') %>')">
         </div>
-        <span class="ml-1 md:hidden lg:block">Help with COVID</span>
+        <span class="ml-1 md:hidden lg:block font-bold leading-tight">Help with COVID</span>
       </a>
       <div class="absolute inset-y-0 right-0 flex items-center md:hidden">
         <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -14,7 +14,7 @@
           </svg>
         </button>
       </div>
-      <div class="flex">
+      <div class="flex flex-grow-0 flex-shrink-0">
         <div class="hidden sm:mr-2 md:flex">
           <%= render partial: 'layouts/nav_links', locals: { variant: 'DESKTOP' } %>
         </div>

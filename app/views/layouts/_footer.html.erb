@@ -1,0 +1,14 @@
+<footer>
+  <div class="container px-5 py-7">
+    <div class="flex justify-between text-sm text-gray-800">
+      <div class="">
+        <%= link_to "About HWC", about_path, class: 'font-bold mr-6' %>
+        <%= link_to "GitHub", "https://github.com/helpwithcovid/covid-volunteers", class: 'font-bold mr-6', target: :_blank %>
+      </div>
+      <div>
+        Email us at <%= mail_to ENV['EMAIL_ADDRESS'], nil, target: :_blank, class: 'font-bold mr-6' %>
+        Join the <%= link_to 'Discord group', 'https://discord.gg/8nAJfFN', target: :_blank, class: 'font-bold' %>
+      </div>
+    </div>
+  </div>
+</footer>

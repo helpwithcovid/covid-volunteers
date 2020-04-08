@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'projects#index'
+  root 'home#index'
 
   get '/about', to: 'home#about', as: 'about'
 

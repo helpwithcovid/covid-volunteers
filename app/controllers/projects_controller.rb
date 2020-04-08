@@ -124,9 +124,9 @@ class ProjectsController < ApplicationController
       @project.volunteers.where(user: current_user).destroy_all
       flash[:notice] = "We've removed you from the list of volunteered people."
     else
-      @project.volunteered_users << current_user
+      Volunteer.create(user: current_user, project: @project, note: params[:volunteer_note])
 
-      ProjectMailer.with(project: @project, user: current_user).new_volunteer.deliver_now
+      ProjectMailer.with(project: @project, user: current_user, note: params[:volunteer_note]).new_volunteer.deliver_now
 
       flash[:notice] = 'Thanks for volunteering! The project owners will be alerted.'
     end
@@ -142,7 +142,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :number_of_volunteers, :number_of_volunteers, :links, :status, :accepting_volunteers, skill_list: [], project_type_list: [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :number_of_volunteers, :number_of_volunteers, :links, :status, :short_description, :accepting_volunteers, skill_list: [], project_type_list: [])
     end
 
     def ensure_owner_or_admin
@@ -157,8 +157,8 @@ class ProjectsController < ApplicationController
       applied_project_types = (params[:project_types] or '').split(',')
 
       @projects = Project
-      @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
-      @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
+      @projects = @projects.tagged_with(applied_skills, any: params[:any]) if applied_skills.length > 0
+      @projects = @projects.tagged_with(applied_project_types, any: params[:any]) if applied_project_types.length > 0
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
 
       if params[:query].present?

@@ -18,6 +18,9 @@ Level of Availability: <%= @user.level_of_availability %>
 <%- if @user_volunteered_projects_count > 2 -%>
 Volunteered in: <%= @user_volunteered_projects_count - 1 %> other projects
 <%- end -%>
+<% if @note.present? -%>
+Message from volunteer: <%= @note %>
+<%- end -%>
 
 About:
 <%= @user.about %>

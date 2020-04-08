@@ -11,9 +11,9 @@
           <%= simple_format user.about, class: 'mb-2' %>
         </div>
       </div>
-      <% if user.skill_list.present? %>
+      <% if user.skills.present? %>
         <div class="flex content-center flex-wrap mt-2 space-x-right-2">
-          <%= skill_badges user.skill_list, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
+          <%= skill_badges user.skills.collect { |s| s.name }, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
         </div>
       <% end %>
       <div class="mt-2 sm:flex sm:justify-between">
