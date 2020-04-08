@@ -93,3 +93,9 @@ gem 'dotenv-rails', groups: [ :development, :test ]
 
 # Configuration
 gem 'config'
+
+# Algolia sync
+gem 'algoliasearch-rails'
+
+# react support for algolia instantsearch
+gem 'react-rails'

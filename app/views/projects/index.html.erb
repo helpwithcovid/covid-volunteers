@@ -28,57 +28,61 @@
     </div>
   </div>
 
-  <% if @show_filters %>
-    <div x-data="{ open: <%= @filters_open %>, sortOpen: false}">
-      <div class="block mb-4 relative">
-        <nav class="flex flex-col sm:flex-row justify-between">
-          <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
-            <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
-          </a>
-          <div class="flex flex-col md:flex-row">
-            <% if @show_search_bar %>
-              <div class="w-full sm:w-64">
-                <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
-                  <div class="relative rounded-md shadow-sm">
-                    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5 pr-7" %>
-                    <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
-                      <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+  <%if @isAlgoliaSearch %>
+    <%= react_component("Search",{app_id:ENV["ALGOLIASEARCH_APPLICATION_ID"], api_key:ENV["ALGOLIASEARCH_API_KEY_SEARCH"]}) %>
+  <% else %>
+    <% if @show_filters %>
+      <div x-data="{ open: <%= @filters_open %>, sortOpen: false}">
+        <div class="block mb-4 relative">
+          <nav class="flex flex-col sm:flex-row justify-between">
+            <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
+              <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter projects
+            </a>
+            <div class="flex flex-col md:flex-row">
+              <% if @show_search_bar %>
+                <div class="w-full sm:w-64">
+                  <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
+                    <div class="relative rounded-md shadow-sm">
+                      <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5 pr-7" %>
+                      <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
+                        <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
+                      </div>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-            <% if @show_sorting_options %>
-              <div class="ml-2 flex">
-                <%= sort_drop_down do %>
-                  <%= sort_drop_down_option(projects_path, 'Sort by') %>
-                  <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
-                  <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
-                  <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </nav>
+                  <% end %>
+                </div>
+              <% end %>
+              <% if @show_sorting_options %>
+                <div class="ml-2 flex">
+                  <%= sort_drop_down do %>
+                    <%= sort_drop_down_option(projects_path, 'Sort by') %>
+                    <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
+                    <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
+                    <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </nav>
+        </div>
+        <div :class="{'block': open, 'hidden': !open}" class="hidden">
+          <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skills', skills: ALL_SKILLS} %>
+          <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_types', skills: ALL_PROJECT_TYPES} %>
+        </div>
       </div>
-      <div :class="{'block': open, 'hidden': !open}" class="hidden">
-        <%= render partial: 'partials/filters', locals: {label: 'Filter project by skills needed', model: 'projects', filter_by: 'skills', skills: ALL_SKILLS} %>
-        <%= render partial: 'partials/filters', locals: {label: 'Filter by project type', model: 'projects',filter_by: 'project_types', skills: ALL_PROJECT_TYPES} %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% if @projects.present? %>
-    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      <%= paginate @projects %>
-    </div>
-    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      <ul>
-        <% @projects.each do |project| %>
-          <%= render partial: 'project', locals: { project: project,  } %>
-        <% end %>
-      </ul>
-      <%= paginate @projects %>
-    </div>
+    <% if @projects.present? %>
+      <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <%= paginate @projects %>
+      </div>
+      <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul>
+          <% @projects.each do |project| %>
+            <%= render partial: 'project', locals: { project: project,  } %>
+          <% end %>
+        </ul>
+        <%= paginate @projects %>
+      </div>
+    <% end %>
   <% end %>
 </div>

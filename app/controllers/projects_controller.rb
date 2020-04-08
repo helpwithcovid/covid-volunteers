@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
         @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
         @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
         @total_count = @projects.total_count
+        @isAlgoliaSearch = true
       end
       format.json do
         render json: @projects
@@ -39,7 +40,10 @@ class ProjectsController < ApplicationController
     @projects_header = 'Volunteered Projects'
     @projects_subheader = 'These are the projects where you volunteered.'
     @page_title = 'Volunteered Projects'
+    @isAlgoliaSearch = false
+
     render action: 'index'
+
   end
 
   def own
@@ -53,6 +57,7 @@ class ProjectsController < ApplicationController
     @projects_header = 'Own Projects'
     @projects_subheader = 'These are the projects you created.'
     @page_title = 'Own Projects'
+    @isAlgoliaSearch = false
     render action: 'index'
   end
 

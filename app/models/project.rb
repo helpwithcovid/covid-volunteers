@@ -88,4 +88,28 @@ class Project < ApplicationRecord
       "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
     end
   end
+
+  include AlgoliaSearch
+
+  algoliasearch per_environment: true do
+    attribute :name, :description, :participants, :goal, :looking_for, :location, :contact, :highlight, :progress, :docs_and_demo, :volunteered_users_count, :project_type_list, :skill_list
+
+    attribute :created_at do
+      created_at.to_i
+    end
+
+    attribute :updated_at do
+      updated_at.to_i
+    end
+
+    attribute :objectID do
+      :id
+    end
+
+    add_attribute :number_of_volunteers_needed do
+      number_of_volunteers
+    end
+
+  end  
+
 end
