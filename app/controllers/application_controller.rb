@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     @show_global_announcements = true
   end
 
-  def track_event(action)
-    session[:track_event] = action
+  def track_event(event_name)
+    session[:track_event] = event_name
   end
 end

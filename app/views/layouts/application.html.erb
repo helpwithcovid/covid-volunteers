@@ -23,10 +23,9 @@
 
         gtag('config', '<%= google_analytics_id %>');
 
-        <% action = pop_event_to_track %>
-        <% if action.present? %>
-          // console.log("Logging event...", "<%= action %>");
-          gtag('event', "<%= action %>", {
+        <% if (event_name = pop_event_to_track).present? %>
+          // console.log("Logging event...", "<%= event_name %>");
+          gtag('event', "<%= event_name %>", {
             'event_category': "Actions"
             // 'event_label': '',
             // 'value': ''
