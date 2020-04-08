@@ -48,7 +48,7 @@
             Description
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= simple_format @offer.description, class: 'mb-3' %>
+            <%= simple_format h(@offer.description), class: 'mb-3' %>
           </dd>
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
@@ -56,7 +56,7 @@
             Limitations
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= simple_format @offer.limitations, class: 'mb-3' %>
+            <%= simple_format h(@offer.limitations), class: 'mb-3' %>
           </dd>
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
@@ -64,7 +64,7 @@
             How to redeem it
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= simple_format @offer.redemption, class: 'mb-3' %>
+            <%= simple_format h(@offer.redemption), class: 'mb-3' %>
           </dd>
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">

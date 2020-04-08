@@ -4,8 +4,8 @@ RSpec.describe OffersController, type: :controller do
 
   describe 'GET #index' do
     it 'works' do
-      pending 'TODO'
-      fail
+      get :index
+      expect(response).to have_http_status(200)
     end
   end
 
