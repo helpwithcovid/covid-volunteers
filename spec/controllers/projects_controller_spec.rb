@@ -52,6 +52,15 @@ RSpec.describe ProjectsController, type: :controller do
         expect(response.body.scan('sign up to volunteer').size).to eq(0)
       end
     end
+
+    it 'shows highlighted projects only' do
+      project.update_attribute(:highlight, true)
+      reg_project = FactoryBot.create(:project, user: user, highlight: false)
+      get :index, params: { highlight: true }
+      expect(response).to be_successful
+      expect(assigns(:projects)).to include(project)
+      expect(assigns(:projects)).to_not include(reg_project)
+    end
   end
 
   describe 'GET #show' do
