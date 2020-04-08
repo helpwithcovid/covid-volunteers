@@ -1,5 +1,19 @@
 <%- share_title 'Resources' %>
 
+<!-- Upcoming events -->
+<div class="bg-indigo-600 mb-4">
+  <div class="container pt-10 pb-8 px-4">
+    <% if Settings.upcoming_events.present? %>
+      <div class="text-white mb-4"><%= section_name 'Upcoming Events' %></div>
+      <div class="sm:grid grid-cols-3 gap-6">
+        <%= render partial: 'home/event-card', collection: Settings.upcoming_events, as: :event, cached: true %>
+      </div>
+    <% else %>
+      <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
+    <% end %>
+  </div>
+</div>
+
 <%= render partial: "offers-announcements" if Settings.events.present? %>
 
 <div class="container">
