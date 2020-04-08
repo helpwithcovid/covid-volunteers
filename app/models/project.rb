@@ -4,7 +4,8 @@ class Project < ApplicationRecord
   include PgSearch::Model
 
   validates :name, presence: true
-
+  validates :short_description, length: { maximum: 129 }
+  
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy
 
@@ -58,7 +59,8 @@ class Project < ApplicationRecord
         :accepting_volunteers,
         :created_at,
         :updated_at,
-        :status
+        :status,
+        :short_description
       ],
       methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
     )

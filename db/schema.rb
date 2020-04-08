@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_030212) do
     t.string "links", default: ""
     t.string "status", default: "", null: false
     t.boolean "accepting_volunteers", default: true
+    t.string "short_description", default: "", null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
