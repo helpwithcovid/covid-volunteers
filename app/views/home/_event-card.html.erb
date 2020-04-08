@@ -1,4 +1,4 @@
-<div class="<% if event[:upcoming].present? %> bg-white <% else %> bg-indigo-100 <% end %> flex flex-col justify-between">
+<div class="<%= event[:upcoming].present? ? "bg-white" : "bg-indigo-100" %> flex flex-col justify-between">
   <div>
     <% if event[:upcoming].present? %>
       <div class="font-bold text-indigo-100 bg-indigo-600 leading-tight py-1 text-center text-sm">Upcoming Event</div>
