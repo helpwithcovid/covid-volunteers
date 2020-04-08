@@ -37,8 +37,6 @@ user4 = User.create!(email: 'user4@gmail.com', name: 'rspineanu', password: 'pas
 user5 = User.create!(email: 'user5@gmail.com', name: 'cpu', password: 'password', password_confirmation: 'password')
 user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'password', password_confirmation: 'password')
 
-<<<<<<< HEAD
-
 # PROJECTS
 project1 = user.projects.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', location: 'USA', description: 'A cool description', accepting_volunteers: true, highlight: true)
 project1.skill_list.add('Anything')
