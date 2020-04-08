@@ -31,9 +31,4 @@ class ApplicationController < ActionController::Base
   def track_event(action)
     session[:track_event] = action
   end
-
-  def pop_event_to_track
-    session.delete(:track_event)
-  end
-  helper_method :pop_event_to_track
 end

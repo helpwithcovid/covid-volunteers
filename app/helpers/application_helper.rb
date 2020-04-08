@@ -170,4 +170,9 @@ module ApplicationHelper
   def google_analytics_id
     Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
   end
+
+  def pop_event_to_track
+    session.delete(:track_event)
+  end
+
 end
