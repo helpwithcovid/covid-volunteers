@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 2020_04_08_030827) do
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "description", default: "", null: false
     t.string "participants", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "goal", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
