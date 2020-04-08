@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2020_04_08_030827) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "volunteer_location", default: "", null: false
+    t.string "target_country", default: "", null: false
+    t.string "target_location", default: "", null: false
     t.string "contact", default: "", null: false
     t.boolean "highlight", default: false, null: false
     t.string "progress", default: "", null: false
@@ -43,8 +45,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_030827) do
     t.string "links", default: ""
     t.string "status", default: "", null: false
     t.boolean "accepting_volunteers", default: true
-    t.string "target_country", default: "", null: false
-    t.string "target_location", default: "", null: false
+    t.string "short_description", default: "", null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

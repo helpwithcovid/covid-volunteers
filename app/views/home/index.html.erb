@@ -1,8 +1,8 @@
 <!-- Hero -->
 <div class="bg-white -mt-10 pt-24 ">
   <div class="container mb-4 text-center mb-24">
-    <h1 class="text-4xl font-bold tracking-tight leading-tight">Volunteer for COVID-19 projects</h1>
-    <h2 class="text-2xl tracking-tight leading-tight mt-2">We help people find the resources they need</h2>
+    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight leading-tight">Volunteer for COVID-19 projects</h1>
+    <h2 class="sm:text-2xl tracking-tight leading-tight mt-2">We help people find the resources they need.</h2>
 
     <div class="relative w-64 mx-auto">
       <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'} do |form| %>
@@ -12,14 +12,26 @@
         </button>
       <% end %>
     </div>
-    <div class="text-indigo-700 mt-4">We are <%= @project_count %>+ projects and <%= @volunteer_count %>+ volunteers strong.</div>
+    <div class="text-indigo-700 mt-4">We are <%= number_with_delimiter @project_count %>+ projects and <%= number_with_delimiter @volunteer_count %>+ volunteers strong.</div>
   </div>
 
   <!-- Featured projects -->
   <div class="relative container z-10 pb-4">
-    <div class="text-center mb-6">
-      <%= section_name 'Featured projects' %>
+    
+    <div class="flex mb-4 px-4">
+      <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg' %></div>
+      <div class="block sm:flex w-full pt-0 sm:pt-1">
+        <div class="w-full sm:w-5/6 text-lg sm:text-xl font-bold">
+          Featured Projects
+        </div>
+        <div class="w-full sm:w-1/6 text-left sm:text-right">
+          <%= link_to projects_path(highlight: true), class: 'text-indigo-700 font-bold group' do %>
+            See all <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+          <% end %>
+        </div>
+      </div>
     </div>
+
     <div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 md:grid-cols-3 sm:gap-6">
       <%= render partial: 'projects/project-card', collection: @featured_projects, as: :project, cached: true %>
     </div>
@@ -35,7 +47,9 @@
 
 <!-- Project groups -->
 <div class="container">
-  <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% cache @project_groups do %>
+    <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% end %>
 </div>
 
 
@@ -43,7 +57,7 @@
 <div class="bg-indigo-600">
   <div class="container pt-10 pb-8 px-4">
     <% if Settings.events.present? %>
-      <div class="text-white mb-4"><%= section_name 'Upcoming HWC events' %></div>
+      <div class="text-white mb-4"><%= section_name 'Resources & Events' %></div>
       <div class="sm:grid grid-cols-3 gap-6">
         <%= render partial: 'event-card', collection: Settings.events, as: :event, cached: true %>
       </div>
