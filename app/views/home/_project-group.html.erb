@@ -7,7 +7,7 @@
         <div class="flex-1">
           <%= group[:body] %>
         </div>
-        <%= link_to projects_path(project_types: group[:project_types].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
+        <%= link_to projects_path(project_types: group[:project_types].join(','), any: true), class: 'float-right text-indigo-700 font-bold group' do %>
           See all <%= group[:projects_count] %> <%= 'project'.pluralize group[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
         <% end %>
       </div>

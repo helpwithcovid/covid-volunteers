@@ -150,8 +150,8 @@ class ProjectsController < ApplicationController
       applied_project_types = (params[:project_types] or '').split(',')
 
       @projects = Project
-      @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
-      @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
+      @projects = @projects.tagged_with(applied_skills, any: params[:any]) if applied_skills.length > 0
+      @projects = @projects.tagged_with(applied_project_types, any: params[:any]) if applied_project_types.length > 0
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
 
       if params[:query].present?
