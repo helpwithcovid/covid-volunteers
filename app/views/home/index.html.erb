@@ -35,7 +35,9 @@
 
 <!-- Project groups -->
 <div class="container">
-  <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% cache @project_groups do %>
+    <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% end %>
 </div>
 
 
