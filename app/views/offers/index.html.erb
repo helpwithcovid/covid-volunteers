@@ -1,21 +1,4 @@
 <%- share_title 'Resources' %>
-
-<!-- Upcoming events -->
-<div class="bg-indigo-600 mb-4">
-  <div class="container pt-10 pb-8 px-4">
-    <% if Settings.upcoming_events.present? %>
-      <div class="text-white mb-4"><%= section_name 'Upcoming Events' %></div>
-      <div class="sm:grid grid-cols-3 gap-6">
-        <%= render partial: 'home/event-card', collection: Settings.upcoming_events, as: :event, cached: true %>
-      </div>
-    <% else %>
-      <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
-    <% end %>
-  </div>
-</div>
-
-<%= render partial: "offers-announcements" if Settings.events.present? %>
-
 <div class="container">
   <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 sm:rounded-md">
     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
@@ -41,9 +24,26 @@
       </div>
     </div>
   </div>
+</div>
 
-  <br/>
+<!-- Upcoming events -->
+<div class="container pt-10 pb-8">
+  <% if Settings.upcoming_events.present? %>
+    <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% Settings.upcoming_events.each do |event| %>
+        <% event[:upcoming] = true %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
+      <% Settings.events.each do |event| %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
+  <% end %>
+</div>
 
+<div class="container">
   <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>
       <% @offers.each_with_index do |offer, idx| %>
