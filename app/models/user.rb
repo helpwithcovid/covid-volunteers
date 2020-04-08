@@ -98,9 +98,9 @@ class User < ApplicationRecord
 
   # this function checks if this user has completed Blank Slate training
   def finished_training?
-    uri = URI.parse("https://app.blankslatetechnologies.com/sreo/v0.1/app/covidvolunteers/user/check-status")
+    uri = URI.parse(BLANK_SLATE_TRAINING_STATUS_URL)
     request = Net::HTTP::Post.new(uri)
-    request.basic_auth("helpwithcovid@gmail.com", "C6XfTc12")
+    request.basic_auth(BLANK_SLATE_USERNAME, BLANK_SLATE_PASSWORD)
     request.content_type = "application/json"
     request.body = JSON.dump({
       "email" => self.email
