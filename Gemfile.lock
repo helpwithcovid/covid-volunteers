@@ -1059,6 +1059,7 @@ GEM
     inline_svg (1.7.1)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
+    iso_country_codes (0.7.8)
     jaro_winkler (1.5.4)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -1248,6 +1249,7 @@ DEPENDENCIES
   factory_bot_rails
   gravatar_image_tag
   inline_svg
+  iso_country_codes (~> 0.7.8)
   jbuilder (~> 2.7)
   kaminari
   listen (>= 3.0.5, < 3.2)
