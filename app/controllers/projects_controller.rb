@@ -146,8 +146,8 @@ class ProjectsController < ApplicationController
     end
 
     def set_projects_query
-      applied_skills = (params[:skills] or '').split(',')
-      applied_project_types = (params[:project_types] or '').split(',')
+      applied_skills = (params[:skills] || '').split(',')
+      applied_project_types = (params[:project_types] || '').split(',')
 
       @projects = Project
       @projects = @projects.tagged_with(applied_skills, any: params[:any]) if applied_skills.length > 0
@@ -155,6 +155,7 @@ class ProjectsController < ApplicationController
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
       @projects = @projects.where(highlight: true) if params[:highlight].present?
       @projects = @projects.where(target_country: params[:target_country]) if params[:target_country].present?
+      @projects = @projects.where(status: params[:status]) if params[:status].present?
 
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)

@@ -26,8 +26,13 @@ class Project < ApplicationRecord
     end
   end
 
-  # This would be awesome but we have a bunch of sites with no statuses right now.
-  # validates :status, inclusion: { in: ALL_PROJECT_STATUS }
+  validates :status, inclusion: { in: ALL_PROJECT_STATUS }
+
+  before_validation :default_values
+
+  def default_values
+    self.status = ALL_PROJECT_STATUS.first if self.status.blank?
+  end
 
   def to_param
     [id, name.parameterize].join("-")
