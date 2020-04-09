@@ -1,4 +1,4 @@
-<%= link_to project, class: 'relative block shadow-lg transform transition-transform duration-100 hover:scale-105' do %>
+<%= link_to project, class: 'relative block shadow-lg hover:shadow-md transform transition-all duration-100 hover:scale-105' do %>
   <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(local_assigns[:group]) %>);"></div>
 
   <% if project.accepting_volunteers? %>
