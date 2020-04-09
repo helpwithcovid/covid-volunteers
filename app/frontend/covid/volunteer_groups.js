@@ -108,7 +108,9 @@ const VolunteerGroups = {
 
 Hope you are all doing well! Thank you for all that you are doing to work on a solution for our world and being part of helpwithcovid.com.
 
-This project needs your help: ${projectName} (http://helpwithcovid.com/projects/${projectId}) by ${projectOwnerEmail}. I thought you might be able to help. I have included the project owner to this email should have any questions.
+This project needs your help: ${projectName} (http://helpwithcovid.com/projects/${projectId}) by project owner - ${projectOwnerEmail}. I thought you might be able to help. I have included the project owner to this email should have any questions.
+
+If you are already on an existing project or feel that you are not the right fit after speaking with the project owner. Please login to helpwithcovid.com and remove the setting "pair me with a project" from My Profile page.
 
 Please let me know if you have any questions or concerns.
 
