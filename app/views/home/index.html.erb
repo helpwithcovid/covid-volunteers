@@ -17,7 +17,7 @@
 
   <!-- Featured projects -->
   <div class="relative container z-10 pb-4">
-    
+
     <div class="flex mb-4 px-4">
       <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg' %></div>
       <div class="block sm:flex w-full pt-0 sm:pt-1">
@@ -54,15 +54,9 @@
 
 
 <!-- Upcoming events -->
-<div class="bg-indigo-600">
+<div class="bg-gray-100 shadow-inner">
   <div class="container pt-10 pb-8 px-4">
-    <% if Settings.events.present? %>
-      <div class="text-white mb-4"><%= section_name 'Resources & Events' %></div>
-      <div class="sm:grid grid-cols-3 gap-6">
-        <%= render partial: 'event-card', collection: Settings.events, as: :event, cached: true %>
-      </div>
-    <% else %>
-      <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
-    <% end %>
+    <div class="text-indigo-600"><%= section_name 'Resources & Events' %></div>
+    <%= render partial: 'partials/events' %>
   </div>
 </div>
