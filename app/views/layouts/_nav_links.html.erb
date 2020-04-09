@@ -27,6 +27,9 @@
   <%= link_to edit_user_registration_path, class: "#{profile_nav_link_class(variant)}" do %>
     Profile
   <% end %>
+  <%= link_to destroy_user_session_path, method: :delete, class: "#{logout_nav_link_class(variant)}" do %>
+    Log out
+  <% end %>
 <% else %>
   <%= link_to new_user_registration_path, class: "#{sign_up_nav_link_class(variant)}" do %>
     Sign up
