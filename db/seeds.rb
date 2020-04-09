@@ -38,7 +38,7 @@ user5 = User.create!(email: 'user5@gmail.com', name: 'cpu', password: 'password'
 user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'password', password_confirmation: 'password')
 
 # PROJECTS
-project1 = user.projects.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', location: 'USA', description: 'A cool description', accepting_volunteers: true, highlight: true)
+project1 = user.projects.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', target_location: 'USA', description: 'A cool description', accepting_volunteers: true, highlight: true)
 project1.skill_list.add('Anything')
 project1.save! # FIXME is this necessary?
 
@@ -52,7 +52,7 @@ project2 = Project.create!(
 project2.skill_list.add('Design')
 project2.save! # FIXME is this necessary?
 
-project3 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', location: 'Brooklyn', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
+project3 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', target_location: 'Brooklyn', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', accepting_volunteers: true, highlight: true)
 
 project4 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Resistbot', description: %{Resistbot is a multipurpose and multifunction chatbot. Right now it's the easiest way to lobby both federal and state officials who are currently crafting a legislative response to the pandemic. Our end goal is to give everyone a voice and able to fight for what they want to see, no matter what it is, from social distancing measures at the state level, to federal UBI stimulus, to no corporate bailouts, to more health care supplies, and more. We've also just built covid-19 specific functionality to inform users of a variety of important information for their home state.}, accepting_volunteers: true, highlight: true)
 
