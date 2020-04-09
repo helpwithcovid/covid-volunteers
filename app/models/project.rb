@@ -12,7 +12,7 @@ class Project < ApplicationRecord
   acts_as_taggable_on :skills
   acts_as_taggable_on :project_types
 
-  pg_search_scope :search, against: %i(name description participants looking_for location highlight)
+  pg_search_scope :search, against: %i(name description participants looking_for volunteer_location target_country target_location highlight)
 
   after_save do
     # expire homepage caches if they contain this project
@@ -50,7 +50,9 @@ class Project < ApplicationRecord
         :participants,
         :goal,
         :looking_for,
-        :location,
+        :volunteer_location,
+        :target_country,
+        :target_location,
         :contact,
         :highlight,
         :progress,

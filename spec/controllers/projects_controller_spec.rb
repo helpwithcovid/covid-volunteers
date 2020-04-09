@@ -77,7 +77,7 @@ RSpec.describe ProjectsController, type: :controller do
       expect(response).to be_successful
       expect(json['name']).to eq(project.name)
       expect(json['description']).to eq(project.description)
-      expect(json['location']).to eq(project.location)
+      expect(json['volunteer_location']).to eq(project.volunteer_location)
       expect(json['accepting_volunteers']).to eq(project.accepting_volunteers)
       expect(json['to_param']).to eq(project.to_param)
     end

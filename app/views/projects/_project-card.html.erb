@@ -28,11 +28,10 @@
           No volunteers
         <% end %>
       </div>
-      
+
       <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
-      
-      <% if project.location? %>
-        <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
+      <% if project.volunteer_location? %>
+        <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.volunteer_location %></div>
       <% end %>
     </div>
   </div>

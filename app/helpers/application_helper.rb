@@ -75,9 +75,9 @@ module ApplicationHelper
     base_class
   end
 
-  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
+  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil, value: nil)
     if model.present?
-      query_string = build_query_string(toggle_filter(filter_by, label))
+      query_string = build_query_string(toggle_filter(filter_by, value || label))
       url = "/#{model}"
       url << "?#{query_string}" if query_string.present?
     end
