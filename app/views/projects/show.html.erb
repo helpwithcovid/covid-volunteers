@@ -318,7 +318,7 @@
               Target Country
             </dt>
             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= format_country(@project.target_country) %>
+              <%= filter_badge label: format_country(@project.target_country), color: 'blue', model: 'projects', filter_by: 'target_country', value: @project.target_country %>
             </dd>
           </div>
         <% end %>
