@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/about', to: 'home#about', as: 'about'
   get '/disclaimer', to: 'home#disclaimer', as: 'disclaimer'
   get '/risks', to:'home#risks', as: 'risks'
+  get '/training', to:'home#training', as: 'training'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= content_for(:share_title).present? ? content_for(:share_title)+' | ' : '' %> New Haven Help With COVID 19 - a clearing house for projects and volunteers that want to help with the COVID-19 crisis in New Haven.</title>
     <%= csrf_meta_tags %>
@@ -13,43 +14,47 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
 
-  </head>
+</head>
 
-  <body class="flex flex-col min-h-screen h-full bg-gray-100">
+<body class="flex flex-col min-h-screen h-full bg-gray-100">
     <div class="flex-1 bg-gray-100">
-      <%= render partial: 'layouts/nav' %>
+        <%= render partial: 'layouts/nav' %>
 
-      <div class="py-10">
-        <main class="flex-grow">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <% flash.each do |type, msg| %>
-              <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
-                <span class="block sm:inline"><%= msg %></span>
-              </div>
-            <% end %>
+        <div class="py-10">
+            <main class="flex-grow">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <% flash.each do |type, msg| %>
+                    <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
+                        <span class="block sm:inline"><%= msg %></span>
+                    </div>
+                    <% end %>
 
-            <%= yield %>
-          </div>
-        </main>
-      </div>
+                    <%= yield %>
+                </div>
+            </main>
+        </div>
     </div>
 
     <footer class="w-full border-t border-gray-200 px-5 py-5">
-      <div class="text-center text-gray-500 text-sm">
-        <%= link_to "About Us", about_path, class: 'text-indigo-500' %> | <%= link_to "Disclaimer", disclaimer_path, class: 'text-indigo-500' %> | <%= link_to "Risks", risks_path, class: 'text-indigo-500' %> | <%= mail_to HWC_EMAIL, nil, target: '_blank', class: 'text-indigo-500' %>
-        <br> Visit <%= link_to 'HelpWithCovid.com', 'https://helpwithcovid.com/', target: '_blank', class: 'text-indigo-500' %> for more COVID-19 volunteer opportunities beyond New Haven!
-      </div>
-    <% if Rails.env == 'production' %>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162750776-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+        <div class="text-center text-gray-500 text-sm">
+            <%= link_to "About Us", about_path, class: 'text-indigo-500' %> | <%= link_to "Disclaimer", disclaimer_path, class: 'text-indigo-500' %> | <%= link_to "Risks", risks_path, class: 'text-indigo-500' %> | <%= link_to "Safety Training", training_path, class: 'text-indigo-500' %> | <%= mail_to HWC_EMAIL, nil, target: '_blank', class: 'text-indigo-500' %>
+            <br> Visit <%= link_to 'HelpWithCovid.com', 'https://helpwithcovid.com/', target: '_blank', class: 'text-indigo-500' %> for more COVID-19 volunteer opportunities beyond New Haven!
+        </div>
+        <% if Rails.env == 'production' %>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162750776-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-	  gtag('config', 'UA-162750776-1');
-	</script>
-    <% end %>
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-162750776-1');
+        </script>
+        <% end %>
     </footer>
-  </body>
+</body>
+
 </html>
