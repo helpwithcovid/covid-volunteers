@@ -6,7 +6,7 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :short_description, length: { maximum: 129 }
-  
+
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy
 
@@ -90,8 +90,8 @@ class Project < ApplicationRecord
   end
 
   def cover_photo(group_override = nil)
-    cover_photo = false
-    if cover_photo.present?
+    if self.cover_photo_id.present?
+      self.images.find(self.cover_photo_id).variant(resize_to_limit: [400, 400])
     else
       "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
     end

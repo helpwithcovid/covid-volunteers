@@ -9,4 +9,14 @@ class ProjectsImagesController < ApplicationController
       format.json { render :show, location: @project }
     end
   end
+
+  def set_cover_photo
+    @project = Project.find params[:project_id]
+    @project.update(cover_photo_id: params[:id])
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: edit_project_path(@project), notice: 'Main image set.' }
+      format.json { render :show, location: @project }
+    end
+  end
 end
