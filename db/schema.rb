@@ -106,6 +106,13 @@ ActiveRecord::Schema.define(version: 2020_04_06_030212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "volunteer_abilities", force: :cascade do |t|
+    t.bigint "volunteer_id"
+    t.string "permission"
+    t.boolean "enabled", default: false
+    t.index ["volunteer_id"], name: "index_volunteer_abilities_on_volunteer_id"
+  end
+
   create_table "volunteer_groups", force: :cascade do |t|
     t.integer "project_id"
     t.integer "assigned_user_ids", default: [], null: false, array: true
@@ -122,4 +129,5 @@ ActiveRecord::Schema.define(version: 2020_04_06_030212) do
   end
 
   add_foreign_key "taggings", "tags"
+  add_foreign_key "volunteer_abilities", "volunteers"
 end

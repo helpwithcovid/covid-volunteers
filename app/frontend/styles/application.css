@@ -28,3 +28,17 @@
   -ms-overflow-style: none; /* IE 11 */
   scrollbar-width: none; /* Firefox 64 */
 }
+
+@keyframes flash {
+  0% {
+    background-color: lemonchiffon;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+.flash {
+  -webkit-animation: flash 3s;
+  animation: flash 3s;
+}

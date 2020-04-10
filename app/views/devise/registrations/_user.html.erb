@@ -16,6 +16,26 @@
           <%= skill_badges user.skills.collect { |s| s.name }, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
         </div>
       <% end %>
+      <% if volunteer %>
+        <div class="flex justify-end text-sm">
+          <%= form_for(volunteer, url: update_volunteer_project_path(volunteer.project), remote: true, html: {class: "js-volunteer-update-form bg-white shadow-md rounded p-4 mb-4"}) do |f| %>
+            <% abilities = VolunteerAbility.permissions.values.map { |p| volunteer.volunteer_abilities.find_or_initialize_by(permission: p) } %>
+            <% f.fields_for :volunteer_abilities, abilities do |ff| %>
+              <% VolunteerAbility.permissions.values.each do |permission| %>
+                <p>
+                  <%= ff.hidden_field :permission %>
+                  <%= ff.label :enabled, permission.titleize %>
+                  <%= ff.check_box :enabled, { class:  "js-volunteer-ability-checkbox form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                </p>
+              <% end %>
+              <%= f.hidden_field :id %>
+              <button type="submit" class="hidden">
+                Save
+              </button>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <div class="mt-2 sm:flex sm:justify-between">
         <div class="sm:flex">
           <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     member do
       post :toggle_volunteer
+      patch :update_volunteer
       get :volunteers
     end
   end

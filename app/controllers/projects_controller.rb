@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own, :volunteers ]
-  before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers ]
+  before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers, :update_volunteer ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
@@ -125,6 +125,19 @@ class ProjectsController < ApplicationController
     end
 
     redirect_to project_path(@project)
+  end
+
+  def update_volunteer
+    update_volunteer_params = params.fetch(:volunteer, {}).permit(:id, volunteer_abilities_attributes: [ :permission, :enabled ])
+
+    volunteer = @project.volunteers.find(update_volunteer_params[:id])
+    update_volunteer_params[:volunteer_abilities_attributes].each_pair do |idx, attrs|
+      volunteer.volunteer_abilities.find_or_initialize_by(permission: attrs[:permission]).tap do |ability|
+        ability.update(enabled: attrs["enabled"] == "1")
+      end
+    end
+
+    head :ok
   end
 
   private
