@@ -5,7 +5,7 @@ class ProjectMailer < ApplicationMailer
     @note = params[:note]
     @user_volunteered_projects_count = @user.volunteers.count
 
-    mail(to: @project.user.email, subject: "You got a new volunteer for #{@project.name}!")
+    mail(to: @project.user.email, reply_to: @user.email, subject: "You got a new volunteer for #{@project.name}!")
   end
 
   def volunteer_outreach
