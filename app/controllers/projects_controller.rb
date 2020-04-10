@@ -93,10 +93,8 @@ class ProjectsController < ApplicationController
 
   def edit
     if params[:act] == "remove"
-      p "YEEEEE"
       $removeMode = true;
     else
-      p "NUUUUU"
       $removeMode = false;
     end
   end
@@ -105,7 +103,6 @@ class ProjectsController < ApplicationController
     respond_to do |format|
 
       if $removeMode == true
-        p "YEAH BOIIII"
         if @project.update(project_params)
           @project.visible = false;
           format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
@@ -115,7 +112,6 @@ class ProjectsController < ApplicationController
           format.json { render json: @project.errors, status: :unprocessable_entity }
         end
       else
-        p "NAH BOIIIIII"
         if @project.update(project_params)
           format.html { redirect_to @project, notice: 'Project was successfully updated.' }
           format.json { render :show, status: :ok, location: @project }
