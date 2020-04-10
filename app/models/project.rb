@@ -19,6 +19,10 @@ class Project < ApplicationRecord
     self.volunteered_users.collect { |u| u.email }
   end
 
+  def volunteer_names
+    self.volunteered_users.collect { |u| u.name }
+  end
+
   def volunteered_users_count
     volunteered_users.count
   end
@@ -43,7 +47,7 @@ class Project < ApplicationRecord
         :created_at,
         :updated_at
       ],
-      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list]
+      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list, :vol_list]
     )
   end
 end
