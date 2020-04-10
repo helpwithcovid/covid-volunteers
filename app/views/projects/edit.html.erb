@@ -2,25 +2,44 @@
   <%= form_for @project do |f| %>
   <div>
       <div>
-      <div>
-          <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Edit volunteer position <%= @project.name %>
-          </h3>
-          <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-          This information will be displayed publicly.
-          </p>
-      </div>
 
-      <%= render partial: 'project_form', locals: { f: f } %>
+        <% if params[:act] == "remove" %>
+            <div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Remove volunteer position <%= @project.name %>
+                </h3>
+            </div>
+            <%= render partial: 'project_removal_form', locals: { f: f } %>
+        <% else %>
+            <div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Edit volunteer position <%= @project.name %>
+                </h3>
+                <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+                This information will be displayed publicly.
+                </p>
+            </div>
+            <%= render partial: 'project_form', locals: { f: f } %>
+        <% end %>
+
+        
+
+        
       </div>
   </div>
   <div class="mt-8 border-t border-gray-200 pt-5">
       <div class="flex justify-end">
-      <span class="ml-3 inline-flex rounded-md shadow-sm">
-          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-          Save volunteer position
-          </button>
-      </span>
+        <span class="ml-3 inline-flex rounded-md shadow-sm">
+            <% if params[:act] == "remove" %>
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+                Delete volunteer position
+                </button>
+            <% else %>
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                Save volunteer position
+                </button>
+            <% end %>
+        </span>
       </div>
   </div>
   <% end %>

@@ -1,0 +1,74 @@
+<div class="mt-6 sm:mt-5">
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Volunteer Position Name
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "name", disabled: true, class: "bg-gray-300 text-gray-600 flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="organization" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Organization
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "organization", disabled: true, class: "bg-gray-300 text-gray-600 flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+        <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+            <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                Was this website helpful?<span class="text-red-500">*</span>
+            </legend>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :was_helpful, true, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        Yes
+                    </label>
+                    </div>
+                </div>
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :was_helpful, false, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        No
+                    </label>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="exit_comments" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Do you have any comments?
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_area "exit_comments", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">This information will be used to improve our services.</p>
+    </div>
+  </div>
+</div>

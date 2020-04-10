@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
 
+  $removeMode = false;
+
   def index
     params[:page] ||= 1
     @show_filters = true
@@ -90,16 +92,37 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    if params[:act] == "remove"
+      p "YEEEEE"
+      $removeMode = true;
+    else
+      p "NUUUUU"
+      $removeMode = false;
+    end
   end
 
   def update
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
+
+      if $removeMode == true
+        p "YEAH BOIIII"
+        if @project.update(project_params)
+          @project.visible = false;
+          format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
+          format.json { head :no_content }
+        else
+          format.html { render :edit }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        p "NAH BOIIIIII"
+        if @project.update(project_params)
+          format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+          format.json { render :show, status: :ok, location: @project }
+        else
+          format.html { render :edit }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -135,7 +158,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :organization, :level_of_urgency, :level_of_exposure, :description, :participants, :looking_for, :contact, :location, :start_date, :end_date, :compensation, :background_screening_required, :progress, :docs_and_demo, :number_of_volunteers, :skill_list => [], :project_type_list => [])
+      params.fetch(:project, {}).permit(:name, :organization, :level_of_urgency, :level_of_exposure, :description, :participants, :looking_for, :contact, :location, :start_date, :end_date, :compensation, :background_screening_required, :progress, :docs_and_demo, :number_of_volunteers, :was_helpful, :exit_comments, :visible, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin
