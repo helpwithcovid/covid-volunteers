@@ -24,7 +24,7 @@ class HomeController < ApplicationController
       exclude_ids = []
       @project_groups.each do |group|
         exclude_ids.flatten!
-        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).where.not(id: exclude_ids).tagged_with(group[:project_types], any: true, on: :project_types).take 3 }
+        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).where.not(id: exclude_ids).tagged_with(group[:project_types], any: true, on: :project_types).shuffle.take 3 }
         exclude_ids << group[:featured_projects].map(&:id)
         group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(group[:project_types], any: true, on: :project_types).count }
       end
