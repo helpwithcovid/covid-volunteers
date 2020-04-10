@@ -99,3 +99,6 @@ gem 'dotenv-rails', groups: [ :development, :test ]
 
 # Configuration
 gem 'config'
+
+# Country codes
+gem 'iso_country_codes', '~> 0.7.8'

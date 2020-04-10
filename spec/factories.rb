@@ -26,8 +26,12 @@ FactoryBot.define do
   factory :project do
     name { 'My First Project' }
     description { 'My description' }
-    location { 'location' }
+    volunteer_location { 'location' }
     status { ALL_PROJECT_STATUS.first }
+  end
+
+  factory :project_with_type, parent: :project do
+    project_type_list { ['Track the outbreak'] }
   end
 
   factory :volunteer do

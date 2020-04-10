@@ -142,7 +142,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :location, :progress, :docs_and_demo, :number_of_volunteers, :number_of_volunteers, :links, :status, :short_description, :accepting_volunteers, skill_list: [], project_type_list: [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :volunteer_location, :target_country, :target_location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :short_description, :skill_list => [], :project_type_list => [])
     end
 
     def ensure_owner_or_admin
@@ -153,13 +153,16 @@ class ProjectsController < ApplicationController
     end
 
     def set_projects_query
-      applied_skills = (params[:skills] or '').split(',')
-      applied_project_types = (params[:project_types] or '').split(',')
+      applied_skills = (params[:skills] || '').split(',')
+      applied_project_types = (params[:project_types] || '').split(',')
 
       @projects = Project
       @projects = @projects.tagged_with(applied_skills, any: params[:any]) if applied_skills.length > 0
       @projects = @projects.tagged_with(applied_project_types, any: params[:any]) if applied_project_types.length > 0
-      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == "1") if params[:accepting_volunteers].present?
+      @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
+      @projects = @projects.where(highlight: true) if params[:highlight].present?
+      @projects = @projects.where(target_country: params[:target_country]) if params[:target_country].present?
+      @projects = @projects.where(status: params[:status]) if params[:status].present?
 
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)

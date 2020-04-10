@@ -1,6 +1,10 @@
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
+      $('#not_accepting_volunteers').click(function(ev) {
+        Project.notAcceptingVolunteers(this, ev);
+      });
+
       $('#volunteer_with_skills').click(function(ev) {
         Project.volunteerWithSkills(this, ev);
       });
@@ -9,6 +13,20 @@ const Project = {
         Project.volunteerWithoutSkills(this, ev);
       });
     });
+  },
+
+  notAcceptingVolunteers(that, ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const targetHref = $(that).attr('href');
+
+    const headerHTML = "This project is not accepting volunteers";
+    const bodyHTML = "We're sorry. This project has indicated that they have all the volunteers they need at this time.";
+
+    Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'OK' } ], 'warning');
+
+    return false;
   },
 
   volunteerWithSkills(that, ev) {
