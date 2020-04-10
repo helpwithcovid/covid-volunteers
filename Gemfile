@@ -73,7 +73,7 @@ gem 'devise'
 gem 'rinku'
 
 # Sending emails.
-gem 'aws-sdk'
+gem 'aws-sdk-ses'
 gem 'aws-sdk-rails'
 
 # Exceptions.
