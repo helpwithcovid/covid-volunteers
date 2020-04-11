@@ -13,10 +13,11 @@ class ProjectsImagesController < ApplicationController
 
   def set_cover_photo
     @project = Project.find params[:project_id]
-    @project.update(cover_photo_id: params[:id])
+    new_cover_photo_id = params[:id].to_i == @project.cover_photo_id ? nil : params[:id].to_i
+    @project.update(cover_photo_id: new_cover_photo_id)
 
     respond_to do |format|
-      format.html { redirect_back fallback_location: edit_project_path(@project), notice: 'Main image set.' }
+      format.html { redirect_back fallback_location: edit_project_path(@project), notice: 'Changed cover photo.' }
       format.json { render :show, location: @project }
     end
   end
