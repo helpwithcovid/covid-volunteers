@@ -34,25 +34,17 @@ const Project = {
     ev.stopPropagation();
 
     const targetHref = $(that).attr('href');
-    const skillsRequired = $(that).attr('x-skills-required').split(", ");
+    const skillsRequired = $(that).attr('x-skills-required').split(', ');
     const projectName = $(that).attr('x-project-name');
 
 
     const headerHTML = "You're about to volunteer";
+    console.log(skillsRequired)
+    console.log(Covid.skillBadges(skillsRequired))
     const bodyHTML = `
       <span class="text-indigo-600">${projectName}</span> is looking for 
-      
       <br>
-      <div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
-      ${skillsRequired.map( skill =>
-        `<div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 flex-shrink-0 bg-indigo-100 text-indigo-800 bg-indigo-300" title="">
-          <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" r="3"></circle>
-            </svg>
-              ${skill}
-        </div>`
-      )} 
-      </div>
+      ${Covid.skillBadges(skillsRequired, 'indigo')} 
       <br>
       Are you sure? The project owner will be alerted.<br><br>
       Optionally, you can also send them a note on how you may contribute on one of these roles
