@@ -19,34 +19,33 @@
     </div>
 </div>
 
-      <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-gray-200 sm:px-6 sm:py-5" style="border-top-width:1px">
-        <div class="text-sm leading-5 text-gray-500">
-            <p class="font-medium">Training Status</p>
-            <button type="button" class="text-sm text-gray-500 hover:text-gray-800 hover:underline" id='what_is_this'>What is this?</button>
-            <div id="modal" class="modal">
-              <!-- Modal content -->
-              <div class="modal-content border-b border-gray-200 sm:rounded-lg">
-                <span class="close">&times;</span>
-                <div class="text-sm leading-5 text-gray-500">
-                  <h3 class="text-lg leading-6 font-medium text-gray-900">What does Training Status mean?</h3>
+<div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-gray-200 sm:px-6 sm:py-5" style="border-top-width:1px">
+    <div class="text-sm leading-5 text-gray-500">
+        <p class="font-medium">Training Status</p>
+        <button type="button" class="text-sm text-gray-500 hover:text-gray-800 hover:underline" id='what_is_this'>What is this?</button>
+        <div id="modal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content border-b border-gray-200 sm:rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        What does Training Status mean?</h3>
+                    <span class="close">&times;</span>
                 </div>
-                <div class="sm:py-5">
-                  <p>Volunteers can get certified for jobs by completing training on Blank Slate.
-                </div>
-                <p>Don't have an account?</p>
-                <a href="https://blankslatetech.co/" class="text-indigo-500" target="_blank">Get started.</a>
-              </div>
+                <p class="mb-4">NewHavenHelpWithCovid.com has partnered with the training platform Blank Slate to provide a simple way for volunteers to quickly get up to speed on how to have the highest impact possible in your work, especially in light of frequently changing guidelines and best practices connected to COVID-19.</p>
+                <p class="mb-4">To protect our volunteers and others you work with during this pandemic, we ask all our volunteers who’ve marked their current location as “on-site in New Haven” to use Blank Slate to receive training on City of New Haven’s latest volunteer safety guidelines, which will only take 2-3 minutes. After that, depending on what you need to learn for your volunteer work, Blank Slate will send one or two nudges per week to make sure these updates stay front of mind. Your training status will be indicated on your volunteer profile so that our local partners can recruit with peace of mind.</p>
+                <p>If you haven’t received an email from Blank Slate with a link to set up your account, please contact <a href="mailto:newhavenpandemic@gmail.com" class="text-indigo-500">newhavenpandemic@gmail.com</a>.</p>
             </div>
-
         </div>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @user.finished_training? %>
-            <%= image_tag('check-mark.svg', :size => "30x20") %>
-          <% else %> 
-            <%= image_tag('ex-mark.svg', :size => "30x20") %>
-          <% end %>
-        </dd>
-      </div>
+
+    </div>
+    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+        <% if @user.finished_training? %>
+        <%= image_tag('check-mark.svg', :size => "30x20") %>
+        <% else %>
+        <%= image_tag('ex-mark.svg', :size => "30x20") %>
+        <% end %>
+    </dd>
+</div>
 
 
 <div class="mt-6 sm:mt-5">
