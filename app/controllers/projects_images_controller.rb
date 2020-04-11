@@ -3,6 +3,7 @@ class ProjectsImagesController < ApplicationController
     @project = Project.find params[:project_id]
     @image = @project.images.find params[:id]
     @image.purge
+    $project.update(cover_photo_id: nil) if @project.cover_photo_id == params[:id]
 
     respond_to do |format|
       format.html { redirect_back fallback_location: edit_project_path(@project), notice: 'Image destroyed.' }
