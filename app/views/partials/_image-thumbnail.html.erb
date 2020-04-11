@@ -1,4 +1,4 @@
-<div class="relative rounded group overflow-hidden <%= 'border-4 border-indigo-600' if image.id == @project.cover_photo_id %>">
+<div class="relative rounded group overflow-hidden <%= image.id == @project.cover_photo_id ? 'border-4 border-indigo-600' : 'border border-indigo-300' %>">
   <% if image.representable? %>
     <%= link_to image, 'data-fancybox': 'hwc-gallery' do %>
       <%= image_tag image.variant(resize_to_limit: [240, 240]) %>
@@ -9,6 +9,11 @@
   <% if @project.present? and @project.user == current_user %>
     <%= link_to inline_svg_pack_tag('media/svgs/color-swatch.svg'), set_cover_photo_project_image_path(@project, image), method: :post, class: 'absolute inset-auto top-0 left-0 ml-4 mt-4 z-20 fill-current hidden group-hover:block bg-indigo-50 text-indigo-800 border rounded hover:background-indigo-200', title: 'Set main image' %>
     <%= link_to inline_svg_pack_tag('media/svgs/trash.svg'), project_image_path(@project, image), method: :delete, remote: true, class: 'absolute inset-auto top-0 right-0 mr-4 mt-4 z-20 fill-current hidden group-hover:block bg-indigo-50 text-indigo-800 border rounded hover:background-indigo-200', title: 'Remove image' %>
+    <% if image.id == @project.cover_photo_id %>
+      <div class="absolute inset-auto bottom-0 w-full text-center hidden group-hover:block bg-indigo-50 text-indigo-800 text-sm font-medium">
+        Cover photo
+      </div>
+    <% end %>
   <% end %>
 </div>
 
