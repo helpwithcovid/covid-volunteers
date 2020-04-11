@@ -1,153 +1,152 @@
 <%- share_title "Volunteer #{@user.name}" %>
 
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-  <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
-    <div class="ml-4 mt-4">
-      <div class="flex items-center">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-          <%= @user.name %>
-        </h3>
-      </div>
-    </div>
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+        <div class="ml-4 mt-4">
+            <div class="flex items-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <%= @user.name %>
+                </h3>
+            </div>
+        </div>
 
-    <div class="ml-4 mt-4 flex-shrink-0 flex">
-      <% if current_user && current_user.is_admin? %>
-        <%= link_to delete_user_admin_index_path(user_id: @user.id), method: :post, data: { confirm: "Are you sure you want to delete this user?" } do %>
-          <span class="ml-3 inline-flex rounded-md shadow-sm">
-            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
-              <span>
-                Delete
-              </span>
-            </button>
-          </span>
-        <% end %>
-      <% end %>
+        <div class="ml-4 mt-4 flex-shrink-0 flex">
+            <% if current_user && current_user.is_admin? %>
+            <%= link_to delete_user_admin_index_path(user_id: @user.id), method: :post, data: { confirm: "Are you sure you want to delete this user?" } do %>
+            <span class="ml-3 inline-flex rounded-md shadow-sm">
+                <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+                    <span>
+                        Delete
+                    </span>
+                </button>
+            </span>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
 
-<br/>
+<br />
 
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-  <div class="px-4 py-5 sm:p-0">
-    <dl>
-      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
-        <dt class="text-sm leading-5 font-medium text-gray-500">
-          Email
-        </dt>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= mail_to @user.email, nil, encode: 'javascript', class: 'text-indigo-500' %>
-        </dd>
-      </div>
-      <% if @user.phone.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Phone
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= @user.phone %>
-          </dd>
-        </div>
-      <% end %>
-      <% if @user.affiliation.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Affiliation
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= @user.affiliation %>
-          </dd>
-        </div>
-      <% end %>
-      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-        <dt class="text-sm leading-5 font-medium text-gray-500">
-          About
-        </dt>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= simple_format @user.about, class: 'mb-3' %>
-        </dd>
-      </div>
-      
-      <% if @user.skill_list.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Skills
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-            <%= skill_badges @user.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
-          </dd>
-        </div>
-      <% end %>
-
-      <% if @user.level_of_availability.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Level of Availability
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= @user.level_of_availability %>
-          </dd>
-        </div>
-      <% end %>
-
-      <% if @user.resume.present? %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Resume / Headline
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= @user.resume %>
-          </dd>
-        </div>
-      <% end %>
-
-      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-        <dt class="text-sm leading-5 font-medium text-gray-500">
-          Interesting links
-        </dt>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= simple_format Rinku.auto_link(sanitize(@user.profile_links), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
-        </dd>
-      </div>
-      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-        <dt class="text-sm leading-5 font-medium text-gray-500">
-          Location
-        </dt>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= @user.true_location %>
-        </dd>
-      </div>
-      <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-<!--         <dt class="text-sm leading-5 font-medium text-gray-500">
-          Training Status
-        </dt> -->
-        <div class="text-sm leading-5 text-gray-500">
-            <p class="font-medium">Training Status</p>
-            <button class="text-sm text-gray-500 hover:text-gray-800 hover:underline" id='what_is_this'>What is this?</button>
-            <div id="modal" class="modal">
-              <!-- Modal content -->
-              <div class="modal-content border-b border-gray-200 sm:rounded-lg">
-                <span class="close">&times;</span>
-                <div class="text-sm leading-5 text-gray-500">
-                  <h3 class="text-lg leading-6 font-medium text-gray-900">What does Training Status mean?</h3>
-                </div>
-                <div class="sm:py-5">
-                  <p>Volunteers can get certified for jobs by completing training on Blank Slate.
-                </div>
-                <p>Don't have an account?</p>
-                <a href="https://blankslatetech.co/" class="text-indigo-500" target="_blank">Get started.</a>
-              </div>
+    <div class="px-4 py-5 sm:p-0">
+        <dl>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Email
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= mail_to @user.email, nil, encode: 'javascript', class: 'text-indigo-500' %>
+                </dd>
+            </div>
+            <% if @user.phone.present? %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Phone
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.phone %>
+                </dd>
+            </div>
+            <% end %>
+            <% if @user.affiliation.present? %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Affiliation
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.affiliation %>
+                </dd>
+            </div>
+            <% end %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    About
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= simple_format @user.about, class: 'mb-3' %>
+                </dd>
             </div>
 
-        </div>
-        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @user.finished_training? %>
-            <%= image_tag('check-mark.svg', :size => "30x20") %>
-          <% else %> 
-            <%= image_tag('ex-mark.svg', :size => "30x20") %>
-          <% end %>
-        </dd>
-      </div>
-    </dl>
-  </div>
+            <% if @user.skill_list.present? %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Skills
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
+                    <%= skill_badges @user.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
+                </dd>
+            </div>
+            <% end %>
+
+            <% if @user.level_of_availability.present? %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Level of Availability
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.level_of_availability %>
+                </dd>
+            </div>
+            <% end %>
+
+            <% if @user.resume.present? %>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Resume / Headline
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.resume %>
+                </dd>
+            </div>
+            <% end %>
+
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Interesting links
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= simple_format Rinku.auto_link(sanitize(@user.profile_links), :all, 'class="text-indigo-500"'), class: 'mb-3' %>
+                </dd>
+            </div>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Location
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.true_location %>
+                </dd>
+            </div>
+            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+                <!--         <dt class="text-sm leading-5 font-medium text-gray-500">
+          Training Status
+        </dt> -->
+                <div class="text-sm leading-5 text-gray-500">
+                    <p class="font-medium">Training Status</p>
+                    <button class="text-sm text-gray-500 hover:text-gray-800 hover:underline" id='what_is_this'>What is this?</button>
+                    <div id="modal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content border-b border-gray-200 sm:rounded-lg">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    What does Training Status mean?</h3>
+                                <span class="close">&times;</span>
+                            </div>
+                            <p class="mb-4">NewHavenHelpWithCovid.com has partnered with the training platform Blank Slate to provide a simple way for volunteers to quickly get up to speed on how to have the highest impact possible in your work, especially in light of frequently changing guidelines and best practices connected to COVID-19.</p>
+                            <p class="mb-4">To protect our volunteers and others you work with during this pandemic, we ask all our volunteers who’ve marked their current location as “on-site in New Haven” to use Blank Slate to receive training on City of New Haven’s latest volunteer safety guidelines, which will only take 2-3 minutes. After that, depending on what you need to learn for your volunteer work, Blank Slate will send one or two nudges per week to make sure these updates stay front of mind. Your training status will be indicated on your volunteer profile so that our local partners can recruit with peace of mind.</p>
+                            <p>If you haven’t received an email from Blank Slate with a link to set up your account, please contact <a href="mailto:newhavenpandemic@gmail.com" class="text-indigo-500">newhavenpandemic@gmail.com</a>.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    <% if @user.finished_training? %>
+                    <%= image_tag('check-mark.svg', :size => "30x20") %>
+                    <% else %>
+                    <%= image_tag('ex-mark.svg', :size => "30x20") %>
+                    <% end %>
+                </dd>
+            </div>
+        </dl>
+    </div>
 </div>
