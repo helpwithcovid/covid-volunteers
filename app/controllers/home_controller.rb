@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :hydrate_project_groups
+  before_action :hydrate_project_categories
   before_action :hide_global_announcements
 
   def index
@@ -18,15 +18,15 @@ class HomeController < ApplicationController
   end
 
   private
-    def hydrate_project_groups
-      @project_groups = Settings.project_groups
+    def hydrate_project_categories
+      @project_categories = Settings.project_categories
 
       exclude_ids = []
-      @project_groups.each do |group|
+      @project_categories.each do |category|
         exclude_ids.flatten!
-        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).where.not(id: exclude_ids).tagged_with(group[:project_types], any: true, on: :project_types).limit(3).order('RANDOM()') }
-        exclude_ids << group[:featured_projects].map(&:id)
-        group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(group[:project_types], any: true, on: :project_types).count }
+        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).where.not(id: exclude_ids).tagged_with(category[:project_types], any: true, on: :project_types).limit(3).order('RANDOM()') }
+        exclude_ids << category[:featured_projects].map(&:id)
+        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
       end
     end
 end

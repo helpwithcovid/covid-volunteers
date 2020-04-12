@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :short_description, length: { maximum: 129 }
-  
+
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy
 
@@ -16,8 +16,8 @@ class Project < ApplicationRecord
 
   after_save do
     # expire homepage caches if they contain this project
-    Settings.project_groups.each do |group|
-      cache_key = "project_group_#{group[:name].downcase}_featured_projects"
+    Settings.project_categories.each do |category|
+      cache_key = "project_category_#{category[:name].downcase}_featured_projects"
       featured_projects = Rails.cache.read cache_key
 
       next if featured_projects.blank?
@@ -73,26 +73,26 @@ class Project < ApplicationRecord
     )
   end
 
-  def group
-    project_groups = {}
+  def category
+    project_categories = {}
 
     begin
-      Settings.project_groups.each do |group|
-        intersection = self.project_type_list.to_a & group['project_types'].to_a
-        project_groups[group.name] = intersection.count
+      Settings.project_categories.each do |category|
+        intersection = self.project_type_list.to_a & category['project_types'].to_a
+        project_categories[category.name] = intersection.count
       end
 
-      present_group = project_groups.sort_by { |k, v| v }.reverse.first.first
+      present_category = project_categories.sort_by { |k, v| v }.reverse.first.first
     end
 
-    present_group
+    present_category
   end
 
-  def cover_photo(group_override = nil)
+  def cover_photo(category_override = nil)
     cover_photo = false
     if cover_photo.present?
     else
-      "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
+      "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
     end
   end
 end

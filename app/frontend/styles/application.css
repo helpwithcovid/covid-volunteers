@@ -2,7 +2,7 @@
 @import './tailwindcss/components.css';
 @import './tailwindcss/utilities.css';
 
-.featured-groups:before {
+.featured-categories:before {
   position: absolute;
   content: '';
   display: block;
@@ -18,7 +18,7 @@
 }
 
 @media (min-width: 640px) {
-  .featured-groups { padding-top: 10% }
+  .featured-categories { padding-top: 10% }
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
