@@ -50,19 +50,15 @@ events:
     cta_url: https://zoom.us/rec/share/5sttA5fAsWxLT6_Nx2-Yd7IEDqfuaaa823JI8_tcyUYSZzIbgvNy717m1UGGegEf
 
 upcoming_events:
-  - title: Project Owners Office Hours led by Jamie Wilkinson
-    sub_title: Thursday, April 9th 4pm-5pm PST | <a href="https://docs.google.com/spreadsheets/d/1TBW8F29202kdKs8kclI-3SZHJMZ6QjYW0l0UfIyFnKc/edit#gid=0" class="text-indigo-600 font-bold" target="_blank">Complete Office Hours Questionnaire</a>
-    cta_text: Click here to add to your calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NjY0cnBkazRkZWJobm1qYmxuanNxbWU5ZmQgbWlzYUBvcGVuYWkuY29t&tmsrc=misa%40openai.com
-  - title: Project Owners Office Hours led by Jeeshan Chowdhury
-    sub_title: Friday, April 10th 12pm-1pm PST | <a href="https://docs.google.com/spreadsheets/d/1_hKpejkq1Kf2Hs3dCTbcdJnHPx7LCLWDCIJec4PswJM/edit#gid=0" class="text-indigo-600 font-bold" target="_blank">Complete Office Hours Questionnaire</a>
-    cta_text: Click here to add to your calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MWo2ajM3ZHV0ZGRwZmVjZnJrM3Y3MnFtZmEgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
   - title: Project Owners Office Hours led by Radu Spineanu
     sub_title: Tuesday, April 14th 4pm-5pm PST | <a href="https://docs.google.com/spreadsheets/d/1z8jJdeHssfCSbsQ9HrmBebOdM1jCLk8nux7tJIUDCHY/edit#gid=0" class="text-indigo-600 font-bold" target="_blank">Complete Office Hours Questionnaire</a>
     cta_text: Click here to add to your calendar
     cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NjE4MXNhYWQ1ZmRyMDcwbWc1ZHJjZ3ZsdGsgbWlzYUBvcGVuYWkuY29t&tmsrc=misa%40openai.com
-  - title: Live Webinar with Ambika Bumb
+  - title: A Global Perspective on Problems Needing Solutions Regarding COVID-19 Response. Live Panel with Ambika Bumb
     sub_title: Thursday, April 16th 12pm-12:30pm PST | Ambika is a Health, Science and Technology Advisor focusing on Crisis Management and Strategy
     cta_text: Click here to add to your calendar
     cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NDZ0bGNzOG9rbDN0NWpkbHV0cm5zOHRqOTQgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
+  - title: Live Panel with Eric Ries
+    sub_title: ''
+    cta_text: Coming Soon
+    cta_url: #
