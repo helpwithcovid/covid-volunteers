@@ -80,4 +80,9 @@ jobs: # a collection of steps
       # Save test results for timing analysis
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
