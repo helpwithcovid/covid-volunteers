@@ -90,11 +90,11 @@ const Covid = {
     $(modal).attr('x-data', '{ open: true }');
   },
   skillBadges(items, color = 'indigo', title = '') {
-    let classes = ''
+    let classes = '';
     if (color == 'blue') {
-      classes = 'bg-blue-100 text-blue-800  bg-blue-300'
+      classes = 'bg-blue-100 text-blue-800  bg-blue-300';
     } else {
-      classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300'
+      classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300';
     }
     const badgeHTML = `<div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
       ${items.map(item => 
@@ -104,8 +104,8 @@ const Covid = {
             </svg>
             ${item}
           </div>`
-        )} 
-     </div>`
+        ).join('')} 
+     </div>`;
     return badgeHTML
   }
 };

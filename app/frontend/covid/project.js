@@ -39,8 +39,6 @@ const Project = {
 
 
     const headerHTML = "You're about to volunteer";
-    console.log(skillsRequired)
-    console.log(Covid.skillBadges(skillsRequired))
     const bodyHTML = `
       <span class="text-indigo-600">${projectName}</span> is looking for 
       <br>
