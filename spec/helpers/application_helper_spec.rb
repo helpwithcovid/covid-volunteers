@@ -46,11 +46,10 @@ RSpec.describe ApplicationHelper do
     assert querystring.eql? desired_qs
   end
 
-  describe '#pop_event_to_track' do
+  describe '#track_ga_event_if_needed' do
     it 'works' do
-      # Ideally would do `track_event` -> `pop_event_to_track` but this is fine
       session[:track_event] = 'Really cool event'
-      expect(pop_event_to_track).to eq('Really cool event')
+      expect(track_ga_event_if_needed).to match(/Really cool event/)
     end
   end
 
