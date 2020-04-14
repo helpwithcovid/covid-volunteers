@@ -10,18 +10,26 @@ const VolunteerGroups = {
       })
 
       $('#volunteer_list').on('click', '.volunteer-in-group', function() {
-        VolunteerGroups.removeVolunteerFromGroup(this);
+        VolunteerGroups.toggleKeepInGroup(this);
       })
     });
   },
 
   addVolunteerToGroup(that) {
     const projectId = $('#project_id').val();
-    const currentRejectedUserIds = $('#rejected_user_ids').val().split(',').filter(el => el);
-    const chosenUserIds = $('.volunteer-in-group .volunteer-group-user-id').map(function() { return $(this).val() }).toArray();
+    const currentAcceptedUserIds = $('#accepted_user_ids').val().split(',').filter(el => el);
+
+    $('.volunteer-in-group').each((_, el) => {
+      const userId = $(el).find('.volunteer-group-user-id').val();
+
+      if (currentAcceptedUserIds.indexOf(userId) == -1) {
+        $(el).remove();
+      }
+    });
+
     const filter = $('#filter_volunteers').val();
 
-    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: chosenUserIds, rejected_user_ids: currentRejectedUserIds, filter }, (data) => {
+    $.post(`/admin/volunteer_groups/generate_volunteers?project_id=${projectId}`, { user_ids: currentAcceptedUserIds, filter }, (data) => {
       const users = data.users;
       let html = '';
 
@@ -34,7 +42,7 @@ const VolunteerGroups = {
         const userRow = `
 <li class="border-t border-gray-200 volunteer-in-group">
   <input type="hidden" value="${user.id}" name="volunteer_group[user_ids][]" class="volunteer-group-user-id" />
-  <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+  <div class="block focus:outline-none transition duration-150 ease-in-out">
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">
         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
@@ -45,10 +53,10 @@ const VolunteerGroups = {
             <span class="inline-flex rounded-md shadow-sm">
               <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
                 <svg class="-ml-1 mr-2 h-4 w-4 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
                 <span>
-                  remove
+                  keep
                 </span>
               </button>
             </span>
@@ -76,14 +84,23 @@ const VolunteerGroups = {
     });
   },
 
-  removeVolunteerFromGroup(that) {
-    const rejectedUserId = $(that).find('.volunteer-group-user-id').val();
-    const currentRejectedUserIds = $('#rejected_user_ids').val();
-    $('#rejected_user_ids').val(`${currentRejectedUserIds},${rejectedUserId}`);
-    that.remove();
+  toggleKeepInGroup(that) {
+    const acceptedUserId = $(that).find('.volunteer-group-user-id').val();
+    let acceptedUserIds = $('#accepted_user_ids').val().split(',');
+
+    if (acceptedUserIds.indexOf(acceptedUserId) > -1) {
+      $(that).removeClass('border-orange-300 bg-orange-100');
+      acceptedUserIds = acceptedUserIds.filter(val => val != acceptedUserId);
+    } else {
+      $(that).addClass('border-orange-300 bg-orange-100');
+      acceptedUserIds.push(acceptedUserId);
+    }
+
+    $('#accepted_user_ids').val(acceptedUserIds.join(','));
   },
 
   prepareIntroEmail(that) {
+    const currentAcceptedUserIds = $('#accepted_user_ids').val().split(',').filter(el => el);
     const projectId = $('#project_id').val();
     const projectOwnerEmail = $('#project_owner_email').val();
     const projectName = $('#project_name').val();
@@ -91,10 +108,14 @@ const VolunteerGroups = {
     const volunteerEmails = [];
 
     $('.volunteer-in-group').each((_, el) => {
+      const userId = $(el).find('.volunteer-group-user-id').val();
       const email = $(el).find('.volunteer-email').text();
       const name = $(el).find('.volunteer-name').text();
-      volunteers.push({ email, name });
-      volunteerEmails.push(email);
+
+      if (currentAcceptedUserIds.indexOf(userId) > -1) {
+        volunteers.push({ email, name });
+        volunteerEmails.push(email);
+      }
     });
 
     const subject = `[Help With Covid] Greetings - Project/Volunteers Introduction`;
