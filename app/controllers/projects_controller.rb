@@ -104,7 +104,7 @@ class ProjectsController < ApplicationController
 
       if $removeMode == true
         if @project.update(project_params)
-          @project.visible = false;
+          @project.update_attribute(:visible, false);
           format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
           format.json { head :no_content }
         else
@@ -158,7 +158,7 @@ class ProjectsController < ApplicationController
     end
 
     def ensure_owner_or_admin
-      if current_user != @project.user && !current_user.is_admin?
+      if (current_user != @project.user || !@project.visible) && !current_user.is_admin?
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end

@@ -44,10 +44,11 @@ class Project < ApplicationRecord
         :progress,
         :docs_and_demo,
         :number_of_volunteers,
+        :visible,
         :created_at,
         :updated_at
       ],
-      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list, :vol_list]
+      methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list, :vol_list, :visible]
     )
   end
 end

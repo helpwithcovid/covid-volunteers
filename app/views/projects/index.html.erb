@@ -115,7 +115,16 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>
         <% @projects.each do |project| %>
-        <%= render partial: 'project', locals: { project: project,  } %>
+            <% if project.visible || current_user.is_admin? %>
+                <script>
+                    console.log("VISIBBY");
+                </script>
+                <%= render partial: 'project', locals: { project: project,  } %>
+            <% else %>
+                <script>
+                    console.log("NONVISIBBY");
+                </script>
+            <% end %>
         <% end %>
     </ul>
     <%= paginate @projects %>
