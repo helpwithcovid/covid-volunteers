@@ -6,9 +6,9 @@ module ApplicationHelper
   def nav_link_active_class(variant = 'DESKTOP')
     case variant
     when 'DESKTOP'
-      'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out ml-4 text-center'
+      'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-600 text-sm leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out ml-4 text-center font-bold'
     when 'MOBILE'
-      'block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
+      'block pl-3 pr-4 py-2 border-l-4 border-indigo-600 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
     end
   end
 
@@ -82,7 +82,12 @@ module ApplicationHelper
       url << "?#{query_string}" if query_string.present?
     end
 
-    applied = get_query_params[filter_by].include? label
+    applied = get_query_params[filter_by].include?(label)
+
+    if filter_by == 'project_types' and @applied_project_types.present? and @applied_project_types.include?(label)
+      applied = true
+    end
+
     case color
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
@@ -165,5 +170,24 @@ module ApplicationHelper
     path = path + "?#{new_params.to_query}" if new_params.present?
 
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
+  end
+
+  def format_country(country)
+    return country if (country == '' || country == 'Global')
+
+    begin
+      return IsoCountryCodes.find(country).name
+    rescue
+      # Fallback to raw value
+      return country
+    end
+  end
+
+  def get_country_fields
+    [['Global', 'Global']].concat(IsoCountryCodes.for_select)
+  end
+
+  def filter_bar_filter(label, filter, options)
+    render partial: 'projects/filter-bar-filter', locals: {options: options, label: label, filter: filter.to_s}
   end
 end

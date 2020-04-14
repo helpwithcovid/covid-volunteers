@@ -7,9 +7,19 @@ class ProjectsController < ApplicationController
 
   def index
     params[:page] ||= 1
-    @show_filters = true
+    @show_filters = false
     @show_search_bar = true
     @show_sorting_options = true
+    @bg_color = 'bg-white'
+    @show_global_announcements = false
+
+    if request.path != projects_path
+      @project_category = Settings.project_categories.find { |category| category.slug == request.path.sub('/', '') }
+
+      if @project_category.present?
+        @applied_filters[:project_types] = @project_category[:project_types]
+      end
+    end
 
     respond_to do |format|
       format.html do
@@ -17,7 +27,7 @@ class ProjectsController < ApplicationController
         @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
         @page_title = 'All Projects'
 
-        @projects = @projects.page(params[:page]).per(25)
+        @projects = @projects.page(params[:page]).per(8)
 
         @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
         @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
@@ -146,6 +156,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_projects_query
+      @applied_filters = {}
       applied_skills = (params[:skills] || '').split(',')
       applied_project_types = (params[:project_types] || '').split(',')
 
@@ -169,6 +180,13 @@ class ProjectsController < ApplicationController
         @projects = @projects.order('highlight DESC, COUNT(volunteers.id) DESC, created_at DESC')
       end
 
+      if params[:project_types].present?
+        @applied_filters[:project_types] = params[:project_types].split(',')
+      end
+
+      if params[:skills].present?
+        @applied_filters[:skills] = params[:skills].split(',')
+      end
 
       @projects = @projects.includes(:project_types, :skills)
     end

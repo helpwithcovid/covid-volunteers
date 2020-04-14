@@ -1,0 +1,10 @@
+<div class="-mt-6 pb-4 w-full flex justify-center border-b border-gray-200">
+  <%
+    classes = 'text-sm mx-4'
+    active_classes = 'font-bold border-b-2 border-indigo-600'
+  %>
+  <% Settings.project_categories.each do |category| %>
+    <%= link_to category.name, category.slug, class: "#{classes} #{active_classes if category[:slug] == params[:slug]}" %>
+  <% end %>
+  <%= link_to 'All Categories', projects_path, class: "#{classes} #{active_classes if request.path == projects_path}" %>
+</div>

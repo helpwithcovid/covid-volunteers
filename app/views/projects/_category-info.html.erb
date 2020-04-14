@@ -1,0 +1,5 @@
+<div class="mx-auto w-1/4 text-center mt-8">
+  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 bg-indigo-600 fill-current text-white"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].downcase}.svg", class: 'fill-current text-white' %></div>
+  <div class="font-bold text-lg mb-4"><%= @project_category[:name] %></div>
+  <div class="mb-4 leading-tight"><%= @project_category[:body] %></div>
+</div>

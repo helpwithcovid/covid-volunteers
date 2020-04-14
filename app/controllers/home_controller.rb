@@ -29,4 +29,8 @@ class HomeController < ApplicationController
         category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
       end
     end
+
+    def set_bg_color
+      @bg_color = 'white'
+    end
 end
