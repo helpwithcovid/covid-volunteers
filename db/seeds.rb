@@ -41,7 +41,8 @@ user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'passwo
 project1 = user.projects.create(
   status: ALL_PROJECT_STATUS.shuffle.first, 
   name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', 
-  location: 'USA', 
+  target_location: 'USA', 
+  volunteer_location: 'Anywhere',
   description: 'A cool description', 
   accepting_volunteers: true, 
   highlight: true)
