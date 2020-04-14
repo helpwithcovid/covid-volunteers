@@ -175,7 +175,7 @@ module ApplicationHelper
     event = session.delete(:track_event)
     return '' if event.blank?
 
-    "gtag('event', '#{event}', {'event_category': 'Actions'});"
+    "gtag('event', '#{event}', {'event_category': 'Actions'});".html_safe
   end
 
 end
