@@ -1,9 +1,9 @@
 module ProjectsHelper
   def project_row_class(project)
     if project.highlight
-      'hover:bg-gray-50 focus:outline-none focus:bg-gray-50'
-    else
       'border-2 border-orange-300 bg-orange-100'
+    else
+      'hover:bg-gray-50 focus:outline-none focus:bg-gray-50'
     end
   end
 
