@@ -133,7 +133,7 @@ Style/MethodDefParentheses:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
-  Enabled: true
+  Enabled: false
   EnforcedStyle: always
   Exclude:
     - 'actionview/test/**/*.builder'
