@@ -140,6 +140,16 @@ RSpec.describe ProjectsController, type: :controller do
       get :new
       expect(response).to_not be_successful
     end
+
+    it 'tracks an event' do
+      sign_in user
+      expect(controller).to receive(:track_event).with('Project creation started').and_call_original
+      get :new
+      # This doesn't work since the GET request sets and deletes the variable within same request
+      # expect(session[:track_event]).to eq('Project creation started')
+      expect(response.body).to match(/Project creation started/)
+    end
+
   end
 
   describe 'GET #edit' do
@@ -162,6 +172,12 @@ RSpec.describe ProjectsController, type: :controller do
       expect(assigns(:project)).to be_present
       expect(response).to be_redirect
     end
+
+    it 'tracks an event' do
+      sign_in(user)
+      post :create, params: valid_params
+      expect(session[:track_event]).to eq('Project creation complete')
+    end
   end
 
   describe 'PUT #update' do
@@ -180,4 +196,23 @@ RSpec.describe ProjectsController, type: :controller do
       fail
     end
   end
+
+  describe 'POST #toggle_volunteer' do
+    it 'volunteers you if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'tracks an event if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'unvolunteers you if you had already volunteered' do
+      pending 'TODO'
+      fail
+    end
+
+  end
+
 end
