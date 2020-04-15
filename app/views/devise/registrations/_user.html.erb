@@ -40,13 +40,13 @@
       <% if volunteer %>
         <div class="w-1/2">
           <div class="flex justify-end text-sm">
-            <%= form_for(volunteer, url: update_volunteer_project_path(volunteer.project), remote: true, html: {class: "js-volunteer-update-form bg-white shadow-md rounded text-right p-4 mb-4"}) do |f| %>
-              <% abilities = VolunteerAbility.permissions.values.map { |p| volunteer.volunteer_abilities.find_or_initialize_by(permission: p) } %>
-              <%= f.fields_for :volunteer_abilities, abilities do |ff| %>
+            <%= form_for(volunteer, url: update_volunteer_project_path(volunteer.project), namespace: "id_#{volunteer.id}", remote: true, html: {class: "js-volunteer-update-form bg-white shadow-md rounded text-right p-4 mb-4"}) do |f| %>
+              <% VolunteerAbility.permissions.values.each { |p| volunteer.volunteer_abilities.find_or_create_by(permission: p) } %>
+              <%= f.fields_for :volunteer_abilities do |ff| %>
                 <p>
                   <%= ff.hidden_field :permission %>
                   <%= ff.label :enabled, ff.object.permission.titleize %>
-                  <%= ff.check_box :enabled, { class:  "js-volunteer-ability-checkbox form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                  <%= ff.check_box :enabled, { class:  "js-volunteer-ability-checkbox form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" } %>
                 </p>
               <% end %>
               <%= f.hidden_field :id %>
