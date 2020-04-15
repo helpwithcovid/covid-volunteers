@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :volunteered, :own, :volunteers ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :toggle_volunteer, :update_volunteer, :volunteered, :own, :volunteers ]
   before_action :set_project, only: [ :show, :edit, :update, :destroy, :toggle_volunteer, :volunteers, :update_volunteer ]
-  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
+  before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers, :update_volunteer ]
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
 
