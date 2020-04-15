@@ -19,8 +19,8 @@ class ProjectsController < ApplicationController
 
         @projects = @projects.page(params[:page]).per(25)
 
-        @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
-        @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+        @index_from = (@projects.prev_page || 0) * @projects.limit_value + 1
+        @index_to = [@index_from + @projects.limit_value - 1, @projects.total_count].min
         @total_count = @projects.total_count
       end
       format.json do
