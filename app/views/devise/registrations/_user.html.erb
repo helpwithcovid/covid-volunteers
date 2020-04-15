@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <% if volunteer %>
+      <% if volunteer && (current_user == @project.user || current_user.is_admin?) %>
         <div class="w-1/2">
           <div class="flex justify-end text-sm">
             <%= form_for(volunteer, url: update_volunteer_project_path(volunteer.project), namespace: "id_#{volunteer.id}", remote: true, html: {class: "js-volunteer-update-form bg-white shadow-md rounded text-right p-4 mb-4"}) do |f| %>
