@@ -1,16 +1,29 @@
 const Project = {
   initialize() {
-    $(document).on('turbolinks:load', () => {
-      $('#not_accepting_volunteers').click(function(ev) {
+    $(document).on("turbolinks:load", () => {
+      $("#not_accepting_volunteers").click(function (ev) {
         Project.notAcceptingVolunteers(this, ev);
       });
 
-      $('#volunteer_with_skills').click(function(ev) {
+      $("#volunteer_with_skills").click(function (ev) {
         Project.volunteerWithSkills(this, ev);
       });
 
-      $("#volunteer_without_skills").click(function(ev) {
+      $("#volunteer_without_skills").click(function (ev) {
         Project.volunteerWithoutSkills(this, ev);
+      });
+
+      $(".js-volunteer-update-form")
+        .on("ajax:complete.rails", function (e) {
+          $(this).removeClass("flash").addClass("flash");
+        })
+        .on("transitionend", function (e) {
+          $(this).removeClass("flash");
+        });
+
+      $(".js-volunteer-ability-checkbox").click(function () {
+        this.form.querySelector("button[type=submit]").click();
+      });
     });
   },
 
