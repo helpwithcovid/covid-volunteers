@@ -18,5 +18,4 @@ class AdminController < ApplicationController
     redirect_to project_path(@project)
   end
 
-  private
-nd
+end
