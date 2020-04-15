@@ -26,7 +26,7 @@ FactoryBot.define do
   factory :project do
     name { 'My First Project' }
     description { 'My description' }
-    location { 'location' }
+    volunteer_location { 'location' }
     status { ALL_PROJECT_STATUS.first }
   end
 
@@ -39,6 +39,10 @@ FactoryBot.define do
   end
 
   factory :offer do
-    # ...
+    name { "Free Veggie Burgers" }
+    description { "They're delicious and animal-free" }
+    limitations { "Contains gluten" }
+    redemption { "https://veggieboigas.com" }
+    location { "N/A" }
   end
 end

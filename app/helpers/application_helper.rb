@@ -75,9 +75,9 @@ module ApplicationHelper
     base_class
   end
 
-  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
+  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil, value: nil)
     if model.present?
-      query_string = build_query_string(toggle_filter(filter_by, label))
+      query_string = build_query_string(toggle_filter(filter_by, value || label))
       url = "/#{model}"
       url << "?#{query_string}" if query_string.present?
     end
@@ -166,4 +166,16 @@ module ApplicationHelper
 
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
   end
+
+  def google_analytics_id
+    Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
+  end
+
+  def track_ga_event_if_needed
+    event = session.delete(:track_event)
+    return '' if event.blank?
+
+    "gtag('event', '#{event}', {'event_category': 'Actions'});".html_safe
+  end
+
 end

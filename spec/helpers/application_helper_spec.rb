@@ -45,4 +45,29 @@ RSpec.describe ApplicationHelper do
     desired_qs = 'skills=Biology&project_types=Track+the+outbreak,Reduce+spread&filters_open=true'
     assert querystring.eql? desired_qs
   end
+
+  describe '#track_ga_event_if_needed' do
+    it 'works' do
+      session[:track_event] = 'Really cool event'
+      expect(track_ga_event_if_needed).to match(/Really cool event/)
+    end
+  end
+
+  describe '#google_analytics_id' do
+    it 'returns the dev account id for development mode (ends in -2)' do
+      allow(Rails).to receive(:env) { 'development'.inquiry }
+      expect(google_analytics_id).to eq('UA-162054776-2')
+    end
+
+    it 'returns the dev account id for test mode (ends in -2)' do
+      allow(Rails).to receive(:env) { 'test'.inquiry }
+      expect(google_analytics_id).to eq('UA-162054776-2')
+    end
+
+    it 'returns the real account id for production mode (ends in -1)' do
+      allow(Rails).to receive(:env) { 'production'.inquiry }
+      expect(google_analytics_id).to eq('UA-162054776-1')
+    end
+  end
+
 end

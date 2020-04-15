@@ -1,51 +1,58 @@
 const Project = {
   initialize() {
-    $(document).on("turbolinks:load", () => {
-      $("#volunteer_with_skills").click(function(ev) {
+    $(document).on('turbolinks:load', () => {
+      $('#not_accepting_volunteers').click(function(ev) {
+        Project.notAcceptingVolunteers(this, ev);
+      });
+
+      $('#volunteer_with_skills').click(function(ev) {
         Project.volunteerWithSkills(this, ev);
       });
 
       $("#volunteer_without_skills").click(function(ev) {
         Project.volunteerWithoutSkills(this, ev);
-      });
-
-      $(".checkbox-class").on("click", function() {
-        $(".form-class").submit();
-      });
-
-      $(".js-volunteer-update-form")
-        .on("ajax:complete.rails", function(e) {
-          $(this)
-            .removeClass("flash")
-            .addClass("flash");
-        })
-        .on("transitionend", function(e) {
-          $(this).removeClass("flash");
-        });
-
-      $(".js-volunteer-ability-checkbox").click(function() {
-        this.form.querySelector("button[type=submit]").click();
-      });
     });
+  },
+
+  notAcceptingVolunteers(that, ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const targetHref = $(that).attr('href');
+
+    const headerHTML = "This project is not accepting volunteers";
+    const bodyHTML = "We're sorry. This project has indicated that they have all the volunteers they need at this time.";
+
+    Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'OK' } ], 'warning');
+
+    return false;
   },
 
   volunteerWithSkills(that, ev) {
     ev.preventDefault();
     ev.stopPropagation();
 
-    const targetHref = $(that).attr("href");
+    const targetHref = $(that).attr('href');
+    const skillsRequired = $(that).attr('x-skills-required').split(', ');
+    const projectName = $(that).attr('x-project-name');
+
 
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
-Are you sure? The project owner will be alerted. Optionally you can also send them a note.
-
-<div class="mt-3">
-  <label for="volunteer_note" class="sr-only">Volunteer note</label>
-  <div class="relative rounded-md shadow-sm">
-    <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
-  </div>
-</div>
-`;
+      <span class="text-indigo-600">${projectName}</span> is looking for 
+      <br>
+      ${Covid.skillBadges(skillsRequired, 'indigo')} 
+      <br>
+      Are you sure? The project owner will be alerted.<br><br>
+      Optionally, you can also send them a note on how you may contribute on one of these roles
+      <br>
+      <div class="mt-3">
+        <label for="volunteer_note" class="sr-only">Volunteer note</label>
+        <div class="relative rounded-md shadow-sm">
+          <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
+        </div>
+      </div>
+      `;
 
     const callback = () => {
       const volunteerNote = $("#volunteer_note").val();

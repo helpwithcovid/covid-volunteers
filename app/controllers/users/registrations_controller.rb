@@ -49,15 +49,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    track_event 'User registration started'
+    super
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    track_event 'User registration complete'
+    super
+  end
 
   # GET /resource/edit
   # def edit

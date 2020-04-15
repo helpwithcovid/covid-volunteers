@@ -67,6 +67,8 @@ Help is welcome! We are communicating on [Discord](https://discord.gg/8nAJfFN) i
 
 1. Fork the project
 1. Create a branch with your changes
+1. Make sure all test are passing by running `bundle exec rails spec`
+1. Make sure rubocop is happy by running `bundle exec rubocop` (you can run `bundle exec rubocop -a` to automatically fix errors)
 1. Submit a pull request
 
 # License
