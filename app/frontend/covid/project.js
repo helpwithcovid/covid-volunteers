@@ -36,7 +36,8 @@ const Project = {
     const headerHTML = "This project is not accepting volunteers";
     const bodyHTML = "We're sorry. This project has indicated that they have all the volunteers they need at this time.";
 
-    Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'OK' } ], 'warning');
+    Covid.showModal(headerHTML, bodyHTML, [{ type: 'cancel', text: 'OK' }], 'warning'
+);
 
     return false;
   },
@@ -49,12 +50,11 @@ const Project = {
     const skillsRequired = $(that).attr('x-skills-required').split(', ');
     const projectName = $(that).attr('x-project-name');
 
-
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
-      <span class="text-indigo-600">${projectName}</span> is looking for 
+      <span class="text-indigo-600">${projectName}</span> is looking for
       <br>
-      ${Covid.skillBadges(skillsRequired, 'indigo')} 
+      ${Covid.skillBadges(skillsRequired, "indigo")}
       <br>
       Are you sure? The project owner will be alerted.<br><br>
       Optionally, you can also send them a note on how you may contribute on one of these roles
@@ -86,22 +86,17 @@ const Project = {
     ev.preventDefault();
     ev.stopPropagation();
 
-    const targetHref = $(that).attr("href");
-    const skillsRequired = $(that).attr("x-skills-required");
+    const targetHref = $(that).attr('href');
+    const skillsRequired = $(that).attr('x-skills-required');
 
     const headerHTML = "You're missing skills";
     const bodyHTML = `It looks like the skills needed for this project do not match your skillset. \n\nIf you think this is incorrect, please update your profile with one of the following skills: <b>${skillsRequired}</b>.`;
 
-    const callback = () => (window.location.href = targetHref);
-    Covid.showModal(
-      headerHTML,
-      bodyHTML,
-      [{ type: "cancel" }, { type: "submit", text: "Edit Profile", callback }],
-      "warning"
-    );
+    const callback = () => window.location.href = targetHref;
+    Covid.showModal(headerHTML, bodyHTML, [{ type: "cancel" }, { type: "submit", text: "Edit Profile", callback }], "warning");
 
     return false;
-  }
+  },
 };
 
 export default Project;
