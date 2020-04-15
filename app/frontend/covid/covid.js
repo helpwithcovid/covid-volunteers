@@ -1,4 +1,6 @@
 import Cookies from 'js-cookie'
+import pluralize from 'pluralize'
+import URI from 'urijs'
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'
@@ -36,6 +38,23 @@ const Covid = {
         break;
     }
     Cookies.set('filters_open', !filtersOpen);
+  },
+  pluralize(string, count = 0) {
+    return pluralize(string, count);
+  },
+  applyFiltersAndGo(filter, values) {
+    const filterKey = `${filter}[]`
+    const uri = URI(window.location.toString());
+    const query = uri.search(true)
+
+    query[filterKey] = values
+    uri.query(query)
+
+    if (uri.path() !== '/projects' && filter === 'project_types') {
+      uri.path('projects')
+    }
+
+    window.location.href = uri.readable()
   },
   showModal(headerHTML, bodyHTML, actions, icon) {
     $(modal).attr('x-data', '{ open: false }');

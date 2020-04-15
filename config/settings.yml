@@ -7,7 +7,7 @@ project_categories:
       - Medical facilities
       - Medical equipments
       - Treatment R&D
-    color: indigo
+    color: purple
   - name: Prevention
     slug: prevention
     body: Inform, reduce, and control the spread of the outbreak.

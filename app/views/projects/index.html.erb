@@ -3,7 +3,8 @@
 <%= render partial: 'categories-nav' %>
 
 <div class="container">
-  <%= render partial: 'category-info' if @project_category %>
+  <%= render partial: 'category-info' %>
+  <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects} %>
   <%= render partial: 'filters-bar' %>
 
   <div class="bg-white px-4 py-5 sm:px-6 mb-4 sm:rounded-md">

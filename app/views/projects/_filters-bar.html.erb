@@ -1,18 +1,36 @@
-<div class="bg-indigo-100 rounded flex justify-between py-3 px-6 mt-12">
-  <div class="flex items-center">
-    <div class="font-bold">Filter by</div>
-    <%= filter_bar_filter 'Project Types', :project_types, ALL_PROJECT_TYPES.map { |o| [o, o] } %>
-    <%= filter_bar_filter 'Skills', :skills, ALL_SKILLS.map { |o| [o, o] } %>
-    <%= filter_bar_filter 'Countries', :countries, get_country_fields %>
-    <%= filter_bar_filter 'Status', :status,  %>
-  </div>
-  <div class="flex items-center" x-data="{}">
-    <div class="font-bold mr-2">Sort by</div>
-    <%= sort_drop_down do %>
-      <%= sort_drop_down_option(projects_path, 'Sort by') %>
-      <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
-      <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
-      <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
-    <% end %>
+<div class="mt-12">
+  <div class="font-bold mb-2 hidden md:block lg:hidden">Filter projects</div>
+  <div class="bg-indigo-100 rounded flex justify-between py-3 px-6 flex flex-col md:flex-row">
+    <div class="flex flex-wrap md:flex-no-wrap justify-center lg:justify-start items-center">
+      <div class="font-bold w-full lg:w-auto text-center lg:text-left lg:mr-4 md:hidden lg:block">Filter projects</div>
+      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+        <%= filter_bar_filter 'Project Types', :project_types, ALL_PROJECT_TYPES.map { |o| [o, o] } %>
+      </div>
+      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+        <%= filter_bar_filter 'Skills', :skills, ALL_SKILLS.map { |o| [o, o] } %>
+      </div>
+      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+        <%= filter_bar_filter 'Countries', :countries, get_country_fields %>
+      </div>
+      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+        <%= filter_bar_filter 'Status', :status, ALL_PROJECT_STATUS.map { |o| [o, o] }  %>
+      </div>
+      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto md:hidden">
+        <%= sort_drop_down do %>
+          <%= sort_drop_down_option(projects_path, 'Sort by') %>
+          <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
+          <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
+          <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
+        <% end %>
+      </div>
+    </div>
+    <div class="hidden md:flex" x-data="{}">
+      <%= sort_drop_down do %>
+        <%= sort_drop_down_option(projects_path, 'Sort by') %>
+        <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
+        <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
+        <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -18,18 +18,6 @@ class HomeController < ApplicationController
   end
 
   private
-    def hydrate_project_categories
-      @project_categories = Settings.project_categories
-
-      exclude_ids = []
-      @project_categories.each do |category|
-        exclude_ids.flatten!
-        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).where.not(id: exclude_ids).tagged_with(category[:project_types], any: true, on: :project_types).limit(3).order('RANDOM()') }
-        exclude_ids << category[:featured_projects].map(&:id)
-        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
-      end
-    end
-
     def set_bg_color
       @bg_color = 'white'
     end

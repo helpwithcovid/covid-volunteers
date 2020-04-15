@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy, :volunteers ]
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
+  before_action :hydrate_project_categories, only: :index
 
   def index
     params[:page] ||= 1
@@ -12,12 +13,14 @@ class ProjectsController < ApplicationController
     @show_sorting_options = true
     @bg_color = 'bg-white'
     @show_global_announcements = false
+    @applied_filters = params
 
     if request.path != projects_path
       @project_category = Settings.project_categories.find { |category| category.slug == request.path.sub('/', '') }
 
       if @project_category.present?
         @applied_filters[:project_types] = @project_category[:project_types]
+        @featured_projects = Rails.cache.read "project_category_#{@project_category[:name].downcase}_featured_projects"
       end
     end
 

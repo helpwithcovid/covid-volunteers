@@ -74,6 +74,7 @@ module.exports = {
             transitionProperty: theme('transitionProperty.default'),
             transitionDuration: theme('transitionDuration.100'),
             borderRadius: theme('borderRadius.default'),
+            boxShadow: theme('boxShadow.default'),
             '&:hover': {
                 backgroundColor: theme('colors.gray.100'),
             },
