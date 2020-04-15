@@ -67,11 +67,11 @@ project4 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, 
 project5 = Project.create(user: user, status: ALL_PROJECT_STATUS.shuffle.first, name: 'Selfie lenses to spread public health into in a fun way project ', description: %{We are a group called Lefty Lenses who have been applying selfie lenses (like the Snapchat puppy filter) to politics for the 2020 election. Our lenses have reached 125M people in 10 weeks, and we've spent $0.}, accepting_volunteers: true, highlight: true)
 
 # VOLUNTEERS
-project1.volunteered_users << user3
-project3.volunteered_users << user
-project3.volunteered_users << user2
-project3.volunteered_users << user3
-project3.volunteered_users << user4
+project1.volunteered_users << [user3]
+project2.volunteered_users << []
+project3.volunteered_users << [user, user2, user3, user4]
+project4.volunteered_users << [user4, user5]
+project5.volunteered_users << [user5, user6]
 
 # SKILLS
 project1.skill_list.add('Design')

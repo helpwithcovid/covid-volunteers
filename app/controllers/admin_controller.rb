@@ -17,5 +17,4 @@ class AdminController < ApplicationController
     flash[:notice] = @project.highlight? ? 'Project highlighted' : 'Removed highlight on project'
     redirect_to project_path(@project)
   end
-
 end
