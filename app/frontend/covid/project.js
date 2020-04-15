@@ -1,15 +1,15 @@
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
-      $('#not_accepting_volunteers').click(function (ev) {
+      $('#not_accepting_volunteers').click(function(ev) {
         Project.notAcceptingVolunteers(this, ev);
       });
 
-      $('#volunteer_with_skills').click(function (ev) {
+      $('#volunteer_with_skills').click(function(ev) {
         Project.volunteerWithSkills(this, ev);
       });
 
-      $('#volunteer_without_skills').click(function (ev) {
+      $('#volunteer_without_skills').click(function(ev) {
         Project.volunteerWithoutSkills(this, ev);
       });
 
@@ -36,8 +36,7 @@ const Project = {
     const headerHTML = "This project is not accepting volunteers";
     const bodyHTML = "We're sorry. This project has indicated that they have all the volunteers they need at this time.";
 
-    Covid.showModal(headerHTML, bodyHTML, [{ type: 'cancel', text: 'OK' }], 'warning'
-);
+    Covid.showModal(headerHTML, bodyHTML, [{ type: 'cancel', text: 'OK' }], 'warning');
 
     return false;
   },
@@ -54,7 +53,7 @@ const Project = {
     const bodyHTML = `
       <span class="text-indigo-600">${projectName}</span> is looking for
       <br>
-      ${Covid.skillBadges(skillsRequired, "indigo")}
+      ${Covid.skillBadges(skillsRequired, 'indigo')}
       <br>
       Are you sure? The project owner will be alerted.<br><br>
       Optionally, you can also send them a note on how you may contribute on one of these roles
@@ -72,12 +71,7 @@ const Project = {
       $.post(targetHref, { volunteer_note: volunteerNote });
     };
 
-    Covid.showModal(
-      headerHTML,
-      bodyHTML,
-      [{ type: "cancel" }, { type: "submit", text: "Volunteer", callback }],
-      "warning"
-    );
+    Covid.showModal(headerHTML, bodyHTML, [{ type: "cancel" }, { type: "submit", text: "Volunteer", callback }], "warning");
 
     return false;
   },
@@ -93,7 +87,7 @@ const Project = {
     const bodyHTML = `It looks like the skills needed for this project do not match your skillset. \n\nIf you think this is incorrect, please update your profile with one of the following skills: <b>${skillsRequired}</b>.`;
 
     const callback = () => window.location.href = targetHref;
-    Covid.showModal(headerHTML, bodyHTML, [{ type: "cancel" }, { type: "submit", text: "Edit Profile", callback }], "warning");
+    Covid.showModal(headerHTML, bodyHTML, [{ type: 'cancel' }, { type: 'submit', text: 'Edit Profile', callback }], 'warning');
 
     return false;
   },
