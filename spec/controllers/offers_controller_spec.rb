@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe OffersController, type: :controller do
-
   describe 'GET #index' do
     it 'works' do
       pending 'TODO'
@@ -10,8 +9,8 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let!(:user){ FactoryBot.create(:user) }
-    let!(:offer){ FactoryBot.create(:offer, user: user) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:offer) { FactoryBot.create(:offer, user: user) }
 
     it 'works with just a numeric id as param' do
       get :show, params: { id: offer.id }
@@ -62,5 +61,4 @@ RSpec.describe OffersController, type: :controller do
       fail
     end
   end
-
 end

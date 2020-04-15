@@ -39,12 +39,12 @@ user6 = User.create!(email: 'user6@gmail.com', name: 'jamiew', password: 'passwo
 
 # PROJECTS
 project1 = user.projects.create(
-  status: ALL_PROJECT_STATUS.shuffle.first, 
-  name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', 
-  target_location: 'USA', 
+  status: ALL_PROJECT_STATUS.shuffle.first,
+  name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits',
+  target_location: 'USA',
   volunteer_location: 'Anywhere',
-  description: 'A cool description', 
-  accepting_volunteers: true, 
+  description: 'A cool description',
+  accepting_volunteers: true,
   highlight: true)
 project1.skill_list.add('Anything')
 project1.volunteered_users << user3
@@ -97,4 +97,3 @@ project2.save
 project3.save
 project4.save
 project5.save
-

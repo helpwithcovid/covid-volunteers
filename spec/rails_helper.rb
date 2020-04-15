@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'devise'
@@ -62,9 +62,9 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # Devise/Warden
-  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
-  config.include Devise::Test::IntegrationHelpers, :type => :request
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.include FactoryBot::Syntax::Methods
 end

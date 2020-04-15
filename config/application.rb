@@ -32,7 +32,7 @@ module CovidVolunteers
     # the framework and any gems in your application.
 
     # Don't add field_with_errors class.
-    config.action_view.field_error_proc = Proc.new do |html_tag, instance| 
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       html_tag
     end
 
