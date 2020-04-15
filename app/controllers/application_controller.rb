@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
                       false
                     else
                       true
-                    end
+    end
   end
 
   def hide_global_announcements

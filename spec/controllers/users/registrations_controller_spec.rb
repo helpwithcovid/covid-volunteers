@@ -26,6 +26,4 @@ RSpec.describe Users::RegistrationsController do
       fail
     end
   end
-
-
 end

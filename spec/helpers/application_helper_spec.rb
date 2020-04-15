@@ -8,7 +8,7 @@ RSpec.describe ApplicationHelper do
 
   it 'gets query params' do
     params = get_query_params
-    desired_params = {'skills'=>['Biology', 'Software'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true']}
+    desired_params = { 'skills'=>['Biology', 'Software'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true'] }
     assert params.eql? desired_params
   end
 
@@ -24,13 +24,13 @@ RSpec.describe ApplicationHelper do
 
   it 'toggles a filter on' do
     toggled_on = toggle_filter('skills', 'JellyFishing')
-    desired_params = {'skills'=>['Biology', 'Software', 'JellyFishing'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true']}
+    desired_params = { 'skills'=>['Biology', 'Software', 'JellyFishing'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true'] }
     assert toggled_on.eql? desired_params
   end
 
   it 'toggles a filter off' do
     toggled_on = toggle_filter('skills', 'Biology')
-    desired_params = {'skills'=>['Software'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true']}
+    desired_params = { 'skills'=>['Software'], 'project_types'=>['Track the outbreak', 'Reduce spread'], 'filters_open'=>['true'] }
     assert toggled_on.eql? desired_params
   end
 
@@ -69,5 +69,4 @@ RSpec.describe ApplicationHelper do
       expect(google_analytics_id).to eq('UA-162054776-1')
     end
   end
-
 end
