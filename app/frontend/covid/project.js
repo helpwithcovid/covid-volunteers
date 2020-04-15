@@ -71,7 +71,7 @@ const Project = {
       $.post(targetHref, { volunteer_note: volunteerNote });
     };
 
-    Covid.showModal(headerHTML, bodyHTML, [{ type: "cancel" }, { type: "submit", text: "Volunteer", callback }], "warning");
+    Covid.showModal(headerHTML, bodyHTML, [{ type: 'cancel' }, { type: 'submit', text: 'Volunteer', callback }], 'warning');
 
     return false;
   },
