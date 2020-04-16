@@ -10,8 +10,14 @@ RSpec.describe HomeController, type: :controller do
 
   describe '#index' do
     it 'works' do
+      # Since we randomize projects on the homepage, we need to delete all existing projects
+      # to make sure our new project shows up in @featured_projects. Not graceful but it works
+      Project.delete_all
+      new_project = FactoryBot.create(:project, user: user, highlight: true)
+      expect(Project.count).to eq(1)
+
       get :index
-      expect(assigns(:featured_projects)).to include(project)
+      expect(assigns(:featured_projects)).to include(new_project)
       expect(response).to be_successful
     end
 
