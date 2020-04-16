@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :short_description, length: { maximum: 129 }
-  
+
   has_many :volunteers, dependent: :destroy
   has_many :volunteered_users, through: :volunteers, source: :user, dependent: :destroy
 
@@ -35,7 +35,7 @@ class Project < ApplicationRecord
   end
 
   def to_param
-    [id, name.parameterize].join("-")
+    [id, name.parameterize].join('-')
   end
 
   def volunteer_emails
@@ -46,7 +46,7 @@ class Project < ApplicationRecord
     volunteered_users.count
   end
 
-  def serializable_hash(options={})
+  def serializable_hash(options = {})
     super(
       only: [
         :id,

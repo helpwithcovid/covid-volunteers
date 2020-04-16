@@ -79,7 +79,7 @@ gem 'aws-sdk-rails'
 # Exceptions.
 gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification'
 
-#Search
+# Search
 gem 'pg_search'
 
 # Email obfuscation

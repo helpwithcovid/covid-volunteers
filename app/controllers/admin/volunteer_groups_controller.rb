@@ -47,8 +47,7 @@ class Admin::VolunteerGroupsController < ApplicationController
   end
 
   protected
-
-  def set_project
-    @project = Project.find(params[:project_id])
-  end
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
 end

@@ -149,7 +149,6 @@ RSpec.describe ProjectsController, type: :controller do
       # expect(session[:track_event]).to eq('Project creation started')
       expect(response.body).to match(/Project creation started/)
     end
-
   end
 
   describe 'GET #edit' do
@@ -212,7 +211,5 @@ RSpec.describe ProjectsController, type: :controller do
       pending 'TODO'
       fail
     end
-
   end
-
 end
