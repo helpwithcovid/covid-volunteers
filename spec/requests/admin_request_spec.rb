@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "Admins", type: :request do
-
+RSpec.describe 'Admins', type: :request do
 end

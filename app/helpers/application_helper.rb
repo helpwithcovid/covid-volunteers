@@ -61,7 +61,7 @@ module ApplicationHelper
     nav_link_inactive_class(variant)
   end
 
-  def alert_container_class_for_flash_type type
+  def alert_container_class_for_flash_type(type)
     base_class = 'border px-4 py-3 rounded relative'
 
     if [ 'alert', 'error'].include?(type)
@@ -92,18 +92,18 @@ module ApplicationHelper
       classes += ' bg-indigo-300' if applied
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+    render partial: 'partials/filter-badge', locals: { label: label, url: url, classes: classes, title: title }
   end
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
-    query_string = build_query_string(get_query_params.filter{|k, _| k!= filter_by})
+    query_string = build_query_string(get_query_params.filter { |k, _| k!= filter_by })
     url = "/#{model}"
     url << "?#{query_string}" if query_string.present?
 
     classes = 'bg-gray-100 text-gray-800'
     classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+    render partial: 'partials/filter-badge', locals: { label: label, url: url, classes: classes, title: title }
   end
 
   def get_query_params
@@ -121,7 +121,7 @@ module ApplicationHelper
   def toggle_filter(filter_key, filter)
     query_params = get_query_params
     filters = get_query_params[filter_key]
-    toggled = filters.include?(filter) ? filters.filter{|el| el != filter} : filters + [filter]
+    toggled = filters.include?(filter) ? filters.filter { |el| el != filter } : filters + [filter]
     query_params[filter_key] = toggled
     query_params
   end
@@ -129,7 +129,7 @@ module ApplicationHelper
   def build_query_string(query_params)
     params_array = query_params.map do |k, v|
       next if v.length == 0
-      value = v.map{|s| CGI.escape s}.join(',')
+      value = v.map { |s| CGI.escape s }.join(',')
       "#{k}=#{value}"
     end
     params_array.reject(&:nil?).join('&')
@@ -138,7 +138,7 @@ module ApplicationHelper
   def skill_badges(items, limit: nil, color: 'indigo', title: '', model: '', filter_by: '')
     limit ||= items.count
 
-    render partial: 'partials/skill_badges', locals: {color: color, items: items, limit: limit, title: title, model: model, filter_by: filter_by}
+    render partial: 'partials/skill_badges', locals: { color: color, items: items, limit: limit, title: title, model: model, filter_by: filter_by }
   end
 
   def sort_drop_down(&block)
@@ -165,5 +165,16 @@ module ApplicationHelper
     path = path + "?#{new_params.to_query}" if new_params.present?
 
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
+  end
+
+  def google_analytics_id
+    Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
+  end
+
+  def track_ga_event_if_needed
+    event = session.delete(:track_event)
+    return '' if event.blank?
+
+    "gtag('event', '#{event}', {'event_category': 'Actions'});".html_safe
   end
 end

@@ -34,18 +34,26 @@ const Project = {
     ev.stopPropagation();
 
     const targetHref = $(that).attr('href');
+    const skillsRequired = $(that).attr('x-skills-required').split(', ');
+    const projectName = $(that).attr('x-project-name');
+
 
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
-Are you sure? The project owner will be alerted. Optionally you can also send them a note.
-
-<div class="mt-3">
-  <label for="volunteer_note" class="sr-only">Volunteer note</label>
-  <div class="relative rounded-md shadow-sm">
-    <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
-  </div>
-</div>
-`;
+      <span class="text-indigo-600">${projectName}</span> is looking for 
+      <br>
+      ${Covid.skillBadges(skillsRequired, 'indigo')} 
+      <br>
+      Are you sure? The project owner will be alerted.<br><br>
+      Optionally, you can also send them a note on how you may contribute on one of these roles
+      <br>
+      <div class="mt-3">
+        <label for="volunteer_note" class="sr-only">Volunteer note</label>
+        <div class="relative rounded-md shadow-sm">
+          <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
+        </div>
+      </div>
+      `;
 
     const callback = () => {
       const volunteerNote = $("#volunteer_note").val();
