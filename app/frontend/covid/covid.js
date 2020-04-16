@@ -50,10 +50,11 @@ const Covid = {
     for (const action of actions) {
       let actionHTML = '';
       if (action.type == 'cancel') {
+        const text = action.text || 'Cancel';
         actionHTML = `
 <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto" id="modal_action_${idx}">
   <button @click="open = false;" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-    Cancel
+    ${text}
   </button>
 </span>
 `;
@@ -87,6 +88,25 @@ const Covid = {
     $('#modal-icon').html(iconHTML);
 
     $(modal).attr('x-data', '{ open: true }');
+  },
+  skillBadges(items, color = 'indigo', title = '') {
+    let classes = '';
+    if (color == 'blue') {
+      classes = 'bg-blue-100 text-blue-800  bg-blue-300';
+    } else {
+      classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300';
+    }
+    const badgeHTML = `<div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
+      ${items.map(item => 
+        `<div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 flex-shrink-0 ${classes}" title=${title}>
+            <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3"></circle>
+            </svg>
+            ${item}
+          </div>`
+        ).join('')} 
+     </div>`;
+    return badgeHTML
   }
 };
 

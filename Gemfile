@@ -73,13 +73,13 @@ gem 'devise'
 gem 'rinku'
 
 # Sending emails.
-gem 'aws-sdk'
+gem 'aws-sdk-ses'
 gem 'aws-sdk-rails'
 
 # Exceptions.
 gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification'
 
-#Search
+# Search
 gem 'pg_search'
 
 # Email obfuscation
@@ -93,3 +93,6 @@ gem 'dotenv-rails', groups: [ :development, :test ]
 
 # Configuration
 gem 'config'
+
+# Country codes
+gem 'iso_country_codes', '~> 0.7.8'

@@ -1,0 +1,15 @@
+<div class="container pt-10 pb-8">
+  <% if Settings.upcoming_events.present? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% Settings.upcoming_events.each do |event| %>
+        <% event[:upcoming] = true %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
+      <% Settings.events.each do |event| %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
+  <% end %>
+</div>

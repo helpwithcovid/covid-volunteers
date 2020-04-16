@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe AdminController, type: :controller do
-  let!(:user){ FactoryBot.create(:user) }
-  let!(:admin){ User.where(email: ADMINS[0]).first || FactoryBot.create(:user, email: ADMINS[0]) }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:admin) { User.where(email: ADMINS[0]).first || FactoryBot.create(:user, email: ADMINS[0]) }
 
   describe 'POST #delete_user' do
-    let!(:valid_params){ { user_id: user.to_param } }
+    let!(:valid_params) { { user_id: user.to_param } }
 
     # TODO refactor to account for shared `ensure_admin` filter
     # Then just test that each method calls `ensure_admin`, like so
@@ -43,8 +43,8 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe 'POST #toggle_highlight' do
-    let!(:project){ FactoryBot.create(:project, user: user) }
-    let!(:valid_params){ { project_id: project.to_param} }
+    let!(:project) { FactoryBot.create(:project, user: user) }
+    let!(:valid_params) { { project_id: project.to_param } }
 
     it 'calls ensure_admin' do
       expect(controller).to receive(:ensure_admin)
@@ -70,5 +70,4 @@ RSpec.describe AdminController, type: :controller do
       expect(flash[:notice]).to match(/Removed highlight/)
     end
   end
-
 end

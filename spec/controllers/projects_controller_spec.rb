@@ -51,6 +51,14 @@ RSpec.describe ProjectsController, type: :controller do
         get :index
         expect(response.body.scan('sign up to volunteer').size).to eq(0)
       end
+
+      it 'shows projects filtered by status' do
+        project.update_attribute(:status, ALL_PROJECT_STATUS.last)
+        project2 = FactoryBot.create(:project, user: user, status: ALL_PROJECT_STATUS.first)
+        get :index, params: { status: ALL_PROJECT_STATUS.last }
+        expect(assigns(:projects)).to include(project)
+        expect(assigns(:projects)).to_not include(project2)
+      end
     end
 
     it 'shows highlighted projects only' do
@@ -77,7 +85,7 @@ RSpec.describe ProjectsController, type: :controller do
       expect(response).to be_successful
       expect(json['name']).to eq(project.name)
       expect(json['description']).to eq(project.description)
-      expect(json['location']).to eq(project.location)
+      expect(json['volunteer_location']).to eq(project.volunteer_location)
       expect(json['accepting_volunteers']).to eq(project.accepting_volunteers)
       expect(json['to_param']).to eq(project.to_param)
     end
@@ -132,6 +140,15 @@ RSpec.describe ProjectsController, type: :controller do
       get :new
       expect(response).to_not be_successful
     end
+
+    it 'tracks an event' do
+      sign_in user
+      expect(controller).to receive(:track_event).with('Project creation started').and_call_original
+      get :new
+      # This doesn't work since the GET request sets and deletes the variable within same request
+      # expect(session[:track_event]).to eq('Project creation started')
+      expect(response.body).to match(/Project creation started/)
+    end
   end
 
   describe 'GET #edit' do
@@ -154,6 +171,12 @@ RSpec.describe ProjectsController, type: :controller do
       expect(assigns(:project)).to be_present
       expect(response).to be_redirect
     end
+
+    it 'tracks an event' do
+      sign_in(user)
+      post :create, params: valid_params
+      expect(session[:track_event]).to eq('Project creation complete')
+    end
   end
 
   describe 'PUT #update' do
@@ -168,6 +191,23 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'works' do
+      pending 'TODO'
+      fail
+    end
+  end
+
+  describe 'POST #toggle_volunteer' do
+    it 'volunteers you if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'tracks an event if you are not currently a volunteer' do
+      pending 'TODO'
+      fail
+    end
+
+    it 'unvolunteers you if you had already volunteered' do
       pending 'TODO'
       fail
     end

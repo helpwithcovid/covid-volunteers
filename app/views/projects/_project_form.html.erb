@@ -201,15 +201,50 @@
     </div>
   </div>
 
-  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Location
+  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 is-accepting-volunteers">
+    <label for="volunteer_location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Volunteer Location
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_field "volunteer_location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
       </div>
       <p class="mt-2 text-sm text-gray-500">Do volunteers need to live in a certain location? Write remote otherwise.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+        <div>
+          <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+          Target Country
+          </legend>
+        </div>
+        <div class="mt-4 sm:mt-0 sm:col-span-2">
+          <div class="max-w-lg">
+            <div class="relative flex items-start">
+              <label class="font-medium text-gray-700">
+                <%= f.select "target_country", get_country_fields(), {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
+              </label>
+            </div>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">Is this project only targeting people in a specific country?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="target_location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Target Location<br/>
+      <span class="text-xs">(optional)</span>
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "target_location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">Specific state, province or city within that country?</p>
     </div>
   </div>
 
