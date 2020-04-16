@@ -45,7 +45,7 @@
               <%= f.fields_for :volunteer_abilities do |ff| %>
                 <p>
                   <%= ff.hidden_field :permission %>
-                  <%= ff.label :enabled, ff.object.permission.titleize %>
+                  <%= ff.label :enabled, VolunteerAbility::PERMISSION_LABELS[ff.object.permission] || ff.object.permission %>
                   <%= ff.check_box :enabled, { class:  "js-volunteer-ability-checkbox form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" } %>
                 </p>
               <% end %>
