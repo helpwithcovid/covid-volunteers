@@ -35,7 +35,7 @@ FactoryBot.define do
   end
 
   factory :volunteer do
-    # ...
+    note { "I'm a new volunteer"}
   end
 
   factory :offer do

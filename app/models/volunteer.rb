@@ -4,4 +4,6 @@ class Volunteer < ApplicationRecord
   has_many :volunteer_abilities
 
   accepts_nested_attributes_for :volunteer_abilities
+
+  scope :with_ability, -> (a) { joins(:volunteer_abilities).where(volunteer_abilities: {permission: a}) }
 end
