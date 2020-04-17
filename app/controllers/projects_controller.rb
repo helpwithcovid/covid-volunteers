@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
         @projects_subheader = 'This is a New Haven-wide volunteer management website, where New Haven residents can volunteer (in-person or remotely) and local non-profits and government can post volunteer needs. Let us unite and fight the pandemic together!'
         @page_title = 'All Projects'
 
+        @projects = Kaminari.paginate_array(@projects.select {|project| project.is_visible_to_user?(current_user)})
         @projects = @projects.page(params[:page]).per(25)
 
         @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1

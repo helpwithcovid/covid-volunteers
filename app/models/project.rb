@@ -27,6 +27,13 @@ class Project < ApplicationRecord
     volunteered_users.count
   end
 
+  def is_visible_to_user?(user_trying_view)
+    return true if self.visible == true
+    return true if user_trying_view && user_trying_view.is_admin?
+    return true if user_trying_view == self.user
+    false
+  end
+
   def serializable_hash(options={})
     super(
       only: [
