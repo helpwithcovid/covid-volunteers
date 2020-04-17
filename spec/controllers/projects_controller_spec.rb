@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe ProjectsController, type: :controller do
   render_views
 
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:project) { FactoryBot.create(:project, user: user) }
+  let!(:user) { create(:user) }
+  let!(:project) { create(:project, user: user) }
   let(:valid_params) { { project: { name: 'My Project Name', status: ALL_PROJECT_STATUS.first } } }
 
   describe 'GET #index' do
@@ -24,7 +24,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     describe 'Volunteering' do
-      let!(:no_volunteers_project) { FactoryBot.create(:project, user: user, accepting_volunteers: false) }
+      let!(:no_volunteers_project) { create(:project, user: user, accepting_volunteers: false) }
 
       it 'filters by ?accepting_volunteers=0' do
         get :index, params: { accepting_volunteers: '0' }
@@ -54,7 +54,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'shows projects filtered by status' do
         project.update_attribute(:status, ALL_PROJECT_STATUS.last)
-        project2 = FactoryBot.create(:project, user: user, status: ALL_PROJECT_STATUS.first)
+        project2 = create(:project, user: user, status: ALL_PROJECT_STATUS.first)
         get :index, params: { status: ALL_PROJECT_STATUS.last }
         expect(assigns(:projects)).to include(project)
         expect(assigns(:projects)).to_not include(project2)
@@ -63,7 +63,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     it 'shows highlighted projects only' do
       project.update_attribute(:highlight, true)
-      reg_project = FactoryBot.create(:project, user: user, highlight: false)
+      reg_project = create(:project, user: user, highlight: false)
       get :index, params: { highlight: true }
       expect(response).to be_successful
       expect(assigns(:projects)).to include(project)
@@ -110,7 +110,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'shows volunteer button if your profile is complete' do
-        user = FactoryBot.create(:user_complete_profile)
+        user = create(:user_complete_profile)
         sign_in user
         user.skill_list.add('Design')
         user.save
@@ -121,7 +121,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'shows volunteer filled button if you dont have the right skills' do
-        user = FactoryBot.create(:user_complete_profile)
+        user = create(:user_complete_profile)
         sign_in user
         get :show, params: { id: project.to_param }
         expect(response.body).to include('volunteers-filled-btn')

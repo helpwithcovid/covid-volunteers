@@ -1,27 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let(:user) { FactoryBot.build(:user) }
-  let(:project) { FactoryBot.build(:project, user: user) }
+  let(:user) { build(:user) }
+  let(:project) { build(:project, user: user) }
 
   it 'factory is valid' do
-    user = FactoryBot.create(:user)
-    project = FactoryBot.build(:project, user: user)
+    user = create(:user)
+    project = build(:project, user: user)
     expect(project).to be_valid
   end
 
   it 'is invalid without a name' do
-    project = FactoryBot.build(:project, name: nil)
+    project = build(:project, name: nil)
     expect(project).to_not be_valid
   end
 
   it 'is invalid without a user' do
-    project = FactoryBot.build(:project, user: nil)
+    project = build(:project, user: nil)
     expect(project).to_not be_valid
   end
 
   it 'accepting_volunteers defaults true' do
-    project = FactoryBot.build(:project, user: nil)
+    project = build(:project, user: nil)
     expect(project.accepting_volunteers).to eq(true)
   end
 
@@ -50,18 +50,18 @@ RSpec.describe Project, type: :model do
   end
 
   it 'it sets default status' do
-    project = FactoryBot.build(:project, status: nil)
+    project = build(:project, status: nil)
     project.save
     expect(project.status).to eq(ALL_PROJECT_STATUS.first)
   end
 
   it 'is invalid without a status' do
-    project = FactoryBot.build(:project, status: nil)
+    project = build(:project, status: nil)
     expect(project).to_not be_valid
   end
 
   it 'is invalid with wrong status' do
-    project = FactoryBot.build(:project, status: 'lol')
+    project = build(:project, status: 'lol')
     expect(project).to_not be_valid
   end
 end
