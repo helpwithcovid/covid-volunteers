@@ -9,8 +9,8 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:offer) { FactoryBot.create(:offer, user: user) }
+    let!(:user) { create(:user) }
+    let!(:offer) { create(:offer, user: user) }
 
     it 'works with just a numeric id as param' do
       get :show, params: { id: offer.id }

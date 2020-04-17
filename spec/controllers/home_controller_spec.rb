@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :controller do
   render_views
 
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:project) { FactoryBot.create(:project, user: user, highlight: true) }
+  let!(:user) { create(:user) }
+  let!(:project) { create(:project, user: user, highlight: true) }
 
   describe '#index' do
     it 'works' do
@@ -22,7 +22,7 @@ RSpec.describe HomeController, type: :controller do
     end
 
     it 'doesnt show the same featured project twice' do
-      project2 = FactoryBot.create(:project_with_type, user: user, highlight: true, project_type_list: ['Track the outbreak', 'Scale testing'])
+      project2 = create(:project_with_type, user: user, highlight: true, project_type_list: ['Track the outbreak', 'Scale testing'])
       get :index
       featured_ids = assigns(:project_groups).map(&:featured_projects).flatten.map(&:id)
       expect(featured_ids.count(project2.id)).to eq(1)
