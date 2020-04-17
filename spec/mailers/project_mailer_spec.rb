@@ -14,7 +14,7 @@ RSpec.describe ProjectMailer, type: :mailer do
     end
 
     context "when volunteer can receive volunteer notifications" do
-      before { volunteer.volunteer_abilities << VolunteerAbility.new(permission: VolunteerAbility.permissions[:receive_volunteer_notifications]) }
+      before { volunteer.abilities << VolunteerAbility.new(permission: VolunteerAbility.permissions[:receive_volunteer_notifications]) }
 
       it "sends an email to the owner and the volunteer" do
       expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)

@@ -129,11 +129,11 @@ class ProjectsController < ApplicationController
   end
 
   def update_volunteer
-    update_volunteer_params = params.fetch(:volunteer, {}).permit(:id, volunteer_abilities_attributes: [ :permission, :enabled ])
+    update_volunteer_params = params.fetch(:volunteer, {}).permit(:id, abilities_attributes: [ :permission, :enabled ])
 
     volunteer = @project.volunteers.find(update_volunteer_params[:id])
-    update_volunteer_params[:volunteer_abilities_attributes].each_pair do |idx, attrs|
-      volunteer.volunteer_abilities.find_or_initialize_by(permission: attrs[:permission]).tap do |ability|
+    update_volunteer_params[:abilities_attributes].each_pair do |idx, attrs|
+      volunteer.abilities.find_or_initialize_by(permission: attrs[:permission]).tap do |ability|
         ability.update(enabled: attrs["enabled"] == "1")
       end
     end
