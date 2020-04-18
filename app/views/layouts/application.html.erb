@@ -14,17 +14,14 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <% if Rails.env == 'production' %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162054776-1"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= google_analytics_id %>"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
-        gtag('config', 'UA-162054776-1');
+        gtag('config', '<%= google_analytics_id %>');
+        <%= track_ga_event_if_needed %>
       </script>
-    <% end %>
   </head>
 
   <body class="flex flex-col min-h-screen h-full antialiased <%= @bg_color %>">

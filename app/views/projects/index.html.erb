@@ -1,3 +1,5 @@
+<% content_for :canonical_url do %><%= request.url.split("?").first %><% end %>
+
 <%- share_title @page_title %>
 
 <%= render partial: 'categories-nav' if is_category_path %>

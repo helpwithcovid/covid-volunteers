@@ -91,6 +91,25 @@ const Covid = {
 
     $(modal).attr('x-data', '{ open: true }');
   },
+  skillBadges(items, color = 'indigo', title = '') {
+    let classes = '';
+    if (color == 'blue') {
+      classes = 'bg-blue-100 text-blue-800  bg-blue-300';
+    } else {
+      classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300';
+    }
+    const badgeHTML = `<div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
+      ${items.map(item =>
+        `<div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 flex-shrink-0 ${classes}" title=${title}>
+            <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3"></circle>
+            </svg>
+            ${item}
+          </div>`
+        ).join('')}
+     </div>`;
+    return badgeHTML
+  },
   initFilter(label, filter, options, selected) {
     return {
       label,
@@ -136,5 +155,5 @@ const Covid = {
     window.location.href = uri.readable()
   },
 };
-// // console.log('Covid.initFilter()->', Covid.initFilter())
+
 export default Covid

@@ -3,16 +3,16 @@
   <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(category_override) %>);"></div>
 
   <% if project.accepting_volunteers? %>
-    <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-2 py-1 text-sm" style="background-color: rgba(0, 0, 0, 0.5);"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %>Actively Recruiting</div>
+    <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-3 py-1 text-xs" style="background-color: rgba(0, 0, 0, 0.5);"><span class="pr-1"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %></span> Actively Recruiting</div>
   <% end %>
 
-  <div class="p-4">
-    <div class="text-2xl truncate leading-tight mb-1"><%= project.name %></div>
-    <div class="text-gray-500 text-sm mb-2 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
+  <div class="px-5 pt-5 pb-6">
+    <div class="text-lg font-medium truncate leading-tight mb-1"><%= project.name %></div>
+    <div class="text-gray-500 text-sm mb-5 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
 
     <% if project.project_types.present? %>
-      <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-2">
-        <div class="flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
+      <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-4">
+        <div class="scroll-gradient-right flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
           <% project.project_types.each do |type| %>
             <%= filter_badge label: type %>
           <% end %>
@@ -20,7 +20,8 @@
       </div>
     <% end %>
 
-    <div class="relative grid grid-cols-3 gap-2 text-sm mt-3">
+    <div class="relative grid grid-cols-2 gap-2 text-xs mt-3">
+
       <% total_volunteers = project.volunteers.count %>
       <div class="font-bold">
         <% if total_volunteers > 0 %>
@@ -30,10 +31,13 @@
         <% end %>
       </div>
 
-      <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
       <% if project.volunteer_location? %>
         <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.volunteer_location %></div>
       <% end %>
+
     </div>
+
+    <div class="text-xs text-gray-500 text-left w-full"><%= time_ago_in_words project.created_at %> ago</div>
+
   </div>
 <% end %>

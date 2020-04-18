@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
                       false
                     else
                       true
-                    end
+    end
   end
 
   def hide_global_announcements
@@ -44,5 +44,9 @@ class ApplicationController < ActionController::Base
         exclude_ids << category[:featured_projects].map(&:id)
         category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
       end
+    end
+
+    def track_event(event_name)
+      session[:track_event] = event_name
     end
 end
