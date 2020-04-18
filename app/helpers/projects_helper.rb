@@ -4,4 +4,8 @@ module ProjectsHelper
 
     project_class = 'border-2 border-orange-300 bg-orange-100' if project.highlight
   end
+
+  def is_category_path
+    request.path == projects_path || Settings.project_categories.map(&:slug).include?(request.path.sub('/', ''))
+  end
 end
