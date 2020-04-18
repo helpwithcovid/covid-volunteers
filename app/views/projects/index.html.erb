@@ -4,7 +4,7 @@
 
 <div class="container">
   <%= render partial: 'category-info' if is_category_path %>
-  <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects} if is_category_path %>
+  <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: @project_category[:name]} if is_category_path %>
   <%= render partial: 'filters-bar' if @show_filters %>
 
   <div class="bg-white px-4 py-5 sm:px-6 mb-4 sm:rounded-md my-4">
@@ -35,11 +35,11 @@
   </div>
 
   <% if @projects.present? %>
+  123
     <div class="sm:rounded-md sm:grid grid-cols-2 md:grid-cols-3 gap-8 mb-4">
       <% @projects.each do |project| %>
-        <%= render partial: 'project-card', locals: { project: project,  } %>
+        <%= render partial: 'project-card', locals: { project: project, category: @project_category[:name]} %>
       <% end %>
-
     </div>
     <%= paginate @projects %>
   <% end %>
