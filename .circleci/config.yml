@@ -69,6 +69,11 @@ jobs: # a collection of steps
           # command: bin/rails db:schema:load --trace
           command: bin/rails db:setup --trace
 
+  test:
+    docker: # run the steps with Docker
+      - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
+    steps:
+      - checkout    
       - run:
           name: Run rspec in parallel
           command: |
@@ -76,13 +81,29 @@ jobs: # a collection of steps
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
       # Save test results for timing analysis
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
 
+  rubocop:
+    docker: # run the steps with Docker
+      - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
+    steps:
+      - checkout
       - run:
           name: Rubocop
           command: bundle exec rubocop
 
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - rubocop:
+          requires:
+            - build
+
+# See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
