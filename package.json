@@ -1,6 +1,9 @@
 {
   "name": "covid_volunteers",
   "private": true,
+  "scripts": {
+    "deploy-staging": "git push heroku-staging feature/category-page-2:master"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
