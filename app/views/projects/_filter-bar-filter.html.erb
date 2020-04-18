@@ -3,18 +3,18 @@
     <div class="cursor-pointer flex-shrink-0"><span x-text="selectedCount()"></span> <span x-text="dropDownLabel()"></span></div>
   </div>
   <template x-if="open">
-    <div class="absolute left-0 mt-4 p-4 bg-white z-30 shadow-lg w-48 flex flex-col">
-      <div class="overflow-auto max-h-400px">
+    <div class="absolute left-0 mt-0 p-4 bg-white z-30 shadow-lg w-48 flex flex-col">
+      <div class="relative overflow-auto max-h-400px scroll-shadow">
         <template x-for="option in options" :key="option[0]">
-          <div @click="toggleSelection(option[1])" class="flex mb-1 cursor-pointer">
+          <div @click="toggleSelection(option[1])" class="relative flex mb-1 cursor-pointer z-10">
             <input type="checkbox" x-bind:checked="isSelected(option[1])" class="mr-2 mt-1">
             <div x-text="option[0]"></div>
           </div>
         </template>
       </div>
-      <div class="bg-white">
-        <button class="button-indigo w-full mt-2" @click="applyFilters()">Apply filters</button>
-        <button class="w-full mt-2" @click="resetFilters()">Reset filters</button>
+      <div class="bg-white mt-2">
+        <button class="button button-indigo w-full mt-2" @click="applyFilters()">Apply filters</button>
+        <button class="button w-full mt-2" @click="resetFilters()">Reset filters</button>
       </div>
     </div>
   </template>
