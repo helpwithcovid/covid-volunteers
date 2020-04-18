@@ -25,3 +25,12 @@
   <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
   <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
 </div>
+<% if @project_category[:project_types].present? %>
+  <div class="w-full flex justify-center mb-8 flex-grow-0 flex-shrink-0 flex-wrap">
+    <% @project_category[:project_types].each do |type| %>
+      <div class="inline-block m-1">
+        <%= filter_badge label: type, color: @project_category[:color] %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

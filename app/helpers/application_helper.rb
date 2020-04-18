@@ -92,12 +92,18 @@ module ApplicationHelper
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
       classes += ' bg-blue-300' if applied
+    when 'purple'
+      classes = 'bg-purple-100 text-purple-800'
+      classes += ' bg-purple-300' if applied
+    when 'orange'
+      classes = 'bg-orange-100 text-orange-800'
+      classes += ' bg-orange-300' if applied
     else
       classes = 'bg-indigo-100 text-indigo-800'
       classes += ' bg-indigo-300' if applied
     end
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title, color: color}
   end
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
