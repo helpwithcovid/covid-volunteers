@@ -114,7 +114,7 @@ module ApplicationHelper
     classes = 'bg-gray-100 text-gray-800'
     classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
 
-    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title}
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title, color: 'gray'}
   end
 
   def get_query_params
