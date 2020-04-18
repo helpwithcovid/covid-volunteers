@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
   def index
     params[:page] ||= 1
-    @show_filters = false
+    @show_filters = true
     @show_search_bar = true
     @show_sorting_options = true
     @bg_color = 'bg-white'
@@ -160,15 +160,14 @@ class ProjectsController < ApplicationController
 
     def set_projects_query
       @applied_filters = {}
-      applied_skills = (params[:skills] || '').split(',')
-      applied_project_types = (params[:project_types] || '').split(',')
 
       @projects = Project
-      @projects = @projects.tagged_with(applied_skills, any: params[:any]) if applied_skills.length > 0
-      @projects = @projects.tagged_with(applied_project_types, any: params[:any]) if applied_project_types.length > 0
+      @projects = @projects.tagged_with(params[:skills], any: true, on: :skills) if params[:skills].present?
+      @projects = @projects.tagged_with(params[:project_types], any: true, on: :project_types) if params[:project_types].present?
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
       @projects = @projects.where(highlight: true) if params[:highlight].present?
       @projects = @projects.where(target_country: params[:target_country]) if params[:target_country].present?
+      @projects = @projects.where(target_country: params[:countries]) if params[:countries].present?
       @projects = @projects.where(status: params[:status]) if params[:status].present?
 
       if params[:query].present?

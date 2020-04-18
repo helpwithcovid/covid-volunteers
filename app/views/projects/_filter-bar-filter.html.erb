@@ -1,48 +1,21 @@
-<div class="relative" x-data="dropdown<%= filter.camelize %>()" @click.away="open = false" data-turbolinks-permanent>
+<div class="relative" x-data="Covid.initFilter('<%= label %>', '<%= filter %>', <%= options.as_json %>, <%= @applied_filters[filter.to_sym].present? ? @applied_filters[filter.to_sym].as_json : [] %>)" @click.away="open = false">
   <div class="flex text-sm text-gray-700 items-center justify-between select-none form-select pr-8 bg-white border-gray-300 rounded shadow-sm" @click="open = !open">
-    <div class="cursor-pointer flex-shrink-0"><span x-text="selectedCount()"></span> <span x-text="Covid.pluralize('<%= label %>', selected.length)"></span></div>
+    <div class="cursor-pointer flex-shrink-0"><span x-text="selectedCount()"></span> <span x-text="dropDownLabel()"></span></div>
   </div>
-  <div class="absolute left-0 mt-4 p-4 bg-white z-30 shadow-lg w-48 flex flex-col" x-show="open">
-    <div class="overflow-auto max-h-400px">
-      <template x-for="name in options" :key="name[1]">
-        <div @click="toggleSelection(name[1])" class="flex mb-1 cursor-pointer">
-          <input type="checkbox" x-bind:checked="isSelected(name[1])" class="mr-2 mt-1">
-          <div x-text="name[0]"></div>
-        </div>
-      </template>
+  <template x-if="open">
+    <div class="absolute left-0 mt-4 p-4 bg-white z-30 shadow-lg w-48 flex flex-col">
+      <div class="overflow-auto max-h-400px">
+        <template x-for="option in options" :key="option[0]">
+          <div @click="toggleSelection(option[1])" class="flex mb-1 cursor-pointer">
+            <input type="checkbox" x-bind:checked="isSelected(option[1])" class="mr-2 mt-1">
+            <div x-text="option[0]"></div>
+          </div>
+        </template>
+      </div>
+      <div class="bg-white">
+        <button class="button-indigo w-full mt-2" @click="applyFilters()">Apply filters</button>
+        <button class="w-full mt-2" @click="resetFilters()">Reset filters</button>
+      </div>
     </div>
-    <div class="bg-white">
-      <button class="button-indigo w-full mt-2" @click="applyFilters()">Apply filters</button>
-      <button class="w-full mt-2" @click="resetFilters()">Reset filters</button>
-    </div>
-  </div>
+  </template>
 </div>
-
-<script>
-  function dropdown<%= filter.camelize %>() {
-    return {
-      open: false,
-      options: <%= options.to_json.html_safe %>,
-      applyFilters() {
-        Covid.applyFiltersAndGo('<%= filter %>', this.selected)
-      },
-      resetFilters() {
-        this.selected = []
-      },
-      selectedCount(option) {
-        return this.selected.length
-      },
-      toggleSelection(option) {
-        if (this.selected.indexOf(option) >= 0) {
-          this.selected = this.selected.filter(item => item !== option)
-        } else {
-          this.selected.push(option)
-        }
-      },
-      isSelected(option) {
-        return this.selected.some(selected => selected === option)
-      },
-      selected: <%= @applied_filters[filter.to_sym].present? ? @applied_filters[filter.to_sym].to_json.html_safe : [] %>,
-    }
-  }
-</script>

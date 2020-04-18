@@ -39,23 +39,6 @@ const Covid = {
     }
     Cookies.set('filters_open', !filtersOpen);
   },
-  pluralize(string, count = 0) {
-    return pluralize(string, count);
-  },
-  applyFiltersAndGo(filter, values) {
-    const filterKey = `${filter}[]`
-    const uri = URI(window.location.toString());
-    const query = uri.search(true)
-
-    query[filterKey] = values
-    uri.query(query)
-
-    if (uri.path() !== '/projects' && filter === 'project_types') {
-      uri.path('projects')
-    }
-
-    window.location.href = uri.readable()
-  },
   showModal(headerHTML, bodyHTML, actions, icon) {
     $(modal).attr('x-data', '{ open: false }');
 
@@ -107,7 +90,51 @@ const Covid = {
     $('#modal-icon').html(iconHTML);
 
     $(modal).attr('x-data', '{ open: true }');
-  }
-};
+  },
+  initFilter(label, filter, options, selected) {
+    return {
+      label,
+      options,
+      selected,
+      open: false,
+      applyFilters() {
+        Covid.applyFiltersAndGo(filter, this.selected)
+      },
+      resetFilters() {
+        this.selected = []
+      },
+      selectedCount() {
+        return this.selected.length
+      },
+      toggleSelection(option) {
+        if (this.selected.indexOf(option) >= 0) {
+          this.selected = this.selected.filter(item => item !== option)
+        } else {
+          this.selected.push(option)
+        }
+      },
+      isSelected(option) {
+        return this.selected.some(selected => selected === option)
+      },
+      dropDownLabel() {
+        return pluralize(this.label, this.selected.length)
+      }
+    }
+  },
+  applyFiltersAndGo(filter, values) {
+    const filterKey = `${filter}[]`
+    const uri = URI(window.location.toString());
+    const query = uri.search(true)
 
+    query[filterKey] = values
+    uri.query(query)
+
+    if (uri.path() !== '/projects' && filter === 'project_types') {
+      uri.path('projects')
+    }
+
+    window.location.href = uri.readable()
+  },
+};
+// // console.log('Covid.initFilter()->', Covid.initFilter())
 export default Covid

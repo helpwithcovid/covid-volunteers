@@ -1,21 +1,34 @@
 <div class="mt-12">
-  <div class="font-bold mb-2 hidden md:block lg:hidden">Filter projects</div>
   <div class="bg-indigo-100 rounded flex justify-between py-3 px-6 flex flex-col md:flex-row">
-    <div class="flex flex-wrap md:flex-no-wrap justify-center lg:justify-start items-center">
-      <div class="font-bold w-full lg:w-auto text-center lg:text-left lg:mr-4 md:hidden lg:block">Filter projects</div>
-      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
-        <%= filter_bar_filter 'Project Types', :project_types, ALL_PROJECT_TYPES.map { |o| [o, o] } %>
+    <div class="flex flex-col mr-4">
+      <div class="font-bold mb-2">Search by</div>
+      <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm', class: 'relative'} do |form| %>
+        <%= form.text_field :query, placeholder: "Search", value: params[:query], class: 'text-sm text-gray-700 form-input bg-white border-gray-300 rounded shadow-sm' %>
+        <button class="absolute inset-auto right-0 top-1/2 -mt-4 p-2 mr-2 cursor-pointer border-none shadow-none text-sm bg-transparent p-0" @click="$refs.searchForm.submit()">
+          <%= inline_svg_pack_tag 'media/svgs/magnifier.svg', class: 'h-4' %>
+        </button>
+      <% end %>
+    </div>
+    <div class="flex flex-col flex-1 mr-4">
+      <div class="font-bold mb-2">Filter by</div>
+      <div class="flex">
+        <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Project Types', :project_types, ALL_PROJECT_TYPES.map { |o| [o, o] } %>
+        </div>
+        <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Skills', :skills, ALL_SKILLS.map { |o| [o, o] } %>
+        </div>
+        <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Countries', :countries, get_country_fields %>
+        </div>
+        <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Status', :status, ALL_PROJECT_STATUS.map { |o| [o, o] }  %>
+        </div>
       </div>
+    </div>
+    <div class="flex flex-col">
+      <div class="font-bold mb-2">Sort by</div>
       <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
-        <%= filter_bar_filter 'Skills', :skills, ALL_SKILLS.map { |o| [o, o] } %>
-      </div>
-      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
-        <%= filter_bar_filter 'Countries', :countries, get_country_fields %>
-      </div>
-      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto">
-        <%= filter_bar_filter 'Status', :status, ALL_PROJECT_STATUS.map { |o| [o, o] }  %>
-      </div>
-      <div class="mb-2 sm:mr-4 md:mb-0 w-full sm:w-auto md:hidden">
         <%= sort_drop_down do %>
           <%= sort_drop_down_option(projects_path, 'Sort by') %>
           <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
@@ -23,14 +36,6 @@
           <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
         <% end %>
       </div>
-    </div>
-    <div class="hidden md:flex" x-data="{}">
-      <%= sort_drop_down do %>
-        <%= sort_drop_down_option(projects_path, 'Sort by') %>
-        <%= sort_drop_down_option(projects_path, 'Volunteers Needed', 'volunteers_needed') %>
-        <%= sort_drop_down_option(projects_path, 'Latest', 'latest') %>
-        <%= sort_drop_down_option(projects_path, 'Earliest', 'earliest') %>
-      <% end %>
     </div>
   </div>
 </div>
