@@ -95,4 +95,8 @@ class Project < ApplicationRecord
       "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
     end
   end
+
+  def self.get_featured_projects
+    Project.where(highlight: true).limit(3).order('RANDOM()')
+  end
 end

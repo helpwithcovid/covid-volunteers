@@ -22,6 +22,8 @@ class ProjectsController < ApplicationController
         @applied_filters[:project_types] = @project_category[:project_types]
         @featured_projects = Rails.cache.read "project_category_#{@project_category[:name].downcase}_featured_projects"
       end
+    else
+      @featured_projects = Project.get_featured_projects
     end
 
     respond_to do |format|

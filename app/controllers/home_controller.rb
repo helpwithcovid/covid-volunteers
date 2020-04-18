@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     end
     # Display the volunteers in increments of 100
     @volunteer_count = (@volunteer_count / 100).floor * 100
-    @featured_projects = Project.where(highlight: true).limit(3).order('RANDOM()')
+    @featured_projects = Project.get_featured_projects
   end
 
   private
