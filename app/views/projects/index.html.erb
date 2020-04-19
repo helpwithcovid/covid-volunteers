@@ -116,14 +116,7 @@
     <ul>
         <% @projects.each do |project| %>
             <% if project.visible || (current_user && current_user.is_admin?) %>
-                <script>
-                    console.log("VISIBBY");
-                </script>
                 <%= render partial: 'project', locals: { project: project,  } %>
-            <% else %>
-                <script>
-                    console.log("NONVISIBBY");
-                </script>
             <% end %>
         <% end %>
     </ul>
