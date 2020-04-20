@@ -116,9 +116,6 @@
     <ul>
         <% @projects.each do |project| %>
             <% if project.is_visible_to_user?(current_user) %>
-                <script>
-                    console.log("VISIBBY");
-                </script>
                 <%= render partial: 'project', locals: { project: project,  } %>
             <% end %>
         <% end %>

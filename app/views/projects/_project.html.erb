@@ -3,6 +3,11 @@
     <div class="px-4 py-4 sm:px-6">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between">
         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+          <% if !project.visible %>
+            <p class="text-red-500">
+              <%= link_to "--- REMOVED POSTING ---", project_path(project) %>
+            </p>
+          <% end %>
           <%= link_to project.name, project_path(project) %>
           <% if project.organization.present? %>
             <%= simple_format project.organization, class: 'text-gray-500' %>

@@ -8,6 +8,7 @@ class Project < ApplicationRecord
 
   acts_as_taggable_on :skills
   acts_as_taggable_on :project_types
+  acts_as_taggable_on :vols
 
   pg_search_scope :search, against: %i(name description participants looking_for location highlight)
 
