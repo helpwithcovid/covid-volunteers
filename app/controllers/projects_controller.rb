@@ -184,7 +184,7 @@ class ProjectsController < ApplicationController
         @projects = @projects.order('highlight DESC, COUNT(volunteers.id) ASC, created_at DESC')
       end
 
-      @projects.includes(:project_types, :skills)
+      @projects.includes(:project_types, :skills, :vols)
     end
 
     def get_order_param
