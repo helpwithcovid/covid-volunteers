@@ -1,10 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe OffersController, type: :controller do
+  render_views
+
   describe 'GET #index' do
-    it 'works' do
-      pending 'TODO'
-      fail
+    let!(:offer) { create(:offer, name: 'Free books', user: user) }
+    let(:user) { create(:user) }
+    
+    before { get :index }
+    
+    it 'is successful' do
+      expect(response).to be_successful
+    end
+
+    it 'assigns offers' do
+      expect(assigns(:offers)).to eq([offer])
+    end
+
+    it 'displays the offer' do
+      expect(response.body).to include('Free books')
     end
   end
 
