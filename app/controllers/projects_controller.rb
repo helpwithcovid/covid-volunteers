@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   before_action :set_filters_open, only: :index
   before_action :set_projects_query, only: :index
   before_action :hydrate_project_categories, only: :index
+  before_action :ensure_no_legacy_filtering, only: :index
 
   def index
     params[:page] ||= 1
@@ -194,6 +195,20 @@ class ProjectsController < ApplicationController
       end
 
       @projects = @projects.includes(:project_types, :skills)
+    end
+
+    def ensure_no_legacy_filtering
+      new_params = {}
+
+      if params[:skills].present? and params[:skills].include? ','
+        new_params[:skills] = params[:skills].split(',')
+      end
+
+      if params[:project_types].present? and params[:project_types].include? ','
+        new_params[:project_types] = params[:project_types].split(',')
+      end
+
+      return redirect_to projects_path(new_params) if new_params.present?
     end
 
     def get_order_param
