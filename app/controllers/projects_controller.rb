@@ -189,11 +189,11 @@ class ProjectsController < ApplicationController
       end
 
       if params[:project_types].present?
-        @applied_filters[:project_types] = params[:project_types].split(',')
+        @applied_filters[:project_types] = params[:project_types]
       end
 
       if params[:skills].present?
-        @applied_filters[:skills] = params[:skills].split(',')
+        @applied_filters[:skills] = params[:skills]
       end
 
       @projects = @projects.includes(:project_types, :skills)
