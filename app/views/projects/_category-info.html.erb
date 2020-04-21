@@ -21,7 +21,7 @@
   end
 %>
 <div class="mx-auto w-1/3 text-center mt-8">
-  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 fill-current text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white' %></div>
+  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 fill-current text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white h-12 w-12' %></div>
   <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
   <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
 </div>

@@ -6,7 +6,6 @@
 
 <div class="container">
   <%= render partial: 'category-info' if is_category_path %>
-  <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: @project_category[:name]} if is_category_path %>
   <%= render partial: 'filters-bar' if @show_filters %>
 
   <div class="bg-white px-4 py-5 sm:px-6 mb-4 sm:rounded-md my-4">

@@ -123,7 +123,7 @@ const Covid = {
         this.selected = []
       },
       selectedCount() {
-        return this.selected.length
+        return this.selected.length > 0 ? this.selected.length : ''
       },
       toggleSelection(option) {
         if (this.selected.indexOf(option) >= 0) {
