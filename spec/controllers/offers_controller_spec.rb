@@ -70,9 +70,32 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'GET #edit' do
-    it 'works' do
-      pending 'TODO'
-      fail
+    let(:offer) { create(:offer, user: user) }
+    let(:user) { create(:user) }
+
+    it 'is successful' do
+      
+      sign_in user
+
+      get :edit, params: { id: offer.id }
+
+      expect(response).to be_successful
+    end
+
+    it 'assigns the offer' do
+      sign_in user
+
+      get :edit, params: { id: offer.id }
+
+      expect(assigns(:offer)).to eq(offer)
+    end
+
+    it 'displays form for creating an offer' do
+      sign_in user
+
+      get :edit, params: { id: offer.id  }
+      
+      expect(response.body).to include("Edit resource #{offer.name}")     
     end
   end
 
