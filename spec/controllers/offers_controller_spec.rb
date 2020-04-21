@@ -41,9 +41,31 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'works' do
-      pending 'TODO'
-      fail
+    let(:user) { create(:user) }
+
+    it 'is successful' do
+      
+      sign_in user
+
+      get :new
+
+      expect(response).to be_successful
+    end
+
+    it 'assigns an offer' do
+      sign_in user
+
+      get :new
+
+      expect(assigns(:offer)).to be_an_instance_of(Offer)
+    end
+
+    it 'displays form for creating an offer' do
+      sign_in user
+
+      get :new 
+      
+      expect(response.body).to include('Create new resource')     
     end
   end
 
