@@ -19,6 +19,8 @@ class ProjectsController < ApplicationController
     if request.path != projects_path
       @project_category = Settings.project_categories.find { |category| category.slug == request.path.sub('/', '') }
 
+      raise ActionController::RoutingError, 'Not Found' if @project_category.blank?
+
       if @project_category.present?
         @applied_filters[:project_types] = @project_category[:project_types]
         @featured_projects = Rails.cache.read "project_category_#{@project_category[:name].downcase}_featured_projects"
