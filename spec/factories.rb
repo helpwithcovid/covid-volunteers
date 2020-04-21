@@ -21,6 +21,7 @@ FactoryBot.define do
     about { 'About' }
     profile_links { 'Profile' }
     location { 'location' }
+    skill_list { ['Analaytics'] }
   end
 
   factory :project do

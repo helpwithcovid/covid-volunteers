@@ -1,72 +1,89 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { build(:user) }
+  let(:user) { build(:user) }
 
   it 'factory is valid' do
-    user = build(:user)
     expect(user).to be_valid
   end
 
-  it 'is invalid without email' do
-    user = build(:user, email: nil)
-    expect(user).to_not be_valid
+  context 'without email' do
+    let(:user) { build(:user, email: nil) }
+
+    it 'is invalid' do
+      expect(user).to_not be_valid
+    end
   end
 
-  it 'is invalid without password' do
-    user = build(:user, password: nil)
-    expect(user).to_not be_valid
+  context 'without password' do
+    let(:user) { build(:user, password: nil) }
+
+    it 'is invalid' do
+      expect(user).to_not be_valid
+    end
   end
 
-  context 'on update' do
+  context 'when updating a user' do
     before { user.save! }
 
     context 'without skills' do
       before { user.skill_list.add([]) }
     
-      it { is_expected.to_not be_valid }
+      it 'is invalid' do
+        expect(user).to_not be_valid
+      end
     end
 
     context 'with skills' do
       before { user.skill_list.add(['Analytics']) }
     
-      it { is_expected.to be_valid }
+      it 'is valid' do
+        expect(user).to be_valid
+      end
     end
   end
 
-  describe 'Complete profile' do
-    let(:project) { build(:project, user: user) }
-    
-    it 'is incomplete' do
-      user = build(:user, profile_links: 'test', location: 'test')
-      expect(user.has_complete_profile?).to eq(false)
+  describe '#has_complete_profile?' do
+    context 'when user has incomplete profile' do
+      it 'it returns false' do
+        expect(user.has_complete_profile?).to eq(false)
+      end
     end
 
-    it 'is complete' do
-      user = build(:user, about: 'test', profile_links: 'test', location: 'test')
-      expect(user.has_complete_profile?).to eq(true)
+    context 'when a user has a complete profile' do
+      let(:user) { build(:user_complete_profile) }
+
+      it 'returns true' do
+        expect(user.has_complete_profile?).to eq(true)
+      end
+    end
+  end
+
+  describe '#has_correct_skills?' do
+    let(:project) { create(:project, user: user, skill_list: ['Design']) }
+
+    context 'when user does not have correct skills' do
+      let(:user) { create(:user, skill_list: ['Legal']) }
+
+      it 'returns false' do
+        expect(user.has_correct_skills?(project)).to eq(false)  
+      end
+    end  
+
+    context 'when user has correct skills' do
+      let(:user) { create(:user, skill_list: ['Design']) }
+
+      it 'returns true' do
+        expect(user.has_correct_skills?(project)).to eq(true)  
+      end
     end
 
-    it 'doesnt have right skills for project' do
-      user.skill_list.add(['Engineer'])
-      user.save!
-      project.skill_list.add(['Design'])
-      project.save!
-      expect(user.has_correct_skills?(project)).to eq(false)
-    end
+    context 'when project requires "Anything"' do
+      let(:project) { create(:project, user: user, skill_list: ['Anything']) }
 
-    it 'has right skills for project' do
-      user.skill_list.add(['Design', 'Engineer'])
-      user.save!
-      project.skill_list.add(['Design'])
-      project.save!
-      expect(user.has_correct_skills?(project)).to eq(true)
-    end
-
-    it 'has right skills if project requires `Anything`' do
-      project.skill_list.add(['Anything'])
-      project.save!
-      expect(user.has_correct_skills?(project)).to eq(true)
+      it 'returns true' do
+        expect(user.has_correct_skills?(project)).to eq(true)  
+      end
     end
   end
 end
