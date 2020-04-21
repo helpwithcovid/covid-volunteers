@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
-  let(:project) { build(:project, user: user) }
+  subject(:user) { build(:user) }
 
   it 'factory is valid' do
     user = build(:user)
@@ -19,7 +18,25 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  context 'on update' do
+    before { user.save! }
+
+    context 'without skills' do
+      before { user.skill_list.add([]) }
+    
+      it { is_expected.to_not be_valid }
+    end
+
+    context 'with skills' do
+      before { user.skill_list.add(['Analytics']) }
+    
+      it { is_expected.to be_valid }
+    end
+  end
+
   describe 'Complete profile' do
+    let(:project) { build(:project, user: user) }
+    
     it 'is incomplete' do
       user = build(:user, profile_links: 'test', location: 'test')
       expect(user.has_complete_profile?).to eq(false)
