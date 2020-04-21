@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
   before_action :show_global_announcements
-  before_action :set_bg_color
+  before_action :set_bg_gray
 
   def ensure_admin
     redirect_to projects_path if !current_user || !current_user.is_admin?
@@ -29,8 +29,12 @@ class ApplicationController < ActionController::Base
     @show_global_announcements = true
   end
 
-  def set_bg_color
+  def set_bg_gray
     @bg_color = 'bg-gray-100'
+  end
+
+  def set_bg_white
+    @bg_color = 'bg-white'
   end
 
   private

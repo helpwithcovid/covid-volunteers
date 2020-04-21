@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_action :hydrate_project_categories
   before_action :hide_global_announcements
+  before_action :set_bg_white
 
   def index
     @project_count = Rails.cache.fetch('project_count', expires_in: 1.day) do
@@ -16,9 +17,4 @@ class HomeController < ApplicationController
     @volunteer_count = (@volunteer_count / 100).floor * 100
     @featured_projects = Project.get_featured_projects
   end
-
-  private
-    def set_bg_color
-      @bg_color = 'white'
-    end
 end

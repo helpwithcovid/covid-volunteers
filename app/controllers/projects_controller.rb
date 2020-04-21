@@ -6,13 +6,13 @@ class ProjectsController < ApplicationController
   before_action :set_projects_query, only: :index
   before_action :hydrate_project_categories, only: :index
   before_action :ensure_no_legacy_filtering, only: :index
+  before_action :set_bg_white, only: [:index, :own, :volunteered]
 
   def index
     params[:page] ||= 1
     @show_filters = true
     @show_search_bar = true
     @show_sorting_options = true
-    @bg_color = 'bg-white'
     @show_global_announcements = false
     @applied_filters = params
 
