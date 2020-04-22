@@ -17,7 +17,7 @@ RSpec.describe OffersController, type: :controller do
       expect(assigns(:offers)).to eq([offer])
     end
 
-    it 'displays the offer' do
+    it 'renders the offer' do
       expect(response.body).to include('Free books')
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe OffersController, type: :controller do
       expect(assigns(:offer)).to be_an_instance_of(Offer)
     end
 
-    it 'displays form for creating an offer' do
+    it 'renders form for creating an offer' do
       sign_in user
 
       get :new 
@@ -90,7 +90,7 @@ RSpec.describe OffersController, type: :controller do
       expect(assigns(:offer)).to eq(offer)
     end
 
-    it 'displays form for creating an offer' do
+    it 'renders form for creating an offer' do
       sign_in user
 
       get :edit, params: { id: offer.id  }
@@ -100,9 +100,16 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:user) { create(:user) }
+    let(:offer) { create(:offer, user: user) }
+
+    before { allow(Offer).to receive(:new).and_return(offer)}
+
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      post :create, params: { offer: { name: offer.name, description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
+
+      expect(response).to redirect_to(offer_path(assigns(:offer)))
     end
   end
 
