@@ -2,6 +2,7 @@
 @import './featured-categories.css';
 @import './scroll-shadow.css';
 @import './scrollbar-hidden.css';
+@import './filters-bar.css';
 @import './tailwindcss/components.css';
 @import './tailwindcss/utilities.css';
 

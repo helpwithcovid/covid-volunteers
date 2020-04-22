@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import pluralize from 'pluralize'
 import URI from 'urijs'
+import stickybits from 'stickybits';
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'
@@ -109,6 +110,9 @@ const Covid = {
         ).join('')}
      </div>`;
     return badgeHTML
+  },
+  keepFiltersSticky() {
+    stickybits('.js-sticky-filter', {stickyBitStickyOffset: 20})
   },
   initFilter(label, filter, options, selected) {
     return {
