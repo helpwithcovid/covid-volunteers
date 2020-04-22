@@ -9,11 +9,13 @@
   <%= render partial: 'filters-bar' if @show_filters %>
 
   <% if @projects.present? %>
-    <div class="sm:rounded-md sm:grid grid-cols-2 md:grid-cols-3 gap-8 my-4">
-      <% @projects.each do |project| %>
-        <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil} %>
+    <div class="mt-4">
+      <%= list_project_cards do %>
+        <% @projects.each do |project| %>
+          <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil} %>
+        <% end %>
       <% end %>
+      <%= paginate @projects %>
     </div>
-    <%= paginate @projects %>
   <% end %>
 </div>
