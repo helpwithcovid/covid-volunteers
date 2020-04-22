@@ -7,8 +7,13 @@
 
   <div class="px-5 pt-5 pb-6">
     <div class="text-lg font-medium truncate leading-tight mb-1"><%= project.name %></div>
-    <div class="text-gray-500 text-sm mb-5 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
-
+    <div class="text-gray-500 text-sm mb-5 leading-tight overflow-hidden" style="height: 50px;">
+      <% if project.short_description.present? %>  
+        <%= project.short_description %>
+      <% else %>
+        <%= project.description.truncate 150 %>
+      <% end %>
+    </div>
     <% if project.project_types.present? %>
       <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-4">
         <div class="scroll-gradient-right flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
