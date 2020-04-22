@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def is_visible_to_user?(user_trying_view)
-    return true if self.is_admin?
+    return true if user_trying_view.is_admin?
     return true if self.visibility == true
     return false if user_trying_view.blank?
     return true if user_trying_view == self
