@@ -34,6 +34,7 @@ class User < ApplicationRecord
   end
 
   def is_visible_to_user?(user_trying_view)
+    return true if self.is_admin?
     return true if self.visibility == true
     return false if user_trying_view.blank?
     return true if user_trying_view == self
@@ -65,7 +66,7 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !self.deactivated
   end
-  
+
   private
 
   def ensure_at_least_one_tag
