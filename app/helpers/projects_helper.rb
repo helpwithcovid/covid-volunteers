@@ -21,8 +21,4 @@ module ProjectsHelper
       country
     end
   end
-
-  def get_country_fields
-    [ 'Global' ].concat(IsoCountryCodes.for_select)
-  end
 end

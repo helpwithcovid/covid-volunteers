@@ -81,9 +81,6 @@ module.exports = {
         '&:active': {
           backgroundColor: theme('colors.gray.200'),
         },
-        '&.active': {
-          backgroundColor: theme('colors.gray.200'),
-        }
       }
       const buttons = {
         '@variants responsive': {
@@ -92,6 +89,10 @@ module.exports = {
             '&.button-lg': {
               padding: `${theme('spacing.3')} ${theme('spacing.6')}`,
               fontSize: theme('fontSize.lg'),
+            },
+            '&.button-sm': {
+              padding: `${theme('spacing.1')} ${theme('spacing.2')}`,
+              fontSize: theme('fontSize.sm'),
             },
             '&.button-xl': {
               padding: `${theme('spacing.4')} ${theme('spacing.10')}`,

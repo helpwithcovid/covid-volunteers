@@ -141,7 +141,7 @@ module ApplicationHelper
     params_array = query_params.map do |k, v|
       next if v.length == 0
       value = v.map { |s| CGI.escape s }.join(',')
-      "#{k}=#{value}"
+      "#{k}[]=#{value}"
     end
     params_array.reject(&:nil?).join('&')
   end

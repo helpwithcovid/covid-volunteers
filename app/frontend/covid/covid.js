@@ -122,6 +122,9 @@ const Covid = {
       resetFilters() {
         this.selected = []
       },
+      selectAll() {
+        this.selected = this.options.map(item => item[0])
+      },
       selectedCount() {
         return this.selected.length > 0 ? this.selected.length : ''
       },

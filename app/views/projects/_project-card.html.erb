@@ -1,5 +1,11 @@
 <%= link_to project, class: 'relative block shadow-lg hover:shadow-md transform transition-all duration-100 hover:scale-105' do %>
-  <% category_override = Settings.project_categories.map(&:name).include?(local_assigns[:category]) ? local_assigns[:category] : nil %>
+  <%
+    category = Settings.project_categories.select { |cat| cat.name == local_assigns[:category] }.first if local_assigns[:category].present?
+
+    category_override = category.present? ? local_assigns[:category] : nil
+    color = category.present? ? category.color : 'indigo'
+  %>
+
   <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(category_override) %>);"></div>
 
   <% if project.accepting_volunteers? %>
@@ -14,7 +20,7 @@
       <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-4">
         <div class="scroll-gradient-right flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
           <% project.project_types.each do |type| %>
-            <%= filter_badge label: type %>
+            <%= filter_badge label: type, color: color %>
           <% end %>
         </div>
       </div>

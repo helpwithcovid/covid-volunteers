@@ -173,7 +173,6 @@ class ProjectsController < ApplicationController
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
       @projects = @projects.where(highlight: true) if params[:highlight].present?
       @projects = @projects.where(target_country: params[:target_country]) if params[:target_country].present?
-      @projects = @projects.where(target_country: params[:countries]) if params[:countries].present?
       @projects = @projects.where(status: params[:status]) if params[:status].present?
 
       if params[:query].present?
