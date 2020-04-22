@@ -213,6 +213,7 @@ class ProjectsController < ApplicationController
     end
 
     def get_order_param
+      return 'created_at asc' if params[:sort_by] == 'earliest'
       return 'created_at desc' if params[:sort_by] == 'latest'
       return 'volunteers.count asc' if params[:sort_by] == 'volunteers_needed'
     end
