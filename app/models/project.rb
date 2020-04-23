@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many_attached :images
+  has_one_attached :image
 
   include PgSearch::Model
 
@@ -90,8 +90,8 @@ class Project < ApplicationRecord
   end
 
   def cover_photo(group_override = nil)
-    if self.cover_photo_id.present?
-      self.images.find(self.cover_photo_id).variant(resize_to_limit: [400, 400])
+    if self.image.present?
+      self.image.variant(resize_to_limit: [400, 400])
     else
       "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
     end

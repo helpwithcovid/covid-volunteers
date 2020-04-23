@@ -20,11 +20,7 @@ Rails.application.routes.draw do
   get '/projects/p/:page' => 'projects#index', as: 'projects_with_pagination'
 
   resources :projects do
-    resources :images, controller: 'projects_images' do
-      member do
-        post :set_cover_photo, to: 'projects_images#set_cover_photo'
-      end
-    end
+    resources :images, controller: 'projects_images'
 
     collection do
       get :volunteered

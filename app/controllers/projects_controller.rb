@@ -76,9 +76,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.new(project_params)
-    if params[:project][:images].present?
-      @project.images.attach(params[:project][:images])
-    end
 
     respond_to do |format|
       if @project.save
@@ -97,9 +94,6 @@ class ProjectsController < ApplicationController
 
   def update
     updated = @project.update(project_params)
-    if params[:project][:images].present?
-      @project.images.attach(params[:project][:images])
-    end
 
     respond_to do |format|
       if updated
@@ -144,7 +138,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :volunteer_location, :target_country, :target_location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :short_description, skill_list: [], project_type_list: [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :volunteer_location, :target_country, :target_location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :short_description, :image, skill_list: [], project_type_list: [])
     end
 
     def ensure_owner_or_admin
