@@ -190,7 +190,7 @@ module ApplicationHelper
   end
 
   def get_country_fields
-    [['Global', 'Global']].concat(IsoCountryCodes.for_select)
+    [['Global', 'Global'], ["United States of America", "US"]].concat(IsoCountryCodes.for_select).uniq
   end
 
   def filter_bar_filter(label, filter, options)
