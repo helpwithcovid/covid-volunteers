@@ -2,10 +2,10 @@
 
 <%- share_title @page_title %>
 
-<%= render partial: 'categories-nav' %>
+<%= render partial: 'categories-nav' if is_projects_path %>
 
 <div class="container">
-  <%= render partial: 'category-info' %>
+  <%= render partial: 'category-info' if is_projects_path %>
   <%= render partial: 'filters-bar' if @show_filters %>
 
   <% if @projects.present? %>
