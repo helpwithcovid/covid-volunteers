@@ -181,7 +181,7 @@
   <% end %>
 
   <div class="mt-6 mx-4 gap-0 rounded-lg bg-white overflow-hidden sm:mx-0 sm:grid sm:grid-cols-2">
-    <div class="sm:col-span-1 relative h-40 sm:h-auto bg-cover bg-center" style="background-image: url(<%= @project.cover_photo(local_assigns[:group]) %>);">
+    <div class="sm:col-span-1 relative h-40 sm:h-auto bg-cover bg-center" style="background-image: url(<%= url_for @project.cover_photo(local_assigns[:group]) %>);">
       <% if @project.status.present? %>
         <div class="absolute top-4 left-4 rounded-full overflow-hidden">
           <% if @project.status == "Just started" %>
@@ -461,186 +461,11 @@
               <% end %>
             <% end %>
           </div>
-        <% else %>
-
         <% end %>
       </div>
     </div>
   </div>
-
-  <% if false %>
-  <div class="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
-    <div class="px-4 py-5 sm:p-0">
-      <dl>
-        <% if @project.short_description.present?  %>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Short description
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= simple_format Rinku.auto_link(sanitize(@project.short_description), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-            </dd>
-          </div>
-        <% end %>
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Description
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= simple_format Rinku.auto_link(sanitize(@project.description), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-          </dd>
-        </div>
-
-        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-          <dt class="text-sm leading-5 font-medium text-gray-500">
-            Who is already working on this
-          </dt>
-          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-          </dd>
-        </div>
-        <% if @project.progress.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              How far along it is
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= simple_format Rinku.auto_link(sanitize(@project.progress), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-            </dd>
-          </div>
-        <% end %>
-        <% if @project.docs_and_demo.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Demo, mockups, or documentation
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= simple_format Rinku.auto_link(sanitize(@project.docs_and_demo), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @project.contact.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              How to get in touch
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 sm:pb-3">
-              <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"').html_safe %>
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @project.target_country.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Target Country
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= filter_badge label: format_country(@project.target_country), color: 'blue', model: 'projects', filter_by: 'target_country', value: @project.target_country %>
-            </dd>
-          </div>
-        <% end %>
-        <% if @project.target_location.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Target Location
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= @project.target_location %>
-            </dd>
-          </div>
-        <% end %>
-        <% if @project.links.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Helpful links
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-              <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @project.status.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Project status
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= @project.status %>
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @project.accepting_volunteers? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Tasks that need to get done
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= simple_format @project.looking_for, class: 'mb-3' %>
-            </dd>
-          </div>
-
-          <% if @project.number_of_volunteers.present? %>
-            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-              <dt class="text-sm leading-5 font-medium text-gray-500">
-                Number of volunteers needed
-              </dt>
-              <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= @project.number_of_volunteers %>
-              </dd>
-            </div>
-          <% end %>
-
-          <% if @project.skill_list.present? %>
-            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-              <dt class="text-sm leading-5 font-medium text-gray-500">
-                Skills needed
-              </dt>
-              <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-                <%= skill_badges @project.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
-              </dd>
-            </div>
-          <% end %>
-
-          <% if @project.volunteer_location.present? %>
-            <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-              <dt class="text-sm leading-5 font-medium text-gray-500">
-                Volunteer Location
-              </dt>
-              <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= @project.volunteer_location %>
-              </dd>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Volunteers
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-              This project is not accepting new volunteers at this time.
-            </dd>
-          </div>
-        <% end %>
-
-        <% if @project.project_type_list.present? %>
-          <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
-            <dt class="text-sm leading-5 font-medium text-gray-500">
-              Project type
-            </dt>
-            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
-              <%= skill_badges @project.project_type_list, model: 'projects', filter_by: 'project_types' %>
-            </dd>
-          </div>
-        <% end %>
-
-      </dl>
-    </div>
-  </div>
-  <% end %>
+</div>
 
 <% if @project.image.present? && false # actually implement this properly %>
   <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
