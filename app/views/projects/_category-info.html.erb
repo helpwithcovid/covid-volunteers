@@ -29,7 +29,7 @@
   <div class="w-full flex justify-center mb-8 flex-grow-0 flex-shrink-0 flex-wrap">
     <% @project_category[:project_types].each do |type| %>
       <div class="inline-block m-1">
-        <%= filter_badge label: type, color: @project_category[:color], model: 'projects', filter_by: :project_types, value: type %>
+        <%= filter_badge label: type, model: 'projects', filter_by: :project_types, value: type %>
       </div>
     <% end %>
   </div>

@@ -9,7 +9,7 @@
   <%= render partial: 'filters-bar' if @show_filters %>
 
   <% if @projects.present? %>
-    <div class="mt-4">
+    <div class="mt-8">
       <%= list_project_cards do %>
         <% @projects.each do |project| %>
           <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil} %>

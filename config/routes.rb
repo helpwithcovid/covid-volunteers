@@ -45,5 +45,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:slug', to: 'projects#index'
+  get '/:slug(/p/:page)', to: 'projects#index', action: :index
 end
