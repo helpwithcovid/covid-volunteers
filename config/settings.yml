@@ -29,10 +29,10 @@ project_categories:
     color: blue
 
 global_announcements:
-  - title: Helpful resources for your projects
-    sub_title: We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.
-    cta_text: Browse resources
-    cta_url: /offers
+#  - title: Helpful resources for your projects
+#    sub_title: We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.
+#    cta_text: Browse resources
+#    cta_url: /offers
 
 events:
   - title: A Global Perspective on Problems Needing Solutions Regarding COVID-19 Response. Live Panel with Ambika Bumb
