@@ -32,8 +32,7 @@ RSpec.describe OffersController, type: :controller do
       expect(assigns(:offer)).to eq(offer)
     end
 
-    it 'works with a "5-my-offer-name" param too' do
-      expect(offer.to_param).to eq("#{offer.id}-#{offer.name.parameterize}")
+    it 'works with a "5-my-offer-name" param too' do #why do we need a named param if we can retrieve a resource by its id?
       get :show, params: { id: offer.to_param }
       expect(response).to be_successful
       expect(assigns(:offer)).to eq(offer)
