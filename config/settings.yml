@@ -1,19 +1,22 @@
-project_groups:
-  - name: Prevention
-    body: Inform, reduce, and control the spread of the outbreak.
-    project_types:
-      - Track the outbreak
-      - Reduce spread
-    color: orange
+project_categories:
   - name: Medical
+    slug: medical
     body: Support our overwhelmed health systems with medical innovation.
     project_types:
       - Scale testing
       - Medical facilities
       - Medical equipments
       - Treatment R&D
-    color: indigo
+    color: purple
+  - name: Prevention
+    slug: prevention
+    body: Inform, reduce, and control the spread of the outbreak.
+    project_types:
+      - Track the outbreak
+      - Reduce spread
+    color: orange
   - name: Community
+    slug: community
     body: Work together to help our stressed communities.
     project_types:
       - E-Learning

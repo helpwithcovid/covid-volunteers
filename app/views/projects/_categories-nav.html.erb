@@ -1,0 +1,23 @@
+<div class="-mt-6 pb-4 w-full flex flex-col sm:flex-row justify-center border-b border-gray-200">
+  <div class="w-full sm:w-auto mx-auto sm:mx-0 overflow-x-auto scrolling-touch scrollbar-hidden sm:overflow-x-auto">
+    <div class="flex flex-row flex-no-wrap h-full">
+      <%
+        classes = 'text-sm mx-4 inline-flex flex-shrink-0'
+        active_classes = 'font-bold border-b-2 border-indigo-600'
+        is_category = false
+      %>
+      <% Settings.project_categories.each do |category| %>
+        <% is_category = category[:slug] == params[:category_slug] %>
+        <%= link_to category.name, "/#{category.slug}", class: "#{classes} #{active_classes if is_category}" %>
+      <% end %>
+      <%= link_to 'All Categories', projects_path, class: "#{classes} #{active_classes unless is_category}" %>
+    </div>
+  </div>
+
+  <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm', class: 'relative mx-4 sm:mx-0 sm:ml-6 mt-4 sm:-mt-1'} do |form| %>
+    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "border border-indigo-100 p-1 rounded-full w-full text-center border-indigo-400 text-indigo-600 outline-none focus:border-indigo-600 -mb-4", required: true %>
+    <button class="absolute inset-auto right-0 p-2 rounded-full cursor-pointer border-none shadow-none text-sm bg-transparent p-0 hover:bg-gray-100 transition duration-75" style="margin-top: 1px; margin-right: 2px" @click="$refs.searchForm.submit()">
+      <%= inline_svg_pack_tag 'media/svgs/magnifier.svg', class: 'w-4 h-4' %>
+    </button>
+  <% end %>
+</div>

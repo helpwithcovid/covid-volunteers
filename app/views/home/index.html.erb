@@ -7,7 +7,7 @@
     <div class="relative w-64 mx-auto">
       <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'} do |form| %>
         <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "border border-indigo-100 p-2 mt-4 rounded-full w-full text-center border-indigo-400 text-indigo-600 outline-none focus:border-indigo-600", required: true %>
-        <button class="absolute inset-auto right-0 top-1/2 mr-4 -mt-1 cursor-pointer" @click="$refs.searchForm.submit()">
+        <button class="absolute inset-auto right-0 p-2 rounded-full cursor-pointer border-none shadow-none text-sm bg-transparent p-0 hover:bg-gray-100 transition duration-75" style="margin-top: 19px; margin-right: 5px" @click="$refs.searchForm.submit()">
           <%= inline_svg_pack_tag 'media/svgs/magnifier.svg' %>
         </button>
       <% end %>
@@ -17,41 +17,23 @@
 
   <!-- Featured projects -->
   <div class="relative container z-10 pb-4">
-
-    <div class="flex mb-4 px-4">
-      <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg' %></div>
-      <div class="block sm:flex w-full pt-0 sm:pt-1">
-        <div class="w-full sm:w-5/6 text-lg sm:text-xl font-bold">
-          Featured Projects
-        </div>
-        <div class="w-full sm:w-1/6 text-left sm:text-right">
-          <%= link_to projects_path(highlight: true), class: 'text-indigo-700 font-bold group' do %>
-            See all <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 md:grid-cols-3 sm:gap-6">
-      <%= render partial: 'projects/project-card', collection: @featured_projects, as: :project, cached: true %>
-    </div>
+    <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: nil} %>
   </div>
 </div>
 
-<!-- Project groups -->
-<div class="relative featured-groups bg-indigo-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
+<!-- Project categories -->
+<div class="relative featured-categories bg-indigo-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
   <div class="container z-10 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-4 md:gap-12 lg:gap-24 xl:gap-48 pb-24 sm:py-20 px-12 sm:px-0 lg:px-12 xl:px-24">
-    <%= render partial: 'featured-group', collection: @project_groups, as: :group %>
+    <%= render partial: 'featured-category', collection: @project_categories, as: :category %>
   </div>
 </div>
 
-<!-- Project groups -->
+<!-- Project categories -->
 <div class="container">
-  <% cache @project_groups do %>
-    <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% cache @project_categories do %>
+    <%= render partial: 'project-category', collection: @project_categories, as: :category %>
   <% end %>
 </div>
-
 
 <!-- Upcoming events -->
 <div class="bg-gray-100 shadow-inner">

@@ -6,9 +6,9 @@ module ApplicationHelper
   def nav_link_active_class(variant = 'DESKTOP')
     case variant
     when 'DESKTOP'
-      'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out ml-4 text-center'
+      'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-600 text-sm leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out ml-4 text-center font-bold'
     when 'MOBILE'
-      'block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
+      'block pl-3 pr-4 py-2 border-l-4 border-indigo-600 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
     end
   end
 
@@ -82,17 +82,28 @@ module ApplicationHelper
       url << "?#{query_string}" if query_string.present?
     end
 
-    applied = get_query_params[filter_by].include? label
+    applied = get_query_params[filter_by].include?(label)
+
+    if filter_by == 'project_types' and @applied_project_types.present? and @applied_project_types.include?(label)
+      applied = true
+    end
+
     case color
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
       classes += ' bg-blue-300' if applied
+    when 'purple'
+      classes = 'bg-purple-100 text-purple-800'
+      classes += ' bg-purple-300' if applied
+    when 'orange'
+      classes = 'bg-orange-100 text-orange-800'
+      classes += ' bg-orange-300' if applied
     else
       classes = 'bg-indigo-100 text-indigo-800'
       classes += ' bg-indigo-300' if applied
     end
 
-    render partial: 'partials/filter-badge', locals: { label: label, url: url, classes: classes, title: title }
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title, color: color}
   end
 
   def clear_filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil)
@@ -103,7 +114,7 @@ module ApplicationHelper
     classes = 'bg-gray-100 text-gray-800'
     classes += ' bg-gray-200' if get_query_params[filter_by].length == 0
 
-    render partial: 'partials/filter-badge', locals: { label: label, url: url, classes: classes, title: title }
+    render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title, color: 'gray'}
   end
 
   def get_query_params
@@ -130,7 +141,7 @@ module ApplicationHelper
     params_array = query_params.map do |k, v|
       next if v.length == 0
       value = v.map { |s| CGI.escape s }.join(',')
-      "#{k}=#{value}"
+      "#{k}[]=#{value}"
     end
     params_array.reject(&:nil?).join('&')
   end
@@ -167,6 +178,30 @@ module ApplicationHelper
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
   end
 
+  def format_country(country)
+    return country if (country == '' || country == 'Global')
+
+    begin
+      return IsoCountryCodes.find(country).name
+    rescue
+      # Fallback to raw value
+      return country
+    end
+  end
+
+  def get_country_fields
+    [ 'Global' ].concat(IsoCountryCodes.for_select)
+  end
+
+  def get_present_country_fields
+    present_countries = Project.group(:target_country).select(:target_country).map(&:target_country).reject { |c| c.blank? }
+    [['Global', 'Global'], ['United States of America', 'US']].concat(IsoCountryCodes.for_select).uniq.filter { |c| present_countries.include? c[1] }
+  end
+
+  def filter_bar_filter(label, filter, options)
+    render partial: 'projects/filter-bar-filter', locals: {options: options, label: label, filter: filter.to_s}
+  end
+
   def google_analytics_id
     Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
   end
@@ -176,5 +211,9 @@ module ApplicationHelper
     return '' if event.blank?
 
     "gtag('event', '#{event}', {'event_category': 'Actions'});".html_safe
+  end
+
+  def list_project_cards(&block)
+    return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6'>#{capture(&block)}</div>".html_safe
   end
 end

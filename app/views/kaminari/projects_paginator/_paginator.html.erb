@@ -1,0 +1,38 @@
+<div class="bg-white px-4 py-3 flex items-center justify-between sm:px-0">
+  <div class="sm:flex-2 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm leading-5 text-gray-700">
+        Showing
+        <span class="font-medium"><%= @index_from %></span>
+        to
+        <span class="font-medium"><%= @index_to %></span>
+        of
+        <span class="font-medium"><%= @total_count %></span>
+        results
+      </p>
+    </div>
+  </div>
+  <div>
+    <%= paginator.render do -%>
+      <div class="flex-1 flex justify-between sm:hidden">
+        <% if !current_page.first? %>
+          <%= link_to 'Previous', prev_page_tag.url, :class => 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150', :id => 'pnprevious' %>
+        <% else %>
+          <%= link_to '', ''%>
+        <% end %>
+
+        <% if !current_page.last? %>
+          <%= link_to 'Next', next_page_tag.url, :class => 'ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150', :id => 'pnnext' %>
+        <% end %>
+      </div>
+
+      <div class="hidden sm:flex-2 sm:flex sm:items-center sm:justify-between">
+        <span class="relative z-0 inline-flex shadow-sm">
+          <%= prev_page_tag -%>
+          <% each_page.select(&:inside_window?).each do |page| %><%= page_tag page -%><% end %>
+          <%= next_page_tag -%>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>
