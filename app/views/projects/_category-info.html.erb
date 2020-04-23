@@ -1,10 +1,8 @@
 <%
-  if @project_category.blank?
-    @project_category = {
-      name: 'All Categories',
-      color: 'indigo',
-    }
-  end
+  @project_category ||= {
+    name: 'All Categories',
+    color: 'indigo',
+  }
 
   # We need to explicitly write the full color instead of interpolating it so we can later safely purge the unused css
   case @project_category[:color]

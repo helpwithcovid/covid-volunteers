@@ -42,7 +42,7 @@ RSpec.describe Project, type: :model do
   end
 
   describe 'Category & Cover photo' do
-    Settings.project_categorys.each do |category|
+    Settings.project_categories.each do |category|
       category['project_types'].to_a.each do |type|
         it "#{type} returns #{category.name}" do
           project.project_type_list.add(type)
