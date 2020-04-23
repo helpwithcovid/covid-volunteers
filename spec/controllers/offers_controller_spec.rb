@@ -23,7 +23,7 @@ RSpec.describe OffersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let!(:user) { create(:user) }
+    let(:user) { create(:user) }
     let!(:offer) { create(:offer, user: user) }
 
     it 'works with just a numeric id as param' do
@@ -101,30 +101,37 @@ RSpec.describe OffersController, type: :controller do
 
   describe 'POST #create' do
     let(:user) { create(:user) }
-    let(:offer) { create(:offer, user: user) }
-
-    before { allow(Offer).to receive(:new).and_return(offer)}
 
     it 'works' do
       sign_in user
-      post :create, params: { offer: { name: offer.name, description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
+      post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
 
-      expect(response).to redirect_to(offer_path(assigns(:offer)))
+      expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...
     end
   end
 
   describe 'PUT #update' do
+    let(:user) { create(:user) }
+    let(:offer) { create(:offer, user: user) }
+
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      put :update, params: { id: offer.id, name: 'a new name' }
+
+      expect(response).to redirect_to(offer_path(offer))
     end
   end
 
 
   describe 'DELETE #destroy' do
+    let(:user) { create(:user) }
+    let(:offer) { create(:offer, user: user) }
+
     it 'works' do
-      pending 'TODO'
-      fail
+      sign_in user
+      post :destroy, params: { id: offer.id }
+
+      expect(response).to redirect_to(offers_path)
     end
   end
 end
