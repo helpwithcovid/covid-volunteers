@@ -30,7 +30,7 @@ RSpec.describe HomeController, type: :controller do
     it 'doesnt show the same featured project twice' do
       project2 = create(:project_with_type, user: user, highlight: true, project_type_list: ['Track the outbreak', 'Scale testing'])
       get :index
-      featured_ids = assigns(:project_groups).map(&:featured_projects).flatten.map(&:id)
+      featured_ids = assigns(:project_categories).map(&:featured_projects).flatten.map(&:id)
       expect(featured_ids.count(project2.id)).to eq(1)
     end
   end

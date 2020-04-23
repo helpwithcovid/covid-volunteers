@@ -1,16 +1,24 @@
 {
   "name": "covid_volunteers",
   "private": true,
+  "scripts": {
+    "deploy-staging": "git push heroku-staging feature/category-page-2:master"
+  },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
+    "@rails/activestorage": "^6.0.2",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "@tailwindcss/ui": "^0.1.3",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.1",
+    "pluralize": "^8.0.0",
+    "select2": "^4.0.13",
+    "stickybits": "^3.7.6",
     "tailwindcss": "^1.2.0",
     "turbolinks": "^5.2.0",
+    "urijs": "^1.19.2",
     "yarn": "^1.22.4"
   },
   "version": "0.1.0",

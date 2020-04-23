@@ -4,14 +4,14 @@
       <p class="text-sm leading-5 text-gray-700">
         Showing
         <span class="font-medium"><%= @index_from %></span>
-          to
+        to
         <span class="font-medium"><%= @index_to %></span>
         of
         <span class="font-medium"><%= @total_count %></span>
         results
-    </p>
+      </p>
+    </div>
   </div>
-</div>
 
 <%= paginator.render do -%>
   <div class="flex-1 flex justify-between sm:hidden">
@@ -26,11 +26,12 @@
     <% end %>
   </div>
 
-<div class="hidden sm:flex-2 sm:flex sm:items-center sm:justify-between">
-  <span class="relative z-0 inline-flex shadow-sm">
-    <%= prev_page_tag -%>
-    <% each_page.select(&:inside_window?).each do |page| %><%= page_tag page -%><% end %>
-    <%= next_page_tag -%>
-  </span>
-</div>
+  <div class="hidden sm:flex-2 sm:flex sm:items-center sm:justify-between">
+    <span class="relative z-0 inline-flex shadow-sm">
+      <%= prev_page_tag -%>
+      <% each_page.select(&:inside_window?).each do |page| %><%= page_tag page -%><% end %>
+      <%= next_page_tag -%>
+    </span>
+  </div>
 <% end %>
+</div>

@@ -1,0 +1,34 @@
+<%
+  @project_category ||= {
+    name: 'All Categories',
+    color: 'indigo',
+  }
+
+  # We need to explicitly write the full color instead of interpolating it so we can later safely purge the unused css
+  case @project_category[:color]
+  when 'indigo'
+    bg_color = 'bg-indigo-600'
+  when 'orange'
+    bg_color = 'bg-orange-600'
+  when 'blue'
+    bg_color = 'bg-blue-600'
+  when 'purple'
+    bg_color = 'bg-purple-600'
+  else
+    bg_color = 'bg-indigo-600'
+  end
+%>
+<div class="mx-auto w-full text-center mt-8">
+  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 fill-current text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white h-12 w-12' %></div>
+  <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
+  <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
+</div>
+<% if @project_category[:project_types].present? %>
+  <div class="w-full flex justify-center mb-8 flex-grow-0 flex-shrink-0 flex-wrap">
+    <% @project_category[:project_types].each do |type| %>
+      <div class="inline-block m-1">
+        <%= filter_badge label: type, model: 'projects', filter_by: :project_types, value: type %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

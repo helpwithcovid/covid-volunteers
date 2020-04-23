@@ -1,0 +1,8 @@
+<%= link_to category[:slug], class: 'relative z-10 text-white text-center group h-full flex flex-col justify-between' do %>
+  <div>
+    <div class="inline-block rounded-full bg-white fill-current text-indigo-600 w-24 h-24 flex justify-center items-center mx-auto my-4"><%= inline_svg_pack_tag "media/svgs/category-#{category[:name].downcase}.svg", class: 'fill-current text-indigo-600' %></div>
+    <div class="font-bold text-lg mb-4"><%= category[:name] %></div>
+    <div class="mb-4 leading-tight"><%= category[:body] %></div>
+  </div>
+  <div>See <%= category[:title] %> projects <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 group-hover:translate-x-1' %></div>
+<% end %>

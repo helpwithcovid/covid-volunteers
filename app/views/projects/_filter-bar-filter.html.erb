@@ -1,0 +1,25 @@
+<div class="relative" x-data="Covid.initFilter('<%= label %>', '<%= filter %>', <%= options.as_json %>, <%= @applied_filters[filter.to_sym].present? ? @applied_filters[filter.to_sym].as_json : [] %>)" @click.away="open = false" data-turbolinks-permanent>
+  <div class="flex text-sm text-gray-700 items-center justify-between select-none form-select pr-8 bg-white border-gray-300 rounded shadow-sm" @click="open = !open">
+    <div class="cursor-pointer flex-shrink-0"><span x-text="selectedCount()"></span> <span x-text="dropDownLabel()"></span></div>
+  </div>
+  <template x-if="open">
+    <div class="absolute left-0 mt-2 p-4 bg-white z-30 shadow-lg w-full sm:w-48 flex flex-col">
+      <div class="bg-white mb-2">
+        <div class="font-semibold uppercase text-xs mb-1">Select</div>
+        <div class="flex">
+          <button class="button button-sm w-1/2 mb-2 mr-2" @click="selectAll()">All</button>
+          <button class="button button-sm w-1/2 mb-2" @click="resetFilters()">None</button>
+        </div>
+        <button class="button button-indigo w-full mb-2" @click="applyFilters()">Apply filters</button>
+      </div>
+      <div class="relative overflow-auto max-h-400px scroll-shadow">
+        <template x-for="option in options" :key="option[0]">
+          <div @click="toggleSelection(option[1])" class="relative flex mb-1 cursor-pointer z-10">
+            <input type="checkbox" x-bind:checked="isSelected(option[1])" class="mr-2 mt-1">
+            <div x-text="option[0]"></div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
+</div>

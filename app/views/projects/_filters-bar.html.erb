@@ -1,0 +1,32 @@
+<div class="js-sticky-filter mt-12 z-30 shadow-lg relative-important" x-data="{}" x-init="Covid.keepFiltersSticky()">
+  <div class="bg-indigo-100 rounded flex justify-between items-center w-full py-3 px-6 flex flex-col lg:flex-row">
+    <div class="flex flex-1 flex-col lg:flex-row items-center w-full lg:mr-4 mb-4 lg:mb-0">
+      <div class="font-bold mb-2 lg:mb-0 mr-2">Filter by</div>
+      <div class="flex flex-col sm:flex-row w-full lg:w-auto">
+        <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Project Types', :project_types, ALL_PROJECT_TYPES.map { |o| [o, o] } %>
+        </div>
+        <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Skills', :skills, ALL_SKILLS.map { |o| [o, o] } %>
+        </div>
+        <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Countries', :target_country, get_present_country_fields %>
+        </div>
+        <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 md:mb-0 w-full sm:w-auto">
+          <%= filter_bar_filter 'Status', :status, ALL_PROJECT_STATUS.map { |o| [o, o] }  %>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center lg:mb-0 w-full lg:w-auto">
+      <div class="font-bold mb-2 lg:mb-0 mr-2">Sort by</div>
+      <div class="mb-2 sm:mr-4 md:mr-0 md:mb-0 w-full sm:w-auto" x-data="{ open: false, sortOpen: false }">
+        <%= sort_drop_down do %>
+          <%= sort_drop_down_option(request.path, 'Sort by') %>
+          <%= sort_drop_down_option(request.path, 'Volunteers Needed', 'volunteers_needed') %>
+          <%= sort_drop_down_option(request.path, 'Latest', 'latest') %>
+          <%= sort_drop_down_option(request.path, 'Earliest', 'earliest') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,18 +25,34 @@ RSpec.describe Project, type: :model do
     expect(project.accepting_volunteers).to eq(true)
   end
 
-  describe 'Group & Cover photo' do
-    Settings.project_groups.each do |group|
-      group['project_types'].to_a.each do |type|
-        it "#{type} returns #{group.name}" do
+  describe 'can_edit?' do
+    it 'random user cant edit' do
+      expect(project.can_edit?(build(:user))).to eq(false)
+    end
+
+    it 'project_owner can edit' do
+      project_owner = project.user
+      expect(project.can_edit?(project_owner)).to eq(true)
+    end
+
+    it 'admin can edit' do
+      admin_user = build(:user_admin)
+      expect(project.can_edit?(admin_user)).to eq(true)
+    end
+  end
+
+  describe 'Category & Cover photo' do
+    Settings.project_categories.each do |category|
+      category['project_types'].to_a.each do |type|
+        it "#{type} returns #{category.name}" do
           project.project_type_list.add(type)
-          expect(project.group).to eq(group.name)
+          expect(project.category).to eq(category.name)
         end
       end
     end
 
     it 'project defaults to medical with no type' do
-      expect(project.group).to eq('Community')
+      expect(project.category).to eq('Community')
     end
 
     it 'returns correct cover photo' do

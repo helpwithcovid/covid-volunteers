@@ -1,0 +1,36 @@
+<% Settings.upcoming_events.each do |event| %>
+  <div class="mx-4 sm:mx-0 flex flex-wrap mb-6 text-sm rounded-lg shadow overflow-hidden">
+    <div class="w-full sm:w-1/12 text-center px-4 py-2 text-white bg-indigo-600 font-bold">
+      <div class="flex sm:flex-col items-center justify-center h-full">
+        <span class="block"><%= event[:month] %></span>
+        <span class="block ml-1 sm:text-3xl sm:mt-2"><%= event[:day] %></span>
+      </div>
+    </div>
+
+    <div class="w-full sm:w-9/12 bg-purple-100 py-4 px-4">
+      <div class="text-indigo-600 font-bold">
+        <%= event[:title].html_safe %>
+      </div>
+
+      <div class="text-gray-800 pt-2">
+        <%= event[:sub_title].html_safe %>
+      </div>
+    </div>
+
+    <div class="w-full sm:w-2/12 bg-white py-4 px-4 text-center">
+      <div class="text-indigo-600 font-bold">
+        <%= event[:time] %>
+      </div>
+
+      <% if event[:cta_url] %>
+        <div class="mt-3">
+          <%= link_to event[:cta_url], target: '_blank' do %>
+            <span class="text-xs relative inline-flex items-center px-4 py-2 border border-transparent leading-5 rounded-md font-bold  bg-purple-200 text-indigo-600 hover:bg-purple-300 focus:outline-none focus:shadow-outline-indigo focus:border-purple-300 active:bg-purple-300 rounded-md shadow-sm">
+              <%= event[:cta_text] %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

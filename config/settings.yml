@@ -1,19 +1,22 @@
-project_groups:
-  - name: Prevention
-    body: Inform, reduce, and control the spread of the outbreak.
-    project_types:
-      - Track the outbreak
-      - Reduce spread
-    color: orange
+project_categories:
   - name: Medical
+    slug: medical
     body: Support our overwhelmed health systems with medical innovation.
     project_types:
       - Scale testing
       - Medical facilities
       - Medical equipments
       - Treatment R&D
-    color: indigo
+    color: purple
+  - name: Prevention
+    slug: prevention
+    body: Inform, reduce, and control the spread of the outbreak.
+    project_types:
+      - Track the outbreak
+      - Reduce spread
+    color: orange
   - name: Community
+    slug: community
     body: Work together to help our stressed communities.
     project_types:
       - E-Learning
@@ -26,16 +29,12 @@ project_groups:
     color: blue
 
 global_announcements:
-  - title: Helpful resources for your projects
-    sub_title: We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.
-    cta_text: Browse resources
-    cta_url: /offers
+#  - title: Helpful resources for your projects
+#    sub_title: We wrote a playbook on how to manage volunteers, had some amazing panels, and gathered some deals for you.
+#    cta_text: Browse resources
+#    cta_url: /offers
 
 events:
-  - title: HWC Volunteer Playbook
-    sub_title: A short guide created by our team to help you successfully manager your project and volunteers!
-    cta_text: Download playbook
-    cta_url: https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view
   - title: A Global Perspective on Problems Needing Solutions Regarding COVID-19 Response. Live Panel with Ambika Bumb
     sub_title: Ambika is a Health, Science and Technology Advisor focusing on Crisis Management and Strategy
     cta_text: View recording
@@ -58,19 +57,45 @@ events:
     cta_url: https://zoom.us/rec/share/5sttA5fAsWxLT6_Nx2-Yd7IEDqfuaaa823JI8_tcyUYSZzIbgvNy717m1UGGegEf
   - title: Rethinking Resumes | Creating Impact in the age of Insta-everything
     sub_title: Monday, April 20th 1:30pm PST | <a href="https://www.linkedin.com/in/jaimiefeliz/">Jaimie Lynn Craig Feliz</a>, Founder of The Hire Standard and Bay Area search and resume guru gives actionable insights and tactics to influence, connect and ultimately be seen as the expert you are.
-    cta_text: Click here to add to your calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MzBrdnRnb2RsbDdsbWxxdWNwMTdldDliOGogb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
+    cta_text: Coming Soon
+    cta_url: '#'
   - title: Sourcing a Volunteer Workforce from TeamBlind’s 3.5MM+ Professionals with Kyum Kim
     sub_title: Tuesday, April 21st 12pm-12:30pm PST
-    cta_text: Click here to add to your calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NDlraGs0bGxiZXMzNmI0aTh2aDF0M3NrNWEgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
+    cta_text: Coming soon
+    cta_url: '#'
 
 upcoming_events:
-  - title: How to Sell and Know Your Audience | Live Panel with ClozeLoop Founders, Hilmon Sorey and Corey Bray
-    sub_title: Monday, April 27th 11am PST | <a href="https://www.linkedin.com/in/hilmonsorey/"> Hilmon Sorey</a> and <a href="https://www.linkedin.com/in/buy-triangleselling/">Cory Bray</a>  are Managing Directors of ClozeLoop and have written 5 books on sales, sales enablement, and sales management.  Their 6th book, The Five Secrets of a Sales Coach will be released in May.
-    cta_text: Click here to add to your calendar
+  - title: How to Sell and Know Your Audience | Live Panel with ClozeLoop Founders, Hilmon Sorey and Cory Bray
+    sub_title: Monday, April 27th 11am PST | <a href="https://www.linkedin.com/in/hilmonsorey/"> Hilmon Sorey</a> and <a href="https://www.linkedin.com/in/buy-triangleselling/">Cory Bray</a>  are Managing Directors of ClozeLoop and have written 5 books on sales, sales enablement, and sales management. Their 6th book, The Five Secrets of a Sales Coach will be released in May.
+    month: April
+    day: 27
+    time: 11:00 AM - 12 PM PST
+    cta_text: Add to Calendar
     cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MmNrN2QwMW0zOWtuczgzZTYwc2xkbDRpZW0gb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
   - title: Private Group Office Hours with Sam Altman
-    sub_title: Friday, May 1st 12pm PST | 3 randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
-    cta_text: Fill out this form if you are interested in joining us
+    sub_title: Three randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
+    month: May
+    day: 1
+    time: 12:00 PM - 1:00 PM PST
+    cta_text: Fill out Form
     cta_url: https://forms.gle/jNFYAd1oLtQjLJrP9
+
+funding_resources:
+  - cta_text: YC S2020 Application
+    cta_url: https://www.ycombinator.com/apply/
+  - cta_text: WeFunder
+    cta_url: https://wefunder.com/raise-money
+  - cta_text: 80,000 Hours
+    cta_url: https://mailtrack.io/trace/link/8c8d1564095e2d5ec067747e4b3a6f862edfc731?url=https%3A%2F%2F80000hours.org%2F2020%2F04%2Fopportunities-to-work-on-covid-19%2F&userId=2861473&signature=3d3d868b7658ace5
+  - cta_text: Association of Fundraising Professionals
+    cta_url: https://afpglobal.org/
+  - cta_text: Covid Accelerator
+    cta_url: https://covidaccelerator.com/
+  - cta_text: Covid19-Response
+    cta_url: https://www.covid19-response.com/
+  - cta_text: Plug and Play
+    cta_url: https://www.plugandplaytechcenter.com/covid-19/?utm_campaign=Health_Newsletter_May%202019&utm_source=hs_email&utm_medium=email&utm_content=85778878&_hsenc=p2ANqtz-8AHUCNB-yeVfppjjjjE5b9GKQdFVnuA6FcmSMy3uJOVWtyLW2-DVKL6ybPr8AWWk9VRfO2TotPM8zP-ZUxkNmrusZNqw&_hsmi=85779062
+  - cta_text: MIT Covid-19 Research
+    cta_url: https://computing.mit.edu/computation-support-covid-19
+  - cta_text: Protect the Protectors Resource Guide
+    cta_url: https://docs.google.com/document/d/1VtT6vEGzut8k0-XmqOXCwZYWVVXOtXZWHGt7yEeYjlA/edit

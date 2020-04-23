@@ -1,4 +1,9 @@
+import * as ActiveStorage from '@rails/activestorage'
 import Cookies from 'js-cookie'
+import pluralize from 'pluralize'
+import URI from 'urijs'
+import stickybits from 'stickybits';
+import './direct-upload'
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'
@@ -97,17 +102,68 @@ const Covid = {
       classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300';
     }
     const badgeHTML = `<div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
-      ${items.map(item => 
+      ${items.map(item =>
         `<div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 flex-shrink-0 ${classes}" title=${title}>
             <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
               <circle cx="4" cy="4" r="3"></circle>
             </svg>
             ${item}
           </div>`
-        ).join('')} 
+        ).join('')}
      </div>`;
     return badgeHTML
-  }
+  },
+  keepFiltersSticky() {
+    stickybits('.js-sticky-filter', {stickyBitStickyOffset: 20})
+  },
+  initFilter(label, filter, options, selected) {
+    return {
+      label,
+      options,
+      selected,
+      open: false,
+      applyFilters() {
+        this.open = false
+        Covid.applyFiltersAndGo(filter, this.selected)
+      },
+      resetFilters() {
+        this.selected = []
+      },
+      selectAll() {
+        this.selected = this.options.map(item => item[0])
+      },
+      selectedCount() {
+        return this.selected.length > 0 ? this.selected.length : ''
+      },
+      toggleSelection(option) {
+        if (this.selected.indexOf(option) >= 0) {
+          this.selected = this.selected.filter(item => item !== option)
+        } else {
+          this.selected.push(option)
+        }
+      },
+      isSelected(option) {
+        return this.selected.some(selected => selected === option)
+      },
+      dropDownLabel() {
+        return pluralize(this.label, this.selected.length)
+      }
+    }
+  },
+  applyFiltersAndGo(filter, values) {
+    const filterKey = `${filter}[]`
+    const uri = URI(window.location.toString());
+    const query = uri.search(true)
+
+    query[filterKey] = values
+    uri.query(query)
+
+    if (uri.path() !== '/projects' && filter === 'project_types') {
+      uri.path('projects')
+    }
+
+    Turbolinks.visit(uri.readable())
+  },
 };
 
 export default Covid

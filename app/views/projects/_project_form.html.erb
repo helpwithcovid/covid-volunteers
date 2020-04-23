@@ -5,7 +5,7 @@
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "name", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_field "name", class: "flex-1 form-input block w-full rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
     </div>
   </div>
@@ -255,7 +255,7 @@
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_field "contact", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= f.text_field "contact", class: "flex-1 form-input block w-full rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
       </div>
       <p class="mt-2 text-sm text-gray-500">You'll get an email when a volunteer applies, but perhaps there is another way, like email or discord.</p>
     </div>
@@ -270,7 +270,24 @@
       <div class="max-w-lg flex rounded-md shadow-sm">
         <%= f.text_area "links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
       </div>
-      <p class="mt-2 text-sm text-gray-500">Any other relevant links, for instance GitHub or social media (Twitter/Facebook). One per line.</p>
+    <p class="mt-2 text-sm text-gray-500">Any other relevant links, for instance GitHub or social media (Twitter/Facebook). One per line.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="image" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Image<br/>
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <% if @project.image.present? %>
+        <div class="py-4">
+          <%= render partial: 'partials/image-thumbnail', locals: {image: @project.image} %>
+        </div>
+      <% end %>
+
+      <div class="">
+        <%= f.file_field :image, multiple: false, direct_upload: true, class: "py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" %>
+      </div>
     </div>
   </div>
 

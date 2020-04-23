@@ -1,5 +1,11 @@
 <%= link_to project, class: 'relative block shadow-lg hover:shadow-md transform transition-all duration-100 hover:scale-105' do %>
-  <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(local_assigns[:group]) %>);"></div>
+  <%
+    category = Settings.project_categories.select { |cat| cat.name == local_assigns[:category] }.first if local_assigns[:category].present?
+
+    category_override = category.present? ? local_assigns[:category] : nil
+  %>
+
+  <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= url_for project.cover_photo(category_override) %>);"></div>
 
   <% if project.accepting_volunteers? %>
     <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-3 py-1 text-xs" style="background-color: rgba(0, 0, 0, 0.5);"><span class="pr-1"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %></span> Actively Recruiting</div>
@@ -8,7 +14,7 @@
   <div class="px-5 pt-5 pb-6">
     <div class="text-lg font-medium truncate leading-tight mb-1"><%= project.name %></div>
     <div class="text-gray-500 text-sm mb-5 leading-tight overflow-hidden" style="height: 50px;">
-      <% if project.short_description.present? %>  
+      <% if project.short_description.present? %>
         <%= project.short_description %>
       <% else %>
         <%= project.description.truncate 150 %>

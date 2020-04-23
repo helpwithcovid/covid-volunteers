@@ -7,6 +7,10 @@ module ProjectsHelper
     end
   end
 
+  def is_projects_path
+    request.path == projects_path or request.path.include?('/projects/p') or Settings.project_categories.map(&:slug).include?(params[:category_slug])
+  end
+
   def format_country(country)
     return country if country == '' || country == 'Global'
 
@@ -16,9 +20,5 @@ module ProjectsHelper
       # Fallback to raw value
       country
     end
-  end
-
-  def get_country_fields
-    [ 'Global' ].concat(IsoCountryCodes.for_select)
   end
 end

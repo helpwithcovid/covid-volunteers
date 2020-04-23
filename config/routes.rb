@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/projects/p/:page' => 'projects#index', as: 'projects_with_pagination'
 
   resources :projects do
+    resources :images, controller: 'projects_images'
+
     collection do
       get :volunteered
       get :own
@@ -44,4 +46,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/:category_slug(/p/:page)', to: 'projects#index', action: :index
 end

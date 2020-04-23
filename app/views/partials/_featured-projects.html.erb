@@ -1,0 +1,23 @@
+<div class="flex mb-4">
+  <%
+    project_category = Settings.project_categories.select { |cat| cat.name == category }.first
+    color = project_category.present? ? project_category.color : 'indigo'
+  %>
+  <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg', class: "fill-current text-#{color}-600" %></div>
+  <div class="block sm:flex w-full pt-0 sm:pt-1">
+    <div class="w-full sm:w-5/6 text-lg sm:text-xl font-bold">
+      Featured Projects
+    </div>
+    <div class="w-full sm:w-1/6 text-left sm:text-right">
+      <%= link_to projects_path(highlight: true), class: 'text-indigo-700 font-bold group' do %>
+        See all <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 md:grid-cols-3 sm:gap-6">
+  <% projects.each do |project| %>
+    <%= render partial: 'projects/project-card', locals: { project: project, category: category} %>
+  <% end %>
+</div>
