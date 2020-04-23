@@ -76,6 +76,12 @@ gem 'rinku'
 gem 'aws-sdk-ses'
 gem 'aws-sdk-rails'
 
+# File storage S3
+gem "aws-sdk-s3", require: false
+
+# Image processing
+gem 'image_processing'
+
 # Exceptions.
 gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification'
 

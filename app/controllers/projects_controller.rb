@@ -111,8 +111,10 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    updated = @project.update(project_params)
+
     respond_to do |format|
-      if @project.update(project_params)
+      if updated
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -154,11 +156,11 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :volunteer_location, :target_country, :target_location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :short_description, skill_list: [], project_type_list: [])
+      params.fetch(:project, {}).permit(:name, :description, :participants, :looking_for, :contact, :volunteer_location, :target_country, :target_location, :progress, :docs_and_demo, :accepting_volunteers, :number_of_volunteers, :links, :status, :short_description, :image, skill_list: [], project_type_list: [])
     end
 
     def ensure_owner_or_admin
-      if current_user != @project.user && !current_user.is_admin?
+      if !@project.can_edit?(current_user)
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end

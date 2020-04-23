@@ -1,7 +1,9 @@
+import * as ActiveStorage from '@rails/activestorage'
 import Cookies from 'js-cookie'
 import pluralize from 'pluralize'
 import URI from 'urijs'
 import stickybits from 'stickybits';
+import './direct-upload'
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'

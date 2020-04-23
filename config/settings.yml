@@ -79,3 +79,23 @@ upcoming_events:
     time: 12:00 PM - 1:00 PM PST
     cta_text: Fill out Form
     cta_url: https://forms.gle/jNFYAd1oLtQjLJrP9
+
+funding_resources:
+  - cta_text: YC S2020 Application
+    cta_url: https://www.ycombinator.com/apply/
+  - cta_text: WeFunder
+    cta_url: https://wefunder.com/raise-money
+  - cta_text: 80,000 Hours
+    cta_url: https://mailtrack.io/trace/link/8c8d1564095e2d5ec067747e4b3a6f862edfc731?url=https%3A%2F%2F80000hours.org%2F2020%2F04%2Fopportunities-to-work-on-covid-19%2F&userId=2861473&signature=3d3d868b7658ace5
+  - cta_text: Association of Fundraising Professionals
+    cta_url: https://afpglobal.org/
+  - cta_text: Covid Accelerator
+    cta_url: https://covidaccelerator.com/
+  - cta_text: Covid19-Response
+    cta_url: https://www.covid19-response.com/
+  - cta_text: Plug and Play
+    cta_url: https://www.plugandplaytechcenter.com/covid-19/?utm_campaign=Health_Newsletter_May%202019&utm_source=hs_email&utm_medium=email&utm_content=85778878&_hsenc=p2ANqtz-8AHUCNB-yeVfppjjjjE5b9GKQdFVnuA6FcmSMy3uJOVWtyLW2-DVKL6ybPr8AWWk9VRfO2TotPM8zP-ZUxkNmrusZNqw&_hsmi=85779062
+  - cta_text: MIT Covid-19 Research
+    cta_url: https://computing.mit.edu/computation-support-covid-19
+  - cta_text: Protect the Protectors Resource Guide
+    cta_url: https://docs.google.com/document/d/1VtT6vEGzut8k0-XmqOXCwZYWVVXOtXZWHGt7yEeYjlA/edit

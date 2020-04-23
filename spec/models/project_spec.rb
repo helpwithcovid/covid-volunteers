@@ -25,8 +25,24 @@ RSpec.describe Project, type: :model do
     expect(project.accepting_volunteers).to eq(true)
   end
 
+  describe 'can_edit?' do
+    it 'random user cant edit' do
+      expect(project.can_edit?(build(:user))).to eq(false)
+    end
+
+    it 'project_owner can edit' do
+      project_owner = project.user
+      expect(project.can_edit?(project_owner)).to eq(true)
+    end
+
+    it 'admin can edit' do
+      admin_user = build(:user_admin)
+      expect(project.can_edit?(admin_user)).to eq(true)
+    end
+  end
+
   describe 'Category & Cover photo' do
-    Settings.project_categories.each do |category|
+    Settings.project_categorys.each do |category|
       category['project_types'].to_a.each do |type|
         it "#{type} returns #{category.name}" do
           project.project_type_list.add(type)

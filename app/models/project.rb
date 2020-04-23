@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
 
   include PgSearch::Model
 
@@ -36,6 +37,10 @@ class Project < ApplicationRecord
 
   def to_param
     [id, name.parameterize].join('-')
+  end
+
+  def can_edit?(edit_user)
+    edit_user && (self.user == edit_user || edit_user.is_admin?)
   end
 
   def volunteer_emails
@@ -89,8 +94,8 @@ class Project < ApplicationRecord
   end
 
   def cover_photo(category_override = nil)
-    cover_photo = false
-    if cover_photo.present?
+    if self.image.present?
+      self.image.variant(resize_to_limit: [400, 400])
     else
       "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
     end
