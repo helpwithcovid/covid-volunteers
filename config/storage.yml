@@ -12,7 +12,7 @@ amazon:
   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] or Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] or Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: <%= ENV['AWS_REGION'] or Rails.application.credentials.dig(:aws, :region) %>
-  bucket: helpwithcovid-images
+  bucket: <%= ENV['AWS_S3_BUCKET'] or Rails.application.credentials.dig(:aws, :bucket) %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
