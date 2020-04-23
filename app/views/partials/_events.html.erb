@@ -1,43 +1,15 @@
 <div class="container pt-10 pb-8">
   <% if Settings.upcoming_events.present? %>
-    <div class="mb-4 font-bold text-lg">
-      Upcoming Events
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% Settings.upcoming_events.each do |event| %>
+        <% event[:upcoming] = true %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
+      <% Settings.events.each do |event| %>
+        <%= render partial: 'home/event-card', locals: {event: event} %>
+      <% end %>
     </div>
-
-    <%= render partial: "layouts/resource_upcoming_events" %>
+  <% else %>
+    <div class="text-white mb-4"><%= section_name 'No upcoming events' %></div>
   <% end %>
-
-  <div class="my-6 font-bold text-lg">
-    Get the Playbook
-  </div>
-
-  <div class="grid grid-cols-3 mb-3 text-sm">
-    <div class="col-span-1 text-center bg-gray-400 px-4 py-2 rounded-md text-white bg-indigo-600 font-bold">
-      <div class="flex items-center justify-center h-full">
-        HWC Volunteer Playbook: The Project Guide
-      </div>
-    </div>
-
-    <div class="col-span-2 bg-white px-8 py-4">
-      <div class="flex flex-row items-center justify-center h-full">
-        <div>
-          A short guide created by our team to help you successfully manage your project and volunteers!
-        </div>
-
-        <div class="rounded-md shadow-sm flex-shrink-0 ml-8">
-          <%= link_to "https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view" do %>
-            <span class="text-sm relative inline-flex items-center px-4 py-2 border border-transparent leading-5 rounded-md font-bold   text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-              Download Playbook
-            </span>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="my-6 font-bold text-lg">
-    Recorded webinars
-  </div>
-
-  <%= render partial: "layouts/resource_previous_events" %>
 </div>

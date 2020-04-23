@@ -1,0 +1,17 @@
+<div class="<%= event[:upcoming].present? ? "bg-white" : "bg-indigo-100" %> flex flex-col justify-between">
+  <div>
+    <% if event[:upcoming].present? %>
+      <div class="font-bold text-indigo-100 bg-indigo-600 leading-tight py-1 text-center text-sm">Upcoming Event</div>
+    <% else %>
+      <div class="leading-tight py-1">&nbsp;</div>
+    <% end %>
+    <div class="p-4">
+      <div class="flex justify-between">
+        <div class="font-bold text-indigo-600 mb-2 leading-tight"><%= event[:title] %></div>
+        <div class="mb-4 text-indigo-600 text-right"><%= event[:when] %></div>
+      </div>
+      <div class="text-sm text-gray-500 leading-tight"><%= event[:sub_title].html_safe %></div>
+    </div>
+  </div>
+  <%= link_to event[:cta_text], event[:cta_url], target: :_blank, class: 'bg-indigo-200 font-bold text-indigo-600 p-4 text-center'%>
+</div>

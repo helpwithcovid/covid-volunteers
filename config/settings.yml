@@ -32,6 +32,10 @@ global_announcements:
     cta_url: /offers
 
 events:
+  - title: HWC Volunteer Playbook
+    sub_title: A short guide created by our team to help you successfully manager your project and volunteers!
+    cta_text: Download playbook
+    cta_url: https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view
   - title: A Global Perspective on Problems Needing Solutions Regarding COVID-19 Response. Live Panel with Ambika Bumb
     sub_title: Ambika is a Health, Science and Technology Advisor focusing on Crisis Management and Strategy
     cta_text: View recording
@@ -62,13 +66,11 @@ events:
     cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NDlraGs0bGxiZXMzNmI0aTh2aDF0M3NrNWEgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
 
 upcoming_events:
-  - title: How to Sell and Know Your Audience | Live Panel with ClozeLoop Founders, Hilmon Sorey and Corey Bray. <a href="https://www.linkedin.com/in/hilmonsorey/"> Hilmon Sorey</a> and <a href="https://www.linkedin.com/in/buy-triangleselling/">Cory Bray</a>  re Managing Directors of ClozeLoop and have written 5 books on sales, sales enablement, and sales management.  Their 6th book, The Five Secrets of a Sales Coach will be released in May.
-    date: April 27th 2020
-    time: 11am-12p PST
-    cta_text: Add to Calendar
+  - title: How to Sell and Know Your Audience | Live Panel with ClozeLoop Founders, Hilmon Sorey and Corey Bray
+    sub_title: Monday, April 27th 11am PST | <a href="https://www.linkedin.com/in/hilmonsorey/"> Hilmon Sorey</a> and <a href="https://www.linkedin.com/in/buy-triangleselling/">Cory Bray</a>  are Managing Directors of ClozeLoop and have written 5 books on sales, sales enablement, and sales management.  Their 6th book, The Five Secrets of a Sales Coach will be released in May.
+    cta_text: Click here to add to your calendar
     cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MmNrN2QwMW0zOWtuczgzZTYwc2xkbDRpZW0gb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
-  - title: Private Group Office Hours with Sam Altman. 3 randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
-    date: May 1st 2020
-    time: 12p-1p PST
-    cta_text: Fill out Form
+  - title: Private Group Office Hours with Sam Altman
+    sub_title: Friday, May 1st 12pm PST | 3 randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
+    cta_text: Fill out this form if you are interested in joining us
     cta_url: https://forms.gle/jNFYAd1oLtQjLJrP9
