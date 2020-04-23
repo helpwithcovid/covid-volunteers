@@ -17,6 +17,10 @@ FactoryBot.define do
     password { 'df823jls18fk350f' }
   end
 
+  factory :user_admin, parent: :user do
+    email { 'email@address.com' } # should match .env.test
+  end
+
   factory :user_complete_profile, parent: :user do
     about { 'About' }
     profile_links { 'Profile' }

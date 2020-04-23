@@ -140,7 +140,7 @@ class ProjectsController < ApplicationController
     end
 
     def ensure_owner_or_admin
-      if current_user != @project.user && !current_user.is_admin?
+      if !@project.can_edit?(current_user)
         flash[:error] = "Apologies, you don't have access to this."
         redirect_to projects_path
       end
