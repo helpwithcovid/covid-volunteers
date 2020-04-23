@@ -39,6 +39,10 @@ class Project < ApplicationRecord
     [id, name.parameterize].join('-')
   end
 
+  def can_edit?(edit_user)
+    edit_user && (self.user == edit_user || edit_user.is_admin?)
+  end
+
   def volunteer_emails
     self.volunteered_users.collect { |u| u.email }
   end
