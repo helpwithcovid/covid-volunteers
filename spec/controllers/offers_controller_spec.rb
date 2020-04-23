@@ -63,23 +63,32 @@ RSpec.describe OffersController, type: :controller do
   describe 'GET #new' do
     let(:user) { create(:user) }
 
-    
-    before do 
-      sign_in user
+    context 'when user is not signed in' do
+      before { get :new }
 
-      get :new
+      it 'is unsuccessful' do
+        expect(response).not_to be_successful
+      end      
     end
 
-    it 'is successful' do
-      expect(response).to be_successful
-    end
+    context 'when user is signed-in' do
+      before do 
+        sign_in user
 
-    it 'assigns an offer' do
-      expect(assigns(:offer)).to be_an_instance_of(Offer)
-    end
+        get :new
+      end
 
-    it 'renders form for creating an offer' do
-      expect(response.body).to include('Create new resource')     
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
+      it 'assigns an offer' do
+        expect(assigns(:offer)).to be_an_instance_of(Offer)
+      end
+
+      it 'renders form for creating an offer' do
+        expect(response.body).to include('Create new resource')     
+      end
     end
   end
 
@@ -87,33 +96,77 @@ RSpec.describe OffersController, type: :controller do
     let(:offer) { create(:offer, user: user) }
     let(:user) { create(:user) }
 
-    before do
-      sign_in user
+    context 'when user is not signed in' do
+      before { get :edit, params: { id: offer.id } }
 
-      get :edit, params: { id: offer.id }
+      it 'is unsuccessful' do
+        expect(response).not_to be_successful
+      end      
     end
 
-    it 'is successful' do
-      expect(response).to be_successful
+    context 'when user is signed-in' do
+      before do
+        sign_in user
+
+        get :edit, params: { id: offer.id }
+      end
+
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+
+      it 'renders form for creating an offer' do
+        expect(response.body).to include("Edit resource #{offer.name}")     
+      end
     end
 
-    it 'assigns the offer' do
-      expect(assigns(:offer)).to eq(offer)
-    end
+    context 'when admin is signed-in' do
+      let (:admin) { create(:user, email: ADMINS[0]) }
 
-    it 'renders form for creating an offer' do
-      expect(response.body).to include("Edit resource #{offer.name}")     
+      before do
+        sign_in admin
+
+        get :edit, params: { id: offer.id }
+      end
+
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+
+      it 'renders form for creating an offer' do
+        expect(response.body).to include("Edit resource #{offer.name}")     
+      end
     end
   end
 
   describe 'POST #create' do
     let(:user) { create(:user) }
 
-    it 'redirects to the offer' do
-      sign_in user
-      post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
+    context 'when user is not signed in' do
+      before { post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} } }
 
-      expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...
+      it 'is unsuccessful' do
+        expect(response).not_to be_successful
+      end      
+    end
+
+    context 'when user is signed-in' do
+      before do
+        sign_in user
+        post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
+      end
+
+      it 'redirects to the offer' do
+        expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...
+      end
     end
   end
 
@@ -121,24 +174,72 @@ RSpec.describe OffersController, type: :controller do
     let(:user) { create(:user) }
     let(:offer) { create(:offer, user: user) }
 
-    it 'redirects to the offer' do
-      sign_in user
-      put :update, params: { id: offer.id, name: 'a new name' }
+    context 'when user is not signed in' do
+      before { put :update, params: { id: offer.id, name: 'a new name' } }
 
-      expect(response).to redirect_to(offer_path(offer))
+      it 'is unsuccessful' do
+        expect(response).not_to be_successful
+      end      
     end
-  end
 
+    context 'when user is signed in' do
+      before do
+        sign_in user
+        put :update, params: { id: offer.id, name: 'a new name' }
+      end
+
+      it 'redirects to the offer' do
+        expect(response).to redirect_to(offer_path(offer))
+      end
+    end
+
+    context 'when admin is signed in' do
+      let (:admin) { create(:user, email: ADMINS[0]) }
+
+      before do
+        sign_in admin
+        put :update, params: { id: offer.id, name: 'a new name' }
+      end
+
+      it 'redirects to the offer' do
+        expect(response).to redirect_to(offer_path(offer))
+      end
+    end    
+  end
 
   describe 'DELETE #destroy' do
     let(:user) { create(:user) }
     let(:offer) { create(:offer, user: user) }
 
-    it 'it redirects to the offers' do
-      sign_in user
-      post :destroy, params: { id: offer.id }
+    context 'when user is not signed in' do
+      before { post :destroy, params: { id: offer.id } }
 
-      expect(response).to redirect_to(offers_path)
+      it 'is unsuccessful' do
+        expect(response).not_to be_successful
+      end      
+    end
+
+    context 'when user is signed-in' do
+      before do
+        sign_in user
+        post :destroy, params: { id: offer.id }
+      end
+      it 'it redirects to the offers' do
+        expect(response).to redirect_to(offers_path)
+      end
+    end
+
+    context 'when admin is signed in' do
+      let (:admin) { create(:user, email: ADMINS[0]) }
+
+      before do
+        sign_in admin
+        post :destroy, params: { id: offer.id }
+      end
+
+      it 'redirects to the offer' do
+        expect(response).to redirect_to(offers_path)
+      end
     end
   end
 end
