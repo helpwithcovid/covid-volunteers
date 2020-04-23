@@ -3,6 +3,9 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   theme: {
     extend: {},
+    colors: {
+      'indigo-50': '#F9F9FF',
+    },
     container: {
       center: true,
     },
