@@ -1,5 +1,5 @@
 <div class="container pb-8">
-  <div class="px-4 sm:px-0 my-6 font-bold">
+  <div class="px-4 sm:px-0 my-6 font-bold text-center">
     Get the Playbook
   </div>
 
@@ -27,15 +27,15 @@
   </div>
 
   <% if Settings.upcoming_events.present? %>
-    <div class="px-4 sm:px-0 mt-10 mb-6 font-bold">
+    <div class="px-4 sm:px-0 mt-10 mb-6 font-bold text-center">
       Upcoming Events
     </div>
 
     <%= render partial: "layouts/resource_upcoming_events" %>
   <% end %>
 
-  <div class="px-4 sm:px-0 mt-10 mb-6 font-bold">
-    Recorded webinars
+  <div class="px-4 sm:px-0 mt-10 mb-6 font-bold text-center">
+    Recorded Live Panels
   </div>
 
   <%= render partial: "layouts/resource_previous_events" %>
