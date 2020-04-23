@@ -17,7 +17,7 @@
         </div>
 
         <% if event[:cta_url] %>
-          <div class="w-full sm:w-3/12 text-center mt-8 sm:mt-0">
+          <div class="w-full sm:w-3/12 text-center mt-8 sm:mt-0 sm:text-right sm:pr-4">
             <%= link_to event[:cta_url] do %>
               <span class="text-sm relative inline-flex items-center px-4 py-2 border border-transparent leading-5 rounded-md font-bold  bg-indigo-200 text-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 rounded-md shadow-sm">
                 <%= event[:cta_text] %>
