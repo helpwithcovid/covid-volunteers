@@ -17,83 +17,91 @@ RSpec.describe OffersController, type: :controller do
       expect(assigns(:offers)).to eq([offer])
     end
 
-    it 'renders the offer' do
+    it 'renders offers' do
       expect(response.body).to include('Free books')
     end
   end
 
   describe 'GET #show' do
     let(:user) { create(:user) }
-    let!(:offer) { create(:offer, user: user) }
+    let!(:offer) { create(:offer, name: 'Free coffee', user: user) }
 
-    it 'works with just a numeric id as param' do
-      get :show, params: { id: offer.id }
-      expect(response).to be_successful
-      expect(assigns(:offer)).to eq(offer)
+    context 'with a numeric id as param' do
+      before { get :show, params: { id: offer.id } }
+      
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+      
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+
+      it 'renders the offer' do
+        expect(response.body).to include('Free coffee')
+      end 
+      
     end
 
-    it 'works with a "5-my-offer-name" param too' do #why do we need a named param if we can retrieve a resource by its id?
-      get :show, params: { id: offer.to_param }
-      expect(response).to be_successful
-      expect(assigns(:offer)).to eq(offer)
+    context 'with a parameterize id' do 
+      before { get :show, params: { id: offer.to_param } }
+      
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+
+      it 'renders the offer' do
+        expect(response.body).to include('Free coffee')
+      end 
     end
   end
 
   describe 'GET #new' do
     let(:user) { create(:user) }
 
-    it 'is successful' do
-      
+    
+    before do 
       sign_in user
 
       get :new
+    end
 
+    it 'is successful' do
       expect(response).to be_successful
     end
 
     it 'assigns an offer' do
-      sign_in user
-
-      get :new
-
       expect(assigns(:offer)).to be_an_instance_of(Offer)
     end
 
     it 'renders form for creating an offer' do
-      sign_in user
-
-      get :new 
-      
       expect(response.body).to include('Create new resource')     
     end
   end
 
-  describe 'GET #edit' do
+  describe 'GET #edit' do #TEST ONLY OWNER OR ADMIN, 
     let(:offer) { create(:offer, user: user) }
     let(:user) { create(:user) }
 
-    it 'is successful' do
-      
+    before do
       sign_in user
 
       get :edit, params: { id: offer.id }
+    end
 
+    it 'is successful' do
       expect(response).to be_successful
     end
 
     it 'assigns the offer' do
-      sign_in user
-
-      get :edit, params: { id: offer.id }
-
       expect(assigns(:offer)).to eq(offer)
     end
 
     it 'renders form for creating an offer' do
-      sign_in user
-
-      get :edit, params: { id: offer.id  }
-      
       expect(response.body).to include("Edit resource #{offer.name}")     
     end
   end
@@ -101,7 +109,7 @@ RSpec.describe OffersController, type: :controller do
   describe 'POST #create' do
     let(:user) { create(:user) }
 
-    it 'works' do
+    it 'redirects to the offer' do
       sign_in user
       post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
 
@@ -113,7 +121,7 @@ RSpec.describe OffersController, type: :controller do
     let(:user) { create(:user) }
     let(:offer) { create(:offer, user: user) }
 
-    it 'works' do
+    it 'redirects to the offer' do
       sign_in user
       put :update, params: { id: offer.id, name: 'a new name' }
 
@@ -126,7 +134,7 @@ RSpec.describe OffersController, type: :controller do
     let(:user) { create(:user) }
     let(:offer) { create(:offer, user: user) }
 
-    it 'works' do
+    it 'it redirects to the offers' do
       sign_in user
       post :destroy, params: { id: offer.id }
 
