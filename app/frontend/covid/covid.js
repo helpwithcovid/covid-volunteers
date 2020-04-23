@@ -121,6 +121,7 @@ const Covid = {
       selected,
       open: false,
       applyFilters() {
+        this.open = false
         Covid.applyFiltersAndGo(filter, this.selected)
       },
       resetFilters() {
@@ -159,7 +160,7 @@ const Covid = {
       uri.path('projects')
     }
 
-    window.location.href = uri.readable()
+    Turbolinks.visit(uri.readable())
   },
 };
 

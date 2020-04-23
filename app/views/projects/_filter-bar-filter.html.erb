@@ -1,4 +1,4 @@
-<div class="relative" x-data="Covid.initFilter('<%= label %>', '<%= filter %>', <%= options.as_json %>, <%= @applied_filters[filter.to_sym].present? ? @applied_filters[filter.to_sym].as_json : [] %>)" @click.away="open = false">
+<div class="relative" x-data="Covid.initFilter('<%= label %>', '<%= filter %>', <%= options.as_json %>, <%= @applied_filters[filter.to_sym].present? ? @applied_filters[filter.to_sym].as_json : [] %>)" @click.away="open = false" data-turbolinks-permanent>
   <div class="flex text-sm text-gray-700 items-center justify-between select-none form-select pr-8 bg-white border-gray-300 rounded shadow-sm" @click="open = !open">
     <div class="cursor-pointer flex-shrink-0"><span x-text="selectedCount()"></span> <span x-text="dropDownLabel()"></span></div>
   </div>
