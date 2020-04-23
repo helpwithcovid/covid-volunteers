@@ -1,0 +1,13 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% Settings.events.each do |event| %>
+    <div class="flex flex-col justify-between shadow-sm bg-white rounded-lg overflow-hidden">
+      <div class="p-4">
+        <div class="flex justify-between">
+          <div class="font-bold text-indigo-600 mb-2 leading-tight"><%= event[:title] %></div>
+        </div>
+        <div class="text-sm text-gray-500 leading-tight"><%= event[:sub_title].html_safe %></div>
+      </div>
+      <%= link_to event[:cta_text], event[:cta_url], target: :_blank, class: 'text-white bg-indigo-600 font-bold p-4 text-center'%>
+    </div>
+  <% end %>
+</div>
