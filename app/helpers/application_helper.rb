@@ -190,7 +190,12 @@ module ApplicationHelper
   end
 
   def get_country_fields
-    [['Global', 'Global'], ["United States of America", "US"]].concat(IsoCountryCodes.for_select).uniq
+    [ 'Global' ].concat(IsoCountryCodes.for_select)
+  end
+
+  def get_present_country_fields
+    present_countries = Project.group(:target_country).select(:target_country).map(&:target_country).reject { |c| c.blank? }
+    [['Global', 'Global'], ['United States of America', 'US']].concat(IsoCountryCodes.for_select).uniq.filter { |c| present_countries.include? c[1] }
   end
 
   def filter_bar_filter(label, filter, options)
