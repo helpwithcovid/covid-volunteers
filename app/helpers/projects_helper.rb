@@ -7,8 +7,8 @@ module ProjectsHelper
     end
   end
 
-  def is_category_path
-    request.path == projects_path || Settings.project_categories.map(&:slug).include?(params[:category_slug])
+  def is_projects_path
+    request.path == projects_path or request.path.include?('/projects/p') or Settings.project_categories.map(&:slug).include?(params[:category_slug])
   end
 
   def format_country(country)
