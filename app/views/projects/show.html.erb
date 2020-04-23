@@ -260,7 +260,7 @@
   <% end %>
 
   <div class="mt-8 mx-4 gap-0 rounded-lg bg-white overflow-hidden sm:mx-0 sm:grid sm:grid-cols-2">
-    <div class="sm:col-span-1 relative">
+    <div class="sm:col-span-1 relative h-40 sm:h-auto">
       <% if @project.status.present? %>
         <div class="absolute top-5 left-5 rounded-full overflow-hidden">
           <% if @project.status == "Just started" %>
@@ -299,7 +299,7 @@
       <% end %>
     </div>
     <div class="sm:col-span-1 flex-col justify-between">
-      <div class="p-6 pb-7">
+      <div class="p-4 sm:p-6 pb-7">
         <h1 class="text-3xl leading-tight text-indigo-600 font-bold">
           <%= @project.name %>
         </h1>
