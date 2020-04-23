@@ -45,19 +45,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if !@user.is_visible_to_user?(current_user)
       flash[:error] = 'Sorry, no such user.'
       redirect_to projects_path
-      return
+      nil
     end
   end
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    track_event 'User registration started'
+    super
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    track_event 'User registration complete'
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -84,40 +84,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_sign_up_params
+    #   devise_parameter_sanitizer.permit(:sign_up, keys: [ :about, :profile_links, :location ])
+    # end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [ :about, :profile_links, :location ])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
-  end
-
-  # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    projects_path
-  end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  def update_resource(resource, params)
-    if params[:password].present?
-      super(resource, params)
-    else
-      Rails.logger.error 'here pac pac'
-      params.delete(:password_confirmation)
-      params.delete(:current_password)
-      resource.update_without_password(params)
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
     end
-  end
 
-  def get_order_param
-    return 'created_at desc' if params[:sort_by] == 'latest'
-    return 'created_at asc' if params[:sort_by] == 'earliest'
-  end
+    # The path used after sign up.
+    def after_sign_up_path_for(resource)
+      projects_path
+    end
+
+    # The path used after sign up for inactive accounts.
+    # def after_inactive_sign_up_path_for(resource)
+    #   super(resource)
+    # end
+
+    def update_resource(resource, params)
+      if params[:password].present?
+        super(resource, params)
+      else
+        Rails.logger.error 'here pac pac'
+        params.delete(:password_confirmation)
+        params.delete(:current_password)
+        resource.update_without_password(params)
+      end
+    end
+
+    def get_order_param
+      return 'created_at desc' if params[:sort_by] == 'latest'
+      return 'created_at asc' if params[:sort_by] == 'earliest'
+    end
 end

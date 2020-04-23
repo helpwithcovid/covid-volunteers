@@ -19,8 +19,8 @@ class ProjectsController < ApplicationController
 
         @projects = @projects.page(params[:page]).per(25)
 
-        @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
-        @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+        @index_from = (@projects.prev_page || 0) * @projects.limit_value + 1
+        @index_to = [@index_from + @projects.limit_value - 1, @projects.total_count].min
         @total_count = @projects.total_count
       end
       format.json do
@@ -71,18 +71,18 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    track_event 'Project creation started'
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.new(project_params)
     if params[:project][:images].present?
       @project.images.attach(params[:project][:images])
     end
 
-    @project.user = current_user
-
     respond_to do |format|
       if @project.save
+        track_event 'Project creation complete'
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -130,6 +130,7 @@ class ProjectsController < ApplicationController
       ProjectMailer.with(project: @project, user: current_user, note: params[:volunteer_note]).new_volunteer.deliver_now
 
       flash[:notice] = 'Thanks for volunteering! The project owners will be alerted.'
+      track_event 'User volunteered'
     end
 
     redirect_to project_path(@project)

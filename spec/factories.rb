@@ -21,6 +21,7 @@ FactoryBot.define do
     about { 'About' }
     profile_links { 'Profile' }
     location { 'location' }
+    skill_list { ['Analaytics'] }
   end
 
   factory :project do
@@ -39,10 +40,10 @@ FactoryBot.define do
   end
 
   factory :offer do
-    name { "Free Veggie Burgers" }
+    name { 'Free Veggie Burgers' }
     description { "They're delicious and animal-free" }
-    limitations { "Contains gluten" }
-    redemption { "https://veggieboigas.com" }
-    location { "N/A" }
+    limitations { 'Contains gluten' }
+    redemption { 'https://veggieboigas.com' }
+    location { 'N/A' }
   end
 end

@@ -5,7 +5,7 @@ class AdminController < ApplicationController
     @user = User.find(params[:user_id])
     @user.destroy!
 
-    flash[:notice] = "User deleted"
+    flash[:notice] = 'User deleted'
     redirect_to volunteers_path
   end
 
@@ -14,9 +14,7 @@ class AdminController < ApplicationController
     @project.highlight = !@project.highlight
     @project.save
 
-    flash[:notice] = @project.highlight? ? "Project highlighted" : "Removed highlight on project"
+    flash[:notice] = @project.highlight? ? 'Project highlighted' : 'Removed highlight on project'
     redirect_to project_path(@project)
   end
-
-  private
 end

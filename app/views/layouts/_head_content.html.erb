@@ -21,3 +21,5 @@
 <meta name="twitter:description" content="<%= content_for(:share_desc) || subtitle %>"/>
 <meta name="twitter:url" content="<%= content_for(:share_url) || "https://www.helpwithcovid.com" %>"/>
 <meta name="twitter:image" content="<%= content_for(:share_img) || "https://www.helpwithcovid.com/share-image.png" %>"/>
+
+<meta rel="canonical" content="<%= content_for(:canonical_url) || request.url %>"/>

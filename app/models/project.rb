@@ -36,7 +36,7 @@ class Project < ApplicationRecord
   end
 
   def to_param
-    [id, name.parameterize].join("-")
+    [id, name.parameterize].join('-')
   end
 
   def volunteer_emails
@@ -47,7 +47,7 @@ class Project < ApplicationRecord
     volunteered_users.count
   end
 
-  def serializable_hash(options={})
+  def serializable_hash(options = {})
     super(
       only: [
         :id,
