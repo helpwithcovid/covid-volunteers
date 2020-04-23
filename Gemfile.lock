@@ -84,9 +84,16 @@ GEM
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
+    aws-sdk-kms (1.30.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-rails (3.0.5)
       aws-sdk-ses (~> 1)
       railties (>= 5.2.0)
+    aws-sdk-s3 (1.61.1)
+      aws-sdk-core (~> 3, >= 3.83.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
     aws-sdk-ses (1.28.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
@@ -174,6 +181,9 @@ GEM
     gravatar_image_tag (1.2.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    image_processing (1.10.3)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     inline_svg (1.7.1)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
@@ -207,6 +217,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.4)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -303,6 +314,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
     selenium-webdriver (3.142.7)
@@ -356,6 +369,7 @@ DEPENDENCIES
   actionview-encoded_mail_to!
   acts-as-taggable-on
   aws-sdk-rails
+  aws-sdk-s3
   aws-sdk-ses
   bootsnap (>= 1.4.2)
   byebug
@@ -366,6 +380,7 @@ DEPENDENCIES
   exception_notification!
   factory_bot_rails
   gravatar_image_tag
+  image_processing
   inline_svg
   iso_country_codes (~> 0.7.8)
   jbuilder (~> 2.7)

@@ -1,4 +1,6 @@
+@import '@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 @import './tailwindcss/base.css';
+@import './direct-upload.css';
 @import './tailwindcss/components.css';
 @import './tailwindcss/utilities.css';
 

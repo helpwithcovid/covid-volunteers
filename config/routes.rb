@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/projects/p/:page' => 'projects#index', as: 'projects_with_pagination'
 
   resources :projects do
+    resources :images, controller: 'projects_images'
+
     collection do
       get :volunteered
       get :own
