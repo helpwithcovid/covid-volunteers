@@ -1,22 +1,26 @@
 <%- share_title 'Resources' %>
-<div class="container">
-  <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 sm:rounded-md">
+
+<!-- Events & Playbook -->
+<%= render partial: 'partials/events' %>
+
+<div class="container mb-8">
+  <div class="text-white bg-indigo-600 px-4 py-5 border-b border-gray-200 sm:px-6 sm:rounded-md">
     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
       <div class="ml-4 mt-4">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <h3 class="text-lg leading-6 font-medium">
           Resources, deals, and benefits from organizations that want to help out with COVID-19.
         </h3>
-        <p class="mt-1 text-sm leading-5 text-gray-500">
-          Organizations are helping out COVID-19 projects too. Find <%= link_to "more here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'text-indigo-500' %>.
+        <p class="mt-1 text-sm leading-5">
+          Organizations are helping out COVID-19 projects too. Find <%= link_to "more here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'underline' %>.
           <% if current_user.blank? %>
-            <%= link_to 'Sign up', new_user_registration_path, class: 'text-indigo-500' %> to post a resource.
+            <%= link_to 'Sign up', new_user_registration_path, class: 'underline' %> to post a resource.
           <% end %>
         </p>
       </div>
       <div class="ml-4 mt-4 flex-shrink-0">
         <span class="inline-flex rounded-md shadow-sm">
           <%= link_to new_offer_path do %>
-            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+            <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md bg-white text-indigo-600 hover:bg-gray-100 focus:outline-none focus:shadow-outline-white focus:border-gray-200 active:bg-gray-200">
               Create resource
             </button>
           <% end %>
@@ -26,46 +30,4 @@
   </div>
 </div>
 
-<!-- Upcoming events -->
-<%= render partial: 'partials/events' %>
-
-<div class="container">
-  <div class="bg-white shadow overflow-hidden sm:rounded-md">
-    <ul>
-      <% @offers.each_with_index do |offer, idx| %>
-        <li class="border-t border-gray-200">
-          <%= link_to offer_path(offer), class: "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out" do %>
-            <div class="px-4 py-4 sm:px-6">
-              <div class="flex items-center justify-between">
-                <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                  <%= offer.name %>
-                </div>
-              </div>
-              <div class="mt-2 sm:flex sm:justify-between">
-                <div class="text-sm leading-5 text-gray-500">
-                  <%= simple_format offer.description, class: 'mb-2' %>
-                </div>
-              </div>
-              <div class="mt-2 sm:flex sm:justify-between">
-                <div class="sm:flex">
-                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
-                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                    </svg>
-                    <%= offer.location.present? ? offer.location : 'Global' %>
-                  </div>
-                </div>
-                <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
-                  <span>
-                    created
-                    <time><%= distance_of_time_in_words_to_now offer.created_at %> ago</time>
-                  </span>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<%= render partial: 'offers' %>
