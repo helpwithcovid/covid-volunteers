@@ -7,7 +7,7 @@
         is_category = false
       %>
       <% Settings.project_categories.each do |category| %>
-        <% is_category = category[:slug] == params[:slug] %>
+        <% is_category = category[:slug] == params[:category_slug] %>
         <%= link_to category.name, "/#{category.slug}", class: "#{classes} #{active_classes if is_category}" %>
       <% end %>
       <%= link_to 'All Categories', projects_path, class: "#{classes} #{active_classes unless is_category}" %>

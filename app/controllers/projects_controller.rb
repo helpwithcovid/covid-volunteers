@@ -16,8 +16,8 @@ class ProjectsController < ApplicationController
     @show_global_announcements = false
     @applied_filters = params.dup
 
-    if request.path != projects_path and params[:slug].present?
-      @project_category = Settings.project_categories.find { |category| category.slug == params[:slug] }
+    if request.path != projects_path and params[:category_slug].present?
+      @project_category = Settings.project_categories.find { |category| category.slug == params[:category_slug] }
 
       raise ActionController::RoutingError, 'Not Found' if @project_category.blank?
 
