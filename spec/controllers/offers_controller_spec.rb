@@ -8,6 +8,12 @@ RSpec.describe OffersController, type: :controller do
       expect(response).to_not render_template(:partial => '_global-announcements')
     end
   end
+
+  shared_examples 'an unsuccessful request' do
+    it 'is unsuccessful' do
+      expect(response).not_to be_successful
+    end 
+  end
   
   describe 'GET #index' do
     let!(:offer) { create(:offer, name: 'Free books', user: user) }
@@ -70,10 +76,8 @@ RSpec.describe OffersController, type: :controller do
 
     context 'when user is not signed in' do
       before { get :new }
-
-      it 'is unsuccessful' do
-        expect(response).not_to be_successful
-      end      
+      
+      it_behaves_like 'an unsuccessful request'
     end
 
     context 'when user is signed-in' do
@@ -106,9 +110,7 @@ RSpec.describe OffersController, type: :controller do
     context 'when user is not signed in' do
       before { get :edit, params: { id: offer.id } }
 
-      it 'is unsuccessful' do
-        expect(response).not_to be_successful
-      end      
+      it_behaves_like 'an unsuccessful request'
     end
 
     context 'when user is signed-in' do
@@ -164,9 +166,7 @@ RSpec.describe OffersController, type: :controller do
     context 'when user is not signed in' do
       before { post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} } }
 
-      it 'is unsuccessful' do
-        expect(response).not_to be_successful
-      end      
+      it_behaves_like 'an unsuccessful request'
     end
 
     context 'when user is signed-in' do
@@ -190,9 +190,7 @@ RSpec.describe OffersController, type: :controller do
     context 'when user is not signed in' do
       before { put :update, params: { id: offer.id, name: 'a new name' } }
 
-      it 'is unsuccessful' do
-        expect(response).not_to be_successful
-      end      
+      it_behaves_like 'an unsuccessful request'    
     end
 
     context 'when user is signed in' do
@@ -229,9 +227,7 @@ RSpec.describe OffersController, type: :controller do
     context 'when user is not signed in' do
       before { post :destroy, params: { id: offer.id } }
 
-      it 'is unsuccessful' do
-        expect(response).not_to be_successful
-      end      
+      it_behaves_like 'an unsuccessful request'     
     end
 
     context 'when user is signed-in' do
