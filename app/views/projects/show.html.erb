@@ -304,22 +304,22 @@
 
   <div class="mt-8 mx-4 sm:grid sm:grid-cols-3 sm:gap-10 sm:mx-0">
     <div class="sm:col-span-2">
-      <div class="bg-white overflow-hidden rounded-lg">
+      <div class="bg-white overflow-hidden rounded-lg sm:pb-4">
         <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2 bg-indigo-50 border-b border-indigo-400">
-          <h3 class="text-indigo-700">About the Project</h3>
+          <h3 class="text-indigo-700 font-bold">About the Project</h3>
         </div>
 
         <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-bold text-gray-800">
             Description
           </dt>
-          <dd class="mt-2 text-sm leading-5 text-gray-600 sm:mt-2">
+          <dd class="mt-2 text-sm leading-5 text-gray-600">
             <%= simple_format Rinku.auto_link(sanitize(@project.description), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
           </dd>
         </div>
 
         <% if @project.progress.present? %>
-          <div class="mt-3 sm:mt-0 sm:gap-4 p-4 sm:px-6 sm:pb-2">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-4 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
               How far along is it
             </dt>
@@ -330,7 +330,7 @@
         <% end %>
 
         <% if @project.target_location.present? %>
-          <div class="mt-3 p-4 sm:px-6 sm:py-5">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-4 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
               Project target location
             </dt>
@@ -342,12 +342,12 @@
       </div>
 
       <div class="mt-8 bg-white overflow-hidden sm:rounded-lg">
-      <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2 bg-indigo-50 border-b border-indigo-400">
-          <h3 class="text-indigo-700">Help Needed</h3>
+        <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2 bg-indigo-50 border-b border-indigo-400">
+          <h3 class="text-indigo-700 font-bold">Help Needed</h3>
         </div>
 
         <% if @project.skill_list.present? %>
-          <div class="mt-3 p-4 sm:px-6 sm:py-5">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
             <dt class="text-sm leading-5 font-medium text-gray-800">
               Skills needed
             </dt>
@@ -358,7 +358,7 @@
         <% end %>
 
         <% if @project.accepting_volunteers? %>
-          <div class="mt-3 p-4 sm:px-6 sm:py-5">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
               Tasks that need to get done
             </dt>
@@ -372,35 +372,35 @@
     <div class="mt-8 sm:col-span-1 sticky sm:mt-0">
       <div class="bg-white overflow-hidden sm:rounded-lg">
       <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2 bg-indigo-50 border-b border-indigo-400">
-          <h3 class="text-indigo-700">Project Details</h3>
+          <h3 class="text-indigo-700 font-bold">Project Details</h3>
         </div>
 
-        <div class="mt-3 p-4 sm:px-6 sm:py-5">
+        <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-bold text-gray-800">
             Who is already working on this
           </dt>
-          <dd class="mt-2 text-sm leading-5 text-gray-600 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
+          <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
             <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
           </dd>
         </div>
 
         <% if @project.links.present? %>
-          <div class="mt-3 p-4 sm:px-6 sm:py-5">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
               Helpful links
             </dt>
-            <dd class="mt-2 text-sm leading-5 text-gray-600 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
+            <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
               <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
             </dd>
           </div>
         <% end %>
 
         <% if @project.contact.present? %>
-          <div class="mt-3 p-4 sm:px-6 sm:py-5">
+          <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
               How to get in touch
             </dt>
-            <dd class="mt-2 text-sm leading-5 text-gray-600 sm:pb-3">
+            <dd class="mt-2 text-sm leading-5 text-gray-500 sm:pb-3">
               <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"').html_safe %>
             </dd>
           </div>
@@ -408,22 +408,22 @@
 
         <% if @project.accepting_volunteers? %>
           <% if @project.number_of_volunteers.present? %>
-            <div class="mt-3 p-4 sm:px-6 sm:py-5">
+            <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
               <dt class="text-sm leading-5 font-medium text-gray-800">
                 Number of volunteers needed
               </dt>
-              <dd class="mt-2 text-sm leading-5 text-gray-600">
+              <dd class="mt-2 text-sm leading-5 text-gray-500">
                 <%= @project.number_of_volunteers %>
               </dd>
             </div>
           <% end %>
 
           <% if @project.volunteer_location.present? %>
-            <div class="mt-3 p-4 sm:px-6 sm:py-5">
+            <div class="mt-3 sm:mt-0 p-4 sm:px-6 sm:pt-5 sm:pb-2">
               <dt class="text-sm leading-5 font-medium text-gray-800">
                 Volunteer Location
               </dt>
-              <dd class="mt-2 text-sm leading-5 text-gray-600">
+              <dd class="mt-2 text-sm leading-5 text-gray-500">
                 <%= @project.volunteer_location %>
               </dd>
             </div>
