@@ -19,8 +19,8 @@ const Project = {
         linkCurrentClass: 'submenu-item-active',
         linksContainerSelector: '.resource-submenu',
         sectionSelector: '.resource-section',
-        headerOffset: false,
-        //headerClass: '.header'
+        headerOffset: true,
+        headerClass: '.header'
       });
     });
   },
