@@ -3,6 +3,7 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
   before_action :ensure_owner_or_admin, only: [ :edit, :update, :destroy ]
   before_action :hide_global_announcements
+  before_action :set_bg_white, only: [ :index ]
 
   def index
     @offers = Offer.all.order('created_at DESC').all

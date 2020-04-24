@@ -1,28 +1,41 @@
 <%- share_title 'Resources' %>
 
-<!-- Events & Playbook -->
-<%= render partial: 'partials/events' %>
-
-<%= render partial: 'funding-resources' %>
-
-<div class="container mb-8">
-  <div class="px-4 sm:px-0 mt-10 mb-3 font-bold text-center">
-    Deals from organizations that want to help out with COVID-19
-  </div>
-
-  <div class="flex-shrink-0 text-center mb-6">
-    <span class="inline-flex rounded-md shadow-sm">
-      <%= link_to new_offer_path do %>
-        <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-          Create resource
-        </button>
-      <% end %>
-    </span>
-
-    <span class="text-xs ml-3">
-      find more deals <%= link_to "here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'underline' %>.
+<div class="-mt-6 pb-4 w-full flex flex-col sm:flex-row justify-center border-b border-gray-200">
+  <div class="w-full sm:w-auto mx-auto sm:mx-0 overflow-x-auto scrolling-touch scrollbar-hidden sm:overflow-x-auto">
+    <div class="flex flex-row flex-no-wrap h-full resource-submenu">
+      <span><%= link_to 'Playbook', '#resource_playbook', class: 'submenu-item' %></span>
+      <span><%= link_to 'Upcoming Events', '#resources_upcoming_events', class: 'submenu-item' %></span>
+      <span><%= link_to 'Recorded panels', '#resources_recorded_live_panels', class: 'submenu-item' %></span>
+      <span><%= link_to 'Funding & Resources', '#resource_funding', class: 'submenu-item' %></span>
+      <span><%= link_to 'Deals', '#resource_deals', class: 'submenu-item' %></span>
     </div>
   </div>
 </div>
 
-<%= render partial: 'offers' %>
+<%= render partial: 'partials/events' %>
+
+<%= render partial: 'funding-resources' %>
+
+<section class="resource-section" id="resource_deals">
+  <div class="container mb-8">
+    <div class="px-4 sm:px-0 mt-10 mb-3 font-bold text-center">
+      Deals from organizations that want to help out with COVID-19
+    </div>
+
+    <div class="flex-shrink-0 text-center mb-6">
+      <span class="inline-flex rounded-md shadow-sm">
+        <%= link_to new_offer_path do %>
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+            Create resource
+          </button>
+        <% end %>
+      </span>
+
+      <span class="text-xs ml-3">
+        find more deals <%= link_to "here", "https://www.notion.so/Deals-for-businesses-in-the-time-of-COVID-19-bed1c16caf6e4861a24a6e2c21ee1c9a", target: '_blank', class: 'underline' %>.
+      </span>
+    </div>
+  </div>
+
+  <%= render partial: 'offers' %>
+</section>

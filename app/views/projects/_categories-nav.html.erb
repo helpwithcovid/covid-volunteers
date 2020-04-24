@@ -2,15 +2,13 @@
   <div class="w-full sm:w-auto mx-auto sm:mx-0 overflow-x-auto scrolling-touch scrollbar-hidden sm:overflow-x-auto">
     <div class="flex flex-row flex-no-wrap h-full">
       <%
-        classes = 'text-sm mx-4 inline-flex flex-shrink-0'
-        active_classes = 'font-bold border-b-2 border-indigo-600'
         is_category = false
       %>
       <% Settings.project_categories.each do |category| %>
         <% is_category = category[:slug] == params[:category_slug] %>
-        <%= link_to category.name, "/#{category.slug}", class: "#{classes} #{active_classes if is_category}" %>
+        <span><%= link_to category.name, "/#{category.slug}", class: "submenu-item #{"submenu-item-active" if is_category}" %></span>
       <% end %>
-      <%= link_to 'All Categories', projects_path, class: "#{classes} #{active_classes unless is_category}" %>
+      <span><%= link_to 'All Categories', projects_path, class: "submenu-item #{"submenu-item-active" unless is_category}" %></span>
     </div>
   </div>
 

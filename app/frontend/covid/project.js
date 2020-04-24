@@ -1,3 +1,5 @@
+import ScrollSpy from '@three11/scrollspy';
+
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
@@ -11,6 +13,14 @@ const Project = {
 
       $('#volunteer_without_skills').click(function(ev) {
         Project.volunteerWithoutSkills(this, ev);
+      });
+
+      new ScrollSpy({
+        linkCurrentClass: 'submenu-item-active',
+        linksContainerSelector: '.resource-submenu',
+        sectionSelector: '.resource-section',
+        headerOffset: false,
+        //headerClass: '.header'
       });
     });
   },
@@ -40,9 +50,9 @@ const Project = {
 
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
-      <span class="text-indigo-600">${projectName}</span> is looking for 
+      <span class="text-indigo-600">${projectName}</span> is looking for
       <br>
-      ${Covid.skillBadges(skillsRequired, 'indigo')} 
+      ${Covid.skillBadges(skillsRequired, 'indigo')}
       <br>
       Are you sure? The project owner will be alerted.<br><br>
       Optionally, you can also send them a note on how you may contribute on one of these roles

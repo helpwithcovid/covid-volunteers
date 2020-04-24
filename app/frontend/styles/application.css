@@ -6,5 +6,6 @@
 @import './filters-bar.css';
 @import './direct-upload.css';
 @import './tailwindcss/components.css';
+@import './custom_tailwind.css';
 @import './tailwindcss/utilities.css';
 
