@@ -76,7 +76,7 @@ RSpec.describe OffersController, type: :controller do
 
     context 'when user is not signed in' do
       before { get :new }
-      
+
       it_behaves_like 'an unsuccessful request'
     end
 
@@ -170,40 +170,77 @@ RSpec.describe OffersController, type: :controller do
     end
 
     context 'when user is signed-in' do
-      before do
-        sign_in user
-        post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} }
+      before { sign_in user }
+
+      context 'when offer cannot be saved' do
+        let(:offer) { build(:offer) }
+        
+        before do 
+          allow(Offer).to receive(:new).and_return(offer)
+          allow(offer).to receive(:save).and_return(false)
+
+          post :create
+        end
+
+        it 'redirects to the new page' do
+          expect(response).to render_template(:new)
+        end
+
+        it_behaves_like 'it does not show global announcements'
       end
 
-      it 'redirects to the offer' do
-        expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...
+      context 'when offer can be saved' do
+        before { post :create }
+
+        it 'redirects to the offer' do
+          post :create
+
+          expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...        
+        end
+
+        it_behaves_like 'it does not show global announcements'
       end
     end
-
-    it_behaves_like 'it does not show global announcements'
   end
 
   describe 'PUT #update' do
     let(:user) { create(:user) }
     let(:offer) { create(:offer, user: user) }
+    let(:params) { { id: offer.id, name: 'a new name' } }
 
     context 'when user is not signed in' do
-      before { put :update, params: { id: offer.id, name: 'a new name' } }
+      before { put :update, params: params }
 
       it_behaves_like 'an unsuccessful request'    
     end
 
     context 'when user is signed in' do
-      before do
-        sign_in user
-        put :update, params: { id: offer.id, name: 'a new name' }
+      before { sign_in user }
+
+      context 'when offer cannot be updated' do
+        before do
+          allow(Offer).to receive(:find).and_return(offer)
+          allow(offer).to receive(:update).and_return(false)
+
+          put :update, params: params
+        end
+
+        it 'renders the edit page' do
+          expect(response).to render_template(:edit)
+        end
+
+        it_behaves_like 'it does not show global announcements'
       end
 
-      it 'redirects to the offer' do
-        expect(response).to redirect_to(offer_path(offer))
-      end
+      context 'when offer can be updated' do
+        before { put :update, params: params }
 
-      it_behaves_like 'it does not show global announcements'
+        it 'redirects to the offer' do
+          expect(response).to redirect_to(offer_path(offer))
+        end
+
+        it_behaves_like 'it does not show global announcements'
+      end
     end
 
     context 'when admin is signed in' do
