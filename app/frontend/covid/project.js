@@ -40,9 +40,9 @@ const Project = {
 
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
-      <span class="text-indigo-600">${projectName}</span> is looking for 
+      <span class="text-indigo-600">${projectName}</span> is looking for
       <br>
-      ${Covid.skillBadges(skillsRequired, 'indigo')} 
+      ${Covid.skillBadges(skillsRequired, 'indigo')}
       <br>
       Are you sure? The project owner will be alerted.<br><br>
       Optionally, you can also send them a note on how you may contribute on one of these roles
