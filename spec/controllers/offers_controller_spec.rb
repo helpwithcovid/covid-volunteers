@@ -14,6 +14,16 @@ RSpec.describe OffersController, type: :controller do
       expect(response).not_to be_successful
     end 
   end
+
+  shared_examples 'a successful request' do |text|
+    it 'is successful' do
+      expect(response).to be_successful
+    end
+
+    it 'renders the correct page' do
+      expect(response.body).to include(text)
+    end
+  end
   
   describe 'GET #index' do
     let!(:offer) { create(:offer, name: 'Free books', user: user) }
@@ -21,16 +31,10 @@ RSpec.describe OffersController, type: :controller do
     
     before { get :index }
     
-    it 'is successful' do
-      expect(response).to be_successful
-    end
+    it_behaves_like 'a successful request', 'Free books'
 
     it 'assigns offers' do
       expect(assigns(:offers)).to eq([offer])
-    end
-
-    it 'renders offers' do
-      expect(response.body).to include('Free books')
     end
 
     it_behaves_like 'it does not show global announcements'
@@ -40,34 +44,30 @@ RSpec.describe OffersController, type: :controller do
     let(:user) { create(:user) }
     let!(:offer) { create(:offer, name: 'Free coffee', user: user) }
 
-    shared_examples 'it successfully completes the #show action' do
-      before { get :show, params: { id: offer_id } }
-
-      it 'is successful' do
-        expect(response).to be_successful
-      end
-      
-      it 'assigns the offer' do
-        expect(assigns(:offer)).to eq(offer)
-      end
-
-      it 'renders the offer' do
-        expect(response.body).to include('Free coffee')
-      end 
-      
-      it_behaves_like 'it does not show global announcements'
-    end
+    before { get :show, params: { id: offer_id } }
 
     context 'with a numeric id as param' do
       let(:offer_id) { offer.id } 
       
-      it_behaves_like 'it successfully completes the #show action'
+      it_behaves_like 'a successful request', 'Free coffee'
+
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+      
+      it_behaves_like 'it does not show global announcements'
     end
 
     context 'with a parameterize id' do 
       let(:offer_id) { offer.to_param }
       
-      it_behaves_like 'it successfully completes the #show action'
+      it_behaves_like 'a successful request', 'Free coffee'
+
+      it 'assigns the offer' do
+        expect(assigns(:offer)).to eq(offer)
+      end
+      
+      it_behaves_like 'it does not show global announcements'
     end
   end
 
@@ -87,16 +87,10 @@ RSpec.describe OffersController, type: :controller do
         get :new
       end
 
-      it 'is successful' do
-        expect(response).to be_successful
-      end
+      it_behaves_like 'a successful request', 'Create new resource'
 
       it 'assigns an offer' do
         expect(assigns(:offer)).to be_an_instance_of(Offer)
-      end
-
-      it 'renders form for creating an offer' do
-        expect(response.body).to include('Create new resource')     
       end
 
       it_behaves_like 'it does not show global announcements'
@@ -120,16 +114,10 @@ RSpec.describe OffersController, type: :controller do
         get :edit, params: { id: offer.id }
       end
 
-      it 'is successful' do
-        expect(response).to be_successful
-      end
+      it_behaves_like 'a successful request', 'Edit resource'
 
       it 'assigns the offer' do
         expect(assigns(:offer)).to eq(offer)
-      end
-
-      it 'renders form for creating an offer' do
-        expect(response.body).to include("Edit resource #{offer.name}")     
       end
 
       it_behaves_like 'it does not show global announcements'
@@ -144,16 +132,10 @@ RSpec.describe OffersController, type: :controller do
         get :edit, params: { id: offer.id }
       end
 
-      it 'is successful' do
-        expect(response).to be_successful
-      end
+      it_behaves_like 'a successful request', 'Edit resource'
 
       it 'assigns the offer' do
         expect(assigns(:offer)).to eq(offer)
-      end
-
-      it 'renders form for creating an offer' do
-        expect(response.body).to include("Edit resource #{offer.name}")     
       end
 
       it_behaves_like 'it does not show global announcements'
