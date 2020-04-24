@@ -103,7 +103,7 @@ RSpec.describe OffersController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do #TEST ONLY OWNER OR ADMIN, 
+  describe 'GET #edit' do
     let(:offer) { create(:offer, user: user) }
     let(:user) { create(:user) }
 
@@ -193,9 +193,8 @@ RSpec.describe OffersController, type: :controller do
         before { post :create }
 
         it 'redirects to the offer' do
-          post :create
-
-          expect(response).to redirect_to(offer_path(assigns(:offer))) #Can't think of a better wato test this...        
+          expect(response).to redirect_to(offer_path(assigns(:offer)))
+          expect(flash[:notice]).to eq('Offer was successfully created.')
         end
 
         it_behaves_like 'it does not show global announcements'
@@ -237,6 +236,7 @@ RSpec.describe OffersController, type: :controller do
 
         it 'redirects to the offer' do
           expect(response).to redirect_to(offer_path(offer))
+          expect(flash[:notice]).to eq('Offer was successfully updated.')
         end
 
         it_behaves_like 'it does not show global announcements'
@@ -289,6 +289,7 @@ RSpec.describe OffersController, type: :controller do
 
       it 'redirects to the offer' do
         expect(response).to redirect_to(offers_path)
+        expect(flash[:notice]).to eq('Offer was successfully destroyed.')
       end
     end
   end
