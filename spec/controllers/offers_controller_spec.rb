@@ -58,7 +58,7 @@ RSpec.describe OffersController, type: :controller do
       it_behaves_like 'it does not show global announcements'
     end
 
-    context 'with a parameterize id' do 
+    context 'with a parameterized id' do 
       let(:offer_id) { offer.to_param }
       
       it_behaves_like 'a successful request', 'Free coffee'
@@ -137,8 +137,6 @@ RSpec.describe OffersController, type: :controller do
       it 'assigns the offer' do
         expect(assigns(:offer)).to eq(offer)
       end
-
-      it_behaves_like 'it does not show global announcements'
     end
   end
 
@@ -146,7 +144,7 @@ RSpec.describe OffersController, type: :controller do
     let(:user) { create(:user) }
 
     context 'when user is not signed in' do
-      before { post :create, params: { offer: { name: 'name', description: 'desc', limitations: 'limit', redemption: 'red', location: 'loc'} } }
+      before { post :create }
 
       it_behaves_like 'an unsuccessful request'
     end
@@ -164,17 +162,15 @@ RSpec.describe OffersController, type: :controller do
           post :create
         end
 
-        it 'redirects to the new page' do
+        it 'is unsuccessful' do
           expect(response).to render_template(:new)
         end
-
-        it_behaves_like 'it does not show global announcements'
       end
 
       context 'when offer can be saved' do
         before { post :create }
 
-        it 'redirects to the offer' do
+        it 'is successful' do
           expect(response).to redirect_to(offer_path(assigns(:offer)))
           expect(flash[:notice]).to eq('Offer was successfully created.')
         end
@@ -206,17 +202,15 @@ RSpec.describe OffersController, type: :controller do
           put :update, params: params
         end
 
-        it 'renders the edit page' do
+        it 'is unsuccessful' do
           expect(response).to render_template(:edit)
         end
-
-        it_behaves_like 'it does not show global announcements'
       end
 
       context 'when offer can be updated' do
         before { put :update, params: params }
 
-        it 'redirects to the offer' do
+        it 'is successful' do
           expect(response).to redirect_to(offer_path(offer))
           expect(flash[:notice]).to eq('Offer was successfully updated.')
         end
@@ -233,7 +227,7 @@ RSpec.describe OffersController, type: :controller do
         put :update, params: { id: offer.id, name: 'a new name' }
       end
 
-      it 'redirects to the offer' do
+      it 'it is successful' do
         expect(response).to redirect_to(offer_path(offer))
       end
     end    
@@ -254,8 +248,9 @@ RSpec.describe OffersController, type: :controller do
         sign_in user
         post :destroy, params: { id: offer.id }
       end
-      it 'it redirects to the offers' do
+      it 'is successful' do
         expect(response).to redirect_to(offers_path)
+        expect(flash[:notice]).to eq('Offer was successfully destroyed.')
       end
 
       it_behaves_like 'it does not show global announcements'
@@ -269,9 +264,8 @@ RSpec.describe OffersController, type: :controller do
         post :destroy, params: { id: offer.id }
       end
 
-      it 'redirects to the offer' do
+      it 'is successful' do
         expect(response).to redirect_to(offers_path)
-        expect(flash[:notice]).to eq('Offer was successfully destroyed.')
       end
     end
   end
