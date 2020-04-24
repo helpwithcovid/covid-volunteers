@@ -836,18 +836,6 @@
     hex-to-rgba "^2.0.1"
     postcss-selector-parser "^6.0.2"
 
-"@three11/animate-top-offset@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@three11/animate-top-offset/-/animate-top-offset-0.6.1.tgz#ddd56c6b531aa57bcd922019dfdb4391dc3e61f9"
-  integrity sha512-v9LrUx/5Jngx/4K/Upn3br9Ic/DE03A0lrMIsfnigjhdLRJ9czwdsqMuWc+i06wOJGVI0Lv6kPyTW545IeM0Rg==
-
-"@three11/scrollspy@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@three11/scrollspy/-/scrollspy-0.4.0.tgz#44e23d80d5f788619777add2ea2f4f3ab489321a"
-  integrity sha512-dD3Ia6dZc+78urXzdW9KqRS1OZQkXUXMlWwmRKwWlq36pDSNdA9jBJjflK1Z+OW0Znu9y3+yiNdKVeE69/U07Q==
-  dependencies:
-    "@three11/animate-top-offset" "^0.6.1"
-
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -4332,6 +4320,11 @@ memory-fs@^0.5.0:
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
+
+menuspy@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/menuspy/-/menuspy-1.3.0.tgz#2afe5e751f1c4540cdba4af7cd96be24fcf5b3f1"
+  integrity sha512-cZD8Ik4gfWzOADiCiGP0l08DQerQfeli82u7NKSP+Br3C6YmpYeZmGlTqmLwQvOIeJVoDnlEdkkz9m133L5CIQ==
 
 meow@^3.7.0:
   version "3.7.0"

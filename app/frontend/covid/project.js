@@ -1,5 +1,3 @@
-import ScrollSpy from '@three11/scrollspy';
-
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
@@ -13,14 +11,6 @@ const Project = {
 
       $('#volunteer_without_skills').click(function(ev) {
         Project.volunteerWithoutSkills(this, ev);
-      });
-
-      new ScrollSpy({
-        linkCurrentClass: 'submenu-item-active',
-        linksContainerSelector: '.resource-submenu',
-        sectionSelector: '.resource-section',
-        headerOffset: true,
-        headerClass: '.header'
       });
     });
   },
