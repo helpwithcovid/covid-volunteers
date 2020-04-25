@@ -137,6 +137,8 @@ class ProjectsController < ApplicationController
       @project.volunteers.where(user: current_user).destroy_all
       flash[:notice] = "We've removed you from the list of volunteered people."
     else
+      params[:volunteer_note] ||= ''
+
       Volunteer.create(user: current_user, project: @project, note: params[:volunteer_note])
 
       ProjectMailer.with(project: @project, user: current_user, note: params[:volunteer_note]).new_volunteer.deliver_now
