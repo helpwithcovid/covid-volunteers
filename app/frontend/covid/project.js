@@ -1,15 +1,16 @@
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
-      $('#not_accepting_volunteers').click(function(ev) {
+      console.log('loading')
+      $('.not-accepting-volunteers').click(function(ev) {
         Project.notAcceptingVolunteers(this, ev);
       });
 
-      $('#volunteer_with_skills').click(function(ev) {
+      $('.volunteer-with-skills').click(function(ev) {
         Project.volunteerWithSkills(this, ev);
       });
 
-      $('#volunteer_without_skills').click(function(ev) {
+      $('.volunteer-without-skills').click(function(ev) {
         Project.volunteerWithoutSkills(this, ev);
       });
     });
