@@ -1,7 +1,7 @@
 <%- share_title 'Volunteers' %>
 
 <div class="container">
-  <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4 sm:rounded-md">
+  <div class="bg-white px-4 py-5 border-b border-gray-200 mx-4 sm:mx-0 sm:px-6 mb-4 sm:rounded-md">
     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
       <div class="ml-4 mt-4">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -27,7 +27,7 @@
 
   <% if @show_filters %>
     <div x-data="{ open: <%= @filters_open %>, sortOpen: false }">
-      <div class="block mb-4 relative">
+      <div class="block mb-4 relative mx-4 sm:mx-0">
         <nav class="flex flex-col sm:flex-row justify-between">
           <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
             <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
@@ -63,10 +63,10 @@
     </div>
   <% end %>
 
-  <div class="bg-white shadow overflow-hidden sm:rounded-md">
+  <div class="bg-white shadow overflow-hidden sm:rounded-md mx-4 sm:mx-0">
     <%= paginate @users %>
   </div>
-  <div class="bg-white shadow overflow-hidden sm:rounded-md">
+  <div class="bg-white shadow overflow-hidden sm:rounded-md mx-4 sm:mx-0">
     <ul>
       <% @users.each_with_index do |user, idx| %>
         <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
