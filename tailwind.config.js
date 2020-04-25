@@ -3,6 +3,10 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   theme: {
     extend: {
+      colors: {
+        smoke: 'rgba(0, 0, 0, 0.5)',
+        'indigo-50': '#F9F9FF',
+      },
       maxHeight: {
         '400px': '400px',
       },
