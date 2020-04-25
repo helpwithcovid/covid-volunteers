@@ -335,69 +335,71 @@
       </div>
 
       <div class="mt-8 sm:col-span-1 sm:mt-0">
-        <div class="overflow-hidden sm:sticky sm:top-0 mb-8 hidden sm:block">
-          <%= render partial: 'volunteer_button' %>
-        </div>
-
-        <div class="bg-white overflow-hidden rounded-lg sm:sticky sm:top-0 shadow">
-          <div class="p-4 sm:px-6 sm:py-3 bg-purple-100 border-b border-indigo-400">
-            <h3 class="text-indigo-700 font-bold">Project details</h3>
+        <div class="sm:sticky sm:top-10">
+          <div class="overflow-hidden mb-8 hidden sm:block">
+            <%= render partial: 'volunteer_button' %>
           </div>
 
-          <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2">
-            <dt class="text-sm leading-5 font-bold text-gray-800">
-              Who is already working on this
-            </dt>
-            <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
-              <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-            </dd>
-          </div>
+          <div class="bg-white overflow-hidden rounded-lg sm:sticky sm:top-0 shadow">
+            <div class="p-4 sm:px-6 sm:py-3 bg-purple-100 border-b border-indigo-400">
+              <h3 class="text-indigo-700 font-bold">Project details</h3>
+            </div>
 
-          <% if @project.links.present? %>
-            <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
+            <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2">
               <dt class="text-sm leading-5 font-bold text-gray-800">
-                Helpful links
+                Who is already working on this
               </dt>
               <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
-                <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
+                <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
               </dd>
             </div>
-          <% end %>
 
-          <% if @project.contact.present? %>
-            <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-              <dt class="text-sm leading-5 font-bold text-gray-800">
-                How to get in touch
-              </dt>
-              <dd class="mt-2 text-sm leading-5 text-gray-500 sm:pb-3">
-                <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"').html_safe %>
-              </dd>
-            </div>
-          <% end %>
-
-          <% if @project.accepting_volunteers? %>
-            <% if @project.number_of_volunteers.present? %>
+            <% if @project.links.present? %>
               <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                <dt class="text-sm leading-5 font-medium text-gray-800">
-                  Number of volunteers needed
+                <dt class="text-sm leading-5 font-bold text-gray-800">
+                  Helpful links
                 </dt>
-                <dd class="mt-2 text-sm leading-5 text-gray-500">
-                  <%= @project.number_of_volunteers %>
+                <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
+                  <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
                 </dd>
               </div>
             <% end %>
 
-            <% if @project.volunteer_location.present? %>
+            <% if @project.contact.present? %>
               <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                <dt class="text-sm leading-5 font-medium text-gray-800">
-                  Preferred Volunteer location
+                <dt class="text-sm leading-5 font-bold text-gray-800">
+                  How to get in touch
                 </dt>
-                <dd class="mt-2 text-sm leading-5 text-gray-500">
-                  <%= @project.volunteer_location %>
+                <dd class="mt-2 text-sm leading-5 text-gray-500 sm:pb-3">
+                  <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"').html_safe %>
                 </dd>
               </div>
             <% end %>
-          <% end %>
+
+            <% if @project.accepting_volunteers? %>
+              <% if @project.number_of_volunteers.present? %>
+                <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
+                  <dt class="text-sm leading-5 font-medium text-gray-800">
+                    Number of volunteers needed
+                  </dt>
+                  <dd class="mt-2 text-sm leading-5 text-gray-500">
+                    <%= @project.number_of_volunteers %>
+                  </dd>
+                </div>
+              <% end %>
+
+              <% if @project.volunteer_location.present? %>
+                <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
+                  <dt class="text-sm leading-5 font-medium text-gray-800">
+                    Preferred Volunteer location
+                  </dt>
+                  <dd class="mt-2 text-sm leading-5 text-gray-500">
+                    <%= @project.volunteer_location %>
+                  </dd>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
