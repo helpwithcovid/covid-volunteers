@@ -402,22 +402,22 @@
       </div>
     </div>
   </div>
+
+  <% if current_user && @project.volunteered_users.count > 0 && (current_user == @project.user || current_user.is_admin?) %>
+    <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
+      <div class="bg-white px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Volunteers
+        </h3>
+      </div>
+
+        <ul>
+          <% @project.volunteers.includes(user: :skills).each do |volunteer| %>
+            <% user = volunteer.user %>
+            <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: volunteer } %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 </div>
-
-<% if current_user && @project.volunteered_users.count > 0 && (current_user == @project.user || current_user.is_admin?) %>
-  <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
-    <div class="bg-white px-4 py-5 sm:px-6">
-      <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Volunteers
-      </h3>
-    </div>
-
-      <ul>
-        <% @project.volunteers.includes(user: :skills).each do |volunteer| %>
-          <% user = volunteer.user %>
-          <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: volunteer } %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
