@@ -14,7 +14,13 @@
 }
 
 @media (min-width: 640px) {
-  .featured-categories { padding-top: 10% }
+  .featured-categories {
+    padding-top: 10%;
+  }
+
+  .featured-categories > div {
+    margin-top: calc(8.5% - 100px);
+  }
 }
 
 .scroll-gradient-right {
