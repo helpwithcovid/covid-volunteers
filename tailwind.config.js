@@ -10,6 +10,9 @@ module.exports = {
       maxHeight: {
         '400px': '400px',
       },
+      minHeight: {
+        '400px': '400px',
+      },
     },
     container: {
       center: true,
