@@ -17,12 +17,7 @@
   .featured-categories { padding-top: 10% }
 }
 
-/* Scroll Affordance Gradient on Project Card Labels */
-.scroll-gradient-right:after {
-  content: "";
-  width: 1rem;
-  height: 24px;
-  position: fixed;
-  right: 1.25rem; /* set to value of Tailwind padding class,`px-5` */
+.scroll-gradient-right {
   background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
+
