@@ -132,7 +132,7 @@ const Covid = {
         this.selected = []
       },
       selectAll() {
-        this.selected = this.options.map(item => item[0])
+        this.selected = this.options.map(item => item[1])
       },
       selectedCount() {
         return this.selected.length > 0 ? this.selected.length : ''
