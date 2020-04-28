@@ -21,4 +21,10 @@ module ProjectsHelper
       country
     end
   end
+
+  def project_panel_item(title: '', &block)
+    render layout: 'partials/project-panel-item', locals: {title: title} do
+      capture(&block)
+    end
+  end
 end

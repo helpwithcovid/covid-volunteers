@@ -236,20 +236,20 @@
               <%= skill_badges @project.project_type_list, model: 'projects', filter_by: 'project_types' %>
             </div>
           <% end %>
-          <div class="mt-4 flex items-center grid grid-cols-2">
+          <div class="mt-4 grid grid-rows-3 lg:grid-cols-3 gap-2">
             <div class="flex items-center text-indigo-600 col-span-1">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2 fill-current">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM7 9C7 6.24 9.24 4 12 4C14.76 4 17 6.24 17 9C17 11.88 14.12 16.19 12 18.88C9.92 16.21 7 11.85 7 9ZM9.5 9C9.5 7.61929 10.6193 6.5 12 6.5C12.8932 6.5 13.7185 6.9765 14.1651 7.75C14.6116 8.5235 14.6116 9.4765 14.1651 10.25C13.7185 11.0235 12.8932 11.5 12 11.5C10.6193 11.5 9.5 10.3807 9.5 9Z" fill="#5850EC" />
-              </svg>
-              <span class="text-gray-500 text-xs font-bold">
+              <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'h-6 mr-2' %>
+              <span class="text-gray-500 text-xs font-bold leading-tight">
                 <%= (@project.target_country.blank? || @project.target_country == "Global") ? "Global" : "Serves in #{format_country(@project.target_country)}" %>
               </span>
             </div>
             <div class="flex items-center text-indigo-600 col-span-1">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2 fill-current">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M21 3V10H14L16.95 7.05C15.68 5.79 13.93 5 12 5C8.14 5 5 8.14 5 12C5 15.86 8.14 19 12 19C15.86 19 19 15.86 19 12H21C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C14.49 3 16.74 4.01 18.36 5.64L21 3ZM11 13V8H12.5V12.15L16.02 14.24L15.25 15.52L11 13Z" fill="#5850EC" />
-              </svg>
-              <span class="text-gray-500 text-xs font-bold">Created <%= time_ago_in_words(@project.created_at) %> ago</span>
+              <%= inline_svg_pack_tag 'media/svgs/time-ago.svg', class: 'h-6 mr-2' %>
+              <span class="text-gray-500 text-xs font-bold leading-tight">Created <%= time_ago_in_words(@project.created_at) %> ago</span>
+            </div>
+            <div class="flex items-center text-indigo-600 col-span-1">
+              <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-6 mr-2' %>
+              <span class="text-gray-500 text-xs font-bold leading-tight"><%= @project.volunteers.count %> <%= 'Volunteer'.pluralize @project.volunteers.count %></span>
             </div>
           </div>
         </div>
@@ -345,59 +345,44 @@
               <h3 class="text-indigo-700 font-bold">Project details</h3>
             </div>
 
-            <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2">
-              <dt class="text-sm leading-5 font-bold text-gray-800">
-                Who is already working on this
-              </dt>
-              <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
+            <div class="p-6 space-y-4">
+              <%= project_panel_item(title: 'Who is already working on this') do %>
                 <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-              </dd>
-            </div>
+              <% end %>
 
-            <% if @project.links.present? %>
-              <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                <dt class="text-sm leading-5 font-bold text-gray-800">
-                  Helpful links
-                </dt>
-                <dd class="mt-2 text-sm leading-5 text-gray-500 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
+              <% if @project.links.present? %>
+                <%= project_panel_item(title: 'Helpful links') do %>
                   <%= simple_format Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-                </dd>
-              </div>
-            <% end %>
+                <% end %>
+              <% end %>
 
-            <% if @project.contact.present? %>
-              <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                <dt class="text-sm leading-5 font-bold text-gray-800">
-                  How to get in touch
-                </dt>
-                <dd class="mt-2 text-sm leading-5 text-gray-500 sm:pb-3">
+              <% if @project.contact.present? %>
+                <%= project_panel_item(title: 'How to get in touch') do %>
                   <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"').html_safe %>
-                </dd>
-              </div>
-            <% end %>
+                <% end %>
+              <% end %>
 
-            <% if @project.accepting_volunteers? %>
-              <% if @project.number_of_volunteers.present? %>
-                <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                  <dt class="text-sm leading-5 font-medium text-gray-800">
-                    Number of volunteers needed
-                  </dt>
-                  <dd class="mt-2 text-sm leading-5 text-gray-500">
+              <% if @project.accepting_volunteers? %>
+                <% if @project.number_of_volunteers.present? %>
+                  <%= project_panel_item(title: 'Number of volunteers needed') do %>
                     <%= @project.number_of_volunteers %>
-                  </dd>
-                </div>
-              <% end %>
+                  <% end %>
+                <% end %>
 
-              <% if @project.volunteer_location.present? %>
-                <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-                  <dt class="text-sm leading-5 font-medium text-gray-800">
-                    Preferred Volunteer location
-                  </dt>
-                  <dd class="mt-2 text-sm leading-5 text-gray-500">
+                <% if @project.volunteer_location.present? %>
+                  <%= project_panel_item(title: 'Preferred Volunteer location') do %>
                     <%= @project.volunteer_location %>
-                  </dd>
-                </div>
-              <% end %>
+                  <% end %>
+                <% end %>
+
+                <% if @project.organization_status.present? %>
+                  <%= project_panel_item(title: 'Organization status') do %>
+                    <div class="text-indigo-600 flex items-end">
+                      <%= inline_svg_pack_tag('media/svgs/category-community.svg', class: 'fill-current w-5 h-5 mt-1') if @project.organization_status == 'Non-profit' %><%= @project.organization_status %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
