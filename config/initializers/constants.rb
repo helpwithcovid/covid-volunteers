@@ -1,5 +1,5 @@
-ALL_SKILLS = [ 
-  'Analytics', 
+ALL_SKILLS = [
+  'Analytics',
   'Biology',
   'Biotech',
   'Community Outreach',
@@ -50,6 +50,12 @@ ALL_PROJECT_STATUS = [
   'Just started',
   'In progress',
   'Launched'
+].freeze
+
+ALL_ORGANIZATION_STATUS = [
+  'Non-profit',
+  'Venture-funded',
+  'Not incorporated'
 ].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
