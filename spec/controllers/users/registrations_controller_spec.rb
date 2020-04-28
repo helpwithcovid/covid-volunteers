@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Users::RegistrationsController do
-  
+RSpec.describe Users::RegistrationsController, type: :controller do
+  set_devise_mapping_to_user
 
   describe 'GET #index' do
+    before { get :index }
+
     context 'with a volunteer' do
       it 'assigns filters open variable' do
       end
