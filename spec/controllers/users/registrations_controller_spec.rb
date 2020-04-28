@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Users::RegistrationsController do
   
 
@@ -42,7 +44,7 @@ RSpec.describe Users::RegistrationsController do
         end
       end
 
-      context with 'when volunteer visibility is false' do
+      context 'when volunteer visibility is false' do
         context 'when user is not admin' do
           it 'does not return user' do
           end
