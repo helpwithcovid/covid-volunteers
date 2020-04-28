@@ -1,4 +1,4 @@
-<div class="flex mb-4">
+<div class="flex mb-4 px-4 sm:px-0">
   <%
     project_category = Settings.project_categories.select { |cat| cat.name == category }.first
     color = project_category.present? ? project_category.color : 'indigo'
