@@ -103,7 +103,7 @@ const VolunteerGroups = {
     const currentAcceptedUserIds = $('#accepted_user_ids').val().split(',').filter(el => el);
     const projectId = $('#project_id').val();
     const projectOwnerEmail = $('#project_owner_email').val();
-    const projectName = $('#project_name').val();
+    const projectName = encodeURIComponent($('#project_name').val());
     const volunteers = [];
     const volunteerEmails = [];
 
