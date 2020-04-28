@@ -2,7 +2,7 @@
 <%- share_url project_url(@project); %>
 
 <div class="container">
-  <% if current_user == @project.user %>
+  <% if current_user && (current_user == @project.user || current_user.is_admin?) %>
     <div class="mx-4 sm:mx-0 bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-8 rounded-lg shadow">
       <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap">
         <div class="ml-4 mt-4">
