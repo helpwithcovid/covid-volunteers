@@ -63,15 +63,12 @@ events:
     sub_title: Ivan Gayton, former Head of Mission and Board Member at Doctors without Border, talks about building technology for humanitarian/emergency purposes.
     cta_text: View recording
     cta_url: https://zoom.us/rec/share/5sttA5fAsWxLT6_Nx2-Yd7IEDqfuaaa823JI8_tcyUYSZzIbgvNy717m1UGGegEf
+  - title: Live panel on How to Sell and Know Your Audience
+    sub_title: ClozeLoop Founders, Hilmon Sorey and Cory Bray, talk about understanding your audience and selling to them.
+    cta_text: See slides and recording
+    cta_url: https://drive.google.com/drive/u/0/folders/1NATDm5yVsYUo8jRY7svE2fqwm1OwcpMu
 
 upcoming_events:
-  - title: How to Sell and Know Your Audience | Live Panel with ClozeLoop Founders, Hilmon Sorey and Cory Bray
-    sub_title: Monday, April 27th 11am PST | <a href="https://www.linkedin.com/in/hilmonsorey/"> Hilmon Sorey</a> and <a href="https://www.linkedin.com/in/buy-triangleselling/">Cory Bray</a>  are Managing Directors of ClozeLoop and have written 5 books on sales, sales enablement, and sales management. Their 6th book, The Five Secrets of a Sales Coach will be released in May.
-    month: April
-    day: 27
-    time: 11:00 AM - 12 PM PST
-    cta_text: Add to Calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MmNrN2QwMW0zOWtuczgzZTYwc2xkbDRpZW0gb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
   - title: Private Group Office Hours with Sam Altman
     sub_title: Three randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
     month: May
@@ -97,3 +94,5 @@ funding_resources:
     cta_url: https://www.plugandplaytechcenter.com/covid-19/?utm_campaign=Health_Newsletter_May%202019&utm_source=hs_email&utm_medium=email&utm_content=85778878&_hsenc=p2ANqtz-8AHUCNB-yeVfppjjjjE5b9GKQdFVnuA6FcmSMy3uJOVWtyLW2-DVKL6ybPr8AWWk9VRfO2TotPM8zP-ZUxkNmrusZNqw&_hsmi=85779062
   - cta_text: MIT Covid-19 Research
     cta_url: https://computing.mit.edu/computation-support-covid-19
+  - cta_text: H.E.L.P
+    cta_url: https://www.helpvolunteer.app/
