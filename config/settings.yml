@@ -96,3 +96,22 @@ funding_resources:
     cta_url: https://computing.mit.edu/computation-support-covid-19
   - cta_text: H.E.L.P
     cta_url: https://www.helpvolunteer.app/
+
+partner_resources:
+  - name: AWS
+    description: $10,000 in AWS credits for approved projects. Your project must be a corporate entity.
+    mail_to: helpwithcovid@gmail.com
+  - name: ClozeLoop
+    description: |+
+      Complete Sales Effectiveness Assessments for three companies we choose. The Sales Effectiveness Assessment is an evaluation of your company’s sales Strategy, Systems, Staff and Skills aligned with short and long-term revenue goals. The assessment provides a prioritized high-impact roadmap, and clear recommendations for growth.
+      $2500 value.
+    cta_link: https://clozeloop.typeform.com/to/ccPwVe
+  - name: Turtle Dev
+    description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtle's developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
+    cta_link: https://forms.gle/8UaPv6Qjaw8sFBNy9
+  - name: Blind
+    description: |+
+      We are offering promotion at no cost for 4 projects
+      - Support 3 projects with native advertising
+      - Support 1 project with sponsored AMA post
+    cta_link: https://bit.ly/helpwithcovid_blind
