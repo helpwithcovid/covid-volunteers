@@ -2,15 +2,6 @@
   Find Projects
 <% end %>
 
-<% if current_user %>
-  <%= link_to volunteered_projects_path, class: "#{volunteered_projects_nav_link_class(variant)}" do %>
-    Volunteered Projects
-  <% end %>
-  <%= link_to own_projects_path, class: "#{own_projects_nav_link_class(variant)}" do %>
-    Your Projects
-  <% end %>
-<% end %>
-
 <%= link_to volunteers_path, class: "#{volunteers_nav_link_class(variant)}" do %>
   Volunteers
 <% end %>
@@ -24,12 +15,34 @@
 <% end %>
 
 <% if current_user %>
-  <%= link_to edit_user_registration_path, class: "#{profile_nav_link_class(variant)}" do %>
-    Profile
-  <% end %>
-  <%= link_to destroy_user_session_path, method: :delete, class: "#{logout_nav_link_class(variant)}" do %>
-    Log out
-  <% end %>
+  <div class="relative group flex">
+    <%= link_to 'javascript:void(0);', class: "#{nav_link_inactive_class(variant)} hidden md:flex" do %>
+      Account <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'fill-current text-gray-600 transform rotate-90' %>
+    <% end %>
+
+    <div class="md:hidden md:group-hover:flex w-full md:flex-col md:absolute md:z-30 md:nset-auto md:left-0 md:bg-white md:shadow-lg md:p-4 md:w-48 md:text-sm md:space-y-2 md:mt-14">
+      <div>
+        <%= link_to volunteered_projects_path, class: "#{volunteered_projects_nav_link_class(variant)}" do %>
+          Volunteered Projects
+        <% end %>
+      </div>
+      <div>
+        <%= link_to own_projects_path, class: "#{own_projects_nav_link_class(variant)}" do %>
+          Your Projects
+        <% end %>
+      </div>
+      <div>
+        <%= link_to edit_user_registration_path, class: "#{profile_nav_link_class(variant)}" do %>
+          Your Profile
+        <% end %>
+      </div>
+      <div>
+        <%= link_to destroy_user_session_path, method: :delete, class: "#{logout_nav_link_class(variant)}" do %>
+          Log out
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% else %>
   <%= link_to new_user_registration_path, class: "#{sign_up_nav_link_class(variant)}" do %>
     Sign up
