@@ -15,6 +15,10 @@ FactoryBot.define do
       gen
     }
     password { 'df823jls18fk350f' }
+
+    factory :user_visible do
+      visibility { true }
+    end
   end
 
   factory :user_admin, parent: :user do

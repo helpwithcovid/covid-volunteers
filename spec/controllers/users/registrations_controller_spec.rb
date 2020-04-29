@@ -5,12 +5,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
   describe 'GET #index' do
     let(:do_request) { get :index }
-    let!(:user) { create(:user, visibility: true) }
+    let!(:user) { create(:user_visible) }
     
     context 'with no sign-in' do
-      before do
-        do_request
-      end
+      before { do_request }
 
       it 'shows/assigns search bar' do
         expect(assigns(:show_search_bar)).to eq(true)
@@ -41,7 +39,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         end
 
         context 'when a user has matching skills' do
-          let!(:user) { create(:user, visibility: true, skill_list: ['Analytics']) }
+          let!(:user) { create(:user_visible, skill_list: ['Analytics']) }
 
           it 'returns the volunteer' do
             expect(assigns(:users)).to eq([ user ])
@@ -58,7 +56,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         end
 
         context 'when a user has matching value' do
-          let!(:user) { create(:user, visibility: true, location: 'Paris') }
+          let!(:user) { create(:user_visible, location: 'Paris') }
           
           it 'returns the volunteer' do
             expect(assigns(:users)).to eq([ user ])
@@ -75,8 +73,8 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       end
 
       context 'with two volunteers' do
-        let!(:user) { create(:user, visibility: true, created_at: Date.parse('01/01/2020')) }
-        let!(:user_two) { create(:user, visibility: true, created_at: Date.parse('31/01/2020')) }
+        let!(:user) { create(:user_visible, created_at: Date.parse('01/01/2020')) }
+        let!(:user_two) { create(:user_visible, created_at: Date.parse('31/01/2020')) }
 
         context 'if sort latest is selected' do
           let(:do_request) { get :index, params: params }
