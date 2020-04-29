@@ -1,12 +1,13 @@
 <%- share_title 'Resources' %>
 
-<div class="-mt-6 pb-4 w-full flex flex-col sm:flex-row justify-center border-b border-gray-200">
+<div class="-mt-6 pb-4 w-full flex flex-col sm:flex-row justify-center border-b border-gray-200 sm:visible invisible">
   <div class="w-full sm:w-auto mx-auto sm:mx-0 overflow-x-auto scrolling-touch scrollbar-hidden sm:overflow-x-auto">
     <div class="flex flex-row flex-no-wrap h-full resource-submenu">
       <span class="submenu-item"><%= link_to 'Playbook', '#resource_playbook' %></span>
       <span class="submenu-item"><%= link_to 'Upcoming Events', '#resources_upcoming_events' %></span>
       <span class="submenu-item"><%= link_to 'Recorded panels', '#resources_recorded_live_panels' %></span>
       <span class="submenu-item"><%= link_to 'Funding & Resources', '#resource_funding' %></span>
+      <span class="submenu-item"><%= link_to 'Partner Resources', '#partner_resource' %></span>
       <span class="submenu-item"><%= link_to 'Deals', '#resource_deals' %></span>
     </div>
   </div>
@@ -15,6 +16,8 @@
 <%= render partial: 'partials/events' %>
 
 <%= render partial: 'funding-resources' %>
+
+<%= render partial: 'partner-resources' %>
 
 <section class="resource-section" id="resource_deals">
   <div class="container mb-8">
