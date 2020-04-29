@@ -6,6 +6,18 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   describe 'GET #index' do
     let(:do_request) { get :index }
     let!(:user) { create(:user_visible) }
+
+    shared_examples 'it assigns volunteer' do
+      it 'assigns volunteer' do
+        expect(assigns(:users)).to eq([ user ])
+      end
+    end
+
+    shared_examples 'it does not assign volunteer' do
+      it 'does not assign volunteer' do
+        expect(assigns(:users)).to eq([])
+      end
+    end
     
     context 'with no sign-in' do
       before { do_request }
@@ -26,24 +38,18 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect(response).to be_successful
       end
         
-      it 'returns all the volunteers' do
-        expect(assigns(:users)).to eq([ user ])
-      end
+      it_behaves_like 'it assigns volunteer'
 
       context 'when skills are selected' do
         let(:do_request) { get :index, params: params }
         let(:params) { { skills: ['Analytics'] } }
             
-        it 'returns no volunteers' do
-          expect(assigns(:users)).to eq([])
-        end
+        it_behaves_like 'it does not assign volunteer'
 
         context 'when a user has matching skills' do
           let!(:user) { create(:user_visible, skill_list: ['Analytics']) }
 
-          it 'returns the volunteer' do
-            expect(assigns(:users)).to eq([ user ])
-          end
+          it_behaves_like 'it assigns volunteer'
         end
       end
 
@@ -51,25 +57,19 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         let(:do_request) { get :index, params: params }
         let(:params) { { query: 'paris' } }
 
-        it 'returns no volunteers' do
-          expect(assigns(:users)).to eq([])
-        end
+        it_behaves_like 'it does not assign volunteer'
 
         context 'when a user has matching value' do
           let!(:user) { create(:user_visible, location: 'Paris') }
           
-          it 'returns the volunteer' do
-            expect(assigns(:users)).to eq([ user ])
-          end
+          it_behaves_like 'it assigns volunteer'
         end
       end
 
       context 'when volunteer visibility is false' do
         let!(:user) { create(:user, visibility: false) }
           
-        it 'does not return volunteer' do
-          expect(assigns(:users)).to eq([])
-        end
+        it_behaves_like 'it does not assign volunteer'
       end
 
       context 'with two volunteers' do
@@ -97,7 +97,6 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         end
       end 
     end
-
 
     context 'when admin is signed-in' do
       let (:admin) { create(:user, email: ADMINS[0]) }
