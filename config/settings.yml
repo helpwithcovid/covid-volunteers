@@ -76,6 +76,13 @@ upcoming_events:
     time: 12:00 PM - 1:00 PM PST
     cta_text: Fill out Form
     cta_url: https://forms.gle/jNFYAd1oLtQjLJrP9
+  - title: Private Group Office Hours with Radu
+    sub_title: Wednesday, May 6th 3:30pm - 4:30pm
+    month: May
+    day: 6
+    time: 3:30 PM - 4:30 PM PST
+    cta_text: Add to Calendar
+    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NWZvanJyZzYybGM2dmhodmc1YmdsNmRpZWcgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
 
 funding_resources:
   - cta_text: YC S2020 Application
@@ -99,7 +106,7 @@ funding_resources:
 
 partner_resources:
   - name: AWS
-    description: $10,000 in AWS credits for approved projects. Your project must be a corporate entity.
+    description: $10,000 in AWS credits for approved projects. Your project must be a corporate entity. Email helpwithcovid@gmail.com
     mail_to: helpwithcovid@gmail.com
   - name: ClozeLoop
     description: |+
