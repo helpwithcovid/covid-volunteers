@@ -152,23 +152,47 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:do_request) { get :show }
+    let(:subject) { get :show, params: { id: user.id } }
 
-    context 'when volunteer exists' do
+    context 'when a volunteer exists' do
+      let(:user) { build(:user, id: 9999) }
+
+      before { allow(User).to receive(:find).and_return(user) }
+
       context 'when user can view volunteer' do
-        it 'is successful' do
-        end
+        before { allow(user).to receive(:is_visible_to_user?).and_return(true) }
+
+        it { is_expected.to be_successful }
+
+        it { expect(subject.body).to have_content(user.name) }
       end
 
       context 'when a user cannot view volunteer' do
-        it 'is unsuccessful' do
+        before { allow(user).to receive(:is_visible_to_user?).and_return(false) }
+
+        it { is_expected.to_not be_successful }
+
+        it { is_expected.to redirect_to(projects_path) }
+
+        it 'displays flash error' do
+          subject
+
+          expect(flash[:error]).to eq('Sorry, no such user.') 
         end
       end
     end
 
     context 'when volunteer does not exist' do
-      it 'is unsuccessful' do
+      let(:user) { double(id: 9999)}
 
+      it { is_expected.to_not be_successful }
+
+      it { is_expected.to redirect_to(projects_path) }
+
+      it 'displays flash error' do
+        subject
+        
+        expect(flash[:error]).to eq('Sorry, no such user.')
       end
     end
   end
