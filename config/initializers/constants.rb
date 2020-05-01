@@ -54,7 +54,7 @@ ALL_PROJECT_STATUS = [
 
 ALL_ORGANIZATION_STATUS = [
   'Non-profit',
-  'Venture-funded',
+  'For-profit',
   'Not incorporated'
 ].freeze
 

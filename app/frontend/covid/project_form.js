@@ -6,6 +6,14 @@ const ProjectForm = {
           ProjectForm.updateState();
         });
 
+        $('input[name="project[accepting_volunteers]"]').on('click', function(e) {
+          ProjectForm.updateState();
+        });
+
+        $('#project_organization_status').on('change', function(e) {
+          ProjectForm.updateState();
+        });
+
         ProjectForm.updateState();
       }
     });
@@ -13,12 +21,20 @@ const ProjectForm = {
 
   updateState() {
     if ($('input[name="project[accepting_volunteers]"]:checked').val() == 'true') {
-      $('.is-accepting-volunteers').css('display', '');
+      $('.is-accepting-volunteers').show();
       $('#project_looking_for').attr('required', 'required');
     }
     else {
-      $('.is-accepting-volunteers').css('display', 'none');
+      $('.is-accepting-volunteers').hide();
       $('#project_looking_for').removeAttr('required');
+    }
+
+    if ($('#project_organization_status').val() == 'Non-profit') {
+      $('.is-non-profit').show();
+      $('#project_ein').attr('required', 'required');
+    } else {
+      $('.is-non-profit').hide();
+      $('#project_ein').removeAttr('required');
     }
   }
 }

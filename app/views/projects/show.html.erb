@@ -377,11 +377,17 @@
 
                 <%= project_panel_item(title: 'Organization status') do %>
                   <% if @project.organization_status.present? %>
-                    <div class="text-indigo-600 flex items-end">
-                      <%= inline_svg_pack_tag('media/svgs/category-community.svg', class: 'mr-2 fill-current w-5 h-5 mt-1') if @project.organization_status == 'Non-profit' %><%= @project.organization_status %>
+                    <div class="flex items-end">
+                      <%= @project.organization_status %>
+
+                      <% if @project.organization_status == "Non-profit" && @project.ein.present? %>
+                        <span class="ml-1">
+                          (EIN: <%= @project.ein %>)
+                        </span>
+                      <% end %>
                     </div>
                   <% else %>
-                    <div class="text-indigo-400 flex items-end">
+                    <div class="flex items-end">
                       Not specified
                     </div>
                   <% end %>
