@@ -152,9 +152,24 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 
   describe 'GET #show' do
-    it 'works' do
-      pending 'TODO'
-      fail
+    let(:do_request) { get :show }
+
+    context 'when volunteer exists' do
+      context 'when user can view volunteer' do
+        it 'is successful' do
+        end
+      end
+
+      context 'when a user cannot view volunteer' do
+        it 'is unsuccessful' do
+        end
+      end
+    end
+
+    context 'when volunteer does not exist' do
+      it 'is unsuccessful' do
+
+      end
     end
   end
 
