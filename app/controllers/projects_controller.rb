@@ -81,6 +81,10 @@ class ProjectsController < ApplicationController
 
     @project.user = current_user
 
+    if @project.save
+      ProjectMailer.with(project: @project).new_project.deliver_now
+    end
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

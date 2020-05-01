@@ -21,6 +21,10 @@ The stack is:
     - [Project setup](#project-setup)
   - [Launch app](#launch-app)
   - [Running tests](#running-tests)
+  - [Common problems in dev](#common-problems-in-dev)
+    - [Page layout broken](#page-layout-broken)
+    - [Captcha not working](#captcha-not-working)
+    - [Emails not sending](#emails-not-sending)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -93,6 +97,21 @@ Then go to [http://localhost:3000](http://localhost:3000) to view app
 ```
 rails spec
 ```
+## Common problems in dev
+
+### Page layout broken
+
+Error text: `Webpacker can't find stylesheets...`
+
+Remove `node_modules`, `yarn.lock` and `package-lock.json`. Run `yarn` to reinstall all frontend dependencies and try running the rails server again. Alternatively you can remove `node_modules` only and try `yarn install --frozen-lockfile`.
+
+### Captcha not working 
+
+Try using `localhost:3000` to run the site rather than `127.0.0.1`. 
+
+### Emails not sending
+
+By default, emails are not sent when running in development, but you can make them work: Copy all the `mailer` settings from `config/production.rb` into `config/development.rb`. 
 
 # Contributing
 
