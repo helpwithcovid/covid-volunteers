@@ -55,7 +55,8 @@ ALL_PROJECT_STATUS = [
 ALL_ORGANIZATION_STATUS = [
   'Non-profit',
   'For-profit',
-  'Not incorporated'
+  'Not incorporated',
+  'Public benefit cooperative'
 ].freeze
 
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
