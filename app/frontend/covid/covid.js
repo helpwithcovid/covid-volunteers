@@ -166,6 +166,24 @@ const Covid = {
 
     Turbolinks.visit(uri.readable())
   },
+  ensureFileType() {
+    const elements = document.getElementsByClassName('js-projects-image-upload-field')
+    if (!elements || elements.length === 0) {
+      return
+    }
+    const element = elements[0]
+    const fileName = element.value;
+    const idxDot = fileName.lastIndexOf(".") + 1;
+    const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+
+    if (!['jpg', 'jpeg', 'png'].includes(extFile)) {
+      element.value = null
+      alert('Only jpg/jpeg and png files are allowed!');
+      return false
+    }
+
+    return true
+  }
 };
 
 export default Covid
