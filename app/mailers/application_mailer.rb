@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Help With Covid New Haven <#{HWC_NOREPLY}>"
+  default from: "#{CITY_NAME} Help With Covid <#{HWC_NOREPLY}>"
   layout 'mailer'
 end
