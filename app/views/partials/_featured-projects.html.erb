@@ -18,6 +18,8 @@
 
 <div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 md:grid-cols-3 sm:gap-6">
   <% projects.each do |project| %>
-    <%= render partial: 'projects/project-card', locals: { project: project, category: category} %>
+    <% cache project do %>
+      <%= render partial: 'projects/project-card', locals: { project: project, category: category} %>
+    <% end %>
   <% end %>
 </div>
