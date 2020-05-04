@@ -126,6 +126,6 @@ class Project < ApplicationRecord
   end
 
   def self.get_featured_projects
-    Project.where(highlight: true).limit(3).order('RANDOM()')
+    Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(3).order('RANDOM()')
   end
 end

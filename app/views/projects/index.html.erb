@@ -15,7 +15,9 @@
       </div>
       <%= list_project_cards do %>
         <% @projects.each do |project| %>
-          <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil} %>
+          <% cache project do %>
+            <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil}, cache: true %>
+          <% end %>
         <% end %>
       <% end %>
       <div class="border-t border-gray-200">

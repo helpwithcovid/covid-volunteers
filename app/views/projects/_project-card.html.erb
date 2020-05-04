@@ -21,16 +21,16 @@
       <% end %>
     </div>
     <% if project.project_types.present? %>
-    <div class="relative w-full h-6 mb-4">
-      <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
-      <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
-        <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
-          <% project.project_types.each do |type| %>
-            <%= filter_badge label: type %>
-          <% end %>
+      <div class="relative w-full h-6 mb-4">
+        <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
+        <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
+          <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
+            <% project.project_types.each do |type| %>
+              <%= filter_badge label: type %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
     <% end %>
 
     <div class="relative grid grid-cols-2 gap-2 text-xs mt-3">
