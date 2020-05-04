@@ -220,9 +220,46 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'tracks an event' do
-      pending 'TODO'
-      fail
+    let(:params) { { user: { email: 'test@gmail.com', password: 'test123', password_confirmation: 'test123' } } }
+
+    context 'when email does not already exist' do
+      it 'tracks an event' do
+        # The line below doesn't work since the GET request sets and deletes the variable within same request:
+        # expect(session[:track_event]).to eq('Project creation started')
+        expect(controller).to receive(:track_event).with('User registration complete')
+
+        post :create, params: params
+      end
+
+      it 'redirects to the projects page' do
+        post :create, params: params
+
+        expect(response).to redirect_to projects_path
+      end
+
+      it 'add user to db' do
+        expect { post :create, params: params }.to change(User, :count).by(1)
+      end
+    end
+
+    context 'when email already exists' do
+      before { create(:user, email: 'test@gmail.com') }
+      
+      it 'tracks an event' do
+        expect(controller).to receive(:track_event).with('User registration complete')
+
+        post :create, params: params
+      end
+
+      it 'it re-renders the form' do 
+        post :create, params: params
+
+        expect(response).to render_template :new
+      end
+
+      it 'does not add user to db' do
+        expect { post :create, params: params }.to_not change(User, :count)
+      end
     end
   end
 end
