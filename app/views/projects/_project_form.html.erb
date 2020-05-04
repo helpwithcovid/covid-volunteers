@@ -52,7 +52,7 @@
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <% if @project.image.present? %>
             <div class="py-4">
-              <%= render partial: 'partials/image-thumbnail', locals: {image: @project.image} %>
+              <%= render partial: 'partials/image-thumbnail', locals: {project: @project} %>
             </div>
           <% end %>
 

@@ -93,9 +93,29 @@ class Project < ApplicationRecord
     present_category
   end
 
+  # Because Active Storage doesn't support serving files through cloudfront (or any other way)
+  # we need to manually strip the S3 path and prepend it with the CDN url
+  def self.cloudfront_url(url)
+    regex = /.*amazonaws\.com(\/variants\/.*\/.*)\?/
+    path = regex.match(url).captures
+
+    return url if path.nil?
+
+    cdn_url = "https://dafi4qalmitzb.cloudfront.net"
+
+    "#{cdn_url}#{path.first}"
+  end
+
   def cover_photo(category_override = nil)
     if self.image.present?
-      self.image.variant(resize_to_limit: [400, 400])
+      resized_variant = self.image.variant(resize_to_limit: [600, 600])
+
+      begin
+        # Making sure the variant is processed before serving
+        Project.cloudfront_url(resized_variant.processed.service_url)
+      rescue
+        Project.cloudfront_url(resized_variant.service_url)
+      end
     else
       "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
     end
