@@ -46,19 +46,17 @@
       </div>
 
       <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="image" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+        <label for="image" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
           Image<br/>
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <% if @project.image.present? %>
-            <div class="py-4">
+            <div class="py-2">
               <%= render partial: 'partials/image-thumbnail', locals: {project: @project} %>
             </div>
           <% end %>
 
-          <div class="">
-            <%= f.file_field :image, multiple: false, direct_upload: true, onchange: 'Covid.ensureFileType()', accept: 'image/x-png,image/gif,image/jpeg',  class: 'js-projects-image-upload-field py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out' %>
-          </div>
+          <%= f.file_field :image, multiple: false, direct_upload: true, onchange: 'Covid.ensureFileType()', accept: 'image/x-png,image/gif,image/jpeg',  class: 'js-projects-image-upload-field py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out' %>
         </div>
       </div>
 
