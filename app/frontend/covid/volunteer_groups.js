@@ -103,7 +103,7 @@ const VolunteerGroups = {
     const currentAcceptedUserIds = $('#accepted_user_ids').val().split(',').filter(el => el);
     const projectId = $('#project_id').val();
     const projectOwnerEmail = $('#project_owner_email').val();
-    const projectName = $('#project_name').val();
+    const projectName = encodeURIComponent($('#project_name').val());
     const volunteers = [];
     const volunteerEmails = [];
 
@@ -129,15 +129,16 @@ const VolunteerGroups = {
 
 Hope you are all doing well! Thank you for all that you are doing to work on a solution for our world and being part of helpwithcovid.com.
 
-This project needs your help: ${projectName} (http://helpwithcovid.com/projects/${projectId}) by project owner - ${projectOwnerEmail}. I thought you might be able to help. I have included the project owner to this email should have any questions.
+This project needs your help: ${projectName} (http://helpwithcovid.com/projects/${projectId}) by project owner - ${projectOwnerEmail}. I thought you might be able to help. I have included the project owner to this email should you have any questions.
 
-If you are already on an existing project or feel that you are not the right fit after speaking with the project owner. Please login to helpwithcovid.com and remove the setting "pair me with a project" from My Profile page.
+If you are already on an existing project, please login to helpwithcovid.com and remove the setting "pair me with a project" from your profile page (https://helpwithcovid.com/users/edit).
+
+If you feel that you are not the right fit after speaking with the project owner, please go to the project link (http://helpwithcovid.com/projects/${projectId}) and “cancel volunteer offer”. We will work on matching you to another project.
 
 Please let me know if you have any questions or concerns.
 
 Thank you!
-HWC Core team
-`;
+HWC Core team`;
 
     const mailHref=`mailto:${projectOwnerEmail}?reply-to=${projectOwnerEmail}&bcc=${volunteerEmails.join(',').replace(/\+/g, '%2B')}&subject=${subject}&body=${body.replace(/\n/g, '%0D%0A').replace(/\+/g, '%2B')}`;
     window.open(mailHref, '_blank');
