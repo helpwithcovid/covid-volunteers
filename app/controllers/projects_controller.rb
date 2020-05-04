@@ -199,7 +199,7 @@ class ProjectsController < ApplicationController
         @applied_filters[:skills] = params[:skills]
       end
 
-      @projects = @projects.includes(:project_types, :skills)
+      @projects = @projects.includes(:project_types, :skills, :volunteers)
     end
 
     def ensure_no_legacy_filtering

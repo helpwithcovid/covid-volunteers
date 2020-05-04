@@ -35,7 +35,7 @@
 
     <div class="relative grid grid-cols-2 gap-2 text-xs mt-3">
       <div>
-        <% total_volunteers = project.volunteers.count %>
+        <% total_volunteers = project.volunteers.length %>
         <div class="font-bold">
           <% if total_volunteers > 0 %>
             <%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %>
@@ -48,10 +48,6 @@
       <% if project.volunteer_location? %>
         <div class="text-right leading-snug"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.volunteer_location %></div>
       <% end %>
-
     </div>
-
-    
-
   </div>
 <% end %>
