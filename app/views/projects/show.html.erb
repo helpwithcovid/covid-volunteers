@@ -185,7 +185,7 @@
       <%= render partial: 'volunteer_button' %>
     </div>
     <div class="mt-0 mx-4 gap-0 rounded-lg bg-white shadow overflow-hidden sm:mx-0 sm:grid sm:grid-cols-2">
-      <div class="sm:col-span-1 relative h-40 sm:h-auto bg-cover bg-center" style="background-image: url(<%= @project.image.present? ? url_for(@project.image.variant(resize_to_limit: [1000, 1000])) : '/images/project-default.png' %>);">
+      <div class="sm:col-span-1 relative h-40 sm:h-auto bg-cover bg-center" style="background-image: url(<%= @project.image.present? ? @project.cover_photo : '/images/project-default.png' %>);">
         <% if @project.status.present? %>
           <div class="absolute top-4 left-4 rounded-full overflow-hidden">
             <% if @project.status == "Just started" %>
