@@ -255,6 +255,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         post :create, params: params
 
         expect(response).to render_template :new
+        expect(response.body).to include('Email has already been taken')
       end
 
       it 'does not add user to db' do
