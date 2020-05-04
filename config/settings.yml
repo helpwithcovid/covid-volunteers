@@ -69,13 +69,6 @@ events:
     cta_url: https://drive.google.com/drive/u/0/folders/1NATDm5yVsYUo8jRY7svE2fqwm1OwcpMu
 
 upcoming_events:
-  - title: Private Group Office Hours with Sam Altman
-    sub_title: Three randomly selected Project Owners will have time to discuss their project’s biggest challenges and solicit feedback from Sam.
-    month: May
-    day: 1
-    time: 12:00 PM - 1:00 PM PST
-    cta_text: Fill out Form
-    cta_url: https://forms.gle/jNFYAd1oLtQjLJrP9
   - title: Private Group Office Hours with Radu
     sub_title: Wednesday, May 6th 3:30pm - 4:30pm
     month: May
