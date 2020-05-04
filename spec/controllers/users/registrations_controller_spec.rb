@@ -8,12 +8,20 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     let(:do_request) { get :index }
 
     shared_examples 'it displays volunteer' do
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
       it 'displays volunteer' do
         expect(response.body).to include(user.name)
       end
     end
 
     shared_examples 'it does not display volunteer' do
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+
       it 'does not display volunteer' do
         expect(response.body).to_not include(user.name)
       end
@@ -35,10 +43,6 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
         it 'shows/assigns filters' do
           expect(assigns(:show_filters)).to eq(true)
-        end
-
-        it 'is successful' do
-          expect(response).to be_successful
         end
           
         it_behaves_like 'it displays volunteer'
@@ -101,6 +105,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           let(:do_request) { get :index, params: params }
           let(:params) { { sort_by: 'latest' } }
 
+          it 'is successful' do
+            expect(response).to be_successful
+          end
+
           it 'orders them from latest to earliest' do
             expect(assigns(:users).first).to eq(user_two)
             expect(assigns(:users).last).to eq(user)
@@ -111,6 +119,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           let(:do_request) { get :index, params: params }
           let(:params) { { sort_by: 'earliest' } }
 
+          it 'is successful' do
+            expect(response).to be_successful
+          end
+          
           it 'orders them from earliest to latest' do
             expect(assigns(:users).first).to eq(user)
             expect(assigns(:users).last).to eq(user_two)
@@ -131,8 +143,11 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         let(:do_request) { get :index, params: params }
         let(:params) { { page: 1 } }
 
-        it 'only returns the first twenty-five volunteers' do
+        it 'is successful' do
+          expect(response).to be_successful
+        end
 
+        it 'only returns the first twenty-five volunteers' do
           expect(response.body).to include('Any Name')
           expect(response.body).to_not include('Volunteer 26')
         end
@@ -142,8 +157,11 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         let(:do_request) { get :index, params: params }
         let(:params) { { page: 2 } }
 
-        it 'returns the twenty-sixth volunteer' do
+        it 'is successful' do
+          expect(response).to be_successful
+        end
 
+        it 'returns the twenty-sixth volunteer' do
           expect(response.body).to_not include('Any Name')
           expect(response.body).to include('Volunteer 26')
         end
@@ -237,7 +255,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect(response).to redirect_to projects_path
       end
 
-      it 'add user to db' do
+      it 'adds user to db' do
         expect { post :create, params: params }.to change(User, :count).by(1)
       end
     end
