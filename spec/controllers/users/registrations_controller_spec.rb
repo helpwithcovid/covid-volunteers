@@ -199,8 +199,23 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
   describe 'GET #new' do
     it 'tracks an event' do
-      pending 'TODO'
-      fail
+      # The line below doesn't work since the GET request sets and deletes the variable within same request:
+      # expect(session[:track_event]).to eq('Project creation started')
+      expect(controller).to receive(:track_event).with('User registration started')
+
+      get :new
+    end
+
+    it 'is successful' do
+      get :new
+
+      expect(response).to be_successful
+    end
+
+    it 'displays form' do
+      get :new
+
+      expect(response.body).to include('Sign up for an account')
     end
   end
 
