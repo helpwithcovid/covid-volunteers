@@ -103,9 +103,7 @@ class Project < ApplicationRecord
 
     return url if path.nil?
 
-    cdn_url = "https://dafi4qalmitzb.cloudfront.net"
-
-    "#{cdn_url}#{path.first}"
+    "#{ENV['CDN_URL']}#{path.first}"
   end
 
   def cover_photo(category_override = nil)
