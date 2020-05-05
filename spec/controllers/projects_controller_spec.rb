@@ -40,18 +40,6 @@ RSpec.describe ProjectsController, type: :controller do
         expect(assigns(:projects)).to include(project)
       end
 
-      it 'hides volunteer action item' do
-        Project.update_all(accepting_volunteers: true)
-        get :index
-        expect(response.body.scan('sign up to volunteer').size).to be > 0
-      end
-
-      it 'shows volunteer action item' do
-        Project.update_all(accepting_volunteers: false)
-        get :index
-        expect(response.body.scan('sign up to volunteer').size).to eq(0)
-      end
-
       it 'shows projects filtered by status' do
         project.update_attribute(:status, ALL_PROJECT_STATUS.last)
         project2 = create(:project, user: user, status: ALL_PROJECT_STATUS.first)
@@ -98,6 +86,7 @@ RSpec.describe ProjectsController, type: :controller do
         get :show, params: { id: project.to_param }
         expect(response).to be_successful
         expect(response.body).to_not include('Number of volunteers')
+        expect(response.body).to_not include('Sign up to volunteer')  
       end
 
       it 'show volunteer info' do
@@ -107,6 +96,7 @@ RSpec.describe ProjectsController, type: :controller do
         get :show, params: { id: project.to_param }
         expect(response).to be_successful
         expect(response.body).to include('Number of volunteers')
+        expect(response.body).to include('Sign up to volunteer')
       end
 
       it 'shows volunteer button if your profile is complete' do

@@ -1,22 +1,26 @@
 <div class="text-center">
   <% if current_user.blank? %>
-    <%= link_to new_user_registration_path do %>
-      <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
-        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-        </svg>
-        <span>
-          Sign up to volunteer
-        </span>
-      </button>
+    <% if @project.accepting_volunteers? %>
+      <%= link_to new_user_registration_path do %>
+        <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+          <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+          <span>
+            Sign up to volunteer
+          </span>
+        </button>
+      <% end %>
     <% end %>
   <% elsif !current_user.has_complete_profile? %>
-    <%= link_to edit_user_registration_path do %>
-      <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
-        <span>
-          Complete your profile to volunteer
-        </span>
-      </button>
+    <% if @project.accepting_volunteers? %>
+      <%= link_to edit_user_registration_path do %>
+        <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-50 active:text-gray-800">
+          <span>
+            Complete your profile to volunteer
+          </span>
+        </button>
+      <% end %>
     <% end %>
   <% else %>
     <% if current_user.volunteered_for_project?(@project) %>
