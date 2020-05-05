@@ -36,13 +36,7 @@ RSpec.describe ApplicationHelper do
 
   it 'builds a query string' do
     querystring = build_query_string(toggle_filter('skills', 'Software'))
-    desired_qs = 'skills=Biology&project_types=Track+the+outbreak,Reduce+spread&filters_open=true'
-    assert querystring.eql? desired_qs
-  end
-
-  it 'clears a filter' do
-    querystring = build_query_string(toggle_filter('skills', 'Software'))
-    desired_qs = 'skills=Biology&project_types=Track+the+outbreak,Reduce+spread&filters_open=true'
+    desired_qs = 'skills[]=Biology&project_types[]=Track+the+outbreak,Reduce+spread&filters_open[]=true'
     assert querystring.eql? desired_qs
   end
 
