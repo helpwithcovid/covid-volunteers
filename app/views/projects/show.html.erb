@@ -238,17 +238,17 @@
           <% end %>
           <div class="mt-4 flex flex-col lg:flex-row lg:justify-between">
             <div class="flex items-center text-indigo-600 col-span-1">
-              <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'h-6 mr-2' %>
+              <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'h-6 mr-2 text-indigo-600 fill-current' %>
               <span class="text-gray-500 text-xs font-bold leading-tight">
                 <%= (@project.target_country.blank? || @project.target_country == "Global") ? "Global" : "Serves in #{format_country(@project.target_country)}" %>
               </span>
             </div>
             <div class="flex items-center text-indigo-600 col-span-1">
-              <%= inline_svg_pack_tag 'media/svgs/time-ago.svg', class: 'h-6 mr-2' %>
+              <%= inline_svg_pack_tag 'media/svgs/time-ago.svg', class: 'h-6 mr-2 text-indigo-600 fill-current' %>
               <span class="text-gray-500 text-xs font-bold leading-tight">Created <%= time_ago_in_words(@project.created_at) %> ago</span>
             </div>
             <div class="flex items-center text-indigo-600 col-span-1">
-              <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-6 mr-2' %>
+              <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-6 mr-2 text-indigo-600 fill-current' %>
               <span class="text-gray-500 text-xs font-bold leading-tight"><%= @project.volunteers.count %> <%= 'Volunteer'.pluralize @project.volunteers.count %></span>
             </div>
           </div>

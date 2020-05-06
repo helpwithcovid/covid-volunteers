@@ -13,6 +13,9 @@ module.exports = {
       minHeight: {
         '400px': '400px',
       },
+      boxShadow: {
+        users: '0px 3px 16px rgba(0, 0, 0, 0.15)',
+      }
     },
     container: {
       center: true,
