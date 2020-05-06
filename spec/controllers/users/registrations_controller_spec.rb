@@ -175,7 +175,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     context 'when a volunteer exists' do
       let(:user) { build(:user, id: 9999) }
 
-      before { allow(User).to receive(:find).and_return(user) }
+      before { allow(User).to receive(:where).and_return([user]) }
 
       context 'when user can view volunteer' do
         before { allow(user).to receive(:is_visible_to_user?).and_return(true) }

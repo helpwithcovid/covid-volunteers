@@ -34,16 +34,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(id: params[:id]).last
 
-    if !@user.is_visible_to_user?(current_user)
-      flash[:error] = 'Sorry, no such user.'
+    if @user.blank? || !@user.is_visible_to_user?(current_user)
+      flash[:error] = 'Sorry, no such user.'    
       redirect_to projects_path
     end
-
-  rescue ActiveRecord::RecordNotFound
-    flash[:error] = 'Sorry, no such user.'
-    redirect_to projects_path
   end
 
   def new
