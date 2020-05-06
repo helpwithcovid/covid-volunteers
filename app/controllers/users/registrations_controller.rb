@@ -34,18 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(id: params[:id]).last
 
-    if @user.blank?
-      flash[:error] = 'Sorry, no such user.'
+    if @user.blank? || !@user.is_visible_to_user?(current_user)
+      flash[:error] = 'Sorry, no such user.'    
       redirect_to projects_path
-      return
-    end
-
-    if !@user.is_visible_to_user?(current_user)
-      flash[:error] = 'Sorry, no such user.'
-      redirect_to projects_path
-      nil
     end
   end
 
@@ -55,8 +48,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    track_event 'User registration complete'
     super
+    track_event 'User registration complete' if resource.persisted?
   end
 
   # GET /resource/edit
