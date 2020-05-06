@@ -52,8 +52,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    track_event 'User registration complete'
     super
+    track_event 'User registration complete' if resource.persisted?
   end
 
   # GET /resource/edit

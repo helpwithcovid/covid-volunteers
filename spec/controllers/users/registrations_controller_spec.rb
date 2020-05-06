@@ -263,8 +263,8 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     context 'when email already exists' do
       before { create(:user, email: 'test@gmail.com') }
       
-      it 'tracks an event' do
-        expect(controller).to receive(:track_event).with('User registration complete')
+      it 'does not track an event' do
+        expect(controller).to_not receive(:track_event).with('User registration complete')
 
         post :create, params: params
       end
