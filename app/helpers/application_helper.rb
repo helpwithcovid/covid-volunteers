@@ -231,7 +231,7 @@ module ApplicationHelper
     "gtag('event', '#{event}', {'event_category': 'Actions'});".html_safe
   end
 
-  def list_project_cards(&block)
+  def list_cards(&block)
     return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6'>#{capture(&block)}</div>".html_safe
   end
 end

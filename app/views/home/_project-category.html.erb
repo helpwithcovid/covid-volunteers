@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <%= list_project_cards do %>
+  <%= list_cards do %>
     <%= render partial: 'projects/project-card', collection: category[:featured_projects], locals: { category: category[:name] }, as: :project, cached: false %>
   <% end %>
 </div>

@@ -13,7 +13,7 @@
       <div class="mb-4">
         <%= paginate @projects, theme: 'projects_paginator' %>
       </div>
-      <%= list_project_cards do %>
+      <%= list_cards do %>
         <% @projects.each do |project| %>
           <% cache project do %>
             <%= render partial: 'project-card', locals: { project: project, category: @project_category.present? ? @project_category[:name] : nil} %>
