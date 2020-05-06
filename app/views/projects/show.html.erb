@@ -236,7 +236,7 @@
               <%= skill_badges @project.project_type_list, model: 'projects', filter_by: 'project_types' %>
             </div>
           <% end %>
-          <div class="mt-4 grid grid-rows-3 lg:grid-cols-3 gap-2">
+          <div class="mt-4 flex flex-col lg:flex-row lg:justify-between">
             <div class="flex items-center text-indigo-600 col-span-1">
               <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'h-6 mr-2' %>
               <span class="text-gray-500 text-xs font-bold leading-tight">
