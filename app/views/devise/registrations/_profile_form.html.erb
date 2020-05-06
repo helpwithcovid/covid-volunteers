@@ -70,13 +70,26 @@
             <%= render "devise/shared/required", text: 'About you' %>
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg flex rounded-md shadow-sm">
-                <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-5", required: true %>
+            <div class="max-w-lg flex rounded-md">
+                <%= f.text_area "about", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-1", required: true %>
             </div>
+        </div>
+
+        <div></div>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+            <% if @user.age_consent? %>
+            <%= f.check_box :age_consent, class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5", required: true, disabled: true %>
+            <% else %>
+            <%= f.check_box :age_consent, class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5", required: true %>
+            <% end %>
+            <label for="age_consent" class="font-medium text-gray-700 pl-2 text-sm leading-5">
+                <%= render "devise/shared/required", text: 'I am 18 years or older.' %>
+            </label>
         </div>
     </div>
 
-    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+
+    <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <label for="phone" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
             Phone
         </label>
@@ -115,7 +128,7 @@
                                     <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
                                 </div>
                                 <div class="pl-7 text-sm leading-5">
-                                    <label for="user_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
+                                    <label for="skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
                                         <%= skill %>
                                     </label>
                                 </div>
