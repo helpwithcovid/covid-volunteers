@@ -13,6 +13,9 @@ module.exports = {
       minHeight: {
         '400px': '400px',
       },
+      boxShadow: {
+        users: '0px 3px 16px rgba(0, 0, 0, 0.15)',
+      }
     },
     container: {
       center: true,
@@ -67,6 +70,16 @@ module.exports = {
       })
 
       addUtilities(utilities, { variants: ['responsive'] })
+    }),
+    plugin(function ({ addUtilities, theme }) {
+
+      const utilities = {
+        '.grid-auto-row-1fr': {
+          'grid-auto-rows': '1fr'
+        }
+      }
+
+      addUtilities(utilities)
     }),
     // buttons
     plugin(function ({ addComponents, theme }) {

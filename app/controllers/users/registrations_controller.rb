@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
   before_action :set_filters_open, only: :index
+  before_action :set_bg_white, only: :index
 
   def index
     params[:page] ||= 1
@@ -12,7 +13,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @show_sorting_options = true
 
     @users = User
-    @users = @users.tagged_with(params[:skills]) if params[:skills].present?
+    @users = @users.tagged_with(params[:skills], any: true, on: :skills) if params[:skills].present?
+
+    @applied_filters = {}
+
+    if params[:skills].present?
+      @applied_filters[:skills] = params[:skills]
+    end
 
     if params[:query].present?
       @users = @users.search(params[:query])
@@ -24,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
 
-    @users = @users.page(params[:page]).per(25)
+    @users = @users.includes(:skills).page(params[:page]).per(24)
 
     @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min

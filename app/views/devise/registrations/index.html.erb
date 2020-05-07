@@ -25,53 +25,28 @@
     </div>
   </div>
 
-  <% if @show_filters %>
-    <div x-data="{ open: <%= @filters_open %>, sortOpen: false }">
-      <div class="block mb-4 relative mx-4 sm:mx-0">
-        <nav class="flex flex-col sm:flex-row justify-between">
-          <a href="#" :class="{'bg-gray-200': open}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 fill-current flex-no-wrap mb-4 sm:mb-0" @click.prevent="Covid.toggleFiltersOpen(); open = !open">
-            <%= inline_svg_pack_tag('media/svgs/filter-outline.svg', class: 'h-4 inline-block') %> Filter volunteers
-          </a>
-          <div class="flex flex-col md:flex-row">
-            <% if @show_search_bar %>
-              <div class="w-full sm:w-64">
-                <%= form_with url: volunteers_path, local: true, method: :get, html: {'x-ref': 'searchForm'}  do |form| %>
-                  <div class="relative rounded-md shadow-sm">
-                    <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-input block w-full sm:text-sm sm:leading-5 pr-7" %>
-                    <div class="absolute inset-auto right-0 top-0 cursor-pointer" @click="$refs.searchForm.submit()">
-                      <%= inline_svg_pack_tag('media/svgs/search-outline.svg', class: 'translate-y-1/2 mr-2 h-4 inline-block', style: 'margin-top: 10px;') %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-            <% if @show_sorting_options %>
-              <div class="ml-2 flex">
-                <%= sort_drop_down do %>
-                  <%= sort_drop_down_option(volunteers_path, 'Sort by') %>
-                  <%= sort_drop_down_option(volunteers_path, 'Latest', 'latest') %>
-                  <%= sort_drop_down_option(volunteers_path, 'Earliest', 'earliest') %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </nav>
+  <%= render partial: 'filters-bar' if @show_filters %>
+
+  <% if @users.present? %>
+    <div class="mt-4">
+      <div class="mb-4">
+        <%= paginate @users, theme: 'projects_paginator' %>
       </div>
-      <div :class="{'block': open, 'hidden': !open}" class="hidden">
-        <%= render partial: 'partials/filters', locals: {label: 'Filter volunteers by skills', model: 'users', filter_by: 'skills', skills: ALL_SKILLS} %>
+      <%= list_cards do %>
+        <% @users.each do |user| %>
+          <% cache user do %>
+            <%= render partial: 'user-card', locals: { user: user, volunteer: nil} %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="border-t border-gray-200">
+        <%= paginate @users, theme: 'projects_paginator' %>
       </div>
     </div>
+  <% else %>
+  <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+    <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+    <span class="mt-8">No user found. Try another search!</span>
+  </div>
   <% end %>
-
-  <div class="bg-white shadow overflow-hidden sm:rounded-md mx-4 sm:mx-0">
-    <%= paginate @users %>
-  </div>
-  <div class="bg-white shadow overflow-hidden sm:rounded-md mx-4 sm:mx-0">
-    <ul>
-      <% @users.each_with_index do |user, idx| %>
-        <%= render partial: 'devise/registrations/user', locals: { user: user, volunteer: nil } %>
-      <% end %>
-    </ul>
-    <%= paginate @users %>
-  </div>
 </div>

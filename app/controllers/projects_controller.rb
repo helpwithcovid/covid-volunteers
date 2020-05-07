@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
         @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
         @page_title = 'All Projects'
 
-        @projects = @projects.page(params[:page]).per(25)
+        @projects = @projects.page(params[:page]).per(24)
 
         @index_from = (@projects.prev_page || 0) * @projects.limit_value + 1
         @index_to = [@index_from + @projects.limit_value - 1, @projects.total_count].min
