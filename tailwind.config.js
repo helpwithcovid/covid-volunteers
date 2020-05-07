@@ -71,6 +71,16 @@ module.exports = {
 
       addUtilities(utilities, { variants: ['responsive'] })
     }),
+    plugin(function ({ addUtilities, theme }) {
+
+      const utilities = {
+        '.grid-auto-row-1fr': {
+          'grid-auto-rows': '1fr'
+        }
+      }
+
+      addUtilities(utilities)
+    }),
     // buttons
     plugin(function ({ addComponents, theme }) {
       const styles = {
