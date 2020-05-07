@@ -35,6 +35,10 @@ global_announcements:
 #    cta_url: /offers
 
 events:
+  - title: Private Group Office Hours with Sam Altman
+    sub_title: Sam does GOH with three HelpWithCovid teams
+    cta_text: View recording
+    cta_url: https://drive.google.com/file/d/1RW1WBc0OabPD-qg73e_j8oNjuwhCF53t/view?usp=sharing
   - title: Lean thinking in a Crisis. Live Panel with Eric Ries
     sub_title: Eric is an entrepreneur and the author of the New York Times bestseller The Lean Startup. He is the creator of the Lean Startup methodology, which has become a global movement in business, practiced by individuals and companies around the world.
     cta_text: View recording
@@ -69,13 +73,13 @@ events:
     cta_url: https://drive.google.com/drive/u/0/folders/1NATDm5yVsYUo8jRY7svE2fqwm1OwcpMu
 
 upcoming_events:
-  - title: Private Group Office Hours with Radu
-    sub_title: Wednesday, May 6th 3:30pm - 4:30pm
-    month: May
-    day: 6
-    time: 3:30 PM - 4:30 PM PST
-    cta_text: Add to Calendar
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NWZvanJyZzYybGM2dmhodmc1YmdsNmRpZWcgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
+#  - title: Private Group Office Hours with Radu
+#    sub_title: Wednesday, May 6th 3:30pm - 4:30pm
+#    month: May
+#    day: 6
+#    time: 3:30 PM - 4:30 PM PST
+#    cta_text: Add to Calendar
+#    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NWZvanJyZzYybGM2dmhodmc1YmdsNmRpZWcgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
 
 funding_resources:
   - cta_text: YC S2020 Application
