@@ -94,7 +94,7 @@ class User < ApplicationRecord
   def opt_into_newsletter_on_sign_up
     self.newsletter_consent = true
     subscribe_to_mailchimp(true)
-  end   
+  end
 
   # this function checks if this user has completed Blank Slate training
   def finished_training?
@@ -120,6 +120,10 @@ class User < ApplicationRecord
     else
       false
     end
+  end
+
+  def age_consent?
+    return self.age_consent
   end
 
   # before saving, we check if the user opted in or out, 
