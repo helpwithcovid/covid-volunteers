@@ -36,6 +36,12 @@ const ProjectForm = {
       $('.is-non-profit').hide();
       $('#project_ein').removeAttr('required');
     }
+
+    if ($('#project_organization_status').val() == 'For-profit') {
+      $('.for-profit-warning').show();
+    } else {
+      $('.for-profit-warning').hide();
+    }
   }
 }
 
