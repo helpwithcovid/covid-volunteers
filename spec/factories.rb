@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :success_story do
+    
+  end
+
   factory :volunteer_group do
   end
 

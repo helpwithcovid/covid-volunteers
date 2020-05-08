@@ -1,0 +1,28 @@
+<%- share_title @page_title %>
+
+<div class="container">
+  <div class="mx-auto w-full text-center mt-8">
+    <div class="font-bold text-2xl mb-4 text-gray-700"><%= @page_title %></div>
+    <div class="mb-4 leading-tight text-gray-700">How projects bring people together<br/>and the progress they made.</div>
+  </div>
+
+  <% if @success_stories.present? %>
+    <div class="mt-4">
+      <div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 gap-6">
+        <% @success_stories.each do |success_story| %>
+          <%# cache success_story do %>
+            <%= render partial: 'success_story-card', locals: { success_story: success_story, category: @success_story_category.present? ? @success_story_category[:name] : nil} %>
+          <%# end %>
+        <% end %>
+      </div>
+      <div class="border-t border-gray-200">
+        <%= paginate @success_stories, theme: 'success_stories_paginator' %>
+      </div>
+    </div>
+  <% else %>
+  <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+    <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+    <span class="mt-8">No success story found. Try another search! <br> Or create a success story <%= link_to 'here', new_success_story_path, class: 'font-bold' %>.</span>
+  </div>
+  <% end %>
+</div>
