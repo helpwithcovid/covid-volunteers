@@ -37,7 +37,17 @@ const Project = {
     const targetHref = $(that).attr('href');
     const skillsRequired = $(that).attr('x-skills-required').split(', ');
     const projectName = $(that).attr('x-project-name');
+    const orgStatus = $(that).attr('x-org-status');
 
+    let forProfitAlert = '';
+    if (orgStatus == "For-profit") {
+      forProfitAlert = `
+      <div class="mt-3 text-xs">
+        The U.S. Department of Labor has indicated that volunteers should not provide services equivalent to that of an employee for <span class='text-orange-400'>for-profit</span> private sector employers.<br/><br/>
+        Discuss with the project team before proceeding in volunteering.
+      </div>
+      `
+    }
 
     const headerHTML = "You're about to volunteer";
     const bodyHTML = `
@@ -54,6 +64,8 @@ const Project = {
           <input id="volunteer_note" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="In one sentence, why are you interested?" />
         </div>
       </div>
+
+      ${forProfitAlert}
       `;
 
     const callback = () => {
