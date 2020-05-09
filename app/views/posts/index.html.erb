@@ -6,6 +6,18 @@
     <div class="mb-4 leading-tight text-gray-700">How projects bring people together<br/>and the progress they made.</div>
   </div>
 
+  <% if current_user.is_admin? %>
+    <div class="w-full flex justify-end">
+      <div class="self-center ml-4 mt-1">
+        <%= link_to new_post_path do %>
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 flex-shrink-0 flex-grow-0">
+            Create post
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <% if @posts.present? %>
     <%
       odds = @posts.each_with_index.select { |p, index| index % 2 == 0 }.map(&:first)
