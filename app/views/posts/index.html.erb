@@ -40,9 +40,9 @@
       </div>
     </div>
   <% else %>
-  <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
-    <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
-    <span class="mt-8">No success story found. Try another search! <br> Or create a success story <%= link_to 'here', new_post_path, class: 'font-bold' %>.</span>
-  </div>
+    <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+      <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+      <span class="mt-8">No success story found.</span>
+    </div>
   <% end %>
 </div>
