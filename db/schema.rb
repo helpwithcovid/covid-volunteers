@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_05_01_194019) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "volunteer_location", default: "", null: false
     t.string "contact", default: "", null: false
-    t.integer "funding_amount"
     t.boolean "highlight", default: false, null: false
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
