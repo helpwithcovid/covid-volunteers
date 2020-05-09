@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_154345) do
+ActiveRecord::Schema.define(version: 2020_05_01_194019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,21 +78,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_154345) do
     t.string "target_location", default: "", null: false
     t.string "organization_status", default: "", null: false
     t.string "ein"
-  end
-
-  create_table "success_stories", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "body"
-    t.text "links"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sucess_stories_projects", force: :cascade do |t|
-    t.bigint "success_story_id"
-    t.bigint "project_id"
-    t.index ["project_id"], name: "index_sucess_stories_projects_on_project_id"
-    t.index ["success_story_id"], name: "index_sucess_stories_projects_on_success_story_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

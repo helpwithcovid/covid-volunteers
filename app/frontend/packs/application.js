@@ -26,6 +26,10 @@ $.fancybox.defaults.infobar = false
 $.fancybox.defaults.toolbar = false
 $.fancybox.defaults.hash = false
 
+document.addEventListener("turbolinks:before-cache", function() {
+  $('.js-remove-before-navigation').remove()
+})
+
 // Main App.
 import Covid from '../covid'
 window.Covid = Covid

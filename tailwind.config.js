@@ -84,7 +84,8 @@ module.exports = {
     // buttons
     plugin(function ({ addComponents, theme }) {
       const styles = {
-        display: 'inline-block',
+        display: 'inline-flex',
+        alignItems: 'center',
         fontSize: theme('fontSize.sm'),
         padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
         fill: 'currentColor',

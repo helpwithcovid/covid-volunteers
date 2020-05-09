@@ -1,0 +1,7 @@
+<%
+  has_image ||= false
+  padding = has_image ? 'pb-2/3' : 'pb-1/3'
+%>
+<div class="relative <%= padding %>">
+  <img class="absolute h-full w-full object-cover" src="<%= image_src %>" alt="<%= alt %>">
+</div>

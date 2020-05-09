@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :success_stories
+  resources :posts
   # Redirect www to non-www.
   if ENV['CANONICAL_HOST']
     constraints(host: Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
@@ -20,9 +20,9 @@ Rails.application.routes.draw do
 
   get '/projects/p/:page' => 'projects#index', as: 'projects_with_pagination'
 
-  resources :projects do
-    resources :images, controller: 'projects_images'
+  delete '/images/:resource_name/:resource_id', to: 'images#destroy'
 
+  resources :projects do
     collection do
       get :volunteered
       get :own

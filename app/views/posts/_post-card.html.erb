@@ -1,0 +1,11 @@
+<%= link_to post, class: 'relative block shadow-users transform transition-all duration-100 hover:scale-105 rounded-lg overflow-hidden' do %>
+  <%= render partial: 'cover-photo', locals: {image_src: post.cover_photo, alt: post.title, has_image: post.image.present?} %>
+  <div class="p-8">
+    <div class="mb-4 text-xl text-indigo-500">
+      <%= post.title %>
+    </div>
+    <div>
+      <%= simple_format post.body.truncate(rand(250...1400)), class: 'mb-2' %>
+    </div>
+  </div>
+<% end %>

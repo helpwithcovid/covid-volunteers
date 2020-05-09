@@ -12,8 +12,8 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/success_stories", type: :request do
-  # SuccessStory. As you add validations to SuccessStory, be sure to
+RSpec.describe "/posts", type: :request do
+  # Post. As you add validations to Post, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -25,58 +25,58 @@ RSpec.describe "/success_stories", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      SuccessStory.create! valid_attributes
-      get success_stories_url
+      Post.create! valid_attributes
+      get posts_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      success_story = SuccessStory.create! valid_attributes
-      get success_story_url(success_story)
+      post = Post.create! valid_attributes
+      get post_url(post)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_success_story_url
+      get new_post_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      success_story = SuccessStory.create! valid_attributes
-      get edit_success_story_url(success_story)
+      post = Post.create! valid_attributes
+      get edit_post_url(post)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new SuccessStory" do
+      it "creates a new Post" do
         expect {
-          post success_stories_url, params: { success_story: valid_attributes }
-        }.to change(SuccessStory, :count).by(1)
+          post posts_url, params: { post: valid_attributes }
+        }.to change(Post, :count).by(1)
       end
 
-      it "redirects to the created success_story" do
-        post success_stories_url, params: { success_story: valid_attributes }
-        expect(response).to redirect_to(success_story_url(SuccessStory.last))
+      it "redirects to the created post" do
+        post posts_url, params: { post: valid_attributes }
+        expect(response).to redirect_to(post_url(Post.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new SuccessStory" do
+      it "does not create a new Post" do
         expect {
-          post success_stories_url, params: { success_story: invalid_attributes }
-        }.to change(SuccessStory, :count).by(0)
+          post posts_url, params: { post: invalid_attributes }
+        }.to change(Post, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post success_stories_url, params: { success_story: invalid_attributes }
+        post posts_url, params: { post: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -88,42 +88,42 @@ RSpec.describe "/success_stories", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested success_story" do
-        success_story = SuccessStory.create! valid_attributes
-        patch success_story_url(success_story), params: { success_story: new_attributes }
-        success_story.reload
+      it "updates the requested post" do
+        post = Post.create! valid_attributes
+        patch post_url(post), params: { post: new_attributes }
+        post.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the success_story" do
-        success_story = SuccessStory.create! valid_attributes
-        patch success_story_url(success_story), params: { success_story: new_attributes }
-        success_story.reload
-        expect(response).to redirect_to(success_story_url(success_story))
+      it "redirects to the post" do
+        post = Post.create! valid_attributes
+        patch post_url(post), params: { post: new_attributes }
+        post.reload
+        expect(response).to redirect_to(post_url(post))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        success_story = SuccessStory.create! valid_attributes
-        patch success_story_url(success_story), params: { success_story: invalid_attributes }
+        post = Post.create! valid_attributes
+        patch post_url(post), params: { post: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested success_story" do
-      success_story = SuccessStory.create! valid_attributes
+    it "destroys the requested post" do
+      post = Post.create! valid_attributes
       expect {
-        delete success_story_url(success_story)
-      }.to change(SuccessStory, :count).by(-1)
+        delete post_url(post)
+      }.to change(Post, :count).by(-1)
     end
 
-    it "redirects to the success_stories list" do
-      success_story = SuccessStory.create! valid_attributes
-      delete success_story_url(success_story)
-      expect(response).to redirect_to(success_stories_url)
+    it "redirects to the posts list" do
+      post = Post.create! valid_attributes
+      delete post_url(post)
+      expect(response).to redirect_to(posts_url)
     end
   end
 end

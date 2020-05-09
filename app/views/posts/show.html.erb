@@ -1,0 +1,47 @@
+<div class="container">
+  <% if current_user.is_admin? %>
+    <div class="bg-white mt-6 border-2 border-red-300 bg-red-100 shadow sm:rounded-lg mb-8">
+      <div class="px-4 py-5 sm:p-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Admin area
+        </h3>
+        <div class="flex justify-left mt-3 text-sm leading-5">
+          <%= link_to edit_post_path do %>
+            <span class="inline-flex rounded-md shadow-sm mt-4">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+                <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                </svg>
+                <span>
+                  Edit
+                </span>
+              </button>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="overflow-hidden rounded-lg shadow-users">
+    <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
+    <div class="p-4 sm:px-16 md:px-24 lg:px-48 xl:px-64">
+      <div class="mb-4 text-indigo-600 text-xl font-bold">
+        <%= @post.title %>
+      </div>
+      <% if @post.links.present? %>
+        <div class="text-gray-800 text-sm mb-4">
+          <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> Link to demos: <%= Rinku.auto_link(@post.links, :all, 'target="_blank" class="text-indigo-600"').html_safe %>
+        </div>
+      <% end %>
+      <div>
+        <%= simple_format @post.body, class: 'mb-2' %>
+      </div>
+    </div>
+    <% if @post.projects.present? %>
+      <div class="bg-indigo-100 text-indigo-600 p-4 pb-6 font-medium">
+        Volunteer for the projects: <%= @post.projects.map { |project| link_to project.name, project }.join(' ').html_safe %>
+      </div>
+    <% end %>
+  </div>
+</div>

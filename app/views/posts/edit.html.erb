@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="overflow-hidden rounded-lg shadow-users">
+    <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
+    <div class="p-4 sm:px-16 md:px-24 lg:px-48 xl:px-64">
+      <div class="mb-4 text-indigo-600 text-xl font-bold">
+        Edit post
+      </div>
+
+      <%= render 'form', post: @post %>
+    </div>
+  </div>
+</div>

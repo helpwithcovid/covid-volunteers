@@ -1,0 +1,87 @@
+<%= form_with(model: post, local: true) do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 mt-5">
+    <label for="title" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Title
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "title", class: "flex-1 form-input block w-full rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 mt-5">
+    <label for="links" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Links
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "links", class: "flex-1 form-input block w-full rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 mt-5">
+    <label for="projectIds" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Project IDs
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_field "project_ids", class: "flex-1 form-input block w-full rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">Place here the id's of the projects you want to link to separated by a comma (122, 255, 633).</p>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="body" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Body
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_area "body", class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, rows: 12 %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">The post content.</p>
+    </div>
+  </div>
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="image" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
+      Image<br/>
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <% if @post.image.present? %>
+        <div class="py-2">
+          <%= link_to "/images/posts/#{@post.id}", method: :delete, data: {confirm: 'Are you sure?'}, class: 'button', title: 'Remove image' do %>
+            <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline h-full" %> Remove image
+          <% end %>
+        </div>
+      <% end %>
+      <div style="min-height: 40px">
+        <%= f.file_field :image, multiple: false, direct_upload: true, onchange: 'Covid.ensureFileType()', accept: 'image/x-png,image/gif,image/jpeg',  class: 'js-projects-image-upload-field py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:my-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
+    <div class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
+
+    </div>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <%= f.submit class: 'button button-indigo' %>
+      <%= link_to 'Show', @post, class: 'button' %>
+      <%= link_to 'Back', posts_path, class: 'button' %>
+    </div>
+  </div>
+<% end %>
