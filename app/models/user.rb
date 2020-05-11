@@ -15,8 +15,6 @@ class User < ApplicationRecord
   has_many :offers
   acts_as_taggable_on :skills
 
-  before_validation :ensure_at_least_one_tag, on: :update
-
   pg_search_scope :search, against: %i(name email about location level_of_availability)
 
   def volunteered_for_project?(project)
@@ -65,11 +63,5 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && !self.deactivated
-  end
-
-  private
-
-  def ensure_at_least_one_tag
-    errors.add(:skills, 'You must select at least one skill') if skill_list.empty?
   end
 end
