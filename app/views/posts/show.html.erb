@@ -1,5 +1,5 @@
-<div class="container">
-  <% if current_user.is_admin? %>
+<div class="container p-8 sm:p-0">
+  <% if user_signed_in? and current_user.is_admin? %>
     <div class="w-full flex justify-end mb-6">
       <%= link_to edit_post_path do %>
         <span class="inline-flex rounded-md shadow-sm mt-4">
@@ -18,8 +18,8 @@
 
   <div class="overflow-hidden rounded-lg shadow-users">
     <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
-    <div class="p-4 sm:px-16 md:px-24 lg:px-48 xl:px-64">
-      <div class="mb-4 text-indigo-600 text-xl font-bold">
+    <div class="p-12 sm:px-16 md:px-24 lg:px-48 xl:px-64">
+      <div class="mb-6 text-indigo-600 text-3xl font-bold">
         <%= @post.title %>
       </div>
       <% if @post.links.present? %>
