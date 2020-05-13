@@ -16,9 +16,9 @@
     </div>
   <% end %>
 
-  <div class="overflow-hidden rounded-lg shadow-users">
+  <div class="overflow-hidden rounded-lg shadow-users m-auto max-w-screen-lg">
     <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
-    <div class="p-12 sm:px-16 md:px-24 lg:px-48 xl:px-64">
+    <div class="p-12 sm:px-16 md:px-24">
       <div class="mb-6 text-indigo-600 text-3xl font-bold">
         <%= @post.title %>
       </div>
