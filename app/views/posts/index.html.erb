@@ -23,7 +23,7 @@
       odds = @posts.each_with_index.select { |p, index| index % 2 == 0 }.map(&:first)
       evens = @posts.each_with_index.select { |p, index| index % 2 != 0 }.map(&:first)
      %>
-    <div class="mt-4">
+    <div class="mt-4 m-auto w-full sm:w-10/12 ">
       <div class="w-full px-8 sm:px-0 grid md:grid-cols-2 gap-12 md:hidden">
         <%= render partial: 'post-card', collection: @posts, as: :post, cached: true %>
       </div>

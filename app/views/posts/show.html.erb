@@ -18,22 +18,22 @@
 
   <div class="overflow-hidden rounded-lg shadow-users m-auto max-w-screen-lg">
     <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
-    <div class="p-12 sm:px-16 md:px-24">
-      <div class="mb-6 text-indigo-600 text-3xl font-bold">
+    <div class="p-12  sm:px-16 md:px-24">
+      <div class="mb-2 text-indigo-600 text-3xl font-bold">
         <%= @post.title %>
       </div>
       <% if @post.links.present? %>
-        <div class="text-gray-800 text-sm mb-4">
+        <div class="text-gray-800 text-sm mb-8">
           <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> Link to demos: <%= Rinku.auto_link(@post.links, :all, 'target="_blank" class="text-indigo-600"').html_safe %>
         </div>
       <% end %>
       <div>
-        <%= simple_format @post.body, class: 'mb-2' %>
+        <%= simple_format @post.body, class: 'mt-2 mb-2 leading-loose text-gray-600' %>
       </div>
     </div>
     <% if @post.projects.present? %>
-      <div class="bg-indigo-100 text-indigo-600 p-4 pb-6 font-medium">
-        Volunteer for the projects: <%= @post.projects.map { |project| link_to project.name, project }.join(' ').html_safe %>
+      <div class="bg-indigo-100 text-indigo-600 p-8 sm:px-16 md:px-24 font-medium">
+        Volunteer → <%= @post.projects.map { |project| link_to project.name, project, class: 'underline' }.join(' ').html_safe %>.
       </div>
     <% end %>
   </div>
