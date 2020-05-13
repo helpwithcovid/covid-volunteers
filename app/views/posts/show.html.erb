@@ -13,6 +13,15 @@
           </button>
         </span>
       <% end %>
+      <%= link_to post_path, method: :delete, data: { confirm: "Are you sure you want to delete this project?" } do %>
+        <span class="inline-flex rounded-md shadow-sm mt-4 ml-4">
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-red-300 text-sm leading-5 font-medium rounded-md text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-red-800 active:bg-red-50 transition ease-in-out duration-150">
+            <span>
+              Delete
+            </span>
+          </button>
+        </span>
+      <% end %>
     </div>
   <% end %>
 
