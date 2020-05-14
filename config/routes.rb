@@ -19,9 +19,9 @@ Rails.application.routes.draw do
 
   get '/projects/p/:page' => 'projects#index', as: 'projects_with_pagination'
 
-  resources :projects do
-    resources :images, controller: 'projects_images'
+  delete '/images/:resource_name/:resource_id', to: 'images#destroy'
 
+  resources :projects do
     collection do
       get :volunteered
       get :own
@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       post :accept
     end
   end
+
+  resources :success_stories
 
   scope 'admin' do
     post :delete_user, to: 'admin#delete_user', as: 'delete_user'

@@ -1,0 +1,10 @@
+<%= link_to success_story, class: 'relative block shadow-users transform transition-all duration-100 hover:scale-105 rounded-lg overflow-hidden text-gray-600' do %>
+  <div class="p-8">
+    <div class="mb-2 text-lg text-indigo-500">
+      <%= success_story.title %>
+    </div>
+    <div>
+      <%= simple_format success_story.body.truncate(rand(250...450)), class: 'mb-2 text-md leading-relaxed' %>
+    </div>
+  </div>
+<% end %>

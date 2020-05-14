@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_05_14_034724) do
+=======
+ActiveRecord::Schema.define(version: 2020_05_14_015753) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +65,10 @@ ActiveRecord::Schema.define(version: 2020_05_14_034724) do
     t.datetime "end_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.integer "application_user_ids", default: [], null: false, array: true
+=======
+>>>>>>> master
   end
 
   create_table "projects", force: :cascade do |t|

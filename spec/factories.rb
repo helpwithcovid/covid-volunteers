@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :office_hour do
-    
+  factory :post do
+    title { Faker::Lorem.sentence }
+    body { Faker::Lorem.paragraphs(number: rand(4...20)).join("\n") }
+    links { Faker::Internet.url }
   end
 
   factory :volunteer_group do
