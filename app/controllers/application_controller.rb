@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
       @users = @users.order("
         CASE
           WHEN id = '#{current_user.id}' THEN '1'
-        END")
+        END") if current_user
     else
       @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
     end
