@@ -1,3 +1,4 @@
+import moment from 'moment';
 import flatpickr from 'flatpickr';
 
 const dateOpts = {
@@ -62,7 +63,32 @@ const OfficeHourForm = {
 
     OfficeHourForm.setupFlatpickr();
 
+    // Try to be smart about picking the next time.
+    OfficeHourForm.guessNextSlot();
+
     return false;
+  },
+
+  guessNextSlot() {
+    const allSlotForms = $('.office-hour-form-template').toArray();
+    const newSlotForm = allSlotForms.pop();
+    const lastSlotForm = allSlotForms.pop();
+
+    const length = $(newSlotForm).find('.office-hour-length').val();
+
+    const lastSlotDates = OfficeHourForm.slotStartAndEndDate(lastSlotForm);
+    if (!lastSlotDates) {
+      return;
+    }
+
+    let newStartDate = lastSlotDates[1];
+    let newEndDate = OfficeHourForm.addLengthToDate(length, newStartDate);
+
+    const dateObj = $(newSlotForm).find('.office-hour-date:hidden').last()[0]._flatpickr;
+    dateObj.setDate(newStartDate);
+
+    const timeObj = $(newSlotForm).find('.office-hour-time').last()[0]._flatpickr;
+    timeObj.setDate(newStartDate);
   },
 
   removeOfficeHourSlot(e, that) {
@@ -105,40 +131,54 @@ const OfficeHourForm = {
     $('.office-hour-slot-errors').text('');
 
     const slots = $('.office-hour-form-template');
-    const dates = [];
+    let allDates = [];
 
     for (const slot of slots) {
-      const date = $(slot).find('.office-hour-date').val();
-      const time = $(slot).find('.office-hour-time').val();
-      const length = $(slot).find('.office-hour-length').val();
+      const dates = OfficeHourForm.slotStartAndEndDate(slot);
 
-      if (!date || !time || !length) {
+      if (!dates) {
         $(slot).find('.office-hour-slot-errors').text('Please enter a date and a time.');
         continue;
       }
-
-      const parsedStartDate = flatpickr.parseDate(`${date} ${time}`, `${dateOpts.dateFormat} ${timeOpts.dateFormat}`);
-
-      dates.push(parsedStartDate);
-      let parsedEndDate = null;
-
-      if (length == '10m') {
-        parsedEndDate = new Date(parsedStartDate.getTime() + 10 * 60000);
-      } else if (length == '20m') {
-        parsedEndDate = new Date(parsedStartDate.getTime() + 20 * 60000);
-      } else if (length == '30m') {
-        parsedEndDate = new Date(parsedStartDate.getTime() + 30 * 60000);
-      }
-      dates.push(parsedEndDate);
+      allDates = [].concat(allDates, dates);
     }
 
-    if (OfficeHourForm.doDatesOverlap(dates)) {
+    if (OfficeHourForm.doDatesOverlap(allDates)) {
       $('.office-hour-slot-errors').first().text("We're sorry, it seems like the dates overlap.");
       return false;
     }
 
-    $.post('/office_hours', { office_hour_dates: dates });
+    $.post('/office_hours', { office_hour_dates: allDates });
     return false;
+  },
+
+  slotStartAndEndDate(slotForm) {
+    const dates = [];
+
+    const date = $(slotForm).find('.office-hour-date').val();
+    const time = $(slotForm).find('.office-hour-time').val();
+    const length = $(slotForm).find('.office-hour-length').val();
+
+    const parsedStartDate = flatpickr.parseDate(`${date} ${time}`, `${dateOpts.dateFormat} ${timeOpts.dateFormat}`);
+
+    dates.push(parsedStartDate);
+    let parsedEndDate = OfficeHourForm.addLengthToDate(length, parsedStartDate);
+
+    dates.push(parsedEndDate);
+
+    return dates;
+  },
+
+  addLengthToDate(length, date) {
+    let parsedEndDate = null;
+    if (length == '10m') {
+      parsedEndDate = moment(date).add(10, 'minutes').toDate();
+    } else if (length == '20m') {
+      parsedEndDate = moment(date).add(20, 'minutes').toDate();
+    } else if (length == '30m') {
+      parsedEndDate = moment(date).add(30, 'minutes').toDate();
+    }
+    return parsedEndDate;
   },
 
   doDatesOverlap(dates) {
@@ -157,9 +197,9 @@ const OfficeHourForm = {
   },
 
   dateRangeOverlaps(a_start, a_end, b_start, b_end) {
-    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
-    if (a_start <= b_end   && b_end   <= a_end) return true; // b ends in a
-    if (b_start <  a_start && a_end   <  b_end) return true; // a in b
+    if (a_start < b_start  && b_start < a_end) return true; // b starts in a
+    if (a_start < b_end    && b_end   < a_end) return true; // b ends in a
+    if (b_start < a_start  && a_end   < b_end) return true; // a in b
     return false;
   },
 
