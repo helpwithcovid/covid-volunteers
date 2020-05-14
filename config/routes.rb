@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   resources :offers
 
+  resources :office_hours
+
   scope 'admin' do
     post :delete_user, to: 'admin#delete_user', as: 'delete_user'
     post :toggle_highlight, to: 'admin#toggle_highlight', as: 'toggle_project_highlight'

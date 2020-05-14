@@ -37,6 +37,40 @@ class ApplicationController < ActionController::Base
     @bg_color = 'bg-white'
   end
 
+  def users_filtering scopes
+    params[:page] ||= 1
+
+    @show_search_bar = true
+    @show_sorting_options = true
+
+    @users = User
+    @users = @users.tagged_with(params[:skills], any: true, on: :skills) if params[:skills].present?
+
+    @applied_filters = {}
+
+    if params[:skills].present?
+      @applied_filters[:skills] = params[:skills]
+    end
+
+    if params[:query].present?
+      @users = @users.search(params[:query])
+    else
+      @users = @users
+    end
+
+    @users = @users.order(get_order_param) if params[:sort_by]
+
+    @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
+
+    @users = @users.includes(:skills).page(params[:page]).per(24)
+
+    @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
+    @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
+    @total_count = @users.total_count
+
+    @show_filters = true
+  end
+
   private
     def hydrate_project_categories
       @project_categories = Settings.project_categories

@@ -1,0 +1,61 @@
+<div>
+  <div>
+    <div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Create Office Hour slots
+      </h3>
+      <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+        Support the community by offering times to chat with projects that need quick help.
+      </p>
+    </div>
+
+    <div class="mt-6 sm:mt-5 office-hour-form">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 office-hour-form-template">
+        <div class="sm:col-span-3">
+          <div class="inline-flex rounded-md shadow-sm">
+            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+              I'm available for
+            </span>
+
+            <%= select_tag 'office_hour[][length]', options_for_select([ [ '10 minutes', '10m' ], [ '20 minutes', '20m' ], [ '30 minutes', '30m' ] ] ), class: 'flex-1 form-input border border-r-0  block w-full rounded-none transition duration-150 ease-in-out sm:text-sm sm:leading-5 office-hour-length' %>
+            <span class="inline-flex items-center px-3  border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+              on
+            </span>
+            <%= text_field_tag 'office_hour[][date]', nil, placeholder: 'June 1st', class: 'flex-1 form-input border border-r-0  block w-full rounded-none transition duration-150 ease-in-out sm:text-sm sm:leading-5 office-hour-date' %>
+            <span class="inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+              at
+            </span>
+            <%= text_field_tag 'office_hour[][time]', nil, placeholder: '10:00a', class: 'flex-1 form-input border border-r-0  block w-full rounded-none transition duration-150 ease-in-out sm:text-sm sm:leading-5 office-hour-time' %>
+            <span class="inline-flex items-center px-3 rounded-none rounded-r-md  border border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+              Pacific
+            </span>
+          </div>
+
+          <span class="inline-flex ml-4 add-office-hour-slot">
+            <%= link_to 'javascript:void(0)' do %>
+              <%= inline_svg_pack_tag 'media/svgs/plus.svg', class: "inline-block" %>
+            <% end %>
+          </span>
+          <span class="inline-flex ml-4 remove-office-hour-slot hidden">
+            <%= link_to 'javascript:void(0)' do %>
+              <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline-block" %>
+            <% end %>
+          </span>
+
+          <span class="ml-4 inline-flex text-sm text-red-600 office-hour-slot-errors">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-6 border-t border-gray-200 pt-5">
+  <div class="flex justify-end">
+    <span class="ml-3 inline-flex rounded-md shadow-sm">
+      <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out create-office-hour-slots">
+        Create Office Hour slots
+      </button>
+    </span>
+  </div>
+</div>

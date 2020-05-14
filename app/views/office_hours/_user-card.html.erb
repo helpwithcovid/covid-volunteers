@@ -9,11 +9,6 @@
             <%= link_to user.email, profile_path(user) %>
           <% end %>
         </div>
-        <% if user.level_of_availability %>
-          <div class="text-purple-600 text-sm fill-current leading-loose">
-            <%= inline_svg_pack_tag 'media/svgs/calendar.svg', class: 'h-4 inline' %><%= user.level_of_availability %>
-          </div>
-          <% end %>
       </div>
       <div class="w-fullmb-2">
         <% if user.skills.present? %>
@@ -43,13 +38,8 @@
     </div>
   </div>
   <div class="px-5 py-2 bg-indigo-100 flex justify-between text-sm text-indigo-500">
-    <div class="flex">
-      <%= mail_to user.email, encode: 'javascript', class: 'bg-white px-2 py-1 flex-1' do %>
-        <%= inline_svg_pack_tag 'media/svgs/mail.svg', class: 'inline-block h-4 text-indigo-500 fill-current -mr-1' %>Contact
-      <% end %>
-    </div>
     <%= link_to profile_path(user), class: 'block bg-white px-2 py-1 group' do %>
-      More <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'h-4 -mx-1 inline-block fill-current' %>
+      Book a time <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'h-4 -mx-1 inline-block fill-current' %>
     <% end %>
   </div>
 </div>

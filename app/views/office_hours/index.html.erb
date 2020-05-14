@@ -5,10 +5,11 @@
     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
       <div class="ml-4 mt-4">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
-          <%= pluralize(User.count, 'volunteer') %> from around the world
+          Office hours with specialized volunteers
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
-          They have all offered to help out with COVID-19 related projects. Looking for a specific skill not here? <%= mail_to "helpwithcovid@gmail.com", "Email us", subject: "[Volunteer request]", target: "_blank", encoding: "javascript", class: "text-indigo-500" %>.
+          - Want quick help with something? Book a time with community volunteers.<br/>
+          - Have only 10-20 minutes available to help out? Make yourself available to the community.
         </p>
       </div>
       <div class="ml-4 mt-4 flex-shrink-0">
@@ -16,7 +17,13 @@
           <% if !current_user %>
             <%= link_to new_user_registration_path do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-                Sign up to volunteer
+                Sign up to book of create office hours
+              </button>
+            <% end %>
+          <% else %>
+            <%= link_to new_office_hour_path do %>
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                Create Office Hour slot
               </button>
             <% end %>
           <% end %>
@@ -46,7 +53,7 @@
   <% else %>
     <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
       <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
-      <span class="mt-8">No user found. Try another search!</span>
+      <span class="mt-8">There are no slots available right now.</span>
     </div>
   <% end %>
 </div>

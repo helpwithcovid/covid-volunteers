@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :office_hour do
+    
+  end
+
   factory :volunteer_group do
   end
 

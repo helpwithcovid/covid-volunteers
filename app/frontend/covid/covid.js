@@ -7,6 +7,7 @@ import './direct-upload'
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'
+import OfficeHourForm from './office_hour_form'
 import Resources from './resources'
 
 const Covid = {
@@ -27,6 +28,7 @@ const Covid = {
     ProjectForm.initialize();
     Project.initialize();
     Resources.initialize();
+    OfficeHourForm.initialize();
   },
   toggleFiltersOpen() {
     let filtersOpen;
