@@ -24,7 +24,7 @@ module OfficeHoursHelper
     end
   end
 
-  def oh_can_apply(oh)
+  def oh_can_apply
     !!(current_user && current_user.has_complete_profile?)
   end
 end

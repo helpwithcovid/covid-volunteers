@@ -60,11 +60,11 @@ class ApplicationController < ActionController::Base
 
     @users = @users.order(get_order_param) if params[:sort_by]
 
-    @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
-
     if scope == 'office_hours'
       users_with_office_hours = OfficeHour.where('start_at > ?', DateTime.now).select(:user_id).group(:user_id).all.collect { |oh| oh.user_id }.compact.uniq
       @users = @users.where(id: users_with_office_hours)
+    else
+      @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
     end
 
 

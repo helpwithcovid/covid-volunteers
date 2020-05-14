@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <%= render partial: 'partials/filter_users_bar' if @show_filters %>
+  <%= render partial: 'partials/filter_users_bar', locals: { filter_path: office_hours_path } if @show_filters %>
 
   <% if @users.present? %>
     <div class="mt-4">

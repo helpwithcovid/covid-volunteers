@@ -56,6 +56,7 @@ class OfficeHoursController < ApplicationController
   end
 
   protected
+
   def set_office_hour
     @office_hour = OfficeHour.find(params[:id])
   end
@@ -65,6 +66,11 @@ class OfficeHoursController < ApplicationController
       flash[:error] = "Apologies, you don't have access to this."
       redirect_to office_hours_path
     end
+  end
+
+  def get_order_param
+    return 'created_at desc' if params[:sort_by] == 'latest'
+    return 'created_at asc' if params[:sort_by] == 'earliest'
   end
 
 end
