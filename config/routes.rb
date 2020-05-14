@@ -35,7 +35,12 @@ Rails.application.routes.draw do
 
   resources :offers
 
-  resources :office_hours
+  resources :office_hours do
+    member do
+      post :apply
+      post :accept
+    end
+  end
 
   scope 'admin' do
     post :delete_user, to: 'admin#delete_user', as: 'delete_user'

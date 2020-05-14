@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_194202) do
+ActiveRecord::Schema.define(version: 2020_05_14_034724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,15 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_194202) do
     t.datetime "end_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "body"
-    t.text "links"
-    t.text "project_ids"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "application_user_ids", default: [], null: false, array: true
   end
 
   create_table "projects", force: :cascade do |t|
@@ -95,6 +87,15 @@ ActiveRecord::Schema.define(version: 2020_05_13_194202) do
     t.integer "cover_photo_id"
     t.string "organization_status", default: "", null: false
     t.string "ein"
+  end
+
+  create_table "success_stories", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.text "links"
+    t.text "project_ids"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

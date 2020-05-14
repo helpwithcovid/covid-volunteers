@@ -9,6 +9,11 @@
             <%= link_to user.email, profile_path(user) %>
           <% end %>
         </div>
+        <% if user.level_of_availability %>
+          <div class="text-purple-600 text-sm fill-current leading-loose">
+            <%= inline_svg_pack_tag 'media/svgs/calendar.svg', class: 'h-4 inline' %><%= user.level_of_availability %>
+          </div>
+          <% end %>
       </div>
       <div class="w-fullmb-2">
         <% if user.skills.present? %>
@@ -26,27 +31,25 @@
         <%= simple_format user.about.truncate(130), class: 'text-sm leading-tight text-gray-500' %>
       </div>
     </div>
-  </div>
-
-  <div class="px-5 pt-5 bg-indigo-100 flex justify-between text-sm text-indigo-500 user-card">
     <div class="flex flex-col">
-      <div class="w-full flex flex-wrap justify-center text-gray-500 fill-current text-xs">
-        <% user.future_office_hours.each do |oh| %>
-          <%= link_to 'javascript:void(0)' do %>
-            <span class="inline-flex mb-3 px-3">
-              <button type="button" class="inline-flex items-center px-2.5 py-1.5 <%= office_hour_button_color oh %> transition ease-in-out duration-150 oh-action" x-id='<%= oh.id %>' x-is-owner='<%= oh.user == current_user %>' x-when='<%= oh.start_at.strftime('%b %e, %l:%M %p') %>' x-volunteers='<%= (current_user == oh.user ? oh.applications_with_projects_json : {}.to_json) %>' x-participant='<%= (current_user == oh.user ? oh.participant_json : {}.to_json) %>'  x-oh-owner='<%= oh.user.name %>' x-oh-inactive='<%= office_hour_slot_inactive(oh).to_s %>'>
-                <%= oh.start_at.strftime('%b %e, %l:%M %p') %>
-
-                <% if current_user && (current_user == user || current_user.is_admin?) %>
-                  <span class="inline-flex ml-2  items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 <%= oh_badge_color oh %>%">
-                    <%= oh.applications.count %>
-                  </span>
-                <% end %>
-              </button>
-            </span>
+      <div class="w-full flex justify-between text-gray-500 fill-current text-xs">
+        <div>
+          <% if user.location.present? %>
+            <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'inline h-4 text-gray-500 fill-current' %><%= user.location %>
           <% end %>
-        <% end %>
+        </div>
+        <div><%= inline_svg_pack_tag 'media/svgs/time-ago.svg', class: 'inline h-4 text-gray-500 fill-current' %><%= time_ago_in_words user.created_at %> ago</div>
       </div>
     </div>
+  </div>
+  <div class="px-5 py-2 bg-indigo-100 flex justify-between text-sm text-indigo-500">
+    <div class="flex">
+      <%= mail_to user.email, encode: 'javascript', class: 'bg-white px-2 py-1 flex-1' do %>
+        <%= inline_svg_pack_tag 'media/svgs/mail.svg', class: 'inline-block h-4 text-indigo-500 fill-current -mr-1' %>Contact
+      <% end %>
+    </div>
+    <%= link_to profile_path(user), class: 'block bg-white px-2 py-1 group' do %>
+      More <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'h-4 -mx-1 inline-block fill-current' %>
+    <% end %>
   </div>
 </div>

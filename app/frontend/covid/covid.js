@@ -7,6 +7,7 @@ import './direct-upload'
 import VolunteerGroups from './volunteer_groups'
 import Project from './project'
 import ProjectForm from './project_form'
+import OfficeHour from './office_hour'
 import OfficeHourForm from './office_hour_form'
 import Resources from './resources'
 
@@ -28,8 +29,10 @@ const Covid = {
     ProjectForm.initialize();
     Project.initialize();
     Resources.initialize();
+    OfficeHour.initialize();
     OfficeHourForm.initialize();
   },
+
   toggleFiltersOpen() {
     let filtersOpen;
     switch (Cookies.get('filters_open')) {
@@ -46,6 +49,7 @@ const Covid = {
     }
     Cookies.set('filters_open', !filtersOpen);
   },
+
   showModal(headerHTML, bodyHTML, actions, icon) {
     $(modal).attr('x-data', '{ open: false }');
 
@@ -75,6 +79,14 @@ const Covid = {
   </button>
 </span>
 `;
+      } else if (action.type == 'danger') {
+        actionHTML = `
+<span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto" id="modal_action_${idx}">
+  <button type="button" class="inline-flex px-4 py-2 justify-center w-full rounded-md border border-red-200 font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+    ${action.text}
+  </button>
+</span>
+`;
       }
 
       $('#modal-actions').prepend(actionHTML);
@@ -98,6 +110,7 @@ const Covid = {
 
     $(modal).attr('x-data', '{ open: true }');
   },
+
   skillBadges(items, color = 'indigo', title = '') {
     let classes = '';
     if (color == 'blue') {
