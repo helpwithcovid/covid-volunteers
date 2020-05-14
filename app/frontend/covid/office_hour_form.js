@@ -136,8 +136,6 @@ const OfficeHourForm = {
       return false;
     }
 
-
-    console.log(dates);
     $.post('/office_hours', { office_hour_dates: dates });
     return false;
   },

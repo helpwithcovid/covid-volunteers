@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :offers
   acts_as_taggable_on :skills
 
-  has_many :offfice_hours
+  has_many :office_hours
   has_many :participates_in_office_hours
 
   pg_search_scope :search, against: %i(name email about location level_of_availability)
@@ -44,6 +44,10 @@ class User < ApplicationRecord
     self.volunteered_projects.where(user_id: user_trying_view.id).exists?
   end
 
+  def future_office_hours
+    self.office_hours.where('start_at > ?', DateTime.now)
+  end
+
   def is_admin?
     ADMINS.include?(self.email)
   end
@@ -67,4 +71,5 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !self.deactivated
   end
+
 end
