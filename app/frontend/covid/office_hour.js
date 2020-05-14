@@ -1,3 +1,4 @@
+
 const OfficeHour = {
   initialize() {
     $(document).on('turbolinks:load', () => {
@@ -50,7 +51,28 @@ const OfficeHour = {
     const when = $(that).attr('x-when');
     const volunteers = JSON.parse($(that).attr('x-volunteers'));
 
-    const modalActions =  [ { type: 'danger', text: 'Delete slot', deleteCallback }, { type: 'cancel' } ];
+    const acceptCallback = () => {
+      const acceptedUserId = $('input[name="applicant_id"]:checked').val();
+
+      if (!acceptedUserId) {
+        alert("Please choose an applicant.");
+        return;
+      }
+
+      $.ajax({
+        url: `/office_hours/${OHId}/accept?accepted_user_id=${acceptedUserId}`,
+        type: 'POST',
+      });
+    }
+
+    const deleteCallback = () => {
+      $.ajax({
+        url: `/office_hours/${OHId}`,
+        type: 'DELETE',
+      });
+    }
+
+    const modalActions =  [ { type: 'danger', text: 'Delete slot', callback: deleteCallback }, { type: 'cancel' } ];
     let volunteerHTML = '';
 
     if (volunteers.length > 0) {
@@ -101,28 +123,7 @@ const OfficeHour = {
       <br>
       <br>
       ${volunteerHTML}
-      `;
-
-      const acceptCallback = () => {
-        const acceptedUserId = $('input[name="applicant_id"]:checked').val();
-
-        if (!acceptedUserId) {
-          alert("Please choose an applicant.");
-          return;
-        }
-
-        $.ajax({
-          url: `/office_hours/${OHId}/accept?accepted_user_id=${acceptedUserId}`,
-          type: 'POST',
-        });
-      }
-
-    const deleteCallback = () => {
-      $.ajax({
-        url: `/office_hours/${OHId}`,
-        type: 'DELETE',
-      });
-    }
+    `;
 
     Covid.showModal(headerHTML, bodyHTML, modalActions, 'warning');
   },
