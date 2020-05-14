@@ -71,6 +71,10 @@ module ApplicationHelper
     params[:controller] == 'offers' && [ 'index' ].include?(params[:action]) ? nav_link_active_class(variant) : nav_link_inactive_class(variant)
   end
 
+  def office_hours_nav_link_class(variant = 'DESKTOP')
+    params[:controller] == 'office_hours' && [ 'index' ].include?(params[:action]) ? nav_link_active_class(variant) : nav_link_inactive_class(variant)
+  end
+
   def logout_nav_link_class(variant = 'DESKTOP')
     sub_nav_link_inactive_class(variant)
   end

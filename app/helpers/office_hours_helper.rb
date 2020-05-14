@@ -11,7 +11,7 @@ module OfficeHoursHelper
 
   def office_hour_slot_inactive(oh)
     return false if oh.user == current_user
-    ((current_user && oh.applied?(current_user)) || oh.participant_id.present?)
+    !!((current_user && oh.applied?(current_user)) || oh.participant_id.present?)
   end
 
   def oh_badge_color(oh)
@@ -22,5 +22,9 @@ module OfficeHoursHelper
     else
       'bg-gray-200 text-gray-800'
     end
+  end
+
+  def oh_can_apply(oh)
+    !!(current_user && current_user.has_complete_profile?)
   end
 end

@@ -34,7 +34,7 @@
         <% user.future_office_hours.each do |oh| %>
           <%= link_to 'javascript:void(0)' do %>
             <span class="inline-flex mb-3 px-3">
-              <button type="button" class="inline-flex items-center px-2.5 py-1.5 <%= office_hour_button_color oh %> transition ease-in-out duration-150 oh-action" x-id='<%= oh.id %>' x-is-owner='<%= oh.user == current_user %>' x-when='<%= oh.start_at.strftime('%b %e, %l:%M %p') %>' x-volunteers='<%= (current_user == oh.user ? oh.applications_with_projects_json : {}.to_json) %>' x-participant='<%= (current_user == oh.user ? oh.participant_json : {}.to_json) %>'  x-oh-owner='<%= oh.user.name %>' x-oh-inactive='<%= office_hour_slot_inactive(oh).to_s %>'>
+              <button type="button" class="inline-flex items-center px-2.5 py-1.5 <%= office_hour_button_color oh %> transition ease-in-out duration-150 oh-action" x-id='<%= oh.id %>' x-is-owner='<%= oh.user == current_user %>' x-when='<%= oh.start_at.strftime('%b %e, %l:%M %p') %>' x-volunteers='<%= (current_user == oh.user ? oh.applications_with_projects_json : {}.to_json) %>' x-participant='<%= (current_user == oh.user ? oh.participant_json : {}.to_json) %>'  x-oh-owner='<%= oh.user.name %>' x-oh-inactive='<%= office_hour_slot_inactive(oh).to_s %>' x-can-apply='<%= oh_can_apply(oh).to_s %>'>
                 <%= oh.start_at.strftime('%b %e, %l:%M %p') %>
 
                 <% if current_user && (current_user == user || current_user.is_admin?) %>
