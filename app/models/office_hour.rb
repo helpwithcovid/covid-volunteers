@@ -28,4 +28,33 @@ class OfficeHour < ApplicationRecord
     return {}.to_json if self.participant.blank?
     self.participant.to_json(only: [ :id, :name, :email ])
   end
+
+  def to_calendar
+    cal = Icalendar::Calendar.new
+
+    cal.event do |e|
+      e.dtstart = self.start_at
+      e.dtend = self.end_at
+      e.summary = "HWC Office Hour #{self.user.name.split(' ')[0]} #{self.participant.name.split(' ')[0]}"
+      e.organizer = Icalendar::Values::CalAddress.new('mailto:helpwithcovid@gmail.com', cn: 'helpwithcovid@gmail.com')
+
+      [ self.user, self.participant ].each do |user|
+        attendee_params = {
+          'CUTYPE': 'INDIVIDUAL',
+          'ROLE': 'REQ-PARTICIPANT',
+          'PARTSTAT': 'NEEDS-ACTION',
+          'RSVP': 'TRUE',
+          'X-NUM-GUESTS': '0',
+          'CN': user.email,
+        }
+
+        attendee_value = Icalendar::Values::Text.new("mailto:#{user.email}", attendee_params)
+        e.append_custom_property('ATTENDEE', attendee_value)
+      end
+    end
+
+    cal.append_custom_property('METHOD', 'REQUEST')
+
+    cal.to_ical
+  end
 end

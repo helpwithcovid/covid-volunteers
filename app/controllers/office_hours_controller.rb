@@ -50,6 +50,8 @@ class OfficeHoursController < ApplicationController
     @office_hour.participant = User.find(params[:accepted_user_id])
     @office_hour.save
 
+    UserMailer.with(office_hour: @office_hour).office_hour_invite.deliver_now
+
     redirect_to office_hours_path, notice: 'Application accepted. Invite being sent!'
   end
 

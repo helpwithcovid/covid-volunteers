@@ -54,7 +54,7 @@ const OfficeHour = {
     let volunteerHTML = '';
 
     if (volunteers.length > 0) {
-      volunteerHTML += 'These are the people that applied:<br/>';
+      volunteerHTML += "Below are the people that applied for this slot:<br/>";
 
       for (const volunteer of volunteers) {
         let projectsHTML = '';
@@ -83,6 +83,10 @@ const OfficeHour = {
               </div>
             </li>
           </ul>
+
+          <div class="mt-2">
+            Once you accept someone you'll both receive a call invite.
+          </div>
         `;
       }
 

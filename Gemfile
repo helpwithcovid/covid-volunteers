@@ -77,7 +77,7 @@ gem 'aws-sdk-ses'
 gem 'aws-sdk-rails'
 
 # File storage S3
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 # Image processing
 gem 'image_processing'
@@ -96,6 +96,9 @@ gem 'gravatar_image_tag'
 
 # .env
 gem 'dotenv-rails', groups: [ :development, :test ]
+
+# Booking invites
+gem 'icalendar'
 
 # Configuration
 gem 'config'
