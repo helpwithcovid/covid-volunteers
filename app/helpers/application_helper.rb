@@ -238,4 +238,19 @@ module ApplicationHelper
   def list_cards(&block)
     return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6 grid-auto-row-1fr'>#{capture(&block)}</div>".html_safe
   end
+
+  def shorten_url_from_text(text)
+    URI.extract(text).map { |link| shorten_url(link) }.join("\n")
+  end
+
+  def shorten_url(url)
+    client = Bitly::API::Client.new(token: ENV['BITLY_TOKEN'])
+    # Checking for length > 30 based on Iphone X. This can be changed
+    if url.length > 30
+      bitlink = client.shorten(long_url: url)
+      bitlink.link
+    else
+      url
+    end
+  end
 end
