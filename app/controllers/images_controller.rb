@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def destroy
-    return nil unless ['posts', 'projects'].include? params[:resource_name]
+    return nil unless ['success_stories', 'projects'].include? params[:resource_name]
 
     @resource = params[:resource_name].singularize.titleize.safe_constantize.find params[:resource_id]
     @resource.image.purge

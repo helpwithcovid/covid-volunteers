@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_194019) do
+ActiveRecord::Schema.define(version: 2020_05_14_015753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,20 @@ ActiveRecord::Schema.define(version: 2020_05_01_194019) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "office_hours", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "participant_id"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "participants", default: "", null: false
     t.string "description", default: "", null: false
-    t.string "goal", default: "", null: false
+    t.string "participants", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -70,13 +78,23 @@ ActiveRecord::Schema.define(version: 2020_05_01_194019) do
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
     t.string "links", default: ""
-    t.string "status", default: "", null: false
     t.boolean "accepting_volunteers", default: true
+    t.string "status", default: "", null: false
     t.string "short_description", default: "", null: false
     t.string "target_country", default: "", null: false
     t.string "target_location", default: "", null: false
+    t.integer "cover_photo_id"
     t.string "organization_status", default: "", null: false
     t.string "ein"
+  end
+
+  create_table "success_stories", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.text "links"
+    t.text "project_ids"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

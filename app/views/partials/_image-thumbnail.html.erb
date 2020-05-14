@@ -7,12 +7,6 @@
     <% else %>
       <%= link_to inline_svg_pack_tag('media/svgs/question-mark-circle.svg'), image, class: 'h-full fill-current flex justify-center items-center' %>
     <% end %>
-    <% if @project.present? and @project.user == current_user %>
-      <br>
-      <%= link_to "/images/posts/#{@project.id}", method: :delete, data: {confirm: 'Are you sure?'}, class: 'button', title: 'Remove image' do %>
-        <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline-block" %> Remove image
-      <% end %>
-    <% end %>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 <div class="container p-8 sm:p-0">
   <% if user_signed_in? and current_user.is_admin? %>
     <div class="w-full flex justify-end mb-6">
-      <%= link_to edit_post_path do %>
+      <%= link_to edit_success_story_path do %>
         <span class="inline-flex rounded-md shadow-sm mt-4">
           <button type="button" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -17,23 +17,22 @@
   <% end %>
 
   <div class="overflow-hidden rounded-lg shadow-users m-auto max-w-screen-lg">
-    <%= render partial: 'cover-photo', locals: {image_src: @post.cover_photo, alt: @post.title, has_image: @post.image.present?} %>
     <div class="p-12  sm:px-16 md:px-24">
       <div class="mb-2 text-indigo-600 text-3xl font-bold">
-        <%= @post.title %>
+        <%= @success_story.title %>
       </div>
-      <% if @post.links.present? %>
+      <% if @success_story.links.present? %>
         <div class="text-gray-800 text-sm mb-8">
-          <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> Link to demos: <%= Rinku.auto_link(@post.links, :all, 'target="_blank" class="text-indigo-600"').html_safe %>
+          <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> Link to demos: <%= Rinku.auto_link(@success_story.links, :all, 'target="_blank" class="text-indigo-600"').html_safe %>
         </div>
       <% end %>
       <div>
-        <%= simple_format @post.body, class: 'mt-2 mb-2 leading-loose text-gray-600' %>
+        <%= simple_format @success_story.body, class: 'mt-2 mb-2 leading-loose text-gray-600' %>
       </div>
     </div>
-    <% if @post.projects.present? %>
+    <% if @success_story.projects.present? %>
       <div class="bg-indigo-100 text-indigo-600 p-8 sm:px-16 md:px-24 font-medium">
-        Volunteer → <%= @post.projects.map { |project| link_to project.name, project, class: 'underline' }.join(' ').html_safe %>.
+        Volunteer → <%= @success_story.projects.map { |project| link_to project.name, project, class: 'underline' }.join(' ').html_safe %>.
       </div>
     <% end %>
   </div>
