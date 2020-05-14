@@ -1,4 +1,4 @@
-<div class="relative overflow-hidden">
+<div class="relative">
   <div class="inline-block">
     <% if project.image.representable? %>
       <%= link_to project.image, class: 'inline-block', 'data-fancybox': 'hwc-gallery' do %>
@@ -6,11 +6,6 @@
       <% end %>
     <% else %>
       <%= link_to inline_svg_pack_tag('media/svgs/question-mark-circle.svg'), image, class: 'h-full fill-current flex justify-center items-center' %>
-    <% end %>
-    <% if @project.present? and @project.user == current_user %>
-      <%= link_to project_image_path(@project, project.image.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150', title: 'Remove image' do %>
-        <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline-block" %> Remove image
-      <% end %>
     <% end %>
   </div>
 </div>

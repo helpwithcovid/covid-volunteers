@@ -1,0 +1,48 @@
+<%- share_title @page_title %>
+
+<div class="container">
+  <div class="mx-auto w-full text-center mt-6 mb-12">
+    <div class="font-bold text-2xl mb-4 text-gray-700"><%= @page_title %></div>
+    <div class="mb-4 leading-tight text-gray-700">How projects bring people together<br/>and the progress they made.</div>
+  </div>
+
+  <% if user_signed_in? and current_user.is_admin? %>
+    <div class="w-full flex justify-end">
+      <div class="self-center ml-4 mt-1">
+        <%= link_to new_success_story_path do %>
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 flex-shrink-0 flex-grow-0">
+            Create success story
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @success_stories.present? %>
+    <%
+      odds = @success_stories.each_with_index.select { |p, index| index % 2 == 0 }.map(&:first)
+      evens = @success_stories.each_with_index.select { |p, index| index % 2 != 0 }.map(&:first)
+     %>
+    <div class="mt-4 m-auto w-full sm:w-10/12 ">
+      <div class="w-full px-8 sm:px-0 grid md:grid-cols-2 gap-12 md:hidden">
+        <%= render partial: 'success-story-card', collection: @success_stories, as: :success_story, cached: true %>
+      </div>
+      <div class="w-full px-8 sm:px-0 grid md:grid-cols-2 gap-12 hidden md:grid">
+        <div class="space-y-12">
+          <%= render partial: 'success-story-card', collection: odds, as: :success_story, cached: true %>
+        </div>
+        <div class="space-y-12">
+          <%= render partial: 'success-story-card', collection: evens, as: :success_story, cached: true %>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 mt-8">
+        <%= paginate @success_stories, theme: 'projects_paginator' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+      <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+      <span class="mt-8">No success story found.</span>
+    </div>
+  <% end %>
+</div>
