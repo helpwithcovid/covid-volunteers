@@ -4,6 +4,7 @@ const dateOpts = {
   altInput: true,
   altFormat: 'F j, Y',
   dateFormat: 'Y-m-d',
+  minDate: new Date(),
 };
 
 const timeOpts = {
