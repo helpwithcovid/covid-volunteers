@@ -39,6 +39,7 @@ class User < ApplicationRecord
     return false if user_trying_view.blank?
     return true if user_trying_view.is_admin?
     return true if user_trying_view == self
+    return true if self.future_office_hours.length > 0
 
     # Check if this user volunteered for any project by user_trying_view.
     self.volunteered_projects.where(user_id: user_trying_view.id).exists?
