@@ -32,23 +32,34 @@
     </div>
   </div>
 
+
   <%= render partial: 'partials/filter_users_bar', locals: { filter_path: office_hours_path } if @show_filters %>
 
   <% if @users.present? %>
     <div class="mt-4">
-      <div class="mb-4">
-        <%= paginate @users, theme: 'projects_paginator' %>
-      </div>
+      <% if params[:id] %>
+        <div class="mt-8 mb-4 text-gray-600 text-center">
+          Book a time with <%= @users[0].name %> below or find more people <%= link_to 'here', office_hours_path, class: 'text-indigo-400' %>.
+        </div>
+      <% else %>
+        <div class="mb-4">
+          <%= paginate @users, theme: 'projects_paginator' %>
+        </div>
+      <% end %>
+
       <%= list_cards do %>
         <% @users.each do |user| %>
           <% cache user do %>
-            <%= render partial: 'user-card', locals: { user: user, volunteer: nil} %>
+            <%= render partial: 'user-card', locals: { user: user, volunteer: nil, center: !!params[:id] } %>
           <% end %>
         <% end %>
       <% end %>
-      <div class="border-t border-gray-200">
-        <%= paginate @users, theme: 'projects_paginator' %>
-      </div>
+
+      <% unless params[:id] %>
+        <div class="border-t border-gray-200">
+          <%= paginate @users, theme: 'projects_paginator' %>
+        </div>
+      <% end %>
     </div>
   <% else %>
     <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">

@@ -62,25 +62,27 @@ class ApplicationController < ActionController::Base
       users_with_office_hours = OfficeHour.where('start_at > ?', DateTime.now).select(:user_id).group(:user_id).all.collect { |oh| oh.user_id }.compact.uniq
       @users = @users.where(id: users_with_office_hours)
 
+      @users = @users.where(id: params[:id]) if params[:id].present?
       # Make sure the owner's card is always first.
       @users = @users.order("
         CASE
           WHEN id = '#{current_user.id}' THEN '1'
         END") if current_user
+
+      @show_filters = true unless params[:id]
     else
       @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
+
+      @show_filters = true
     end
 
     @users = @users.order(get_order_param) if params[:sort_by]
-
 
     @users = @users.includes(:skills).page(params[:page]).per(24)
 
     @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
     @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
     @total_count = @users.total_count
-
-    @show_filters = true
   end
 
   private

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :offers
 
+  get '/office_hours/u/:id' => 'office_hours#index', as: 'office_hours_for_volunteer'
   resources :office_hours do
     member do
       post :apply
