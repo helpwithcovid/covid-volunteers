@@ -49,9 +49,7 @@
 
       <%= list_cards do %>
         <% @users.each do |user| %>
-          <% cache user do %>
-            <%= render partial: 'user-card', locals: { user: user, volunteer: nil, center: !!params[:id].present? } %>
-          <% end %>
+          <%= render partial: 'user-card', locals: { user: user, volunteer: nil, center: !!params[:id].present? } %>
         <% end %>
       <% end %>
 
