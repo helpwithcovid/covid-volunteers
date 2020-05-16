@@ -131,6 +131,7 @@ const OfficeHourForm = {
     $('.office-hour-slot-errors').text('');
 
     const slots = $('.office-hour-form-template');
+
     let allDates = [];
 
     for (const slot of slots) {
@@ -158,6 +159,10 @@ const OfficeHourForm = {
     const date = $(slotForm).find('.office-hour-date').val();
     const time = $(slotForm).find('.office-hour-time').val();
     const length = $(slotForm).find('.office-hour-length').val();
+
+    if (!date || !time || !length) {
+      return null;
+    }
 
     const parsedStartDate = flatpickr.parseDate(`${date} ${time}`, `${dateOpts.dateFormat} ${timeOpts.dateFormat}`);
 
