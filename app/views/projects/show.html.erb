@@ -352,9 +352,8 @@
 
               <% if @project.links.present? %>
                 <%= project_panel_item(title: 'Helpful links') do %>
-                  <%#= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"')do |url| "#{URI.parse(url).host}\n\n\n\n" end), { class: 'mb-3' }, sanitize: false %>
                   <div>
-                    <%= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"')do |url| "#{URI.parse(url).host}" end), { class: 'mb-1' }, sanitize: false %>
+                    <%= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"') do |url| "#{URI.parse(url).host}" end), { class: 'mb-1' }, sanitize: false %>
                   </div>
                 <% end %>
               <% end %>
