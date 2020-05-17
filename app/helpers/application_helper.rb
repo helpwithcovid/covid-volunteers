@@ -238,4 +238,5 @@ module ApplicationHelper
   def list_cards(&block)
     return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6 grid-auto-row-1fr'>#{capture(&block)}</div>".html_safe
   end
+
 end
