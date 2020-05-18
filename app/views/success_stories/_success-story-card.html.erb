@@ -1,4 +1,4 @@
-<%= link_to success_story, class: 'relative block shadow-users transform transition-all duration-100 hover:scale-105 rounded-lg overflow-hidden text-gray-600' do %>
+<%= link_to success_story, class: "relative block shadow-users transform transition-all duration-100 hover:scale-105 rounded-lg overflow-hidden text-gray-600 border #{success_story.highlight ? 'border-indigo-500' : 'border-white'}" do %>
   <div class="p-8">
     <div class="mb-2 text-lg text-indigo-500">
       <%= success_story.title %>

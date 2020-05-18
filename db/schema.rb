@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_015753) do
     t.text "project_ids"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "highlight", default: false, null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
