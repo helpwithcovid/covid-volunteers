@@ -9,7 +9,7 @@ class SuccessStoriesController < ApplicationController
     params[:page] ||= 1
 
     @page_title = 'Success Stories'
-    @success_stories = SuccessStory.page(params[:page]).per(24).order(created_at: :desc)
+    @success_stories = SuccessStory.page(params[:page]).per(24).order(highlight: :desc, created_at: :desc)
 
     @index_from = (@success_stories.prev_page || 0) * @success_stories.limit_value + 1
     @index_to = [@index_from + @success_stories.limit_value - 1, @success_stories.total_count].min
@@ -67,6 +67,6 @@ class SuccessStoriesController < ApplicationController
     end
 
     def success_story_params
-      params.fetch(:success_story, {}).permit(:title, :body, :links, :image, :project_ids)
+      params.fetch(:success_story, {}).permit(:title, :body, :links, :image, :project_ids, :highlight)
     end
 end
