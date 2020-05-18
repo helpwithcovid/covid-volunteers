@@ -239,14 +239,15 @@ module ApplicationHelper
     return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6 grid-auto-row-1fr'>#{capture(&block)}</div>".html_safe
   end
 
-  def check_docs_and_demo(url)
-    parsed_url = URI.parse(url[URI.regexp(%w(http https mailto))]) rescue nil
-    parsed_url.nil? ? false : true
+  def extracted_project_link(project)
+    begin
+      "<div class=\"p-6 pt-3 pb-3 bg-indigo-600 text-white\"><a href=\"#{@project.docs_and_demo[URI.regexp(["http", "https", "mailto"])]}\" rel=\"nofollow noopener noreferrer\" target=\"_blank\" class=\"flex justify-center items-center text-sm font-medium\">
+        <span>#{URI.parse(project.docs_and_demo[URI.regexp(['http', 'https', 'mailto'])]).host}</span>
+        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"ml-2\">
+          <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M5 5V19H19V12H21V19C21 20.1 20.1 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.9 3.89 3 5 3H12V5H5ZM14 5V3H21V10H19V6.41L9.17 16.24L7.76 14.83L17.59 5H14Z\" fill=\"white\" />
+        </svg>
+      </a></div>".html_safe
+    rescue
+    end
   end
-
-  def shorten_project_card_display_url(url)
-    display_url = URI.parse(url[URI.regexp(%w(http https mailto))])
-    display_url.scheme == 'mailto' ? display_url.opaque : display_url.host
-  end
-
 end
