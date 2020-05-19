@@ -355,7 +355,7 @@
                 <%= project_panel_item(title: 'Helpful links') do %>
                   <div>
                     <%= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-indigo-500" rel="nofollow noopener noreferrer"') do |url|
-                      url.length > 35 ? shorten_url(url_from_string("http://#{url}")) : url
+                      url.length > 35 ? shorten_url(url_from_string(url.start_with?('http') ? url : "http://#{url}")) : url
                     end), { class: 'mb-1' }, sanitize: false %>
                   </div>
                 <% end %>
