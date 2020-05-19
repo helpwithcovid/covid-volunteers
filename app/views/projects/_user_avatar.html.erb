@@ -1,6 +1,6 @@
 <div class="flex items-center">
   <div>
-    <%= gravatar_image_tag user.email, class: 'inline-block h-5 w-5 rounded-full inline-block align-middle' %>
+    <%= gravatar_image_tag user.email, secure: true, class: 'inline-block h-5 w-5 rounded-full inline-block align-middle' %>
   </div>
   <div class="ml-2">
     <% if user.name.present? %>
