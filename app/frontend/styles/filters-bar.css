@@ -1,0 +1,7 @@
+/* Keep the filters bar relative on mobile */
+@media (max-width: 640px) {
+  .js-sticky-filter {
+    top: 0 !important;
+    position: relative !important;
+  }
+}

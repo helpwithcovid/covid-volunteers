@@ -1,0 +1,10 @@
+@import '@fancyapps/fancybox/dist/jquery.fancybox.min.css';
+@import './tailwindcss/base.css';
+@import './featured-categories.css';
+@import './scroll-shadow.css';
+@import './scrollbar-hidden.css';
+@import './filters-bar.css';
+@import './direct-upload.css';
+@import './tailwindcss/components.css';
+@import './custom_tailwind.css';
+@import './tailwindcss/utilities.css';

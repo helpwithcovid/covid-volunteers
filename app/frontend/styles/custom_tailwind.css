@@ -1,0 +1,7 @@
+.submenu-item {
+  @apply text-sm mx-4 inline-flex flex-shrink-0;
+}
+
+.submenu-item-active {
+  @apply font-bold border-b-2 border-indigo-600;
+}
