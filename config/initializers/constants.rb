@@ -56,6 +56,14 @@ ALL_PROJECT_TYPES = [
   'Other'
 ].freeze
 
+
+ALL_PROJECT_STATUS = [
+  'Just started',
+  'In progress',
+  'Launched',
+  'Actively recruiting'
+].freeze
+
 BLANK_SLATE_TRAINING_STATUS_URL = 'https://app.blankslatetechnologies.com/sreo/v0.1/app/covidvolunteers/user/check-status'
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30
