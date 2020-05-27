@@ -1,0 +1,25 @@
+<section id="media_kit" class = "sm:block hidden">
+  <div class="container pb-8">
+    <div class="px-4 sm:px-0 mt-10 mb-6 font-bold text-center">
+      Media kit from HelpWithCovid.com
+    </div>
+
+    <div class="mx-4 sm:mx-0 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <% Settings.media_kit.each do |event| %>
+        <div class="flex justify-between shadow bg-white rounded-lg overflow-hidden">
+          <div class="p-10">
+            <div class="flex justify-between">
+              <div class="font-bold text-sm mb-2 leading-tight"><%= event[:name] %></div>
+            </div>
+            <div class="text-sm w-80"><%= event[:description].html_safe %></div>
+          </div>
+           <%= link_to event[:cta_link], class: "flex justify-center items-center bg-purple-200 w-32", target: '_blank' do %>
+              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.4917 13.2874V14.2874C1.4917 15.083 1.80777 15.8461 2.37038 16.4087C2.93299 16.9713 3.69605 17.2874 4.4917 17.2874H14.4917C15.2873 17.2874 16.0504 16.9713 16.613 16.4087C17.1756 15.8461 17.4917 15.083 17.4917 14.2874V13.2874M13.4917 9.28735L9.4917 13.2874M9.4917 13.2874L5.4917 9.28735M9.4917 13.2874V1.28735" stroke="#5850EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -2,11 +2,11 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
-jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
-    parallelism: 3 # run three instances of this job in parallel
-    docker: # run the steps with Docker
-      - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
+jobs:
+  build:
+    parallelism: 3
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -15,12 +15,12 @@ jobs: # a collection of steps
           PGUSER: circleci-demo-ruby
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine # database image
-        environment: # environment variables for database
+        environment:
           POSTGRES_USER: circleci-demo-ruby
           POSTGRES_DB: rails_blog
           POSTGRES_PASSWORD: ""
-    steps: # a collection of executable commands
-      - checkout # special step to check out source code to working directory
+    steps:
+      - checkout
 
       # Setup bundler -- any way for image cache to include this?
       - run:
@@ -69,41 +69,24 @@ jobs: # a collection of steps
           # command: bin/rails db:schema:load --trace
           command: bin/rails db:setup --trace
 
-  test:
-    docker: # run the steps with Docker
-      - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
-    steps:
-      - checkout    
       - run:
           name: Run rspec in parallel
           command: |
+            # bundle exec rubocop
             bundle exec rspec --profile 10 \
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-      # Save test results for timing analysis
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+
+      # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+      - store_test_results:
           path: test_results
 
-  rubocop:
-    docker: # run the steps with Docker
-      - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
-    steps:
-      - checkout
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - rubocop:
-          requires:
-            - build
 
 # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs

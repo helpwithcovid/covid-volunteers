@@ -240,6 +240,16 @@ module ApplicationHelper
   end
 
   def list_cards(&block)
-    return "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6 grid-auto-row-1fr'>#{capture(&block)}</div>".html_safe
+    "<div class='w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-6 grid-auto-row-1fr'>#{capture(&block)}</div>".html_safe
   end
+
+  def url_from_string(string)
+    URI.parse(string[URI.regexp(%w(http https mailto))]) rescue nil
+  end
+
+  def shorten_url(url)
+    return nil if url.nil?
+    url.scheme == 'mailto' ? url.opaque : url.host
+  end
+
 end
