@@ -119,3 +119,11 @@ partner_resources:
       - Support 3 projects with native advertising
       - Support 1 project with sponsored AMA post
     cta_link: https://bit.ly/helpwithcovid_blind
+
+media_kit:
+  - name: HWC badges
+    description: Badge to add to your launched page to gather more team members for your project
+    cta_link: https://helpwithcovid.com/HWC-media-kit-badges.zip
+  - name: HWC logos and wordmarks
+    description: Logos, wordmark and banner for any media coverage about HWC
+    cta_link: https://helpwithcovid.com/HWC-media-kit-logos.zip
