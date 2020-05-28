@@ -23,7 +23,6 @@ const OfficeHour = {
     return false;
   },
 
-
   showVolunteerCard(that) {
     const OHId = $(that).attr('x-id');
     const OHOwner = $(that).attr('x-oh-owner');

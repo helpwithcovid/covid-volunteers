@@ -46,7 +46,7 @@
     <div class="flex flex-col flex-grow">
       <div class="w-full justify-center text-gray-500 fill-current text-xs">
         <% user.future_office_hours.each do |oh| %>
-          <div class="bg-white rounded shadow px-5 py-1 my-3 w-full flex justify-between <%= oh.participant ? "opacity-50" : "" %>">
+          <div class="bg-white rounded shadow px-5 py-1 my-3 w-full flex justify-between <%= (oh.user != current_user && oh.participant) ? "opacity-50" : "" %>">
             <div class="py-1">
               <%= oh.start_at.strftime('%b %e, %l:%M %p') %>
             </div>
@@ -66,12 +66,14 @@
                 </div>
 
                 <div class="hidden group-hover:block w-2/3 text-left">
-                  <% if oh.participant %>
+                  <% if current_user == oh.user %>
+                    edit
+                  <% elsif oh.participant %>
                     filled
                   <% elsif oh.applied?(current_user) %>
                     already applied
                   <% else %>
-                    <%= (current_user && current_user == oh.user) ? "edit" : "apply" %>
+                    apply
                   <% end %>
                 </div>
               <% end %>
