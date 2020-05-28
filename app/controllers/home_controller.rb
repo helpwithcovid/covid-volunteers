@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :hydrate_project_groups
+  before_action :hydrate_project_categories
 
   def index
     @project_count = Rails.cache.fetch('project_count', expires_in: 1.day) do
@@ -20,12 +20,12 @@ class HomeController < ApplicationController
   end
 
   private
-    def hydrate_project_groups
-      @project_groups = Settings.project_groups
+    def hydrate_project_categories
+      @project_categories = Settings.project_categories
 
-      @project_groups.each do |group|
-        group[:featured_projects] = Rails.cache.fetch("project_group_#{group[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(group[:project_types], any: true, on: :project_types).take 3 }
-        group[:projects_count] = Rails.cache.fetch("project_group_#{group[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(group[:project_types], any: true, on: :project_types).count }
+      @project_categories.each do |category|
+        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(category[:project_types], any: true, on: :project_types).take 3 }
+        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
       end
     end
 end

@@ -11,24 +11,22 @@
 
 
   <!-- Featured projects -->
+
   <div class="relative container z-10 pb-4">
-    <div class="text-center mb-6">
-      <%= section_name 'Featured projects' %>
-    </div>
-    <div class="w-full px-4 sm:px-0 space-y-bottom-4 sm:grid grid-cols-2 md:grid-cols-3 sm:gap-6">
-      <%= render partial: 'projects/project-card', collection: @featured_projects, as: :project, cached: true %>
-    </div>
+    <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: nil} %>
   </div>
 </div>
 
-<!-- Project groups -->
-<div class="relative featured-groups bg-indigo-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
+<!-- Project categories -->
+<div class="relative featured-categories bg-indigo-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
   <div class="container z-10 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-4 md:gap-12 lg:gap-24 xl:gap-48 pb-24 sm:py-20 px-12 sm:px-0 lg:px-12 xl:px-24">
-    <%= render partial: 'featured-group', collection: @project_groups, as: :group, cached: true %>
+    <%= render partial: 'featured-category', collection: @project_categories, as: :category %>
   </div>
 </div>
 
-<!-- Project groups -->
+<!-- Project categories -->
 <div class="container">
-  <%= render partial: 'project-group', collection: @project_groups, as: :group %>
+  <% cache @project_categories do %>
+    <%= render partial: 'project-category', collection: @project_categories, as: :category %>
+  <% end %>
 </div>

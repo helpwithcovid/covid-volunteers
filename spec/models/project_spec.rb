@@ -17,11 +17,11 @@ RSpec.describe Project, type: :model do
 
 
   describe 'Group & Cover photo' do
-    Settings.project_groups.each do |group|
-      group['project_types'].to_a.each do |type|
-        it "#{type} returns #{group.name}" do
+    Settings.project_categories.each do |category|
+      category['project_types'].to_a.each do |type|
+        it "#{type} returns #{category.name}" do
           project.project_type_list.add(type)
-          expect(project.group).to eq(group.name)
+          expect(project.category).to eq(category.name)
         end
       end
     end

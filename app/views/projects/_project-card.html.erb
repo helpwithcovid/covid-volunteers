@@ -1,21 +1,23 @@
 <%= link_to project, class: 'relative block shadow-lg transform transition-transform duration-100 hover:scale-105' do %>
-  <div class="w-full bg-center bg-cover" style="height: 130px; background-image: url(<%= project.cover_photo(local_assigns[:group]) %>);"></div>
+  <%
+    category = Settings.project_categories.select { |cat| cat.name == local_assigns[:category] }.first if local_assigns[:category].present?
+    category_override = category.present? ? local_assigns[:category] : nil
+  %>
 
-  <% if project.accepting_volunteers? %>
-    <div class="absolute inset-auto right-0 top-0 mr-4 mt-4 z-10 text-white rounded-full px-2 py-1 text-sm" style="background-color: rgba(0, 0, 0, 0.5);"><%= inline_svg_pack_tag 'media/svgs/status-bolt.svg', class: 'inline' %>Actively Recruiting</div>
-  <% end %>
-
-  <div class="p-4">
+  <div class="px-5 pt-5 pb-6">
     <div class="text-2xl truncate leading-tight  mb-1"><%= project.name %></div>
     <div class="text-gray-500 text-sm mb-2 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
 
     <% if project.project_types.present? %>
-      <div class="relative w-full overflow-x-auto scrolling-touch scrollbar-hidden h-6 mb-2">
-        <div class="flex flex-row flex-no-wrap flex-shrink-0 h-full flex-shrink-0 space-x-right-2">
-          <% project.project_types.each do |type| %>
-            <%= filter_badge label: type %>
-          <% end %>
-        </div>
+      <div class="relative w-full h-6 mb-4">
+        <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
+        <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
+            <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
+              <% project.project_types.each do |type| %>
+                <%= filter_badge label: type %>
+              <% end %>
+            </div>
+          </div>
       </div>
     <% end %>
 
@@ -23,6 +25,8 @@
       <% total_volunteers = project.volunteers.count %>
       <% if total_volunteers > 0 %>
         <div class="font-bold"><%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %></div>
+      <% else %>
+        <div class="font-bold">No volunteers</div>
       <% end %>
       
       <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
