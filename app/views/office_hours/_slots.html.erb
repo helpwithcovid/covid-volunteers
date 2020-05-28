@@ -1,0 +1,12 @@
+<% slots.each do |oh| %>
+  <%= link_to 'javascript:void(0)', class: 'border border-gray-200 hover:bg-gray-100 rounded px-5 py-2  oh-edit-action', 'x-id': oh.id, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p'), 'x-volunteers': oh.applications_with_projects_json, 'x-participant': oh.participant_json, 'x-oh-owner': oh.user.name do %>
+    <div class="text-xs flex justify-between text-gray-500">
+      <div class="py-1">
+        <%= oh.start_at.strftime("%b %e") %> <%= oh.start_at.strftime("%l:%M %p") %> - <%= oh.end_at.strftime("%l:%M %p") %>
+      </div>
+      <div class="px-5 py-1 rounded <%= oh_owner_action_color oh %>%">
+        <%= oh.applications.count %> signed up
+      </div>
+    </div>
+  <% end %>
+<% end %>

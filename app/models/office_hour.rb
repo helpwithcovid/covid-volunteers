@@ -29,6 +29,10 @@ class OfficeHour < ApplicationRecord
     self.participant.to_json(only: [ :id, :name, :email ])
   end
 
+  def pretty_duration
+    "+#{(self.end_at - self.start_at).to_i / 1.minutes}m"
+  end
+
   def to_calendar
     cal = Icalendar::Calendar.new
 

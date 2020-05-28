@@ -12,9 +12,14 @@ class OfficeHoursController < ApplicationController
 
   def new
     @office_hour = OfficeHour.new
+    @confirmed_office_hours = current_user.future_office_hours.where.not(participant_id: nil)
+    @unconfirmed_office_hours = current_user.future_office_hours.where(participant_id: nil)
   end
 
   def create
+    current_user.office_hour_description = params.require(:description)
+    current_user.save
+
     office_hour_dates = params.require(:office_hour_dates)
     office_hour_dates = office_hour_dates.values if office_hour_dates.keys.first == '0'
 
@@ -34,7 +39,7 @@ class OfficeHoursController < ApplicationController
 
   def destroy
     @office_hour.destroy
-    redirect_to office_hours_path, notice: 'Office hour was successfully deleted.'
+    redirect_to new_office_hour_path, notice: 'Office hour was successfully deleted.'
   end
 
   def apply
@@ -52,7 +57,7 @@ class OfficeHoursController < ApplicationController
 
     UserMailer.with(office_hour: @office_hour).office_hour_invite.deliver_now
 
-    redirect_to office_hours_path, notice: 'Application accepted. Invite being sent!'
+    redirect_to new_office_hour_path, notice: 'Application accepted. Invite being sent!'
   end
 
   protected

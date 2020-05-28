@@ -9,11 +9,11 @@
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
           - Want quick help with something? Book a time with community volunteers.<br/>
-          - Have only 10-20 minutes available to help out? Make yourself available to the community.
+          - Have only 10-20 minutes available to help out? <%= link_to "Make yourself available to the community.", new_office_hour_path, class: "text-indigo-500" %>
         </p>
       </div>
       <div class="ml-4 mt-4 flex-shrink-0">
-        <span class="inline-flex rounded-md shadow-sm">
+        <span class="inline-flex">
           <% if !current_user %>
             <%= link_to new_user_registration_path do %>
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
@@ -21,10 +21,8 @@
               </button>
             <% end %>
           <% else %>
-            <%= link_to new_office_hour_path do %>
-              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
-                Create Office Hours
-              </button>
+            <%= link_to new_office_hour_path, class: "text-indigo-500" do %>
+              Manage your office hours here >
             <% end %>
           <% end %>
         </span>

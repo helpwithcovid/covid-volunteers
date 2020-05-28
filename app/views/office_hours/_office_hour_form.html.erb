@@ -2,7 +2,7 @@
   <div>
     <div>
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Create Office Hour slots
+        Manage your Office Hours
       </h3>
       <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
         Support the community by offering times to chat with projects that need quick help.
@@ -10,8 +10,51 @@
     </div>
 
     <div class="mt-6 sm:mt-5 office-hour-form">
-      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 office-hour-form-template">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <div class="text-md leading-5 text-gray-500 sm:col-span-3">
+          Specify what you would like to Help With
+        </div>
+
         <div class="sm:col-span-3">
+          <div class="max-w-2xl flex rounded-md shadow-sm">
+            <%= text_area_tag "description", current_user.office_hour_description, rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: "I am an experienced designer for 5 years, and would like to give feedback for projects on... (160 max char.)" %>
+          </div>
+        </div>
+
+        <div class="text-sm text-red-600 office-hour-description-error sm:col-span-3 hidden"></div>
+      </div>
+
+      <% if @confirmed_office_hours || @unconfirmed_office_hours %>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <div class="text-md leading-5 text-gray-500 sm:col-span-3">
+            Your current slots
+          </div>
+
+          <% if @confirmed_office_hours.present? %>
+            <div class="text-xs text-gray-500 sm:col-span-3">
+              All confirmed office hours
+            </div>
+
+            <%= render partial: "slots", locals: { slots: @confirmed_office_hours } %>
+          <% end %>
+
+          <% if @unconfirmed_office_hours.present? %>
+            <div class="text-xs text-gray-500 sm:col-span-3">
+              Click on the office hour slot to choose a volunteer to speak to.
+            </div>
+
+            <%= render partial: "slots", locals: { slots: @unconfirmed_office_hours } %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 mt-5 sm:pt-5">
+        <div class="sm:col-span-3">
+          <div class="text-md leading-5 text-gray-500">
+            Add slots
+          </div>
+        </div>
+        <div class="sm:col-span-3  office-hour-form-template">
           <div class="inline-flex rounded-md shadow-sm">
             <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
               I'm available for
@@ -50,11 +93,17 @@
   </div>
 </div>
 
-<div class="mt-6 border-t border-gray-200 pt-5">
-  <div class="flex justify-end">
-    <span class="ml-3 inline-flex rounded-md shadow-sm">
+<div class="mr-5 mt-5 border-t border-gray-200 pt-5">
+  <div class="flex justify-start">
+    <span class="mr-5 inline-flex rounded-md shadow-sm">
       <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out create-office-hour-slots">
-        Create Office Hour slots
+        Create slots
+      </button>
+    </span>
+
+    <span class="mr-5 inline-flex rounded-md shadow-sm">
+      <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out create-office-hour-slots">
+        Cancel
       </button>
     </span>
   </div>

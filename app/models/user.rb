@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def future_office_hours
-    self.office_hours.where('start_at > ?', DateTime.now)
+    self.office_hours.where('start_at > ?', DateTime.now).order('start_at ASC')
   end
 
   def is_admin?
