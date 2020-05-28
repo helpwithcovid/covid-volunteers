@@ -33,6 +33,10 @@ const OfficeHourForm = {
           OfficeHourForm.createOfficeHourSlots(e);
         });
 
+        $('body').on('click', '.cancel-office-hour-slots', function (e) {
+          window.location = '/office_hours';
+        });
+
         $('body').on('click', '.oh-edit-action', function (e) {
           OfficeHourForm.showOHAction(e, this);
         });
