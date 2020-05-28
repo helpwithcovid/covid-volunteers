@@ -1,11 +1,11 @@
 module OfficeHoursHelper
   def oh_owner_action_color(oh)
     if oh.participant.present?
-      "bg-green-200 text-gray-700"
+      'bg-green-200 text-gray-700'
     elsif oh.applications.present?
-      "bg-orange-200 text-gray-700"
+      'bg-orange-200 text-gray-700'
     else
-      "bg-gray-200 text-gray-700"
+      'bg-gray-200 text-gray-700'
     end
   end
 
