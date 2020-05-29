@@ -24,7 +24,7 @@
         <div class="text-sm text-red-600 office-hour-description-error sm:col-span-3 hidden"></div>
       </div>
 
-      <% if @confirmed_office_hours || @unconfirmed_office_hours %>
+      <% if @confirmed_office_hours.present? || @unconfirmed_office_hours.present? %>
         <div class="grid grid-cols-3 sm:gap-4 items-start border-t border-gray-200 pt-5">
           <div class="text-md leading-5 text-gray-500 col-span-3">
             Your current slots
@@ -74,12 +74,7 @@
             </span>
           </div>
 
-          <span class="inline-flex sm:ml-4 add-office-hour-slot">
-            <%= link_to 'javascript:void(0)' do %>
-              <%= inline_svg_pack_tag 'media/svgs/plus.svg', class: "inline-block" %>
-            <% end %>
-          </span>
-          <span class="inline-flex sm:ml-4 remove-office-hour-slot hidden">
+          <span class="inline-flex sm:ml-4 hidden remove-office-hour-slot">
             <%= link_to 'javascript:void(0)' do %>
               <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline-block" %>
             <% end %>
@@ -89,6 +84,10 @@
           </span>
         </div>
       </div>
+    </div>
+
+    <div class="mt-4">
+      <%= link_to "+ Add more slots", "javascript:void(0)", class: "text-indigo-600 text-sm add-office-hour-slot" %>
     </div>
   </div>
 </div>

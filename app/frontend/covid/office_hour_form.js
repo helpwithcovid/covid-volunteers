@@ -25,6 +25,10 @@ const OfficeHourForm = {
           OfficeHourForm.addOfficeHourSlot(e);
         });
 
+        $('body').on('click', '.delete-oh-slot', function (e) {
+          OfficeHourForm.deleteOfficeHourSlot(e, this);
+        });
+
         $('body').on('click', '.remove-office-hour-slot', function (e) {
           OfficeHourForm.removeOfficeHourSlot(e, this);
         });
@@ -61,7 +65,6 @@ const OfficeHourForm = {
     $(slotForm).find('.office-hour-date').val('');
     $(slotForm).find('.office-hour-time').val('');
     $(slotForm).find('.office-hour-slot-errors').text('');
-    $(slotForm).find('.add-office-hour-slot').addClass('hidden');
     $(slotForm).find('.remove-office-hour-slot').removeClass('hidden');
 
     $(slotForm).addClass('mt-6');
@@ -95,6 +98,26 @@ const OfficeHourForm = {
 
     const timeObj = $(newSlotForm).find('.office-hour-time').last()[0]._flatpickr;
     timeObj.setDate(newStartDate);
+  },
+
+  deleteOfficeHourSlot(e, that) {
+    const OHId = $(that).attr('x-id');
+    const when = $(that).attr('x-when');
+
+    const deleteCallback = () => {
+      $.ajax({
+        url: `/office_hours/${OHId}`,
+        type: 'DELETE',
+      });
+    }
+
+    const modalActions =  [ { type: 'danger', text: 'Delete slot', callback: deleteCallback }, { type: 'cancel' } ];
+    const headerHTML = `Delete ${when} Office Hour`;
+    const bodyHTML = `
+      Are you sure you want to delete your <span class="text-indigo-600">${when}</span> slot?
+    `;
+
+    Covid.showModal(headerHTML, bodyHTML, modalActions, 'warning');
   },
 
   removeOfficeHourSlot(e, that) {
@@ -160,6 +183,12 @@ const OfficeHourForm = {
         $(slot).find('.office-hour-slot-errors').text('Please enter a date and a time.');
         continue;
       }
+
+      if (moment().isAfter(dates[0])) {
+        $(slot).find('.office-hour-slot-errors').text('Oops, it seems like this slot is in the past.');
+        continue;
+      }
+
       allDates = [].concat(allDates, dates);
     }
 
