@@ -46,6 +46,8 @@ class OfficeHoursController < ApplicationController
     if !@office_hour.application_user_ids.include?(current_user.id)
       @office_hour.application_user_ids << current_user.id
       @office_hour.save
+
+      UserMailer.with(office_hour: @office_hour, application: current_user).office_hour_application.deliver_now
     end
 
     redirect_to office_hours_path, notice: 'You application was sent.'
