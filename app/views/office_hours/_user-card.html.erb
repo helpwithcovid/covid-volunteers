@@ -51,21 +51,22 @@
               <%= oh.start_at.strftime('%b %e, %l:%M %p') %>
             </div>
 
-            <div class="text-indigo-600 px-5 py-1 hidden sm:block">
+            <div class="text-indigo-600 px-5 py-1">
               <%= oh.pretty_duration %>
             </div>
 
-            <div class="bg-gray-100 hover:bg-blue-100 w-1/2 rounded text-indigo-600">
+            <div class="bg-gray-100 hover:bg-blue-100 w-1/3 sm:w-1/2 rounded text-indigo-600">
               <%= link_to 'javascript:void(0)', class: "w-full inline-block group flex justify-around py-1 oh-action #{oh.applied?(current_user) ? "bg-orange-100" : ""}", 'x-id': oh.id, 'x-is-owner': oh.user == current_user, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p'), 'x-oh-owner': oh.user.name, 'x-oh-inactive': office_hour_slot_inactive(oh).to_s, 'x-can-apply': oh_can_apply().to_s do %>
-                <div class="w-1/3 text-right pr-2">
+                <div class="w-1/3 text-right px-2">
                   <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-5 mr-1 text-indigo-600 fill-current inline-block' %>
                 </div>
 
-                <div class="group-hover:hidden w-2/3 text-left">
-                  <%= oh.applications.count %> signed up
+                <div class="group-hover:hidden w-2/3 text-center sm:text-left">
+                  <%= oh.applications.count %>
+                  <span class="hidden sm:inline-block">signed up</span>
                 </div>
 
-                <div class="hidden group-hover:block w-2/3 text-left">
+                <div class="hidden group-hover:block sm:w-2/3 text-left">
                   <% if current_user == oh.user %>
                     edit
                   <% elsif oh.participant %>
