@@ -23,12 +23,12 @@
   </div>
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="organization-mission" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+    <label for="organization_mission" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Mission of organization<span class="text-red-500">*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "organization-mission", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_area :organization_mission, rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
     </div>
   </div>
@@ -207,7 +207,7 @@
               <% ALL_PROJECT_TYPES.each do |project_type| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                  <%= f.check_box :project_type_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true}, project_type, nil %>
+                  <%= f.check_box :project_type_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, project_type, nil %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
                     <label for="project_project_type_list_<%= project_type.downcase.gsub('&', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
@@ -397,8 +397,7 @@
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Start Date<br/>
-      <span class="text-xs">(optional)</span>
+      Start Date<span class="text-red-500">*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
