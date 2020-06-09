@@ -15,7 +15,7 @@ class Project < ApplicationRecord
   after_save do
     # expire homepage caches if they contain this project
     Settings.project_categories.each do |category|
-      cache_key = "project_category_#{category[:name].downcase}_featured_projects"
+      cache_key = "project_category_#{category[:name].downcase}_projects"
       featured_projects = Rails.cache.read cache_key
 
       next if featured_projects.blank?
@@ -87,13 +87,13 @@ class Project < ApplicationRecord
     present_group
   end
 
-  def cover_photo(group_override = nil)
-    cover_photo = false
-    if cover_photo.present?
-    else
-      "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
-    end
-  end
+  # def cover_photo(group_override = nil)
+  #   cover_photo = false
+  #   if cover_photo.present?
+  #   else
+  #     "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
+  #   end
+  # end
 
 
 end

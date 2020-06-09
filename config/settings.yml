@@ -1,29 +1,20 @@
 project_categories:
-  - name: Medical
-    slug: medical
-    body: Support our overwhelmed health systems with medical innovation.
+  - name: On Site
+    slug: onsite
+    body: Volunteer positions that take place in-person.
     project_types:
-      - Scale testing
-      - Medical facilities
-      - Medical equipments
-      - Treatment R&D
+      - New Haven (on site)
+      - Other Connecticut locales (on site)
     color: purple
-  - name: Prevention
-    slug: prevention
-    body: Inform, reduce, and control the spread of the outbreak.
+  - name: Driving
+    slug: driving
+    body: Volunteer positions that require access to a car. 
     project_types:
-      - Track the outbreak
-      - Reduce spread
+      - Access to car
     color: orange
-  - name: Community
-    slug: community
-    body: Work together to help our stressed communities.
+  - name: Remote
+    slug: remote
+    body: Volunteer positions that can be done remotely.
     project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
+      - Remote
     color: blue

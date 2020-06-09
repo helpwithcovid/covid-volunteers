@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     end
     # Display the volunteers in increments of 100
     @volunteer_count = (@volunteer_count / 100).floor * 100
-    @featured_projects = Project.where(highlight: true).order('RANDOM()').take 3
+    @projects_all = Project.all.order('RANDOM()').take 3
 
     @projects_header = "#{CITY_NAME} Residents vs. COVID-19"
     @projects_subheader = "This is a #{CITY_NAME}-wide partnership platform, where #{CITY_NAME} residents can volunteer (in-person or remotely) and local non-profits and government can post volunteer needs. Let us unite and fight the pandemic together!"
@@ -24,8 +24,20 @@ class HomeController < ApplicationController
       @project_categories = Settings.project_categories
 
       @project_categories.each do |category|
-        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_featured_projects", expires_in: 1.hour) { Project.where(highlight: true).tagged_with(category[:project_types], any: true, on: :project_types).take 3 }
-        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) { Project.tagged_with(category[:project_types], any: true, on: :project_types).count }
+        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects", expires_in: 1.hour) {
+        	puts category[:project_types]
+        	projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
+        	projects_with_locations = Project.where(location: category[:project_types])
+        	relevant_projects = projects_with_skills + projects_with_locations
+        	puts relevant_projects
+        	relevant_projects.take 3
+        }
+        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) {
+            projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
+        	projects_with_locations = Project.where(location: category[:project_types])
+        	relevant_projects = projects_with_skills + projects_with_locations
+        	relevant_projects.count
+        }
       end
     end
 end

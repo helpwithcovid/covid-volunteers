@@ -7,8 +7,14 @@
         <div class="flex-1">
           <%= category[:body] %>
         </div>
-        <%= link_to category[:slug], class: 'float-right text-indigo-700 font-bold group' do %>
-          See all <%= category[:projects_count] %> <%= 'project'.pluralize category[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+        <% if category[:slug] == 'driving' %> 
+          <%= link_to projects_path(project_types: category[:project_types].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
+            See all <%= category[:projects_count] %> <%= 'project'.pluralize category[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+          <% end %>
+        <% else %>
+          <%= link_to projects_path(location: category[:project_types].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
+            See all <%= category[:projects_count] %> <%= 'project'.pluralize category[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+          <% end %>
         <% end %>
       </div>
     </div>
