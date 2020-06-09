@@ -3,8 +3,7 @@ project_categories:
     slug: onsite
     body: Volunteer positions that take place in-person.
     project_types:
-      - New Haven (on site)
-      - Other Connecticut locales (on site)
+      - (on site)
     color: purple
   - name: Driving
     slug: driving

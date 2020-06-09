@@ -64,6 +64,10 @@ ALL_PROJECT_STATUS = [
   'Actively recruiting'
 ].freeze
 
+ON_SITE_PROJECT_TYPES = ["#{CITY_NAME} (on site)", "Other #{STATE_NAME} locales (on site)"]
+DRIVING_PROJECT_TYPES = ["Access to car"]
+REMOTE_PROJECT_TYPES = [REMOTE_LOCATION]
+
 BLANK_SLATE_TRAINING_STATUS_URL = 'https://app.blankslatetechnologies.com/sreo/v0.1/app/covidvolunteers/user/check-status'
 VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

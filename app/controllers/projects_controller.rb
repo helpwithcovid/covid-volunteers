@@ -177,7 +177,8 @@ class ProjectsController < ApplicationController
       @projects = Project
       @projects = @projects.tagged_with(applied_skills) if applied_skills.length > 0
       @projects = @projects.tagged_with(applied_project_types) if applied_project_types.length > 0
-      @projects = @projects.where(location: applied_project_locations) if applied_project_locations.length > 0
+      @projects = @projects.where("location LIKE ?", "%" + applied_project_locations[0] + "%") if applied_project_locations.length == 1
+      @projects = @projects.where(location: applied_project_locations) if applied_project_locations.length > 1
 
       if params[:query].present?
         @projects = @projects.search(params[:query]).left_joins(:volunteers).reorder(nil).group(:id)

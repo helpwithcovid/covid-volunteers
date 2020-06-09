@@ -25,16 +25,22 @@ class HomeController < ApplicationController
 
       @project_categories.each do |category|
         category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects", expires_in: 1.hour) {
-        	puts category[:project_types]
         	projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
-        	projects_with_locations = Project.where(location: category[:project_types])
+        	if category[:project_types].length == 1
+        		projects_with_locations = Project.where("location LIKE ?", "%" + category[:project_types][0] + "%")
+        	else
+        		projects_with_locations = Project.where(location: category[:project_types])
+        	end
         	relevant_projects = projects_with_skills + projects_with_locations
-        	puts relevant_projects
         	relevant_projects.take 3
         }
         category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) {
             projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
-        	projects_with_locations = Project.where(location: category[:project_types])
+            if category[:project_types].length == 1
+        		projects_with_locations = Project.where("location LIKE ?", "%" + category[:project_types][0] + "%")
+        	else
+        		projects_with_locations = Project.where(location: category[:project_types])
+        	end
         	relevant_projects = projects_with_skills + projects_with_locations
         	relevant_projects.count
         }
