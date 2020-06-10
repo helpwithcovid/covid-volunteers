@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_191641) do
     t.string "exit_comments", default: ""
     t.string "organization_mission"
     t.boolean "organization_registered"
+    t.boolean "end_date_recurring"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
