@@ -1,0 +1,66 @@
+<%- share_title 'Volunteers' %>
+
+<div class="container">
+  <div class="bg-white px-4 py-5 border-b border-gray-200 mx-4 sm:mx-0 sm:px-6 mb-4 sm:rounded-md">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap">
+      <div class="ml-4 mt-4">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Office hours with specialized volunteers
+        </h3>
+        <p class="mt-1 text-sm leading-5 text-gray-500">
+          - Want quick help with something? Book a time with community volunteers.<br/>
+          - Have only 10-20 minutes available to help out? <%= link_to "Make yourself available to the community.", new_office_hour_path, class: "text-indigo-500" %>
+        </p>
+      </div>
+      <div class="ml-4 mt-4 flex-shrink-0">
+        <span class="inline-flex">
+          <% if !current_user %>
+            <%= link_to new_user_registration_path do %>
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                Sign up to book or create office hours
+              </button>
+            <% end %>
+          <% else %>
+            <%= link_to new_office_hour_path, class: "text-indigo-500" do %>
+              Manage your office hours here >
+            <% end %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <%= render partial: 'partials/filter_users_bar', locals: { filter_path: office_hours_path } if @show_filters %>
+
+  <% if @users.present? %>
+    <div class="mt-4">
+      <% if params[:id] %>
+        <div class="mt-8 mb-4 text-gray-600 text-center">
+          Book a time with <%= @users[0].name %> below or find more people <%= link_to 'here', office_hours_path, class: 'text-indigo-400' %>.
+        </div>
+      <% else %>
+        <div class="mb-4">
+          <%= paginate @users, theme: 'projects_paginator' %>
+        </div>
+      <% end %>
+
+      <%= list_cards do %>
+        <% @users.each do |user| %>
+          <%= render partial: 'user-card', locals: { user: user, volunteer: nil, center: !!params[:id].present? } %>
+        <% end %>
+      <% end %>
+
+      <% unless params[:id] %>
+        <div class="border-t border-gray-200">
+          <%= paginate @users, theme: 'projects_paginator' %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+      <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+      <span class="mt-8">There are no slots available right now.</span>
+    </div>
+  <% end %>
+</div>

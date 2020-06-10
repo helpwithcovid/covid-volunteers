@@ -1,7 +1,6 @@
 const Project = {
   initialize() {
     $(document).on('turbolinks:load', () => {
-      console.log('loading')
       $('.not-accepting-volunteers').click(function(ev) {
         Project.notAcceptingVolunteers(this, ev);
       });

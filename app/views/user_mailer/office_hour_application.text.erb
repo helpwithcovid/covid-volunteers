@@ -1,0 +1,11 @@
+Hi there!
+
+<%= @application.name %> applied for your <%= @office_hour.start_at.strftime("%b %e, %l:%M %p") %> slot.
+
+About:
+<%= @application.about %>
+
+You can accept the request or wait for more applications here: <%= url_for new_office_hour_url %>.
+
+- Your friends at helpwithcovid.com
+For any feedback or questions regarding helpwithcovid.com, let us know at https://discord.gg/8nAJfFN.

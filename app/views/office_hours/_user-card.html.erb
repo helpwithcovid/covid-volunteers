@@ -1,0 +1,87 @@
+<div class="relative transform shadow-users transition-all duration-100 hover:scale-105 flex flex-col justify-between bg-white <%= center ? "col-start-2" : "" %>">
+  <div class="flex-1 flex flex-col justify-between p-5">
+    <div class="flex-col">
+      <div class="w-full flex justify-between mb-2">
+        <div class="text-indigo-500 text-lg font-medium">
+          <% if user.name.present? %>
+            <%= link_to user.name, profile_path(user) %>
+          <% else %>
+            <%= link_to user.email, profile_path(user) %>
+          <% end %>
+        </div>
+        <% if current_user && user == current_user %>
+          <div class="text-xs leading-loose flex">
+            <span class="inline-block">
+              share:
+            </span>
+            <a href="https://twitter.com/intent/tweet?text=I%27m%20helping%20with%20the%20COVID%20crisis%21%20Book%20a%20time%20with%20me%20here%3A%20http%3A//helpwithcovid.com/office_hours/u/<%= current_user.id %>." target="_blank" class="ml-2 inline-block">
+              <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 160.000000 160.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,160.000000) scale(0.100000,-0.100000)" fill="#4A5568" stroke="none">
+                  <path d="M988 1327 c-125 -35 -207 -146 -208 -279 0 -56 -1 -58 -27 -58 -51 0 -160 28 -236 60 -89 37 -192 107 -262 179 -27 28 -52 51 -56 51 -4 0 -15 -20 -24 -45 -13 -33 -16 -64 -13 -117 5 -80 24 -126 71 -175 35 -38 22 -44 -40 -18 -20 8 -38 14 -40 12 -2 -2 1 -28 7 -57 17 -92 72 -166 155 -208 l40 -21 -47 -1 c-51 0 -54 -4 -38 -44 24 -63 144 -156 202 -156 33 0 27 -19 -15 -43 -72 -42 -166 -69 -267 -76 l-95 -6 70 -37 c131 -68 199 -83 380 -83 183 0 248 15 386 86 247 128 428 428 429 707 0 40 5 49 59 102 33 32 65 68 71 81 11 19 10 21 -6 16 -11 -3 -43 -12 -73 -21 l-54 -15 35 37 c35 36 68 91 68 111 0 6 -21 0 -47 -13 -27 -13 -67 -30 -91 -37 -39 -11 -44 -11 -65 9 -59 56 -183 83 -269 59z"/>
+                </g>
+              </svg>
+            </a>
+          </div>
+        <% end %>
+      </div>
+      <div class="w-fullmb-2">
+        <% if user.skills.present? %>
+          <div class="relative w-full h-6 mb-4">
+            <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
+            <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
+              <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
+                <%= skill_badges user.skills.collect { |s| s.name }, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="w-full mb-3">
+        <%= simple_format user.office_hour_description.truncate(160), class: 'text-sm leading-tight text-gray-500' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 bg-indigo-100 flex justify-between text-sm text-indigo-500 user-card">
+    <div class="flex flex-col flex-grow">
+      <div class="w-full justify-center text-gray-500 fill-current text-xs">
+        <% user.future_office_hours.each do |oh| %>
+          <div class="bg-white rounded shadow px-3 py-1 my-3 w-full flex justify-between <%= (oh.user != current_user && oh.participant) ? "opacity-50" : "" %>">
+            <div class="py-1">
+              <%= oh.start_at.strftime('%b %e, %l:%M %p') %> PT
+            </div>
+
+            <div class="text-indigo-600 px-5 py-1">
+              <%= oh.pretty_duration %>
+            </div>
+
+            <div class="bg-gray-100 hover:bg-blue-100 w-1/3 rounded text-indigo-600">
+              <%= link_to 'javascript:void(0)', class: "w-full inline-block group flex justify-around py-1 oh-action #{oh.applied?(current_user) ? "bg-orange-100" : ""}", 'x-id': oh.id, 'x-is-owner': oh.user == current_user, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p'), 'x-oh-owner': oh.user.name, 'x-oh-inactive': office_hour_slot_inactive(oh).to_s, 'x-can-apply': oh_can_apply().to_s do %>
+                <div class="w-1/3 text-right px-2">
+                  <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-5 mr-1 text-indigo-600 fill-current inline-block' %>
+                </div>
+
+                <div class="group-hover:hidden w-2/3 text-center sm:text-left">
+                  <%= oh.applications.count %>
+                  <span class="hidden sm:inline-block">signed up</span>
+                </div>
+
+                <div class="hidden group-hover:block sm:w-2/3 text-left">
+                  <% if current_user == oh.user %>
+                    manage
+                  <% elsif oh.participant %>
+                    filled
+                  <% elsif oh.applied?(current_user) %>
+                    already applied
+                  <% else %>
+                    apply
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

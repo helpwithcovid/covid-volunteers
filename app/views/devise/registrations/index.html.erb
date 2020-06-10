@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <%= render partial: 'filters-bar' if @show_filters %>
+  <%= render partial: 'partials/filter_users_bar', locals: { filter_path: volunteers_path } if @show_filters %>
 
   <% if @users.present? %>
     <div class="mt-4">
@@ -44,9 +44,9 @@
       </div>
     </div>
   <% else %>
-  <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
-    <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
-    <span class="mt-8">No user found. Try another search!</span>
-  </div>
+    <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
+      <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
+      <span class="mt-8">No user found. Try another search!</span>
+    </div>
   <% end %>
 </div>

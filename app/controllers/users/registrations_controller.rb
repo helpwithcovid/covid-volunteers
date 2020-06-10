@@ -7,44 +7,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_bg_white, only: :index
 
   def index
-    params[:page] ||= 1
-
-    @show_search_bar = true
-    @show_sorting_options = true
-
-    @users = User
-    @users = @users.tagged_with(params[:skills], any: true, on: :skills) if params[:skills].present?
-
-    @applied_filters = {}
-
-    if params[:skills].present?
-      @applied_filters[:skills] = params[:skills]
-    end
-
-    if params[:query].present?
-      @users = @users.search(params[:query])
-    else
-      @users = @users
-    end
-
-    @users = @users.order(get_order_param) if params[:sort_by]
-
-    @users = @users.where(visibility: true) unless current_user && current_user.is_admin?
-
-    @users = @users.includes(:skills).page(params[:page]).per(24)
-
-    @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
-    @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
-    @total_count = @users.total_count
-
-    @show_filters = true
+    users_filtering 'users'
   end
 
   def show
     @user = User.where(id: params[:id]).last
 
     if @user.blank? || !@user.is_visible_to_user?(current_user)
-      flash[:error] = 'Sorry, no such user.'    
+      flash[:error] = 'Sorry, no such user.'
       redirect_to projects_path
     end
   end

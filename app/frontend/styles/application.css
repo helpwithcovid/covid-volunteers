@@ -8,3 +8,5 @@
 @import './tailwindcss/components.css';
 @import './custom_tailwind.css';
 @import './tailwindcss/utilities.css';
+
+@import 'flatpickr/dist/flatpickr.css';

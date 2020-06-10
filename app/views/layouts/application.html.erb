@@ -36,7 +36,7 @@
         <% if flash.present? %>
           <div class="container">
             <% flash.each do |type, msg| %>
-              <div class="mb-8 <%= alert_container_class_for_flash_type type %>" role="alert">
+              <div class="mb-14 <%= alert_container_class_for_flash_type type %>" role="alert">
                 <span class="block sm:inline"><%= msg %></span>
               </div>
             <% end %>

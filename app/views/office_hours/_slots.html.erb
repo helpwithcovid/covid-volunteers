@@ -1,0 +1,23 @@
+<% slots.each do |oh| %>
+  <div class="flex items-center col-span-3 sm:col-span-1">
+    <%= link_to 'javascript:void(0)', class: ' border border-gray-200 hover:bg-gray-100 rounded px-5 py-2 flex-1 oh-edit-action', 'x-id': oh.id, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p'), 'x-volunteers': oh.applications_with_projects_json, 'x-participant': oh.participant_json, 'x-oh-owner': oh.user.name do %>
+      <div class="text-xs flex justify-between text-gray-500">
+        <div class="py-1">
+          <%= oh.start_at.strftime("%b %e") %> <%= oh.start_at.strftime("%l:%M %p") %> - <%= oh.end_at.strftime("%l:%M %p") %> PT
+        </div>
+        <div class="px-5 py-1 rounded <%= oh_owner_action_color oh %>%">
+          <%= oh.applications.count %> signed up
+        </div>
+      </div>
+    <% end %>
+    <div class="ml-2">
+      <%= link_to 'javascript:void(0)', class: 'delete-oh-slot', 'x-id': oh.id, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p') do %>
+        <div class="flex justify-center items-center">
+          <svg class="flex-shrink-0 h-5 w-5 text-red-400"viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

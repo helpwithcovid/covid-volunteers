@@ -1,0 +1,109 @@
+<div>
+  <div>
+    <div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Manage your Office Hours
+      </h3>
+      <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+        Support the community by offering times to chat with projects that need quick help.
+      </p>
+    </div>
+
+    <div class="mt-6 sm:mt-5 office-hour-form">
+      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <div class="text-md leading-5 text-gray-500 sm:col-span-3">
+          Specify what you would like to Help With
+        </div>
+
+        <div class="pt-3 sm:pt-0 sm:col-span-3">
+          <div class="max-w-2xl flex rounded-md shadow-sm">
+            <%= text_area_tag "description", current_user.office_hour_description, rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: "I am an experienced designer for 5 years, and would like to give feedback for projects on... (160 max char.)" %>
+          </div>
+        </div>
+
+        <div class="text-sm text-red-600 office-hour-description-error sm:col-span-3 hidden"></div>
+      </div>
+
+      <% if @confirmed_office_hours.present? || @unconfirmed_office_hours.present? %>
+        <div class="grid grid-cols-3 sm:gap-4 items-start border-t border-gray-200 pt-5">
+          <div class="text-md leading-5 text-gray-500 col-span-3">
+            Your current slots
+          </div>
+
+          <% if @confirmed_office_hours.present? %>
+            <div class="text-xs text-gray-500 col-span-3 mt-3 mb-2 sm:my-0">
+              All confirmed office hours
+            </div>
+
+            <%= render partial: "slots", locals: { slots: @confirmed_office_hours } %>
+          <% end %>
+
+          <% if @unconfirmed_office_hours.present? %>
+            <div class="text-xs text-gray-500 col-span-3 mt-3 mb-2 sm:my-0">
+              Click on the office hour slot to choose a volunteer to speak to.
+            </div>
+
+            <%= render partial: "slots", locals: { slots: @unconfirmed_office_hours } %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="grid grid-cols-3 sm:gap-4 items-start border-t border-gray-200 mt-5 pt-5">
+        <div class="col-span-3 mt-3 mb-2 sm:my-0">
+          <div class="text-md leading-5 text-gray-500">
+            Add slots
+          </div>
+        </div>
+        <div class="col-span-3 office-hour-form-template">
+          <div class="flex flex-wrap sm:inline-flex rounded-md shadow-sm ">
+            <span class="inline-flex items-center px-3 rounded-l-md sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+              I'm available for
+            </span>
+
+            <%= select_tag 'office_hour[][length]', options_for_select([ [ '10 minutes', '10m' ], [ '20 minutes', '20m' ], [ '30 minutes', '30m' ] ] ), class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out text-sm leading-5 office-hour-length' %>
+            <span class="inline-flex items-center px-3 sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+              on
+            </span>
+            <%= text_field_tag 'office_hour[][date]', nil, placeholder: 'June 1st', class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out text-sm leading-5 office-hour-date' %>
+            <span class="inline-flex items-center px-3 sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+              at
+            </span>
+            <%= text_field_tag 'office_hour[][time]', nil, placeholder: '10:00a', class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out sm:text-sm leading-5 office-hour-time' %>
+            <span class="inline-flex items-center px-3 rounded-none rounded-r-md sm:border border-gray-300 bg-gray-50 text-gray-500 text-sm">
+              Pacific
+            </span>
+          </div>
+
+          <span class="inline-flex sm:ml-4 hidden remove-office-hour-slot">
+            <%= link_to 'javascript:void(0)' do %>
+              <%= inline_svg_pack_tag 'media/svgs/trash.svg', class: "inline-block" %>
+            <% end %>
+          </span>
+
+          <span class="sm:ml-4 inline-flex text-sm text-red-600 office-hour-slot-errors">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <%= link_to "+ Add more slots", "javascript:void(0)", class: "text-indigo-600 text-sm add-office-hour-slot" %>
+    </div>
+  </div>
+</div>
+
+<div class="mr-5 mt-5 border-t border-gray-200 pt-5">
+  <div class="flex justify-start">
+    <span class="mr-5 inline-flex rounded-md shadow-sm">
+      <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out create-office-hour-slots">
+        Create slots
+      </button>
+    </span>
+
+    <span class="mr-5 inline-flex rounded-md shadow-sm">
+      <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out cancel-office-hour-slots">
+        Cancel
+      </button>
+    </span>
+  </div>
+</div>

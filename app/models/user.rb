@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :offers
   acts_as_taggable_on :skills
 
+  has_many :office_hours
+  has_many :participates_in_office_hours
+
   pg_search_scope :search, against: %i(name email about location level_of_availability)
 
   def volunteered_for_project?(project)
@@ -36,9 +39,14 @@ class User < ApplicationRecord
     return false if user_trying_view.blank?
     return true if user_trying_view.is_admin?
     return true if user_trying_view == self
+    return true if self.future_office_hours.length > 0
 
     # Check if this user volunteered for any project by user_trying_view.
     self.volunteered_projects.where(user_id: user_trying_view.id).exists?
+  end
+
+  def future_office_hours
+    self.office_hours.where('start_at > ?', DateTime.now).order('start_at ASC')
   end
 
   def is_admin?
@@ -64,4 +72,5 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !self.deactivated
   end
+
 end

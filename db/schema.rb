@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_153155) do
+ActiveRecord::Schema.define(version: 2020_05_27_191511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2020_05_18_153155) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "offers", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
@@ -47,12 +54,21 @@ ActiveRecord::Schema.define(version: 2020_05_18_153155) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "office_hours", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "participant_id"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "application_user_ids", default: [], null: false, array: true
+  end
+
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "participants", default: "", null: false
     t.string "description", default: "", null: false
-    t.string "goal", default: "", null: false
+    t.string "participants", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,11 +79,12 @@ ActiveRecord::Schema.define(version: 2020_05_18_153155) do
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
     t.string "links", default: ""
-    t.string "status", default: "", null: false
     t.boolean "accepting_volunteers", default: true
+    t.string "status", default: "", null: false
     t.string "short_description", default: "", null: false
     t.string "target_country", default: "", null: false
     t.string "target_location", default: "", null: false
+    t.integer "cover_photo_id"
     t.string "organization_status", default: "", null: false
     t.string "ein"
   end
@@ -130,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_153155) do
     t.string "level_of_availability"
     t.boolean "pair_with_projects", default: false
     t.boolean "deactivated", default: false, null: false
+    t.text "office_hour_description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
