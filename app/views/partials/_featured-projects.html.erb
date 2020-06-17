@@ -3,7 +3,7 @@
     project_category = Settings.project_categories.select { |cat| cat.name == category }.first
     color = project_category.present? ? project_category.color : 'indigo'
   %>
-  <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg', class: "fill-current text-#{color}-600" %></div>
+  <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/category-all.svg' %></div>
   <div class="block sm:flex w-full pt-0 sm:pt-1">
     <div class="w-full sm:w-5/6 text-lg sm:text-xl font-bold">
       Volunteer Opportunities
