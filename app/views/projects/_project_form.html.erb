@@ -216,6 +216,10 @@
                   </div>
                 </div>
               <% end %>
+              <!-- Needed to detect when checkboxes are all unchecked.
+                See https://api.rubyonrails.org/v5.2.4.2/classes/ActionView/Helpers/FormHelper.html#method-i-check_box
+              -->
+              <input type="hidden" name="project[project_type_list][]" value="" />
             </div>
           </div>
         </div>

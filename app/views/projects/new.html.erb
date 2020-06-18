@@ -1,4 +1,5 @@
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+  <%= render "devise/shared/error_messages", resource: @project %>
   <%= form_for @project do |f| %>
     <div>
       <div>

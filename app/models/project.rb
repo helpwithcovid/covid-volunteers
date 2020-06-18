@@ -12,7 +12,7 @@ class Project < ApplicationRecord
 
   pg_search_scope :search, against: %i(name description participants looking_for location highlight)
 
-  validate :has_project_type
+  validates_presence_of :project_type_list, allow_nil: false, allow_blank: false
 
   def to_param
     [id, name.parameterize].join("-")
@@ -61,10 +61,4 @@ class Project < ApplicationRecord
       methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list, :vol_list, :visible]
     )
   end
-
-
-  private
-    def has_project_type
-      errors.add(:project_type_list, "You must select at least one project type") if self.project_type_list.length() <= 1
-    end
 end
