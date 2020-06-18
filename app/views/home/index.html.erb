@@ -1,1 +1,26 @@
-Hey There!
+<!-- Hero -->
+<div class="bg-white -mt-10 pt-24 ">
+  <div class="container mb-4 text-center mb-24">
+    <h1 class="text-4xl font-bold tracking-tight leading-tight">
+    	<%= @projects_header %>
+    </h1>
+    <h2 class="text-2xl tracking-tight leading-tight mt-2">
+    	<%= @projects_subheader %>
+    </h2>
+	</div>
+
+
+  <!-- Featured projects -->
+
+  <div class="relative container z-10 pb-4">
+    <%= render partial: 'partials/featured-projects', locals: {projects: @projects_all, category: nil} %>
+  </div>
+</div>
+
+
+<!-- Project categories -->
+<div class="container">
+  <% cache @project_categories do %>
+    <%= render partial: 'project-category', collection: @project_categories, as: :category %>
+  <% end %>
+</div>

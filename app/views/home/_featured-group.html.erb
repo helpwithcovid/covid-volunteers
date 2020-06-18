@@ -1,0 +1,6 @@
+<%= link_to projects_path(project_types: group[:project_types].join(',')), class: 'relative z-10 text-white text-center group' do %>
+  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4"><%= inline_svg_pack_tag "media/svgs/group-#{group[:name].downcase}.svg" %></div>
+  <div class="font-bold text-lg mb-4"><%= group[:name] %></div>
+  <div class="mb-4 leading-tight"><%= group[:body] %></div>
+  <div>See <%= group[:title] %> projects <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 group-hover:translate-x-1' %></div>
+<% end %>

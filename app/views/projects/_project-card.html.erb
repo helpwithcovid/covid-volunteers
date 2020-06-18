@@ -1,0 +1,39 @@
+<%= link_to project, class: 'relative block shadow-lg transform transition-transform duration-100 hover:scale-105' do %>
+  <%
+    category = Settings.project_categories.select { |cat| cat.name == local_assigns[:category] }.first if local_assigns[:category].present?
+    category_override = category.present? ? local_assigns[:category] : nil
+  %>
+
+  <div class="px-5 pt-5 pb-6">
+    <div class="text-2xl truncate leading-tight  mb-1"><%= project.name %></div>
+    <div class="text-gray-500 text-sm mb-2 leading-tight overflow-hidden" style="height: 50px;"><%= project.description.truncate 150 %></div>
+
+    <% if project.project_types.present? %>
+      <div class="relative w-full h-6 mb-4">
+        <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
+        <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
+            <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
+              <% project.project_types.each do |type| %>
+                <%= filter_badge label: type %>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+
+    <div class="relative grid grid-cols-3 gap-2 text-sm mt-3">
+      <% total_volunteers = project.volunteers.count %>
+      <% if total_volunteers > 0 %>
+        <div class="font-bold"><%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %></div>
+      <% else %>
+        <div class="font-bold">No volunteers</div>
+      <% end %>
+      
+      <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
+      
+      <% if project.location? %>
+        <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.location %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

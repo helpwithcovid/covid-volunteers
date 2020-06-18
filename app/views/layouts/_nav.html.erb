@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white shadow-sm">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex justify-between h-16">
-      <a href="/" class="lg:w-1/3 hover:text-indigo-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer">
+       <a href="/" class="hover:text-indigo-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer -mx-2">
         <div class="h-10 w-10 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo-n.svg') %>')">
         </div>
         <span class="ml-2 md:hidden lg:block">City Help with COVID<br><b><%= CITY_NAME %></b></span>
@@ -14,7 +14,7 @@
           </svg>
         </button>
       </div>
-      <div class="flex">
+      <div class="flex flex-grow-0 flex-shrink-0">
         <div class="hidden sm:mr-2 md:flex">
           <%= render partial: 'layouts/nav_links', locals: { variant: 'DESKTOP' } %>
         </div>
