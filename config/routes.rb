@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'projects#index'
+  root 'home#index'
 
   get '/about', to: 'home#about', as: 'about'
   get '/disclaimer', to: 'home#disclaimer', as: 'disclaimer'
   get '/risks', to:'home#risks', as: 'risks'
   get '/training', to:'home#training', as: 'training'
+
+  get '/data/projects',   to: 'data#projects'
+  get '/data/users',      to: 'data#users'
+  get '/data/volunteers', to: 'data#volunteers'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do

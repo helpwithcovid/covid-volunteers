@@ -3,8 +3,16 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   theme: {
     extend: {},
+    container: {
+      center: true,
+    },
+    fontFamily: {
+      sans: 'Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    },
   },
-  variants: {},
+  variants: {
+    translate: ['responsive', 'hover', 'focus', 'group-hover'],
+  },
   plugins: [
     require('@tailwindcss/ui'),
     /*

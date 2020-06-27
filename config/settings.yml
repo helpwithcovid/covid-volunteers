@@ -1,0 +1,19 @@
+project_categories:
+  - name: On Site
+    slug: onsite
+    body: Volunteer positions that take place in-person.
+    project_types:
+      - (on site)
+    color: purple
+  - name: Driving
+    slug: driving
+    body: Volunteer positions that require access to a car. 
+    project_types:
+      - Access to car
+    color: orange
+  - name: Remote
+    slug: remote
+    body: Volunteer positions that can be done remotely.
+    project_types:
+      - Remote
+    color: blue

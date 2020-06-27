@@ -1,0 +1,26 @@
+<div class="mb-8">
+  <div class="flex mb-4 px-4 sm:px-0">
+    <div class="w-16 content-center"><%= inline_svg_pack_tag "media/svgs/category-#{category[:slug].downcase}.svg" %></div>
+    <div class="w-full">
+      <div><%= section_name category[:name] %></div>
+      <div class="w-full flex flex-col sm:flex-row justify-between flex-shrink-0">
+        <div class="flex-1">
+          <%= category[:body] %>
+        </div>
+        <% if category[:slug] == 'driving' %> 
+          <%= link_to projects_path(project_types: category[:project_types].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
+            See all <%= category[:projects_count] %> <%= 'project'.pluralize category[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+          <% end %>
+        <% else %>
+          <%= link_to projects_path(location: category[:project_types].join(',')), class: 'float-right text-indigo-700 font-bold group' do %>
+            See all <%= category[:projects_count] %> <%= 'project'.pluralize category[:projects_count] %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= list_cards do %>
+    <%= render partial: 'projects/project-card', collection: category[:featured_projects], locals: { category: category[:name] }, as: :project, cached: false %>
+  <% end %>
+</div>
+

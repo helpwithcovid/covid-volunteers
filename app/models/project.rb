@@ -13,7 +13,19 @@ class Project < ApplicationRecord
   pg_search_scope :search, against: %i(name description participants looking_for location highlight)
 
   validates_presence_of :project_type_list, allow_nil: false, allow_blank: false
+  
+  after_save do
+    # expire homepage caches if they contain this project
+    Settings.project_categories.each do |category|
+      cache_key = "project_category_#{category[:name].downcase}_projects"
+      featured_projects = Rails.cache.read cache_key
 
+      next if featured_projects.blank?
+
+      Rails.cache.delete(cache_key) if featured_projects.map(&:id).include? self.id
+    end
+  end
+  
   def to_param
     [id, name.parameterize].join("-")
   end
@@ -61,4 +73,29 @@ class Project < ApplicationRecord
       methods: [:to_param, :volunteered_users_count, :project_type_list, :skill_list, :vol_list, :visible]
     )
   end
+
+  def group
+    project_categories = {}
+
+    begin
+      Settings.project_categories.each do |category|
+        intersection = self.project_type_list.to_a & category['project_types'].to_a
+        project_categories[category.name] = intersection.count
+      end
+
+      present_group = project_categories.sort_by { |k, v| v }.reverse.first.first
+    end
+
+    present_group
+  end
+
+  # def cover_photo(group_override = nil)
+  #   cover_photo = false
+  #   if cover_photo.present?
+  #   else
+  #     "/images/#{group_override.blank? ? self.group.downcase : group_override.downcase}-default.jpg"
+  #   end
+  # end
+
+
 end

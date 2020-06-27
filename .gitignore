@@ -41,3 +41,5 @@ yarn-debug.log*
 /.idea/*
 
 .env
+.vscode
+vendor/bundle

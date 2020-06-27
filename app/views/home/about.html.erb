@@ -20,7 +20,7 @@
     <p class="mt-4 text-center text-sm leading-5 text-gray-600 max-w">
       If you are a <%= CITY_NAME %> nonprofit interested in learning more about 
       how our platform can best support you, contact us at 
-      <%= mail_to 'newhavenpandemic@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %>. 
+      <%= mail_to 'admin@newhavenhelpwithcovid.com', nil, target: '_blank', class: 'text-indigo-500' %>. 
       We send out weekly newsletters to our volunteers about the latest opportunities, 
       and our team is happy to provide custom support for your organization—from 
       posting opportunities and collecting applications to targeted recruiting. 
@@ -29,7 +29,7 @@
       We believe good tools should be shared. If you are currently outside of 
       <%= CITY_NAME %> and think that your local community could use a partnership 
       platform like ours, reach out to us at 
-      <%= mail_to 'newhavenpandemic@gmail.com', nil, target: '_blank', class: 'text-indigo-500' %>. 
+      <%= mail_to 'admin@newhavenhelpwithcovid.com', nil, target: '_blank', class: 'text-indigo-500' %>. 
       We are happy to discuss about sharing code and best practices. 
     </p>
     <p class="mt-4 mb-4 text-center text-sm leading-5 text-gray-600 max-w">
@@ -53,19 +53,21 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Team Lead
               </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                Chloe Fink
+              </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                <%= mail_to 'tiffany.chan@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
+                Team Deputy
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                  
-              </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-white text-center bg-indigo-500">
                 Web Development Unit
               </td>            
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                
+                  
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
@@ -75,9 +77,6 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Lead Developer
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'mark.santolucito@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
-              </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
@@ -86,8 +85,13 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Developer
               </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                Flaurencya Ciputra
+              </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'sarim.abbas@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
+                Developer
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
@@ -97,9 +101,6 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Developer
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'alex.chen.ac@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
-              </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
@@ -107,9 +108,6 @@
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Developer
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'joyce.duan@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
@@ -119,19 +117,29 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Developer
               </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                Lance Tan 
+              </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'wolf.honore@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
+                Developer
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                  
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
+                Jia Wu
               </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
+                Lead Visualization Engineer
+              </td>
+            </tr>
+            <tr class="<%= cycle striped_classes_cycle %>">
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-white text-center bg-indigo-500">
                 Communications Unit
               </td>            
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                
+                  
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
@@ -141,9 +149,6 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Lead Communications Officer
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'jill.capotosto@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
-              </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
@@ -152,19 +157,13 @@
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Deputy Communications Officer
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'eda.uzunlar@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
-              </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                  
-              </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-white text-center bg-indigo-500">
                 Liaison Unit
               </td>            
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-indigo-500">
-                
+                  
               </td>
             </tr>
             <tr class="<%= cycle striped_classes_cycle %>">
@@ -173,20 +172,6 @@
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
                 Community Partnership Deputy
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                <%= mail_to 'devin.osborne@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
-              </td>
-            </tr>
-            <tr class="<%= cycle striped_classes_cycle %>">
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                Kathleen Keefe
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                Liaison Officer
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-              <%= mail_to 'kathleen.keefe@yale.edu', nil, target: '_blank', class: 'text-indigo-500' %>
               </td>
             </tr>
           </tbody>
