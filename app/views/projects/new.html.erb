@@ -1,4 +1,5 @@
 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+  <%= render "devise/shared/error_messages", resource: @project %>
   <%= form_for @project do |f| %>
     <div>
       <div>
@@ -7,7 +8,7 @@
             Create new volunteer position
           </h3>
           <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-            This information will be displayed publicly.
+            This information will be displayed publicly. If you have any questions about creating a position on this platform, please contact newhavenpandemic@gmail.com.
           </p>
         </div>
 
@@ -16,6 +17,9 @@
     </div>
     <div class="mt-8 border-t border-gray-200 pt-5">
       <div class="flex justify-end">
+        <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+          Please remember to take down this position posting when you have found the volunteers you need.
+        </p>
         <span class="ml-3 inline-flex rounded-md shadow-sm">
           <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
             Create volunteer position

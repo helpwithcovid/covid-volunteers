@@ -7,6 +7,7 @@
       <div class="max-w-lg flex rounded-md shadow-sm">
         <%= f.text_field "name", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
+       <p class="mt-2 text-sm text-gray-500">(If your organization is looking to fill positions with different responsibilities, please post each position separately.</p>
     </div>
   </div>
   
@@ -22,6 +23,56 @@
   </div>
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="organization_mission" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+      Mission of organization<span class="text-red-500">*</span>
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg flex rounded-md shadow-sm">
+        <%= f.text_area :organization_mission, rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+        <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+            <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                Are you a registered 501(c)(3) organization?<span class="text-red-500">*</span>
+            </legend>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :organization_registered, true, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        Yes
+                    </label>
+                    </div>
+                </div>
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :organization_registered, false, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        No
+                    </label>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+  </div>
+
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="description" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
       Describe your project and the volunteer position.<span class="text-red-500">*</span>
     </label>
@@ -29,7 +80,7 @@
       <div class="max-w-lg flex rounded-md shadow-sm">
         <%= f.text_area "description", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
-      <p class="mt-2 text-sm text-gray-500">Write a few sentences about what you are doing and the end goal.</p>
+      <p class="mt-2 text-sm text-gray-500">For example: What are volunteers in this position expected to do? How many hours are approximately required per week? If the position is in-person, would PPE be provided? If you have your own application portal/Google form, please provide the URL here.</p>
     </div>
   </div>
 
@@ -148,7 +199,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
           <div>
             <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              Project type
+              Project type<span class="text-red-500">*</span>
             </legend>
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
@@ -165,6 +216,10 @@
                   </div>
                 </div>
               <% end %>
+              <!-- Needed to detect when checkboxes are all unchecked.
+                See https://api.rubyonrails.org/v5.2.4.2/classes/ActionView/Helpers/FormHelper.html#method-i-check_box
+              -->
+              <input type="hidden" name="project[project_type_list][]" value="" />
             </div>
           </div>
         </div>
@@ -346,27 +401,56 @@
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      Start Date<br/>
-      <span class="text-xs">(optional)</span>
+      Start Date<span class="text-red-500">*</span>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.date_field :start_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= f.date_field :start_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
     </div>
   </div>
 
-  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-    <label for="end_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      End Date<br/>
-      <span class="text-xs">(optional)</span>
-    </label>
-    <div class="mt-1 sm:mt-0 sm:col-span-2">
-      <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.date_field :end_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
-      </div>
+  <div class="mt-6 sm:mt-5">
+    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+        <fieldset>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+            <div>
+            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                End date<span class="text-red-500">*</span>
+            </legend>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:col-span-2">
+            <div class="max-w-lg">
+                <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :end_date_recurring, false, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <p class="mb-2">
+                        <label class="font-medium text-gray-700">
+                            On date:
+                        </label>
+                      </p>
+                        <%= f.date_field :end_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                    </div>
+                </div>
+                <div class="relative flex items-start mt-2">
+                    <div class="absolute flex items-center h-5">
+                    <%= f.radio_button :end_date_recurring, true, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                    <label class="font-medium text-gray-700">
+                        Recurring
+                    </label>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </fieldset>
     </div>
   </div>
+
 
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="compensation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">

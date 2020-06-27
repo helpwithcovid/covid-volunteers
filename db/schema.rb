@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_174309) do
+ActiveRecord::Schema.define(version: 2020_06_06_191641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 2020_05_06_174309) do
     t.boolean "visible", default: true
     t.boolean "was_helpful", default: true
     t.string "exit_comments", default: ""
+    t.string "organization_mission"
+    t.boolean "organization_registered"
+    t.boolean "end_date_recurring"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

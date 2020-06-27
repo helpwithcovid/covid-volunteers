@@ -12,6 +12,8 @@ class Project < ApplicationRecord
 
   pg_search_scope :search, against: %i(name description participants looking_for location highlight)
 
+  validates_presence_of :project_type_list, allow_nil: false, allow_blank: false
+  
   after_save do
     # expire homepage caches if they contain this project
     Settings.project_categories.each do |category|
@@ -23,7 +25,7 @@ class Project < ApplicationRecord
       Rails.cache.delete(cache_key) if featured_projects.map(&:id).include? self.id
     end
   end
-
+  
   def to_param
     [id, name.parameterize].join("-")
   end

@@ -32,7 +32,8 @@ ALL_LEVELS_OF_EXPOSURE = [ 'I', 'II', 'III', 'IV', 'V' ]
 REMOTE_LOCATION = 'Remote'
 CITY_NAME = 'New Haven'
 STATE_NAME = 'Connecticut'
-ALL_LOCATIONS = [ "#{CITY_NAME} (on site)", "Other #{STATE_NAME} locales (on site)", REMOTE_LOCATION ]
+# ALL_LOCATIONS = [ "#{CITY_NAME} (on site)", "Other #{STATE_NAME} locales (on site)", REMOTE_LOCATION ]
+ALL_LOCATIONS = [ "#{CITY_NAME} (on site)", REMOTE_LOCATION ]
 
 ALL_PROJECT_TYPES = [
   'Contact tracing',
