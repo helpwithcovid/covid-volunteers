@@ -112,7 +112,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:password].present?
       super(resource, params)
     else
-      Rails.logger.error 'here pac pac'
       params.delete(:password_confirmation)
       params.delete(:current_password)
       resource.update_without_password(params)

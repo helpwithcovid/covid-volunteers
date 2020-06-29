@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   before_action :hydrate_project_categories
 
@@ -20,29 +22,31 @@ class HomeController < ApplicationController
   end
 
   private
+    def projects_with_skills(category)
+      Project.find_each.filter { |proj| !(proj.skill_list & category[:project_types]).empty? }
+    end
+
+    def projects_with_locations(category)
+      if category[:project_types].length == 1
+        Project.where('location LIKE ?', '%' + category[:project_types][0] + '%')
+      else
+        Project.where(location: category[:project_types])
+      end
+    end
+
+    def relevant_projects(category)
+      projects_with_skills(category) + projects_with_locations(category)
+    end
+
     def hydrate_project_categories
       @project_categories = Settings.project_categories
 
       @project_categories.each do |category|
-        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects", expires_in: 1.hour) {
-        	projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
-        	if category[:project_types].length == 1
-        		projects_with_locations = Project.where("location LIKE ?", "%" + category[:project_types][0] + "%")
-        	else
-        		projects_with_locations = Project.where(location: category[:project_types])
-        	end
-        	relevant_projects = projects_with_skills + projects_with_locations
-        	relevant_projects.take 3
+        category[:featured_projects] = Rails.cache.fetch("project_category_#{category[:slug]}_projects", expires_in: 1.hour) {
+          relevant_projects(category).take 3
         }
-        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:name].downcase}_projects_count", expires_in: 1.hour) {
-            projects_with_skills = Project.tagged_with(category[:project_types], any: true, on: :project_types)
-            if category[:project_types].length == 1
-        		projects_with_locations = Project.where("location LIKE ?", "%" + category[:project_types][0] + "%")
-        	else
-        		projects_with_locations = Project.where(location: category[:project_types])
-        	end
-        	relevant_projects = projects_with_skills + projects_with_locations
-        	relevant_projects.count
+        category[:projects_count] = Rails.cache.fetch("project_category_#{category[:slug]}_projects_count", expires_in: 1.hour) {
+          relevant_projects(category).count
         }
       end
     end
