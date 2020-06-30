@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     end
     # Display the volunteers in increments of 100
     @volunteer_count = (@volunteer_count / 100).floor * 100
-    @projects_all = Project.all.order('RANDOM()').take 3
+    @featured_projects = Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(3).order('RANDOM()')
 
     @projects_header = "#{CITY_NAME} Residents vs. COVID-19"
     @projects_subheader = "This is a #{CITY_NAME}-wide partnership platform, where #{CITY_NAME} residents can volunteer (in-person or remotely) and local non-profits and government can post volunteer needs. Let us unite and fight the pandemic together!"
@@ -35,7 +35,10 @@ class HomeController < ApplicationController
     end
 
     def relevant_projects(category)
-      projects_with_skills(category) + projects_with_locations(category)
+      relevant_projects = projects_with_skills(category) + projects_with_locations(category)
+      relevant_projects = relevant_projects.sort_by { |project|
+        project.highlight ? 0: 1 } # show highlighted projects first
+      relevant_projects
     end
 
     def hydrate_project_categories
