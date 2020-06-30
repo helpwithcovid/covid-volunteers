@@ -39,23 +39,22 @@ user6 = User.create!(email: 'iamuser6@gmail.com', name: 'jamiew', password: 'pas
 
 
 # PROJECTS
-project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', location: 'New Haven (on site)', description: 'A cool description', highlight: false)
+project1 = Project.create(user: user, name: 'Act Now Foundation - Import & distribution of 10-minute at home COVID-19 test kits', location: 'New Haven (on site)', description: 'A cool description', highlight: true)
 
-project2 = Project.create!(
+project2 = Project.create(
   user: user2,
   name: 'One Gazillion Masks',
   location: 'Remote',
   description: 'A cool description',
-  highlight: false)
+  highlight: true)
 
 project3 = Project.create(user: user, name: 'Virtual homework supervision to help overwhelmed parents while school is closed project', location: 'New Haven (on site)', description: 'With elementary schools suddenly closed for the rest of the year, parents are struggling to balance work, caring for others and the sudden responsibility for keeping their children educated and on track for school.', highlight: false)
 
-project4 = Project.create(user: user, name: 'Resistbot', location: 'Remote', description: %{Resistbot is a multipurpose and multifunction chatbot. Right now it's the easiest way to lobby both federal and state officials who are currently crafting a legislative response to the pandemic. Our end goal is to give everyone a voice and able to fight for what they want to see, no matter what it is, from social distancing measures at the state level, to federal UBI stimulus, to no corporate bailouts, to more health care supplies, and more. We've also just built covid-19 specific functionality to inform users of a variety of important information for their home state.}, highlight: false)
+project4 = Project.create(user: user, name: 'Resistbot', location: 'Remote', description: %{Resistbot is a multipurpose and multifunction chatbot. Right now it's the easiest way to lobby both federal and state officials who are currently crafting a legislative response to the pandemic. Our end goal is to give everyone a voice and able to fight for what they want to see, no matter what it is, from social distancing measures at the state level, to federal UBI stimulus, to no corporate bailouts, to more health care supplies, and more. We've also just built covid-19 specific functionality to inform users of a variety of important information for their home state.}, highlight: true)
 
 project5 = Project.create(user: user, name: 'Selfie lenses to spread public health into in a fun way project ', location: 'Remote', description: %{We are a group called Lefty Lenses who have been applying selfie lenses (like the Snapchat puppy filter) to politics for the 2020 election. Our lenses have reached 125M people in 10 weeks, and we've spent $0.}, highlight: false)
 
 # VOLUNTEERS
-
 project1.volunteered_users << user3
 project3.volunteered_users << user
 project3.volunteered_users << user2
