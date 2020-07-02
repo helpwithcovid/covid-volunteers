@@ -1,6 +1,6 @@
 # covid-volunteers
 
-[![CircleCI build status](https://img.shields.io/cirrus/github/helpwithcovid/covid-volunteers?style=plastic)](https://circleci.com/gh/helpwithcovid/covid-volunteers)
+[![CircleCI](https://circleci.com/gh/helpwithcovid/covid-volunteers.svg?style=shield)](https://circleci.com/gh/helpwithcovid/covid-volunteers)
 
 This repository stores the code for the https://helpwithcovid.com/ website.
 
