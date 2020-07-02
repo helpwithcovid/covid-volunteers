@@ -1,0 +1,17 @@
+{
+  "name": "HelpWithCovid",
+  "description": "Platform for pairing skilled volunteers with projects",
+  "website": "https://helpwithcovid.com",
+  "repository": "https://github.com/helpwithcovid/covid-volunteers",
+  "logo": "https://dl.dropboxusercontent.com/s%2Fqerbzyx6y77panf%2FScreen%2520Shot%25202020-07-02%2520at%25205.13.39%2520PM.png",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate"
+  },
+  "env": {
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production",
+    "RAILS_SERVE_STATIC_FILES": "true"
+  },
+  "addons": ["heroku-postgresql"]
+}
+
