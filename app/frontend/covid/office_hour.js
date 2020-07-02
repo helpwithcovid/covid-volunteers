@@ -59,7 +59,7 @@ const OfficeHour = {
         There is a slot available <span class="text-indigo-600">${when}</span>.
         <br/>
         <br/>
-        In order to apply you must have an account and your profiled filled out.
+        In order to apply you must have an account and your profiled <a class="text-indigo-600" href="/users/edit">filled out</a>.
         `;
 
       Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'Close' } ], 'warning');

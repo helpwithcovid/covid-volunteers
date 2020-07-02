@@ -20,18 +20,20 @@ class OfficeHoursController < ApplicationController
     current_user.office_hour_description = params.require(:description)
     current_user.save
 
-    office_hour_dates = params.require(:office_hour_dates)
-    office_hour_dates = office_hour_dates.values if office_hour_dates.keys.first == '0'
+    if params.require(:office_hour_dates).present?
+      office_hour_dates = params.require(:office_hour_dates)
+      office_hour_dates = office_hour_dates.values if office_hour_dates.keys.first == '0'
 
-    added_office_hours = 0
-    office_hour_dates.each_slice(2) do |date|
-      office_hour = OfficeHour.new
-      office_hour.start_at = DateTime.parse date[0]
-      office_hour.end_at = DateTime.parse date[1]
-      office_hour.user = current_user
-      office_hour.save
+      added_office_hours = 0
+      office_hour_dates.each_slice(2) do |date|
+        office_hour = OfficeHour.new
+        office_hour.start_at = DateTime.parse date[0]
+        office_hour.end_at = DateTime.parse date[1]
+        office_hour.user = current_user
+        office_hour.save
 
-      added_office_hours += 1
+        added_office_hours += 1
+      end
     end
 
     redirect_to office_hours_path, notice: "#{added_office_hours} office hours added."
