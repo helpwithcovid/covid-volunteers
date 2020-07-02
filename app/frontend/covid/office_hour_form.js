@@ -192,6 +192,11 @@ const OfficeHourForm = {
       allDates = [].concat(allDates, dates);
     }
 
+    if (allDates.length == 0) {
+      $('.office-hour-slot-errors').first().text("Please enter at least one slot.");
+      return false;
+    }
+
     if (OfficeHourForm.doDatesOverlap(allDates)) {
       $('.office-hour-slot-errors').first().text("We're sorry, it seems like the dates overlap.");
       return false;
