@@ -73,6 +73,20 @@ events:
     cta_url: https://drive.google.com/drive/u/0/folders/1NATDm5yVsYUo8jRY7svE2fqwm1OwcpMu
 
 upcoming_events:
+  - title: COVID 19 Global Hackathon 2.0 - Social & Mental Health.
+    sub_title: Hack on social issues and mental health with mentorship from nonprofits
+    cta_text: Register here
+    cta_url: https://covid-global-hackathon-2.devpost.com/
+    month: July
+    day: 3
+    time: 10:00 AM
+  - title: COVID 19 Global Hackathon 2.0 - Keynote speaker with Justin Kan, Help With Covid, Deed, 7 Cups
+    sub_title: Join us for the hackathon kickoff
+    cta_text: Add to calendar
+    cta_url: https://calendar.google.com/calendar/r/eventedit/copy/MHRzdGg1cnQwbDNsZW52NTRlaGc1Z2tsdXEgY3J0dGYub3JnX2ZxYWxqM2NsNWpjOHJkcTk3aHBwZTVjZGNzQGc/aW5mb0ByZXNldHlvdXJsaWZld29tZW4uY29t?sf=true)
+    month: July
+    day: 4
+    time: 10:00 AM
 #  - title: Private Group Office Hours with Radu
 #    sub_title: Wednesday, May 6th 3:30pm - 4:30pm
 #    month: May
