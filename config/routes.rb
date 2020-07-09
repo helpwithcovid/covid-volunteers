@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/data/users',      to: 'data#users'
   get '/data/volunteers', to: 'data#volunteers'
 
+  get '/reports', to: "reports#index"
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     get '/users/p/:page' => 'users/registrations#index', as: 'users_with_pagination'

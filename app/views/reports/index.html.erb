@@ -1,0 +1,30 @@
+<%- share_title @page_title %>
+
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6 mb-4">
+  <div class="flex justify-center bg-white-200">
+    <h1>Monthly Summary</h1>
+  </div>
+
+  <div class="flex justify-center bg-white-200">
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Date</th>
+          <th class="px-4 py-2">Users</th>
+          <th class="px-4 py-2">Projects</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_project_counts.each do |date, user_count, project_count| %> 
+          <tr>
+            <td class="border px-4 py-2"><%= date %></td>
+            <td class="border px-4 py-2"><%= user_count %></td>
+            <td class="border px-4 py-2"><%= project_count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
