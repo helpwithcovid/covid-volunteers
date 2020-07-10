@@ -95,6 +95,7 @@ class Project < ApplicationRecord
 
   def cover_photo(category_override = nil)
     Rails.cache.fetch(cdn_image_cache_key, expires_in: 1.month) do
+
       if self.image.present?
         cdn_variant(resize_to_limit: [600, 600])
       else

@@ -74,7 +74,7 @@ const Covid = {
       } else if (action.type == 'submit') {
         actionHTML = `
 <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto" id="modal_action_${idx}">
-  <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+  <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-primary-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary transition ease-in-out duration-150 sm:text-sm sm:leading-5">
     ${action.text}
   </button>
 </span>
@@ -111,17 +111,17 @@ const Covid = {
     $(modal).attr('x-data', '{ open: true }');
   },
 
-  skillBadges(items, color = 'indigo', title = '') {
+  skillBadges(items, color = 'primary', title = '') {
     let classes = '';
     if (color == 'blue') {
       classes = 'bg-blue-100 text-blue-800  bg-blue-300';
     } else {
-      classes = 'bg-indigo-100 text-indigo-800  bg-indigo-300';
+      classes = 'bg-primary-100 text-primary-800  bg-primary-300';
     }
     const badgeHTML = `<div class="flex flex-row flex-wrap space-x-right-2 space-y-top-2">
       ${items.map(item =>
         `<div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium leading-5 flex-grow-0 flex-shrink-0 ${classes}" title=${title}>
-            <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+            <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-primary-400" fill="currentColor" viewBox="0 0 8 8">
               <circle cx="4" cy="4" r="3"></circle>
             </svg>
             ${item}

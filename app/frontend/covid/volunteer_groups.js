@@ -45,7 +45,7 @@ const VolunteerGroups = {
   <div class="block focus:outline-none transition duration-150 ease-in-out">
     <div class="px-4 py-4 sm:px-6">
       <div class="flex items-center justify-between">
-        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+        <div class="text-sm leading-5 font-medium text-primary-600 truncate">
           <span class="volunteer-name">${user.name}</span> / <span class="volunteer-email">${user.email}</span>
         </div>
         <div class="text-sm leading-5 truncate">

@@ -36,7 +36,7 @@
               <% ALL_SKILLS.each do |skill| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"}, skill, nil %>
+                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, skill, nil %>
                   </div>
                   <div class="pl-7 text-sm leading-5">
                     <label for="user_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
@@ -65,7 +65,7 @@
                 <% ALL_AVAILABILITY.each do |availability| %>
                   <div class="relative flex items-start">
                     <div class="absolute flex items-center h-5">
-                      <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"} %>
+                      <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out"} %>
                     </div>
                     <div class="pl-7 text-sm leading-5">
                       <label class="font-medium text-gray-700">
@@ -117,7 +117,7 @@
             <div class="max-w-lg">
               <div class="relative flex items-start">
                 <div class="absolute flex items-center h-5">
-                  <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+                  <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out5" %>
                 </div>
                 <div class="pl-7 text-sm leading-5">
                   <%= f.label 'visibility', 'Visibility', class: 'font-medium text-gray-700' %>
@@ -127,7 +127,7 @@
               <br />
               <div class="relative flex items-start">
                 <div class="absolute flex items-center h-5">
-                  <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out5" %>
+                  <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out5" %>
                 </div>
                 <div class="pl-7 text-sm leading-5">
                   <%= f.label 'pair_with_projects', 'Pair me with projects', class: 'font-medium text-gray-700' %>

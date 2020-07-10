@@ -1,25 +1,25 @@
 <%
   @project_category ||= {
     name: 'All Categories',
-    color: 'indigo',
+    color: 'primary',
   }
 
-  # We need to explicitly write the full color instead of interpolating it so we can later safely purge the unused css
+  # We need to explicitly write the full color instead of interpolating it so tailwind can later safely purge the unused css classes.
   case @project_category[:color]
-  when 'indigo'
-    bg_color = 'bg-indigo-600'
+  when 'primary'
+    bg_color = 'bg-primary-600'
   when 'orange'
     bg_color = 'bg-orange-600'
   when 'blue'
     bg_color = 'bg-blue-600'
-  when 'purple'
-    bg_color = 'bg-purple-600'
+  when 'secondary'
+    bg_color = 'bg-secondary-600'
   else
-    bg_color = 'bg-indigo-600'
+    bg_color = 'bg-primary-600'
   end
 %>
 <div class="mx-auto w-full text-center mt-8">
-  <div class="inline-block rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 fill-current text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white h-12 w-12' %></div>
+  <div class="rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white h-12 w-12' %></div>
   <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
   <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
 </div>

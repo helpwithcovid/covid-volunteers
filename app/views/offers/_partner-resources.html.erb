@@ -11,10 +11,10 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
       <% Settings.partner_resources.each do |partner| %>
-        <div class="mx-4 sm:mx-0 flex flex-col block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out shadow bg-white rounded-lg overflow-hidden">
+        <div class="mx-4 sm:mx-0 flex flex-col hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out shadow bg-white rounded-lg overflow-hidden">
           <div class="flex items-center justify-between space-y-top-4 space-y-bottom-4 ml-4">
             <div class="flex items-center">
-              <div class="text-base leading-5 font-medium text-indigo-600 truncate px-2">
+              <div class="text-base leading-5 font-medium text-primary-600 truncate px-2">
                 <%= partner[:name] %>
               </div>
               <div class="flex flex-row flex-wrap space-x-right-2">
@@ -25,14 +25,14 @@
             </div>
             <% if partner[:mail_to] %>
               <%= mail_to partner[:mail_to]  do %>
-                <div class="text-sm leading-5 font-medium text-indigo-600 truncate px-4 sm:px-6 mr-2">
+                <div class="text-sm leading-5 font-medium text-primary-600 truncate px-4 sm:px-6 mr-2">
                   Apply Here
                   <%= inline_svg_pack_tag 'media/svgs/right-link.svg', class: 'inline-block' %>
                 </div>
               <% end %>
             <% elsif partner[:cta_link] %>
               <%= link_to partner[:cta_link], target: '_blank'  do %>
-                <div class="text-sm leading-5 font-medium text-indigo-600 truncate px-4 sm:px-6 mr-2">
+                <div class="text-sm leading-5 font-medium text-primary-600 truncate px-4 sm:px-6 mr-2">
                   Apply Here
                   <%= inline_svg_pack_tag 'media/svgs/right-link.svg', class: 'inline-block' %>
                 </div>
@@ -45,7 +45,7 @@
               <p><%= partner[:description] %></p>
             </div>
           </div>
-          <div class="mt-4 sm:flex sm:justify-between px-4 pt-2 sm:px-6 bg-purple-100 text-indigo-600">
+          <div class="mt-4 sm:flex sm:justify-between px-4 pt-2 sm:px-6 bg-secondary-100 text-primary-600">
             <div class="sm:flex">
               <div class="flex items-center text-xs leading-5">
               </div>

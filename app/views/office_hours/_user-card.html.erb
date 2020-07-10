@@ -2,7 +2,7 @@
   <div class="flex-1 flex flex-col justify-between p-5">
     <div class="flex-col">
       <div class="w-full flex justify-between mb-2">
-        <div class="text-indigo-500 text-lg font-medium">
+        <div class="text-primary-500 text-lg font-medium">
           <% if user.name.present? %>
             <%= link_to user.name, profile_path(user) %>
           <% else %>
@@ -29,7 +29,7 @@
           <div class="relative w-full h-6 mb-4">
             <span class="scroll-gradient-right inline-block w-4 h-6 absolute right-0 z-50"></span>
             <div class="w-full overflow-x-auto scrolling-touch scrollbar-hidden">
-              <div class="flex flex-row flex-no-wrap flex-shrink-0 flex-shrink-0 space-x-right-2">
+              <div class="flex flex-row flex-no-wrap flex-shrink-0 space-x-right-2">
                 <%= skill_badges user.skills.collect { |s| s.name }, limit: 3, color: 'blue', model: 'projects', filter_by: 'skills' %>
               </div>
             </div>
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <div class="px-4 bg-indigo-100 flex justify-between text-sm text-indigo-500 user-card">
+  <div class="px-4 bg-primary-100 flex justify-between text-sm text-primary-500 user-card">
     <div class="flex flex-col flex-grow">
       <div class="w-full justify-center text-gray-500 fill-current text-xs">
         <% user.future_office_hours.each do |oh| %>
@@ -51,14 +51,14 @@
               <%= oh.start_at.strftime('%b %e, %l:%M %p') %> PT
             </div>
 
-            <div class="text-indigo-600 px-5 py-1">
+            <div class="text-primary-600 px-5 py-1">
               <%= oh.pretty_duration %>
             </div>
 
-            <div class="bg-gray-100 hover:bg-blue-100 w-1/3 rounded text-indigo-600">
+            <div class="bg-gray-100 hover:bg-blue-100 w-1/3 rounded text-primary-600">
               <%= link_to 'javascript:void(0)', class: "w-full inline-block group flex justify-around py-1 oh-action #{oh.applied?(current_user) ? "bg-orange-100" : ""}", 'x-id': oh.id, 'x-is-owner': oh.user == current_user, 'x-when': oh.start_at.strftime('%b %e, %l:%M %p'), 'x-oh-owner': oh.user.name, 'x-oh-inactive': office_hour_slot_inactive(oh).to_s, 'x-can-apply': oh_can_apply().to_s do %>
                 <div class="w-1/3 text-right px-2">
-                  <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-5 mr-1 text-indigo-600 fill-current inline-block' %>
+                  <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-5 mr-1 text-primary-600 fill-current inline-block' %>
                 </div>
 
                 <div class="group-hover:hidden w-2/3 text-center sm:text-left">

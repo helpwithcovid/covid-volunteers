@@ -114,7 +114,7 @@ const OfficeHourForm = {
     const modalActions =  [ { type: 'danger', text: 'Delete slot', callback: deleteCallback }, { type: 'cancel' } ];
     const headerHTML = `Delete ${when} Office Hour`;
     const bodyHTML = `
-      Are you sure you want to delete your <span class="text-indigo-600">${when}</span> slot?
+      Are you sure you want to delete your <span class="text-primary-600">${when}</span> slot?
     `;
 
     Covid.showModal(headerHTML, bodyHTML, modalActions, 'warning');
@@ -278,7 +278,7 @@ const OfficeHourForm = {
 
     const headerHTML = `${when} Office Hour`;
     const bodyHTML = `
-      <br/>You have accepted:<br/><span class='text-indigo-600'>${participant.name}</span> / <span class='text-indigo-600'>${participant.email}</span>
+      <br/>You have accepted:<br/><span class='text-primary-600'>${participant.name}</span> / <span class='text-primary-600'>${participant.email}</span>
       `;
 
     Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'Close' } ], 'warning');
@@ -332,8 +332,8 @@ const OfficeHourForm = {
             <li>
               <div class="mb-2">
                 <div class="flex items-center justify-between">
-                  <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                    <input name="applicant_id" value="${volunteer.id}" type="radio" class="form-radio inline-block mr-2 h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                  <div class="text-sm leading-5 font-medium text-primary-600 truncate">
+                    <input name="applicant_id" value="${volunteer.id}" type="radio" class="form-radio inline-block mr-2 h-4 w-4 text-primary-600 transition duration-150 ease-in-out" />
                     <a href="/users/${volunteer.id}" target="_blank" class="hover:underline">
                       ${volunteer.name}
                     </a>
@@ -357,7 +357,7 @@ const OfficeHourForm = {
 
     const headerHTML = `${when} Office Hour`;
     const bodyHTML = `
-      You have a slot at <span class="text-indigo-600">${when}</span>.
+      You have a slot at <span class="text-primary-600">${when}</span>.
       <br>
       <br>
       ${volunteerHTML}

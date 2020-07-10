@@ -9,19 +9,19 @@
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
           - Want quick help with something? Book a time with community volunteers.<br/>
-          - Have only 10-20 minutes available to help out? <%= link_to "Make yourself available to the community.", new_office_hour_path, class: "text-indigo-500" %>
+          - Have only 10-20 minutes available to help out? <%= link_to "Make yourself available to the community.", new_office_hour_path, class: "text-primary-500" %>
         </p>
       </div>
       <div class="ml-4 mt-4 flex-shrink-0">
         <span class="inline-flex">
           <% if !current_user %>
             <%= link_to new_user_registration_path do %>
-              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+              <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline-primary- focus:border-primary-700 active:bg-primary-700">
                 Sign up to book or create office hours
               </button>
             <% end %>
           <% else %>
-            <%= link_to new_office_hour_path, class: "text-indigo-500" do %>
+            <%= link_to new_office_hour_path, class: "text-primary-500" do %>
               Manage your office hours here >
             <% end %>
           <% end %>
@@ -37,7 +37,7 @@
     <div class="mt-4">
       <% if params[:id] %>
         <div class="mt-8 mb-4 text-gray-600 text-center">
-          Book a time with <%= @users[0].name %> below or find more people <%= link_to 'here', office_hours_path, class: 'text-indigo-400' %>.
+          Book a time with <%= @users[0].name %> below or find more people <%= link_to 'here', office_hours_path, class: 'text-primary-400' %>.
         </div>
       <% else %>
         <div class="mb-4">

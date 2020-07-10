@@ -1,11 +1,18 @@
 const plugin = require('tailwindcss/plugin')
+const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
     extend: {
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
-        'indigo-50': '#F9F9FF',
+        primary: {
+          50: "#F7FAFC",
+          ...colors.gray,
+        },
+        secondary: {
+          ...colors.purple,
+        },
       },
       maxHeight: {
         '400px': '400px',
@@ -121,18 +128,18 @@ module.exports = {
               fontSize: theme('fontSize.2xl'),
             },
           },
-          '.button-indigo': {
+          '.button-primary': {
             ...styles,
             color: theme('colors.white'),
-            backgroundColor: theme('colors.indigo.600'),
+            backgroundColor: theme('colors.primary.600'),
             '&:hover': {
-              backgroundColor: theme('colors.indigo.700'),
+              backgroundColor: theme('colors.primary.700'),
             },
             '&:active': {
-              backgroundColor: theme('colors.indigo.800'),
+              backgroundColor: theme('colors.primary.800'),
             },
             '&1active': {
-              backgroundColor: theme('colors.indigo.800'),
+              backgroundColor: theme('colors.primary.800'),
             },
           }
         },

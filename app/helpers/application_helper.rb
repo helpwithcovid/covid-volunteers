@@ -6,9 +6,9 @@ module ApplicationHelper
   def nav_link_active_class(variant = 'DESKTOP')
     case variant
     when 'DESKTOP'
-      'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-600 text-sm leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out ml-4 text-center font-bold'
+      'inline-flex items-center px-1 pt-1 border-b-2 border-primary-600 text-sm leading-5 text-gray-900 focus:outline-none focus:border-primary-700 transition duration-150 ease-in-out ml-4 text-center font-bold'
     when 'MOBILE'
-      'mt-1 block pl-3 pr-4 py-2 border-l-4 border-indigo-600 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
+      'mt-1 block pl-3 pr-4 py-2 border-l-4 border-primary-600 text-base text-primary-700 bg-primary-50 focus:outline-none focus:text-primary-800 focus:bg-primary-100 focus:border-primary-700 transition duration-150 ease-in-out'
     end
   end
 
@@ -33,9 +33,9 @@ module ApplicationHelper
   def sub_nav_link_active_class(variant = 'DESKTOP')
     case variant
     when 'DESKTOP'
-      'flex-inline text-gray-600 border-b-2 border-transparent text-indigo-600 font-bold'
+      'flex-inline text-gray-600 border-b-2 border-transparent text-primary-600 font-bold'
     when 'MOBILE'
-      'mt-1 block pl-3 pr-4 py-2 border-l-4 border-indigo-600 text-base text-indigo-700 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out'
+      'mt-1 block pl-3 pr-4 py-2 border-l-4 border-primary-600 text-base text-primary-700 bg-primary-50 focus:outline-none focus:text-primary-800 focus:bg-primary-100 focus:border-primary-700 transition duration-150 ease-in-out'
     end
   end
 
@@ -118,15 +118,15 @@ module ApplicationHelper
     when 'blue'
       classes = 'bg-blue-100 text-blue-800'
       classes += ' bg-blue-300' if applied
-    when 'purple'
-      classes = 'bg-purple-100 text-purple-800'
-      classes += ' bg-purple-300' if applied
+    when 'secondary'
+      classes = 'bg-secondary-100 text-secondary-800'
+      classes += ' bg-secondary-300' if applied
     when 'orange'
       classes = 'bg-orange-100 text-orange-800'
       classes += ' bg-orange-300' if applied
     else
-      classes = 'bg-indigo-100 text-indigo-800'
-      classes += ' bg-indigo-300' if applied
+      classes = 'bg-primary-100 text-primary-800'
+      classes += ' bg-primary-300' if applied
     end
 
     render partial: 'partials/filter-badge', locals: {label: label, url: url, classes: classes, title: title, color: color}
@@ -172,7 +172,7 @@ module ApplicationHelper
     params_array.reject(&:nil?).join('&')
   end
 
-  def skill_badges(items, limit: nil, color: 'indigo', title: '', model: '', filter_by: '')
+  def skill_badges(items, limit: nil, color: 'primary', title: '', model: '', filter_by: '')
     limit ||= items.count
 
     render partial: 'partials/skill_badges', locals: { color: color, items: items, limit: limit, title: title, model: model, filter_by: filter_by }

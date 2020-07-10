@@ -1,7 +1,7 @@
 <div class="flex mb-4 px-4 sm:px-0">
   <%
     project_category = Settings.project_categories.select { |cat| cat.name == category }.first
-    color = project_category.present? ? project_category.color : 'indigo'
+    color = project_category.present? ? project_category.color : 'primary'
   %>
   <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg', class: "fill-current text-#{color}-600" %></div>
   <div class="block sm:flex w-full pt-0 sm:pt-1">
@@ -9,7 +9,7 @@
       Featured Projects
     </div>
     <div class="w-full sm:w-1/6 text-left sm:text-right">
-      <%= link_to projects_path(highlight: true), class: 'text-indigo-700 font-bold group' do %>
+      <%= link_to projects_path(highlight: true), class: 'text-primary-700 font-bold group' do %>
         See all <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
       <% end %>
     </div>
