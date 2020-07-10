@@ -1,5 +1,5 @@
 const plugin = require('tailwindcss/plugin')
-const { colors } = require('tailwindcss/defaultTheme')
+const colors = require('@tailwindcss/ui/colors')
 
 module.exports = {
   theme: {
@@ -11,7 +11,7 @@ module.exports = {
           ...colors.indigo,
         },
         secondary: {
-          ...colors.purple,
+          ...colors.gray,
         },
       },
       maxHeight: {
