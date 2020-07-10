@@ -8,7 +8,7 @@ module.exports = {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
           50: "#F7FAFC",
-          ...colors.gray,
+          ...colors.indigo,
         },
         secondary: {
           ...colors.purple,
