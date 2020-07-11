@@ -42,5 +42,7 @@ module CovidVolunteers
     )
 
     config.time_zone = 'Pacific Time (US & Canada)'
+
+    config.i18n.load_path += Dir[Rails.root.join('theme', 'locales', '**/*.{rb,yml}')]
   end
 end

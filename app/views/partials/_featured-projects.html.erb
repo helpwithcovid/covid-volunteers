@@ -6,11 +6,11 @@
   <div class="w-16 content-center"><%= inline_svg_pack_tag 'media/svgs/featured-projects.svg', class: "fill-current text-#{color}-600" %></div>
   <div class="block sm:flex w-full pt-0 sm:pt-1">
     <div class="w-full sm:w-5/6 text-lg sm:text-xl font-bold">
-      Featured Projects
+      <%= t('featured_projects') %>
     </div>
     <div class="w-full sm:w-1/6 text-left sm:text-right">
       <%= link_to projects_path(highlight: true), class: 'text-primary-700 font-bold group' do %>
-        See all <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
+        <%= t('see_all') %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'inline-block fill-current transform transition-transform duration-100 -translate-x-1 group-hover:translate-x-0' %>
       <% end %>
     </div>
   </div>

@@ -20,7 +20,7 @@
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
                 </svg>
                 <span>
-                  Edit
+                  <%= t('edit') %>
                 </span>
               </button>
             <% end %>
@@ -37,7 +37,7 @@
       <dl>
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Name
+            <%= t('name') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @offer.name %>
@@ -45,7 +45,7 @@
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Description
+            <%= t('description') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format @offer.description, class: 'mb-3' %>
@@ -53,7 +53,7 @@
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Limitations
+            <%= t('limitations') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format @offer.limitations, class: 'mb-3' %>
@@ -61,7 +61,7 @@
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            How to redeem it
+            <%= t('how_to_redeem_it') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format @offer.redemption, class: 'mb-3' %>
@@ -69,7 +69,7 @@
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Location
+            <%= t('location') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @offer.location %>

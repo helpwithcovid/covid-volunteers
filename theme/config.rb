@@ -1,3 +1,15 @@
+# This file is loaded when Rails boots during config/initializers.
+# Set up default variables.
+
+# Enabled features.
+ALL_FEATURES = [
+  'volunteer_directory',
+  'resources',
+  'office_hours',
+  'success_stories'
+].freeze
+
+# These are the skills that volunteers can have and projects can request.
 ALL_SKILLS = [
   'Analytics',
   'Biology',
@@ -25,10 +37,24 @@ ALL_SKILLS = [
   'Anything'
 ].freeze
 
-ALL_AVAILABILITY = [ '1-2 hours a day', '2-4 hours a day', '4+ hours a day', 'Only on Weekends', 'Full Time' ].freeze
+# Availability of volunteers.
+ALL_AVAILABILITY = [
+  '1-2 hours a day',
+  '2-4 hours a day',
+  '4+ hours a day',
+  'Only on Weekends',
+  'Full Time'
+].freeze
 
-ALL_NUMBER_OF_VOLUNTEERS = [ '1-10', '10-50', '50-100', '100+' ]
+# How many volunteers a project might request.
+ALL_NUMBER_OF_VOLUNTEERS = [
+  '1-10',
+  '10-50',
+  '50-100',
+  '100+'
+].freeze
 
+# Project types.
 ALL_PROJECT_TYPES = [
   'Track the outbreak',
   'Reduce spread',
@@ -46,12 +72,14 @@ ALL_PROJECT_TYPES = [
   'Other'
 ].freeze
 
+# Project statuses.
 ALL_PROJECT_STATUS = [
   'Just started',
   'In progress',
   'Launched'
 ].freeze
 
+# Project incorporation statuses.
 ALL_ORGANIZATION_STATUS = [
   'Non-profit',
   'For-profit',
@@ -59,5 +87,8 @@ ALL_ORGANIZATION_STATUS = [
   'Public benefit cooperative'
 ].freeze
 
-VOLUNTEERS_REQUIRED_FOR_FUNDING = 50
+DISCORD_LINK = 'https://discord.gg/8nAJfFN'
+
+# If a project has less than N volunteers
+# it can ask to be highlighted.
 MAX_VOLUNTEERS_FOR_HIGHLIGHT_OFFER = 30

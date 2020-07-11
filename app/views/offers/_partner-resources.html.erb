@@ -19,21 +19,21 @@
               </div>
               <div class="flex flex-row flex-wrap space-x-right-2">
                 <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-5 flex-grow-0 flex-shrink-0 bg-blue-100 text-blue-800  bg-blue-300">
-                  HWC Partner
+                  <%= t('partner') %>
                 </div>
               </div>
             </div>
             <% if partner[:mail_to] %>
               <%= mail_to partner[:mail_to]  do %>
                 <div class="text-sm leading-5 font-medium text-primary-600 truncate px-4 sm:px-6 mr-2">
-                  Apply Here
+                  <%= t('apply_here') %>
                   <%= inline_svg_pack_tag 'media/svgs/right-link.svg', class: 'inline-block' %>
                 </div>
               <% end %>
             <% elsif partner[:cta_link] %>
               <%= link_to partner[:cta_link], target: '_blank'  do %>
                 <div class="text-sm leading-5 font-medium text-primary-600 truncate px-4 sm:px-6 mr-2">
-                  Apply Here
+                  <%= t('apply_here') %>
                   <%= inline_svg_pack_tag 'media/svgs/right-link.svg', class: 'inline-block' %>
                 </div>
               <% end %>

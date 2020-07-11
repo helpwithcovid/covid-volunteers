@@ -21,10 +21,10 @@
       <div class="font-bold mb-2 lg:mb-0 mr-2">Sort by</div>
       <div class="mb-2 sm:mr-4 md:mr-0 md:mb-0 w-full sm:w-auto" x-data="{ open: false, sortOpen: false }">
         <%= sort_drop_down do %>
-          <%= sort_drop_down_option(request.path, 'Sort by') %>
-          <%= sort_drop_down_option(request.path, 'Volunteers Needed', 'volunteers_needed') %>
-          <%= sort_drop_down_option(request.path, 'Latest', 'latest') %>
-          <%= sort_drop_down_option(request.path, 'Earliest', 'earliest') %>
+          <%= sort_drop_down_option(request.path, t('sort_by')) %>
+          <%= sort_drop_down_option(request.path, t('volunteers_needed'), 'volunteers_needed') %>
+          <%= sort_drop_down_option(request.path, t('latest'), 'latest') %>
+          <%= sort_drop_down_option(request.path, t('earliest'), 'earliest') %>
         <% end %>
       </div>
     </div>
