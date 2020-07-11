@@ -1,4 +1,4 @@
-<%- share_title 'Office hours' %>
+<%- share_title t('office_hours') %>
 
 <div class="container">
   <div class="bg-white px-4 py-5 border-b border-gray-200 mx-4 sm:mx-0 sm:px-6 mb-4 sm:rounded-md">
@@ -37,7 +37,7 @@
     <div class="mt-4">
       <% if params[:id] %>
         <div class="mt-8 mb-4 text-gray-600 text-center">
-          Book a time with <%= @users[0].name %> below or find more people <%= link_to 'here', office_hours_path, class: 'text-primary-400' %>.
+          <%= t('book_a_time_with_name_below_or_find_more_people', name: @users[0].name, link_to: link_to(t('here'), office_hours_path, class: 'text-primary-400')).html_safe %>
         </div>
       <% else %>
         <div class="mb-4">

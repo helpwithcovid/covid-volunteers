@@ -6,7 +6,7 @@
           <%= oh.start_at.strftime("%b %e") %> <%= oh.start_at.strftime("%l:%M %p") %> - <%= oh.end_at.strftime("%l:%M %p") %> PT
         </div>
         <div class="px-5 py-1 rounded <%= oh_owner_action_color oh %>%">
-          <%= oh.applications.count %> signed up
+          <%= t('count_signed_up', count1: oh.applications.count) %>
         </div>
       </div>
     <% end %>

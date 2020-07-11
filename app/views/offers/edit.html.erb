@@ -3,7 +3,7 @@
     <%= form_for @offer do |f| %>
       <div>
         <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Edit resource <%= @offer.name %>
+          <%= t('edit_resource_name', name: @offer.name) %>
         </h3>
         <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
           <%= t('this_information_will_be_displayed_publicly') %>

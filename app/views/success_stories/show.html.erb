@@ -32,7 +32,7 @@
       </div>
       <% if @success_story.links.present? %>
         <div class="text-gray-800 text-sm mb-8">
-          <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> Link to demos: <%= Rinku.auto_link(@success_story.links, :all, 'target="_blank" class="text-primary-600"').html_safe %>
+          <%= inline_svg_pack_tag 'media/svgs/link.svg', class: 'fill-current inline-block' %> <%= t('link_to_demos') %> <%= Rinku.auto_link(@success_story.links, :all, 'target="_blank" class="text-primary-600"').html_safe %>
         </div>
       <% end %>
       <div>
@@ -41,7 +41,7 @@
     </div>
     <% if @success_story.projects.present? %>
       <div class="bg-primary-100 text-primary-600 p-8 sm:px-16 md:px-24 font-medium">
-        Volunteer → <%= @success_story.projects.map { |project| link_to project.name, project, class: 'underline' }.join(' ').html_safe %>.
+        <%= t('volunteer') %> → <%= @success_story.projects.map { |project| link_to project.name, project, class: 'underline' }.join(' ').html_safe %>.
       </div>
     <% end %>
   </div>

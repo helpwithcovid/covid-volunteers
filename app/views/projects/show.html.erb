@@ -1,4 +1,4 @@
-<%- share_title "Project #{@project.name}" %>
+<%- share_title t('project_name', name: @project.name) %>
 <%- share_url project_url(@project); %>
 
 <div class="container">
@@ -10,11 +10,7 @@
             <%= @project.name %>
           </h3>
 
-          <% if current_user && @project.user == current_user %>
-            <p class="mt-1 text-sm leading-5 text-gray-500">
-              Use <%= link_to "HWC's Discord", "https://discord.gg/8nAJfFN", class: "text-primary-500", target: "_blank" %> to manage your project communication.
-            </p>
-          <% elsif @project.user && @project.user.name.present? %>
+          <% if @project.user && @project.user.name.present? %>
             <div class="mt-1">
               <% if @project.user.visibility %>
                 <%= link_to profile_path(@project.user), class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
@@ -314,12 +310,12 @@
             </div>
 
             <div class="p-6 space-y-4">
-              <%= project_panel_item(title: 'Who is already working on this') do %>
+              <%= project_panel_item(title: t('who_is_already_working_on_this')) do %>
                 <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
               <% end %>
 
               <% if @project.links.present? %>
-                <%= project_panel_item(title: 'Helpful links') do %>
+                <%= project_panel_item(title: t('helpful_links')) do %>
                   <div>
                     <%= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"') do |url|
                       url.length > 35 ? shorten_url(url_from_string(url.start_with?('http') ? url : "http://#{url}")) : url
@@ -329,25 +325,25 @@
               <% end %>
 
               <% if @project.contact.present? %>
-                <%= project_panel_item(title: 'How to get in touch') do %>
+                <%= project_panel_item(title: t('how_to_get_in_touch')) do %>
                   <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"').html_safe %>
                 <% end %>
               <% end %>
 
               <% if @project.accepting_volunteers? %>
                 <% if @project.number_of_volunteers.present? %>
-                  <%= project_panel_item(title: 'Number of volunteers needed') do %>
+                  <%= project_panel_item(title: t('number_of_volunteers_needed')) do %>
                     <%= @project.number_of_volunteers %>
                   <% end %>
                 <% end %>
 
                 <% if @project.volunteer_location.present? %>
-                  <%= project_panel_item(title: 'Preferred Volunteer location') do %>
+                  <%= project_panel_item(title: t('preferred_volunteer_location')) do %>
                     <%= @project.volunteer_location %>
                   <% end %>
                 <% end %>
 
-                <%= project_panel_item(title: 'Organization status') do %>
+                <%= project_panel_item(title: t('organization_status')) do %>
                   <% if @project.organization_status.present? %>
                     <div class="flex items-end">
                       <%= @project.organization_status %>
