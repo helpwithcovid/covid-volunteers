@@ -1,4 +1,4 @@
-# covid-volunteers
+# HelpWith
 
 [![CircleCI](https://circleci.com/gh/helpwithcovid/covid-volunteers.svg?style=shield)](https://circleci.com/gh/helpwithcovid/covid-volunteers)
 
@@ -57,13 +57,17 @@ The following environment variables can be set:
 rails server
 ```
 
-Then go to [http://localhost:3000](http://localhost:3000) to view app
+Then go to [http://localhost:3000](http://localhost:3000) to view app.
 
 ## Running tests
 
 ```
 rails spec
 ```
+
+## Installation
+
+See THEMING.md.
 
 # Contributing
 
