@@ -31,9 +31,9 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @projects_header = 'COVID-19 projects looking for volunteers'
-        @projects_subheader = 'New or established projects helping with the COVID-19 crisis that need help. Volunteer yourself or create a new one.'
-        @page_title = 'All Projects'
+        @projects_header = I18n.t('projects_looking_for_volunteers')
+        @projects_subheader = I18n.t('new_or_established_projects_helping_with')
+        @page_title = I18n.t('all_projects')
 
         @projects = @projects.page(params[:page]).per(24)
 
@@ -54,9 +54,9 @@ class ProjectsController < ApplicationController
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
-    @projects_header = 'Volunteered Projects'
-    @projects_subheader = 'These are the projects where you volunteered.'
-    @page_title = 'Volunteered Projects'
+    @projects_header = I18n.t('volunteered_projects')
+    @projects_subheader = I18n.t('these_are_the_projects_where_you_volunteered')
+    @page_title = I18n.t('volunteered_projects')
     render action: 'index'
   end
 
@@ -68,9 +68,9 @@ class ProjectsController < ApplicationController
     @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
     @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
 
-    @projects_header = 'Own Projects'
-    @projects_subheader = 'These are the projects you created.'
-    @page_title = 'Own Projects'
+    @projects_header = I18n.t('own_projects')
+    @projects_subheader = I18n.t('these_are_the_projects_you_created')
+    @page_title = I18n.t('own_projects')
     render action: 'index'
   end
 
@@ -98,7 +98,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         track_event 'Project creation complete'
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to @project, notice: I18n.t('project_was_successfully_created') }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -115,7 +115,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if updated
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to @project, notice: I18n.t('project_was_successfully_updated') }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -127,7 +127,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
+      format.html { redirect_to projects_url, notice: I18n.t('project_was_successfully_deleted') }
       format.json { head :no_content }
     end
   end
@@ -135,7 +135,7 @@ class ProjectsController < ApplicationController
   def toggle_volunteer
     if @project.volunteered_users.include?(current_user)
       @project.volunteers.where(user: current_user).destroy_all
-      flash[:notice] = "We've removed you from the list of volunteered people."
+      flash[:notice] = I18n.t('we_ve_removed_you_from_the_list_of_volunteered_peo')
     else
       params[:volunteer_note] ||= ''
 
@@ -143,7 +143,7 @@ class ProjectsController < ApplicationController
 
       ProjectMailer.with(project: @project, user: current_user, note: params[:volunteer_note]).new_volunteer.deliver_now
 
-      flash[:notice] = 'Thanks for volunteering! The project owners will be alerted.'
+      flash[:notice] = I18n.t('thanks_for_volunteering_the_project_owners_will_be')
       track_event 'User volunteered'
     end
 
@@ -163,7 +163,7 @@ class ProjectsController < ApplicationController
 
     def ensure_owner_or_admin
       if !@project.can_edit?(current_user)
-        flash[:error] = "Apologies, you don't have access to this."
+        flash[:error] = I18n.t('apologies_you_don_t_have_access_to_this')
         redirect_to projects_path
       end
     end

@@ -27,7 +27,7 @@
         <% if current_user == @user || @user.visibility == true || (current_user && current_user.is_admin?) %>
           <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5"">
             <dt class="text-sm leading-5 font-medium text-gray-500">
-              Email
+              <%= t('email') %>
             </dt>
             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
               <%= mail_to @user.email, nil, encode: 'javascript', class: 'text-primary-500' %>
@@ -36,7 +36,7 @@
         <% end %>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            About
+            <%= t('about') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format @user.about, class: 'mb-3' %>
@@ -45,7 +45,7 @@
         <% if @user.skill_list.present? %>
           <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
             <dt class="text-sm leading-5 font-medium text-gray-500">
-              Skills
+              <%= t('skills') %>
             </dt>
             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 flex content-center flex-wrap space-y-bottom-2 -mb-2 space-x-right-2">
               <%= skill_badges @user.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
@@ -56,7 +56,7 @@
         <% if @user.level_of_availability.present? %>
           <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
             <dt class="text-sm leading-5 font-medium text-gray-500">
-              Level of Availability
+              <%= t('level_of_availability') %>
             </dt>
             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
               <%= @user.level_of_availability %>
@@ -66,7 +66,7 @@
 
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:pt-5 sm:pb-2">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Interesting links
+            <%= t('interesting_links') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= simple_format Rinku.auto_link(sanitize(@user.profile_links), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
@@ -74,7 +74,7 @@
         </div>
         <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
           <dt class="text-sm leading-5 font-medium text-gray-500">
-            Location
+            <%= t('location') %>
           </dt>
           <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @user.location %>
