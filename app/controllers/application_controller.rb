@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
+
+  before_action :set_theme_view_if_present
+
   before_action :show_global_announcements
   before_action :set_bg_gray
 
@@ -86,6 +89,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+    def set_theme_view_if_present
+      prepend_view_path "#{Rails.root.join('theme', 'views')}"
+
+    end
+
     def hydrate_project_categories
       @project_categories = Settings.project_categories
 
