@@ -7,11 +7,11 @@ module.exports = {
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
-          50: "#F7FAFC",
-          ...colors.indigo,
+          50: "#d4d272",
+          ...colors.yellow,
         },
         secondary: {
-          ...colors.gray,
+          ...colors.black,
         },
       },
       maxHeight: {
