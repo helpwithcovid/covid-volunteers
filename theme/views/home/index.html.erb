@@ -1,0 +1,45 @@
+<!-- Hero -->
+<div class="bg-white -mt-10 pt-24 ">
+  <div class="container mb-4 text-center mb-24">
+    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight leading-tight">Support Black-owned businesses</h1>
+    <h2 class="sm:text-2xl tracking-tight leading-tight mt-2">A new fork of HelpWithCovid</h2>
+
+    <div class="relative w-64 mx-auto">
+      <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'} do |form| %>
+        <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "border border-primary-100 p-2 pr-9 mt-4 rounded-full w-full text-center border-primary-400 text-primary-600 outline-none focus:border-primary-600", required: true %>
+        <button class="absolute inset-auto right-0 p-2 rounded-full cursor-pointer border-none shadow-none text-sm bg-transparent hover:bg-gray-100 transition duration-75" style="margin-top: 19px; margin-right: 5px" @click="$refs.searchForm.submit()">
+          <%= inline_svg_pack_tag 'media/svgs/magnifier.svg' %>
+        </button>
+      <% end %>
+    </div>
+    <div class="text-primary-700 mt-4">
+      Featuring <%= number_with_delimiter round_number_to_closest(@project_count, 50) %>+ projects
+      supported by <%= number_with_delimiter round_number_to_closest(@volunteer_count, 1001) %>+ people
+    </div>
+
+  <!-- Featured projects -->
+  <div class="relative container z-10 pb-4">
+    <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: nil} %>
+  </div>
+</div>
+
+<!-- Project categories -->
+<div class="relative featured-categories bg-primary-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
+  <div class="container z-10 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-4 md:gap-12 lg:gap-24 xl:gap-48 pb-24 sm:py-20 px-12 sm:px-0 lg:px-12 xl:px-24">
+    <%= render partial: 'featured-category', collection: @project_categories, as: :category %>
+  </div>
+</div>
+
+<!-- Project categories -->
+<div class="container">
+  <% cache @project_categories do %>
+    <%= render partial: 'project-category', collection: @project_categories, as: :category %>
+  <% end %>
+</div>
+
+<!-- Upcoming events -->
+<div class="bg-gray-100 shadow-inner">
+  <div class="container pt-10 pb-8 px-4">
+    <%= render partial: 'partials/events' %>
+  </div>
+</div>
