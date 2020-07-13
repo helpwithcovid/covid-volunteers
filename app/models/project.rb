@@ -27,12 +27,12 @@ class Project < ApplicationRecord
     end
   end
 
-  validates :status, inclusion: { in: ALL_PROJECT_STATUS }
+  validates :status, inclusion: { in: Settings.project_statuses }
 
   before_validation :default_values
 
   def default_values
-    self.status = ALL_PROJECT_STATUS.first if self.status.blank?
+    self.status = Settings.project_statuses.first if self.status.blank?
   end
 
   def to_param

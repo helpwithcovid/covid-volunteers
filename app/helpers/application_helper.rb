@@ -252,4 +252,7 @@ module ApplicationHelper
     url.scheme == 'mailto' ? url.opaque : url.host
   end
 
+  def feature_enabled?(feature)
+    Settings.features_enabled.to_hash.map{|k,v| k.to_s if v == true }.include? feature
+  end
 end

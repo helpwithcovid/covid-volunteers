@@ -2,32 +2,32 @@
   <%= t('find_projects') %>
 <% end %>
 
-<% if ALL_FEATURES.include?('volunteer_directory') %>
+<% if feature_enabled?('volunteer_directory') %>
   <%= link_to volunteers_path, class: "#{volunteers_nav_link_class(variant)}" do %>
     <%= t('volunteers') %>
   <% end %>
 <% end %>
 
-<% if ALL_FEATURES.include?('resources') %>
+<% if feature_enabled?('resources') %>
   <%= link_to offers_path, class: "#{offers_nav_link_class(variant)}" do %>
     <%= t('resources') %>
   <% end %>
 <% end %>
 
-<% if ALL_FEATURES.include?('office_hours') %>
+<% if feature_enabled?('office_hours') %>
   <%= link_to office_hours_path, class: "#{office_hours_nav_link_class(variant)}" do %>
     <%= t('office_hours') %>
   <% end %>
 <% end %>
 
-<% if ALL_FEATURES.include?('success_stories') %>
+<% if feature_enabled?('success_stories') %>
   <%= link_to success_stories_path, class: "#{success_stories_nav_link_class(variant)}" do %>
     <%= t('success_stories') %>
   <% end %>
 <% end %>
 
-<% if DISCORD_LINK %>
-  <%= link_to DISCORD_LINK, target: "_blank", class: "#{discord_nav_link_class(variant)}" do %>
+<% if Settings.discord_link %>
+  <%= link_to Settings.discord_link, target: "_blank", class: "#{discord_nav_link_class(variant)}" do %>
     <%= t('discord') %>
   <% end %>
 <% end %>

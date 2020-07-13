@@ -42,7 +42,7 @@ FactoryBot.define do
     name { 'My First Project' }
     description { 'My description' }
     volunteer_location { 'location' }
-    status { ALL_PROJECT_STATUS.first }
+    status { Settings.project_statuses.first }
   end
 
   factory :project_with_type, parent: :project do
