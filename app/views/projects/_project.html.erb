@@ -16,7 +16,7 @@
               <% end %>
 
               <% if current_user.blank? %>
-                <%= t('sign_up_to_volunteer') %>
+                - <%= t('sign_up_to_volunteer').downcase %>
               <% elsif !current_user.has_complete_profile? %>
                 <%= t('complete_your_profile_to_volunteer') %>
               <% end %>

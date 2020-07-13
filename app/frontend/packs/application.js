@@ -31,7 +31,7 @@ document.addEventListener("turbolinks:before-cache", function() {
 })
 
 import I18n from 'i18n-js'
-window.I18n = I18n
+global.I18n = I18n
 
 
 // Main App.

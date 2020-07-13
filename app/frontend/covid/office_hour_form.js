@@ -111,12 +111,9 @@ const OfficeHourForm = {
       });
     }
 
-    const modalActions =  [ { type: 'danger', text: 'Delete slot', callback: deleteCallback }, { type: 'cancel' } ];
-    const headerHTML = `Delete ${when} Office Hour`;
-    const bodyHTML = `
-      Are you sure you want to delete your <span class="text-primary-600">${when}</span> slot?
-    `;
-
+    const modalActions =  [ { type: 'danger', text: I18n.t('delete_slot'), callback: deleteCallback }, { type: 'cancel' } ];
+    const headerHTML = I18n.t('delete_when_office_hour', { when });
+    const bodyHTML = I18n.t('are_you_sure_you_want_to_delete_office_hour', { when });
     Covid.showModal(headerHTML, bodyHTML, modalActions, 'warning');
   },
 
@@ -163,12 +160,12 @@ const OfficeHourForm = {
     const description = $('#description').val();
 
     if (!description) {
-      $('.office-hour-description-error').text("We're sorry, can you please add a description for the OH?").show();
+      $('.office-hour-description-error').text(I18n.t('we_re_sorry_can_you_please_add_a_description_oh')).show();
       return;
     }
 
     if (description.length > 160) {
-      $('.office-hour-description-error').text("We're sorry, you can enter a maximum of 160 characters.").show();
+      $('.office-hour-description-error').text(I18n.t('we_re_sorry_you_can_enter_a_maximum_of_160_char')).show();
       return;
     }
 
@@ -180,12 +177,12 @@ const OfficeHourForm = {
       const dates = OfficeHourForm.slotStartAndEndDate(slot);
 
       if (!dates) {
-        $(slot).find('.office-hour-slot-errors').text('Please enter a date and a time.');
+        $(slot).find('.office-hour-slot-errors').text(I18n.t('please_enter_a_date_and_a_time'));
         continue;
       }
 
       if (moment().isAfter(dates[0])) {
-        $(slot).find('.office-hour-slot-errors').text('Oops, it seems like this slot is in the past.');
+        $(slot).find('.office-hour-slot-errors').text(I18n.t('oops_it_seems_like_this_slot_is_in_the_past'));
         continue;
       }
 
@@ -193,12 +190,12 @@ const OfficeHourForm = {
     }
 
     if (allDates.length == 0) {
-      $('.office-hour-slot-errors').first().text("Please enter at least one slot.");
+      $('.office-hour-slot-errors').first().text(I18n.t('please_enter_at_least_one_slot'));
       return false;
     }
 
     if (OfficeHourForm.doDatesOverlap(allDates)) {
-      $('.office-hour-slot-errors').first().text("We're sorry, it seems like the dates overlap.");
+      $('.office-hour-slot-errors').first().text(I18n.t('we_re_sorry_it_seems_like_the_dates_overlap'));
       return false;
     }
 
@@ -276,10 +273,8 @@ const OfficeHourForm = {
     const when = $(that).attr('x-when');
     const participant = JSON.parse($(that).attr('x-participant'));
 
-    const headerHTML = `${when} Office Hour`;
-    const bodyHTML = `
-      <br/>You have accepted:<br/><span class='text-primary-600'>${participant.name}</span> / <span class='text-primary-600'>${participant.email}</span>
-      `;
+    const headerHTML = I18n.t('when_office_hour', { when });
+    const bodyHTML = I18n.t('you_have_accepted_oh', { participant_name: participant.name, participant_email: participant.email });
 
     Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'Close' } ], 'warning');
   },
@@ -293,7 +288,7 @@ const OfficeHourForm = {
       const acceptedUserId = $('input[name="applicant_id"]:checked').val();
 
       if (!acceptedUserId) {
-        alert("Please choose an applicant.");
+        alert(I18n.t('please_choose_an_applicant'));
         return;
       }
 
@@ -310,11 +305,11 @@ const OfficeHourForm = {
       });
     }
 
-    const modalActions =  [ { type: 'danger', text: 'Delete slot', callback: deleteCallback }, { type: 'cancel' } ];
+    const modalActions =  [ { type: 'danger', text: I18n.t('delete_slot'), callback: deleteCallback }, { type: 'cancel' } ];
     let volunteerHTML = '';
 
     if (volunteers.length > 0) {
-      volunteerHTML += "Below are the people that applied for this slot:<br/>";
+      volunteerHTML += I18n.t('below_are_the_people_that_applied_for_this_slot');
 
       for (const volunteer of volunteers) {
         let projectsHTML = '';
@@ -345,19 +340,19 @@ const OfficeHourForm = {
           </ul>
 
           <div class="mt-2">
-            Once you accept someone you'll both receive a call invite.
+            ${I18n.t('once_you_accept_someone_you_ll_both_receive_a_call')}
           </div>
         `;
       }
 
-      modalActions.push( { type: 'submit', text: 'Accept', callback: acceptCallback });
+      modalActions.push( { type: 'submit', text: I18n.t('accept'), callback: acceptCallback });
     } else {
-      volunteerHTML = 'Nobody has applied yet.';
+      volunteerHTML = I18n.t('nobody_has_applied_yet');
     }
 
-    const headerHTML = `${when} Office Hour`;
+    const headerHTML = I18n.t('when_office_hour', { when });
     const bodyHTML = `
-      You have a slot at <span class="text-primary-600">${when}</span>.
+      ${I18n.t(you_have_a_slot_at_when, { when })}
       <br>
       <br>
       ${volunteerHTML}
