@@ -1,4 +1,4 @@
-// Please read the readme inside the /theme directory before applying changes to this file.
+// Please read the Theming.md file on Tweaking colors before applying changes to this file.
 
 const plugin = require('tailwindcss/plugin')
 const uiColors = require('@tailwindcss/ui/colors')

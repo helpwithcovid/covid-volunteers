@@ -14,7 +14,27 @@ You can add your own look & feel on top of the HelpWith platform in three ways:
 ## Tweaking colors
 
 `tailwind.config.js` contains the major colors and fonts used throughout the app. Most important is simply
-the `primary` and `secondary` colors
+the `primary` and `secondary` colors.
+
+You may change the apps color scheme using `/theme/tailwind.config.yml` file.
+
+You may use one of tailwind's default colors by passing the color name like so:
+
+```yaml
+colors:
+  primary: 'tailwind/ui/indigo'
+```
+
+You may declare your own colors from 50 -> 900 (increments of 100)
+
+```yaml
+colors:
+  primary:
+    50: '#fdf2f8'
+    100: '#fce8f3'
+    200: '#fad1e8'
+    ...
+```
 
 ## Tweaking i18n keys
 
