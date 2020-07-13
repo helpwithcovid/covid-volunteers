@@ -34,12 +34,12 @@ class OfficeHoursController < ApplicationController
       added_office_hours += 1
     end
 
-    redirect_to office_hours_path, notice: "#{added_office_hours} office hours added."
+    redirect_to office_hours_path, notice: I18n.t('added_office_hours_office_hours_added', added_office_hours: added_office_hours)
   end
 
   def destroy
     @office_hour.destroy
-    redirect_to new_office_hour_path, notice: 'Office hour was successfully deleted.'
+    redirect_to new_office_hour_path, notice: I18n.t('office_hour_was_successfully_deleted')
   end
 
   def apply
@@ -50,7 +50,7 @@ class OfficeHoursController < ApplicationController
       UserMailer.with(office_hour: @office_hour, application: current_user).office_hour_application.deliver_now
     end
 
-    redirect_to office_hours_path, notice: 'You application was sent.'
+    redirect_to office_hours_path, notice: I18n.t('you_application_was_sent')
   end
 
   def accept
@@ -59,7 +59,7 @@ class OfficeHoursController < ApplicationController
 
     UserMailer.with(office_hour: @office_hour).office_hour_invite.deliver_now
 
-    redirect_to new_office_hour_path, notice: 'Application accepted. Invite being sent!'
+    redirect_to new_office_hour_path, notice: I18n.t('application_accepted_invite_being_sent')
   end
 
   protected
@@ -70,7 +70,7 @@ class OfficeHoursController < ApplicationController
 
   def ensure_owner_or_admin
     if !@office_hour.can_edit?(current_user)
-      flash[:error] = "Apologies, you don't have access to this."
+      flash[:error] = I18n.t('apologies_you_don_t_have_access_to_this')
       redirect_to office_hours_path
     end
   end

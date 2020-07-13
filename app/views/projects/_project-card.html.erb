@@ -38,9 +38,9 @@
         <% total_volunteers = project.volunteers.length %>
         <div class="font-bold">
           <% if total_volunteers > 0 %>
-            <%= total_volunteers %> <%= 'volunteer'.pluralize total_volunteers %>
+            <%= total_volunteers %> <%= t('volunteer').pluralize total_volunteers %>
           <% else %>
-            No volunteers
+            <%= t('no_volunteers') %>
           <% end %>
         </div>
         <div class="text-gray-500"><%= time_ago_in_words project.created_at %> ago</div>

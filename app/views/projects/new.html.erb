@@ -1,7 +1,7 @@
 <div class="container">
   <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
     <%= form_for @project do |f| %>
-      <%= render partial: 'project_form', locals: { f: f, title: "Create new project", cta:"Create project" } %>
+      <%= render partial: 'project_form', locals: {f: f, title: t('create_new_project'), cta: t('create_project')} %>
     <% end %>
   </div>
 </div>

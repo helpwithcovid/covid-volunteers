@@ -3,10 +3,10 @@
     <%= form_for @offer do |f| %>
       <div>
         <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Create new resource
+          <%= t('create_new_resource') %>
         </h3>
         <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-          This information will be displayed publicly.
+          <%= t('this_information_will_be_displayed_publicly') %>
         </p>
       </div>
 
@@ -15,7 +15,7 @@
         <div class="flex justify-end">
           <span class="ml-3 inline-flex rounded-md shadow-sm">
             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary- active:bg-primary-700 transition duration-150 ease-in-out">
-              Create resource
+              <%= t('create_resource') %>
             </button>
           </span>
         </div>

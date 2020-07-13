@@ -1,3 +1,52 @@
+# Site features
+features_enabled:
+  volunteer_directory: true
+  resources: true
+  office_hours: true
+  success_stories: true
+
+# These are the skills that volunteers can have and projects can request.
+volunteer_skills:
+  - Nunchucks
+  - Bow hunting
+  - Computer hacking
+
+# Availability windows that are suggested to volunteers
+volunteer_availabilities:
+  - '1-2 hours a day'
+  - '2-4 hours a day'
+  - '4+ hours a day'
+  - 'Only on Weekends'
+  - 'Full Time'
+
+# Options for how many volunteers a project might request
+volunteers_needed_for_project:
+  - '1-10'
+  - '10-50'
+  - '50-100'
+  - '100+'
+
+project_types:
+  - 'Black Businesses'
+  - 'Non-profit volunteering'
+
+project_statuses:
+  - 'Just started'
+  - 'In progress'
+  - 'Launched'
+
+organization_statuses:
+  - 'Non-profit'
+  - 'For-profit'
+  - 'Public Benefit Corporation'
+  - 'Not incorporated'
+
+discord_link: 'https://example.com?no_discord_yet=sorry'
+
+# If a project has less than N volunteers
+# it can ask to be highlighted.
+max_volunteers_for_highlight_offer: 30
+
 project_categories:
   - name: Medical
     slug: medical

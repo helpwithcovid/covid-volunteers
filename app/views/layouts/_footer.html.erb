@@ -4,7 +4,7 @@
       <div class="">
         <%= link_to "About HWC", about_path, class: 'font-bold mr-6' %>
         <%= link_to "GitHub", "https://github.com/helpwithcovid/covid-volunteers", class: 'font-bold mr-6', target: :_blank %>
-        <%= link_to "Media kit", "offers#media_kit", class: 'font-bold mr-6 sm:visible invisible' %>
+        <%= link_to t('media_kit'), "offers#media_kit", class: 'font-bold mr-6 sm:visible invisible' %>
       </div>
       <div class="flex flex-col sm:flex-row">
         <span class="flex sm:px-3 py-1 sm:mr-6">
@@ -23,7 +23,7 @@
               <path d="M834 882 c-16 -11 -34 -48 -34 -72 0 -27 43 -70 70 -70 12 0 32 11 45 25 47 46 23 125 -38 125 -18 0 -37 -4 -43 -8z"/>
             </g>
           </svg>
-          <span class="text-gray-800 text-sm">Join the <%= link_to 'Discord group', 'https://discord.gg/8nAJfFN', target: :_blank, class: 'font-bold' %></span>
+          <span class="text-gray-800 text-sm">Join the <%= link_to 'Discord', 'https://discord.gg/8nAJfFN', target: :_blank, class: 'font-bold' %></span>
         </span>
         <span class="flex pt-1">
           <a href="https://www.facebook.com/HelpwithCOVID" target="_blank" class="mr-2">

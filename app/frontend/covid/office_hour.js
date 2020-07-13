@@ -35,15 +35,8 @@ const OfficeHour = {
     }
 
     if (canApply == 'true') {
-      const headerHTML = `${when} Office Hour`;
-      const bodyHTML = `
-        There is a slot available <span class="text-primary-600">${when}</span>.
-        <br/>
-        <br/>
-        You can apply below. You'll receive an email if you were accepted.
-        <br/><br/>
-        Make sure your volunteer bio is filled out! We'll send that and your projects to <span class="text-primary-600">${OHOwner}</span>.
-        `;
+      const headerHTML = I18n.t('when_office_hour', { when });
+      const bodyHTML = I18n.t('there_is_a_slot_available_apply_below', { when, OHOwner });
 
       const callback = () => {
         $.ajax({
@@ -54,13 +47,8 @@ const OfficeHour = {
 
       Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel' }, { type: 'submit', text: 'Apply', callback } ], 'warning');
     } else {
-      const headerHTML = `${when} Office Hour`;
-      const bodyHTML = `
-        There is a slot available <span class="text-primary-600">${when}</span>.
-        <br/>
-        <br/>
-        In order to apply you must have an account and your profiled <a class="text-primary-600" href="/users/edit">filled out</a>.
-        `;
+      const headerHTML = I18n.t('when_office_hour', { when });
+      const bodyHTML = I18n.t('there_is_a_slot_available_update_profile', { when });
 
       Covid.showModal(headerHTML, bodyHTML, [ { type: 'cancel', text: 'Close' } ], 'warning');
     }

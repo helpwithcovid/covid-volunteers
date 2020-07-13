@@ -2,17 +2,17 @@
   <div>
     <div>
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Manage your Office Hours
+        <%= t('manage_your_office_hours') %>
       </h3>
       <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-        Support the community by offering times to chat with projects that need quick help.
+        <%= t('support_the_community_by_offering_times_to_chat_wi') %>
       </p>
     </div>
 
     <div class="mt-6 sm:mt-5 office-hour-form">
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <div class="text-md leading-5 text-gray-500 sm:col-span-3">
-          Specify what you would like to Help With
+          <%= t('specify_what_you_would_like_to_help_with') %>
         </div>
 
         <div class="pt-3 sm:pt-0 sm:col-span-3">
@@ -27,12 +27,12 @@
       <% if @confirmed_office_hours.present? || @unconfirmed_office_hours.present? %>
         <div class="grid grid-cols-3 sm:gap-4 items-start border-t border-gray-200 pt-5">
           <div class="text-md leading-5 text-gray-500 col-span-3">
-            Your current slots
+            <%= t('your_current_slots') %>
           </div>
 
           <% if @confirmed_office_hours.present? %>
             <div class="text-xs text-gray-500 col-span-3 mt-3 mb-2 sm:my-0">
-              All confirmed office hours
+              <%= t('all_confirmed_office_hours') %>
             </div>
 
             <%= render partial: "slots", locals: { slots: @confirmed_office_hours } %>
@@ -40,7 +40,7 @@
 
           <% if @unconfirmed_office_hours.present? %>
             <div class="text-xs text-gray-500 col-span-3 mt-3 mb-2 sm:my-0">
-              Click on the office hour slot to choose a volunteer to speak to.
+              <%= t('click_on_the_office_hour_slot_to_choose_a_volunteer') %>
             </div>
 
             <%= render partial: "slots", locals: { slots: @unconfirmed_office_hours } %>
@@ -51,26 +51,26 @@
       <div class="grid grid-cols-3 sm:gap-4 items-start border-t border-gray-200 mt-5 pt-5">
         <div class="col-span-3 mt-3 mb-2 sm:my-0">
           <div class="text-md leading-5 text-gray-500">
-            Add slots
+            <%= t('add_slots') %>
           </div>
         </div>
         <div class="col-span-3 office-hour-form-template">
           <div class="flex flex-wrap sm:inline-flex rounded-md shadow-sm ">
             <span class="inline-flex items-center px-3 rounded-l-md sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-              I'm available for
+              <%= t('i_m_available_for') %>
             </span>
 
             <%= select_tag 'office_hour[][length]', options_for_select([ [ '10 minutes', '10m' ], [ '20 minutes', '20m' ], [ '30 minutes', '30m' ] ] ), class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out text-sm leading-5 office-hour-length' %>
             <span class="inline-flex items-center px-3 sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-              on
+              <%= t('on') %>
             </span>
             <%= text_field_tag 'office_hour[][date]', nil, placeholder: 'June 1st', class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out text-sm leading-5 office-hour-date' %>
             <span class="inline-flex items-center px-3 sm:border sm:border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-              at
+              <%= t('at') %>
             </span>
             <%= text_field_tag 'office_hour[][time]', nil, placeholder: '10:00a', class: 'flex-1 form-input sm:border sm:border-r-0  block w-full rounded-none transition duration-150 ease-in-out sm:text-sm leading-5 office-hour-time' %>
             <span class="inline-flex items-center px-3 rounded-none rounded-r-md sm:border border-gray-300 bg-gray-50 text-gray-500 text-sm">
-              Pacific
+              <%= t('pacific') %>
             </span>
           </div>
 
@@ -87,7 +87,7 @@
     </div>
 
     <div class="mt-4">
-      <%= link_to "+ Add more slots", "javascript:void(0)", class: "text-primary-600 text-sm add-office-hour-slot" %>
+      <%= link_to t('add_more_slots'), "javascript:void(0)", class: "text-primary-600 text-sm add-office-hour-slot" %>
     </div>
   </div>
 </div>
@@ -96,13 +96,13 @@
   <div class="flex justify-start">
     <span class="mr-5 inline-flex rounded-md shadow-sm">
       <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary- active:bg-primary-700 transition duration-150 ease-in-out create-office-hour-slots">
-        Create slots
+        <%= t('create_slots') %>
       </button>
     </span>
 
     <span class="mr-5 inline-flex rounded-md shadow-sm">
       <button type="button" class="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out cancel-office-hour-slots">
-        Cancel
+        <%= t('cancel') %>
       </button>
     </span>
   </div>

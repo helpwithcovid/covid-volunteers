@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.where(id: params[:id]).last
 
     if @user.blank? || !@user.is_visible_to_user?(current_user)
-      flash[:error] = 'Sorry, no such user.'
+      flash[:error] = I18n.t('sorry_no_such_user')
       redirect_to projects_path
     end
   end

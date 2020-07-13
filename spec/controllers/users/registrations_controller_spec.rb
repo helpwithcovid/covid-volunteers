@@ -26,10 +26,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect(response.body).to_not include(user.name)
       end
     end
-    
+
     context 'with one volunteer' do
       let!(:user) { create(:user_visible) }
-      
+
       context 'with no sign-in' do
         before { do_request }
 
@@ -44,13 +44,13 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         it 'shows/assigns filters' do
           expect(assigns(:show_filters)).to eq(true)
         end
-          
+
         it_behaves_like 'it displays volunteer'
 
         context 'when skills are selected' do
           let(:do_request) { get :index, params: params }
           let(:params) { { skills: ['Analytics'] } }
-              
+
           it_behaves_like 'it does not display volunteer'
 
           context 'when a user has matching skills' do
@@ -68,16 +68,16 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
           context 'when a user has matching value' do
             let!(:user) { create(:user_visible, location: 'Paris') }
-            
+
             it_behaves_like 'it displays volunteer'
           end
         end
 
         context 'when volunteer visibility is false' do
           let!(:user) { create(:user, visibility: false) }
-            
+
           it_behaves_like 'it does not display volunteer'
-        end 
+        end
       end
 
       context 'when admin is signed-in' do
@@ -91,9 +91,9 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
         context 'when volunteer visibility is false' do
           let!(:user) { create(:user, visibility: false) }
-            
+
           it_behaves_like 'it displays volunteer'
-        end      
+        end
       end
 
       context 'with a second volunteer' do
@@ -110,7 +110,6 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           end
 
           it 'orders them from latest to earliest' do
-            pending 'FIXME something broke this'
             expect(assigns(:users).first).to eq(user_two)
             expect(assigns(:users).last).to eq(user)
           end
@@ -123,12 +122,11 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           it 'is successful' do
             expect(response).to be_successful
           end
-          
+
           it 'orders them from earliest to latest' do
-            pending 'FIXME something broke this'
             expect(assigns(:users).first).to eq(user)
             expect(assigns(:users).last).to eq(user_two)
-          end 
+          end
         end
       end
     end
@@ -170,7 +168,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           expect(response.body).to include('Volunteer 26')
         end
       end
-    end  
+    end
   end
 
   describe 'GET #show' do
@@ -199,7 +197,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         it 'displays flash error' do
           subject
 
-          expect(flash[:error]).to eq('Sorry, no such user.') 
+          expect(flash[:error]).to eq('Sorry, no such user.')
         end
       end
     end
@@ -213,7 +211,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
       it 'displays flash error' do
         subject
-        
+
         expect(flash[:error]).to eq('Sorry, no such user.')
       end
     end
@@ -266,14 +264,14 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     context 'when email already exists' do
       before { create(:user, email: 'test@gmail.com') }
-      
+
       it 'does not track an event' do
         expect(controller).to_not receive(:track_event).with('User registration complete')
 
         post :create, params: params
       end
 
-      it 'it re-renders the form' do 
+      it 'it re-renders the form' do
         post :create, params: params
 
         expect(response).to render_template :new

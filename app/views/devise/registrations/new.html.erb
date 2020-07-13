@@ -1,10 +1,10 @@
 <div class="flex flex-col justify-center sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-      Sign up for an account
+      <%= t('sign_up_for_an_account') %>
     </h2>
     <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
-      You'll be able to either create a project or volunteer after.
+      <%= t('you_ll_be_able_to_either_create_a_project_or_volun') %>
     </p>
   </div>
 
@@ -17,7 +17,7 @@
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <div>
           <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
-            Email address
+            <%= t('email_address') %>
           </label>
           <div class="mt-1 rounded-md shadow-sm">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
@@ -26,7 +26,7 @@
 
         <div class="mt-6">
           <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-            Password
+            <%= t('password') %>
           </label>
           <div class="mt-1 rounded-md shadow-sm">
             <%= f.password_field :password, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
@@ -35,7 +35,7 @@
 
         <div class="mt-6">
           <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-            Password confirmation
+            <%= t('password_confirmation') %>
           </label>
           <div class="mt-1 rounded-md shadow-sm">
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
@@ -45,7 +45,7 @@
         <div class="mt-6">
           <span class="block w-full rounded-md shadow-sm">
             <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary active:bg-primary-700 transition duration-150 ease-in-out">
-              Sign up
+              <%= t('sign_up') %>
             </button>
           </span>
         </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="relative flex justify-center text-sm leading-5">
               <span class="px-2 bg-white text-gray-500">
-                Or
+                <%= t('or') %>
               </span>
             </div>
           </div>

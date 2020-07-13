@@ -1,4 +1,4 @@
-<%- share_title "Project #{@project.name}" %>
+<%- share_title t('project_name', name: @project.name) %>
 <%- share_url project_url(@project); %>
 
 <div class="container">
@@ -10,11 +10,7 @@
             <%= @project.name %>
           </h3>
 
-          <% if current_user && @project.user == current_user %>
-            <p class="mt-1 text-sm leading-5 text-gray-500">
-              Use <%= link_to "HWC's Discord", "https://discord.gg/8nAJfFN", class: "text-primary-500", target: "_blank" %> to manage your project communication.
-            </p>
-          <% elsif @project.user && @project.user.name.present? %>
+          <% if @project.user && @project.user.name.present? %>
             <div class="mt-1">
               <% if @project.user.visibility %>
                 <%= link_to profile_path(@project.user), class: 'flex-shrink-0 group inline-block focus:outline-none' do %>
@@ -35,7 +31,7 @@
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
                 </svg>
                 <span>
-                  Edit
+                  <%= t('edit') %>
                 </span>
               </button>
             <% end %>
@@ -52,7 +48,7 @@
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                   </svg>
                   <span>
-                    Send email to volunteers
+                    <%= t('send_email_to_volunteers') %>
                   </span>
                 </button>
               <% end %>
@@ -65,7 +61,7 @@
                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                   </svg>
                   <span>
-                    Export volunteers to CSV
+                    <%= t('export_volunteers_to_csv') %>
                   </span>
                 </button>
               <% end %>
@@ -80,7 +76,7 @@
                     <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
                   </svg>
                   <span>
-                    Delete
+                    <%= t('delete') %>
                   </span>
                 </button>
               </span>
@@ -140,40 +136,17 @@
     <div class="bg-white mt-6 mb-8 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg" id="disable_highlight_projects_container">
       <div class="px-4 py-5 sm:p-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Are you a validated or established project with large impact?
+          <%= t('are_you_a_validated_or_established_project_with_la') %>
         </h3>
         <div class="mt-2 text-sm leading-5 text-gray-500">
           <p>
-            We try our best to surface interesting projects with lots of potential that just need a bit of a boost. Write to us if that's the case.
+            <%= t('we_try_our_best_to_surface_interesting_projects_wi') %>
           </p>
         </div>
         <div class="flex justify-between mt-3 text-sm leading-5">
           <%= mail_to ENV['EMAIL_ADDRESS'], "Tell us about your project &rarr;".html_safe, subject: "[Highlight request] #{@project.name} ", encoding: "hex", target: "_blank", class: "font-medium text-primary-600 hover:text-primary-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
           <%= link_to "javascript:void(0)", id: "disable_highlight_projects_alert", class: "font-medium text-primary-600 hover:text-primary-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
-            Don't show this again
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <% if current_user && @project.volunteered_users.count >= VOLUNTEERS_REQUIRED_FOR_FUNDING && @project.user == current_user && !cookies[:funding_alert] %>
-    <div class="bg-white mt-6 border-2 border-orange-300 bg-orange-100 shadow sm:rounded-lg mb-8" id="disable_funding_container">
-      <div class="px-4 py-5 sm:p-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Apply for funding
-        </h3>
-        <div class="mt-2 text-sm leading-5 text-gray-500">
-          <p>
-            The <%= link_to "COVID-19 Task Force", "www.covid19-response.com", _target: "_blank", class: "text-primary-500" %> offers HWC projects that reach a certain threshold of volunteers the ability to apply for funding and resources from donors and investors. The TF is made up of epidemiologists, virologist, operators, and investors that are vetting the highest impact ideas to combat COVID-19.
-          </p>
-        </div>
-        <div class="flex justify-between mt-3 text-sm leading-5">
-          <%= link_to "https://forms.gle/5gLZBUueYxZYynrP8", target: "_blank", class: "font-medium text-primary-600 hover:text-primary-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
-            Submit an application here &rarr;
-          <% end %>
-          <%= link_to "javascript:void(0)", id: "disable_funding_alert", class: "font-medium text-primary-600 hover:text-primary-500 focus:outline-none focus:underline transition ease-in-out duration-150" do %>
-            Don't show this again
+            <%= t('don_t_show_this_again') %>
           <% end %>
         </div>
       </div>
@@ -191,17 +164,17 @@
             <% if @project.status == "Just started" %>
               <div class="bg-orange-500 flex items-center px-3 py-1 opacity-75">
                 <%= inline_svg_pack_tag 'media/svgs/glowing-lightbulb.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold">Idea Stage</span>
+                <span class="text-white text-sm font-bold"><%= t('idea_stage') %></span>
               </div>
             <% elsif @project.status == "In progress" %>
               <div class="bg-green-500 flex items-center px-3 py-1 opacity-75">
                 <%= inline_svg_pack_tag 'media/svgs/half-dotted-circle.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold">In Progress</span>
+                <span class="text-white text-sm font-bold"><%= t('in_progress') %></span>
               </div>
             <% elsif @project.status == "Launched" %>
               <div class="bg-teal-500 flex items-center px-3 py-1 opacity-75">
                 <%= inline_svg_pack_tag 'media/svgs/sparkling-stars.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold">Launched</span>
+                <span class="text-white text-sm font-bold"><%= t('launched') %></span>
               </div>
             <% end %>
           </div>
@@ -210,7 +183,7 @@
           <div class="absolute top-4 right-4 rounded-full overflow-hidden">
             <div class="flex items-center px-3 py-1" style="background-color: rgba(0, 0, 0, 0.5)">
               <%= inline_svg_pack_tag 'media/svgs/lightning.svg', class: 'mr-1 text-white fill-current' %>
-              <span class="text-white text-sm font-bold">Actively Recruiting</span>
+              <span class="text-white text-sm font-bold"><%= t('actively_recruiting') %></span>
             </div>
           </div>
         <% end %>
@@ -261,12 +234,12 @@
       <div class="sm:col-span-2">
         <div class="bg-white overflow-hidden rounded-lg sm:pb-4 shadow">
           <div class="p-4 sm:px-6 sm:py-3 bg-secondary-100 border-b border-primary-400">
-            <h3 class="text-primary-700 font-bold">About the Project</h3>
+            <h3 class="text-primary-700 font-bold"><%= t('about_the_project') %></h3>
           </div>
 
           <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2">
             <dt class="text-sm leading-5 font-bold text-gray-800">
-              Description
+              <%= t('description') %>
             </dt>
             <dd class="mt-2 text-sm leading-5 text-gray-600">
               <%= simple_format Rinku.auto_link(sanitize(@project.description), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
@@ -276,7 +249,7 @@
           <% if @project.progress.present? %>
             <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
               <dt class="text-sm leading-5 font-bold text-gray-800">
-                How far along is it
+                <%= t('how_far_along_is_it') %>
               </dt>
               <dd class="mt-2 text-sm leading-5 text-gray-600">
                 <%= simple_format Rinku.auto_link(sanitize(@project.progress), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
@@ -287,7 +260,7 @@
           <% if @project.target_location.present? %>
             <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
               <dt class="text-sm leading-5 font-bold text-gray-800">
-                Project target location
+                <%= t('project_target_location') %>
               </dt>
               <dd class="mt-2 text-sm leading-5 text-gray-600">
                 <%= @project.target_location %>
@@ -298,13 +271,13 @@
 
         <div class="mt-8 bg-white overflow-hidden rounded-lg shadow">
           <div class="p-4 sm:px-6 sm:py-3 bg-secondary-100 border-b border-primary-400">
-            <h3 class="text-primary-700 font-bold">Help Needed</h3>
+            <h3 class="text-primary-700 font-bold"><%= t('help_needed') %></h3>
           </div>
 
           <% if @project.skill_list.present? %>
             <div class="p-4 sm:px-6 sm:pt-5 sm:pb-2">
               <dt class="text-sm leading-5 font-medium text-gray-800">
-                Skills needed
+                <%= t('skills_needed') %>
               </dt>
               <dd class="mt-2 text-sm leading-5 text-gray-600 flex content-center flex-wrap space-y-bottom-2 space-x-right-2">
                 <%= skill_badges @project.skill_list, color: 'blue', model: 'projects', filter_by: 'skills' %>
@@ -315,7 +288,7 @@
           <% if @project.accepting_volunteers? %>
             <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
               <dt class="text-sm leading-5 font-bold text-gray-800">
-                Tasks that need to get done
+                <%= t('tasks_that_need_to_get_done') %>
               </dt>
               <dd class="mt-2 text-sm leading-5 text-gray-600">
                 <%= simple_format @project.looking_for, class: 'mb-3' %>
@@ -333,16 +306,16 @@
 
           <div class="bg-white overflow-hidden rounded-lg sm:sticky sm:top-0 shadow">
             <div class="p-4 sm:px-6 sm:py-3 bg-secondary-100 border-b border-primary-400">
-              <h3 class="text-primary-700 font-bold">Project details</h3>
+              <h3 class="text-primary-700 font-bold"><%= t('project_details') %></h3>
             </div>
 
             <div class="p-6 space-y-4">
-              <%= project_panel_item(title: 'Who is already working on this') do %>
+              <%= project_panel_item(title: t('who_is_already_working_on_this')) do %>
                 <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
               <% end %>
 
               <% if @project.links.present? %>
-                <%= project_panel_item(title: 'Helpful links') do %>
+                <%= project_panel_item(title: t('helpful_links')) do %>
                   <div>
                     <%= simple_format (Rinku.auto_link(sanitize(@project.links), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"') do |url|
                       url.length > 35 ? shorten_url(url_from_string(url.start_with?('http') ? url : "http://#{url}")) : url
@@ -352,25 +325,25 @@
               <% end %>
 
               <% if @project.contact.present? %>
-                <%= project_panel_item(title: 'How to get in touch') do %>
+                <%= project_panel_item(title: t('how_to_get_in_touch')) do %>
                   <%= Rinku.auto_link(sanitize(@project.contact), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"').html_safe %>
                 <% end %>
               <% end %>
 
               <% if @project.accepting_volunteers? %>
                 <% if @project.number_of_volunteers.present? %>
-                  <%= project_panel_item(title: 'Number of volunteers needed') do %>
+                  <%= project_panel_item(title: t('number_of_volunteers_needed')) do %>
                     <%= @project.number_of_volunteers %>
                   <% end %>
                 <% end %>
 
                 <% if @project.volunteer_location.present? %>
-                  <%= project_panel_item(title: 'Preferred Volunteer location') do %>
+                  <%= project_panel_item(title: t('preferred_volunteer_location')) do %>
                     <%= @project.volunteer_location %>
                   <% end %>
                 <% end %>
 
-                <%= project_panel_item(title: 'Organization status') do %>
+                <%= project_panel_item(title: t('organization_status')) do %>
                   <% if @project.organization_status.present? %>
                     <div class="flex items-end">
                       <%= @project.organization_status %>
@@ -383,7 +356,7 @@
                     </div>
                   <% else %>
                     <div class="flex items-end">
-                      Not specified
+                      <%= t('not_specified') %>
                     </div>
                   <% end %>
                 <% end %>
@@ -399,7 +372,7 @@
     <div class="mt-8 bg-white overflow-hidden sm:rounded-lg sm:shadow">
       <div class="bg-white px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Volunteers
+          <%= t('volunteers') %>
         </h3>
       </div>
 

@@ -3,7 +3,7 @@
 <div class="container">
   <div class="mx-auto w-full text-center mt-6 mb-12">
     <div class="font-bold text-2xl mb-4 text-gray-700"><%= @page_title %></div>
-    <div class="mb-4 leading-tight text-gray-700">How projects bring people together<br/>and the progress they made.</div>
+    <div class="mb-4 leading-tight text-gray-700"><%= t('how_projects_bring_people_together') %></div>
   </div>
 
   <% if user_signed_in? and current_user.is_admin? %>
@@ -42,7 +42,7 @@
   <% else %>
     <div class="flex flex-col justify-center items-center min-h-400px text-gray-400 text-lg text-center">
       <%= inline_svg_pack_tag 'media/svgs/empty-graphic.svg' %>
-      <span class="mt-8">No success story found.</span>
+      <span class="mt-8"><%= t('no_success_story_found') %></span>
     </div>
   <% end %>
 </div>

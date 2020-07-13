@@ -10,15 +10,15 @@
           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= project_volunteer_class %>">
             <% if project.accepting_volunteers? %>
               <% if project.volunteered_users.count == 0 %>
-                no volunteers
+                <%= t('no_volunteers') %>
               <% else %>
-                <%= pluralize(project.volunteered_users.count, 'volunteer') %>
+                <%= pluralize(project.volunteered_users.count, t('volunteer')) %>
               <% end %>
 
               <% if current_user.blank? %>
-                - sign up to volunteer
+                - <%= t('sign_up_to_volunteer').downcase %>
               <% elsif !current_user.has_complete_profile? %>
-                - complete your profile to volunteer
+                <%= t('complete_your_profile_to_volunteer') %>
               <% end %>
             <% end %>
           </span>
@@ -60,7 +60,7 @@
         </div>
         <div class="mt-2 flex items-center text-xs leading-5 text-gray-500 sm:mt-0">
           <span>
-            created
+            <%= t('created') %>
             <time><%= distance_of_time_in_words_to_now project.created_at %> ago</time>
           </span>
         </div>

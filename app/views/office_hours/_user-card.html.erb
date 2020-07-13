@@ -12,7 +12,7 @@
         <% if current_user && user == current_user %>
           <div class="text-xs leading-loose flex">
             <span class="inline-block">
-              share:
+              <%= t('share') %>
             </span>
             <a href="https://twitter.com/intent/tweet?text=I%27m%20helping%20with%20the%20COVID%20crisis%21%20Book%20a%20time%20with%20me%20here%3A%20http%3A//helpwithcovid.com/office_hours/u/<%= current_user.id %>." target="_blank" class="ml-2 inline-block">
               <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 160.000000 160.000000" preserveAspectRatio="xMidYMid meet">
@@ -63,18 +63,18 @@
 
                 <div class="group-hover:hidden w-2/3 text-center sm:text-left">
                   <%= oh.applications.count %>
-                  <span class="hidden sm:inline-block">signed up</span>
+                  <span class="hidden sm:inline-block"><%= t('signed_up') %></span>
                 </div>
 
                 <div class="hidden group-hover:block sm:w-2/3 text-left">
                   <% if current_user == oh.user %>
-                    manage
+                    <%= t('manage') %>
                   <% elsif oh.participant %>
-                    filled
+                    <%= t('filled') %>
                   <% elsif oh.applied?(current_user) %>
-                    already applied
+                    <%= t('already_applied') %>
                   <% else %>
-                    apply
+                    <%= t('apply') %>
                   <% end %>
                 </div>
               <% end %>

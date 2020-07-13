@@ -5,11 +5,6 @@ class ProjectMailer < ApplicationMailer
     @note = params[:note]
     @user_volunteered_projects_count = @user.volunteers.count
 
-    mail(to: @project.user.email, reply_to: @user.email, subject: "You got a new volunteer for #{@project.name}!")
-  end
-
-  def volunteer_outreach
-    @user = params[:user]
-    mail(to: @user.email, reply_to: ENV['EMAIL_ADDRESS'], subject: '[Help With Covid - action required] Thank you and an update')
+    mail(to: @project.user.email, reply_to: @user.email, subject: I18n.t('you_got_a_new_volunteer_for_name', name: @project.name))
   end
 end

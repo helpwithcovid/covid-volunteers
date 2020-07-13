@@ -8,7 +8,7 @@
         <% is_category = false %>
       <% end %>
       <span class="submenu-item <%= "submenu-item-active" if @project_category.blank? %>">
-        <%= link_to 'All Categories', projects_path %>
+        <%= link_to t('all_categories'), projects_path %>
       </span>
     </div>
   </div>
