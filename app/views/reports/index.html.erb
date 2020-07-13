@@ -37,7 +37,7 @@
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h5 class="font-bold uppercase text-gray-600">Total Users</h5>
-                        <h3 class="font-bold text-3xl"><%=@user_total%></h3>
+                        <h3 class="font-bold text-3xl"><%=@report.user_count%></h3>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Volunteered Users</h5>
-                                <h3 class="font-bold text-3xl"><%=@userpairedup_total%></h3>
+                                <h3 class="font-bold text-3xl"><%=@report.volunteered_user_count%></h3>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">New Users last 7 days</h5>
-                                <h3 class="font-bold text-3xl"><%=@new_users %></h3>
+                                <h3 class="font-bold text-3xl"><%=@report.new_user_count%></h3>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Projects</h5>
-                                <h3 class="font-bold text-3xl"><%=@project_total%></h3>
+                                <h3 class="font-bold text-3xl"><%=@report.project_count%></h3>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">Total Volunteered Projects</h5>
-                                <h3 class="font-bold text-3xl"><%=@projectvolunteered_total%></h3>
+                                <h3 class="font-bold text-3xl"><%=@report.volunteered_project_count%></h3>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">New Projects last 7 days</h5>
-                                <h3 class="font-bold text-3xl"><%=@new_projects%></h3>
+                                <h3 class="font-bold text-3xl"><%=@report.new_project_count%></h3>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-lg">
                         <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Users</h5>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -135,10 +135,9 @@
                                 new Chart(document.getElementById("chartjs-0"), {
                                     "type": "bar",
                                     "data": {
-                                        "labels": ["March","April","May","June","July"],
+                                        "labels": <%=@report.month_labels.to_json.html_safe%>,
                                         "datasets": [{
-                                            "label": "Users per month",
-                                            "data": <%=@user_counts%>,
+                                            "data": <%=@report.project_count_per_month%>,
                                             "borderColor": "rgb(255, 99, 132)",
                                             "backgroundColor": "rgba(255, 99, 132, 0.2)",
                                             "borderWidth": 1
@@ -151,7 +150,10 @@
                                                     "beginAtZero": true
                                                 }
                                             }]
-                                        }
+                                        },
+                                        "legend": {
+                                          "display": false
+                                       }
                                     }
                                 });
                             </script>
@@ -166,7 +168,7 @@
                 <!--Graph Card-->
                 <div class="bg-white border-transparent rounded-lg shadow-lg">
                     <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                        <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        <h5 class="font-bold uppercase text-gray-600">Volunteered Users</h5>
                     </div>
                     <div class="p-5">
                         <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -174,16 +176,19 @@
                             new Chart(document.getElementById("chartjs-1"), {
                                 "type": "bar",
                                 "data": {
-                                    "labels": ["March","April","May","June","July"],
+                                    "labels": <%=@report.month_labels.to_json.html_safe%>,
                                     "datasets": [{
-                                        "label": "Volunteered Users per month",
-                                        "data": <%=@userpairedup_counts%>,
+                                        "data": <%=@report.volunteered_user_count_per_month%>,
                                         "borderColor": "rgb(153, 102, 255)",
                                         "backgroundColor": "rgba(153, 102, 255, 0.2)",
                                         "borderWidth": 1
                                     }]
                                 },
-                                "options": {}
+                                "options": {
+                                  "legend": {
+                                    "display": false
+                                  }
+                                }
                             });
                         </script>
                     </div>
@@ -196,7 +201,7 @@
                     <!--Table Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-lg">
                         <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Table</h5>
+                            <h5 class="font-bold uppercase text-gray-600">User Table</h5>
                         </div>
                         <div class="p-5">
                             <table class="w-full p-5 text-gray-700 text-center">
@@ -209,11 +214,11 @@
                                 </thead>
 
                                 <tbody>
-                                  <% @users_userspairedup_report.each do |date, user_count, userpairedup_count| %> 
+                                  <% @report.user_table.each do |date, user_count, volunteered_user_count| %> 
                                     <tr>
                                       <td class="border px-4 py-2"><%= date %></td>
                                       <td class="border px-4 py-2"><%= user_count %></td>
-                                      <td class="border px-4 py-2"><%= userpairedup_count %></td>
+                                      <td class="border px-4 py-2"><%= volunteered_user_count %></td>
                                     </tr>
                                   <% end %>
                                 </tbody>
@@ -228,7 +233,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-lg">
                         <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Projects</h5>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -236,16 +241,19 @@
                                 new Chart(document.getElementById("chartjs-2"), {
                                     "type": "bar",
                                     "data": {
-                                        "labels": ["March","April","May","June","July"],
+                                        "labels": <%=@report.month_labels.to_json.html_safe%>,
                                         "datasets": [{
-                                            "label": "Projects per month",
-                                            "data": <%=@project_counts%>,
+                                            "data": <%=@report.project_count_per_month%>,
                                             "borderColor": "rgb(75, 192, 192)",
                                             "backgroundColor": "rgba(75, 192, 192, 0.2)",
                                             "borderWidth": 1
                                         }]
                                     },
-                                    "options": {}
+                                    "options": {                           
+                                      "legend": {
+                                        "display": false
+                                      }
+                                    }
                                 });
                             </script>
                         </div>
@@ -257,7 +265,7 @@
                     <!--Graph Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-lg">
                         <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Volunteered Projects</h5>
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-3" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -265,16 +273,19 @@
                                 new Chart(document.getElementById("chartjs-3"), {
                                     "type": "bar",
                                     "data": {
-                                        "labels": ["March","April","May","June","July"],
+                                        "labels": <%=@report.month_labels.to_json.html_safe%>,
                                         "datasets": [{
-                                            "label": "Volunteered Projects per month",
-                                            "data": <%=@projectvolunteered_counts%>,
+                                            "data": <%=@report.volunteered_project_count_per_month%>,
                                             "borderColor": "rgb(255, 159, 64)",
                                             "backgroundColor": "rgba(255, 159, 64, 0.2)",
                                             "borderWidth": 1
                                         }]
                                     },
-                                    "options": {}
+                                    "options": {                           
+                                      "legend": {
+                                        "display": false
+                                      }
+                                    }
                                 });
                             </script>
                         </div>
@@ -286,7 +297,7 @@
                     <!--Table Card-->
                     <div class="bg-white border-transparent rounded-lg shadow-lg">
                         <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-                            <h5 class="font-bold uppercase text-gray-600">Table</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Project Table</h5>
                         </div>
                         <div class="p-5">
                             <table class="w-full p-5 text-gray-700 text-center">
@@ -299,11 +310,11 @@
                                 </thead>
 
                                 <tbody>
-                                  <% @projects_projectvolunteered_report.each do |date, project_count, projectvolunteered_count| %> 
+                                  <% @report.project_table.each do |date, project_count, volunteered_project_count| %> 
                                     <tr>
                                       <td class="border px-4 py-2"><%= date %></td>
                                       <td class="border px-4 py-2"><%= project_count %></td>
-                                      <td class="border px-4 py-2"><%= projectvolunteered_count %></td>
+                                      <td class="border px-4 py-2"><%= volunteered_project_count %></td>
                                     </tr>
                                   <% end %>
                                 </tbody>
