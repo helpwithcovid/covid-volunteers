@@ -4,7 +4,7 @@
       <a href="/" class="hover:text-primary-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer -mx-2">
         <div class="ml-2 sm:ml-0 h-6 w-6 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo.svg') %>')">
         </div>
-        <span class="ml-1 block font-bold leading-tight">Help with COVID</span>
+        <span class="ml-1 block font-bold leading-tight"><%= Settings.site_title %></span>
       </a>
       <div class="relative inset-y-0 right-0 flex items-center md:hidden">
         <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">

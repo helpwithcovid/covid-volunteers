@@ -1,3 +1,9 @@
+# Main
+site_title: Help With Black Equity
+site_subtitle: Projects to advance equity for the Black community
+site_url: https://helpwithblackequity.herokuapp.com
+share_image: https://helpwithblackequity.herokuapp.com/share-image.png
+
 # Site features
 features_enabled:
   volunteer_directory: true
