@@ -1,5 +1,39 @@
+// Please read the readme inside the /theme directory before applying changes to this file.
+
 const plugin = require('tailwindcss/plugin')
-const colors = require('@tailwindcss/ui/colors')
+const uiColors = require('@tailwindcss/ui/colors')
+const fs = require('fs')
+const yaml = require('js-yaml')
+
+// Fetching the theme config
+let themeConfig
+const themeFile = './theme/tailwind.config.yml'
+try {
+    let fileContents = fs.readFileSync(themeFile, 'utf8')
+    themeConfig = yaml.safeLoad(fileContents)
+} catch (e) {
+    console.log(e)
+}
+
+// Setting defaults
+let themeColors = {
+  primary: uiColors.indigo,
+  secondary: uiColors.purple,
+}
+
+// Parsing the theme config
+Object.keys(themeColors).forEach((themeColor) => {
+  if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
+    if (themeConfig.colors[themeColor]) {
+      if (typeof themeConfig.colors[themeColor] === 'string' && themeConfig.colors[themeColor].startsWith('tailwind/ui/')) {
+        themeColors[themeColor] = uiColors[themeConfig.colors[themeColor].replace('tailwind/ui/', '')]
+      // arbitrary checking if this object has keys 50 & 900 corresponding to the tailwind color system
+      } else if (themeConfig.colors[themeColor][50] && themeConfig.colors[themeColor][900]) {
+        themeColors[themeColor] = themeConfig.colors[themeColor]
+      }
+    }
+  }
+})
 
 module.exports = {
   theme: {
@@ -7,11 +41,10 @@ module.exports = {
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
-          50: "#F7FAFC",
-          ...colors.gray,
+          ...themeColors.primary,
         },
         secondary: {
-          ...colors.purple,
+          ...themeColors.secondary,
         },
       },
       maxHeight: {
