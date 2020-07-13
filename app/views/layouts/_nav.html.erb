@@ -2,7 +2,8 @@
   <div class="container">
     <div class="relative flex justify-between h-16 px-4 sm:px-0">
       <a href="/" class="hover:text-primary-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer -mx-2">
-        <div class="ml-2 sm:ml-0 h-6 w-6 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo.svg') %>')">
+        <div class="ml-2 sm:ml-0 h-6 w-10">
+            <%= inline_svg_pack_tag 'media/svgs/logo.svg', class: 'inline-block h-5 text-primary-500 fill-current -mr-1' %>
         </div>
         <span class="ml-1 block font-bold leading-tight"><%= Settings.site_title %></span>
       </a>
