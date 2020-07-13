@@ -8,10 +8,16 @@
   case @project_category[:color]
   when 'primary'
     bg_color = 'bg-primary-600'
-  when 'orange'
-    bg_color = 'bg-orange-600'
-  when 'blue'
-    bg_color = 'bg-blue-600'
+  when 'cat-education'
+    bg_color = 'bg-cat-education'
+  when 'cat-social-justice'
+    bg_color = 'bg-cat-social-justice'
+  when 'cat-business-directory'
+    bg_color = 'bg-cat-business-directory'
+  when 'health'
+    bg_color = 'bg-health'
+  when 'wealth'
+    bg_color = 'bg-wealth'
   when 'secondary'
     bg_color = 'bg-secondary-600'
   else
@@ -19,7 +25,7 @@
   end
 %>
 <div class="mx-auto w-full text-center mt-8">
-  <div class="rounded-full bg-white fill-current w-24 h-24 flex justify-center items-center mx-auto my-4 text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'fill-current text-white h-12 w-12' %></div>
+  <div class="rounded-full bg-white w-24 h-24 flex justify-center items-center mx-auto my-4 text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'text-white h-12 w-12' %></div>
   <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
   <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
 </div>

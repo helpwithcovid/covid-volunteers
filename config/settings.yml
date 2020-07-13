@@ -190,3 +190,7 @@ media_kit:
   - name: HWC logos and wordmarks
     description: Logos, wordmark and banner for any media coverage about HWC
     cta_link: https://helpwithcovid.com/HWC-media-kit-logos.zip
+
+google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
+
+homepage_featured_projects_count: 3

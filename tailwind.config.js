@@ -46,6 +46,12 @@ module.exports = {
         secondary: {
           ...themeColors.secondary,
         },
+        'hero-black': '#3D3D3D',
+        'cat-education': '#F82B2B',
+        'cat-social-justice': '#FD813B',
+        'cat-business-directory': '#8921DC',
+        'cat-health': '#2987DE',
+        'cat-wealth': '#12CFA1',
       },
       maxHeight: {
         '400px': '400px',
@@ -55,6 +61,9 @@ module.exports = {
       },
       boxShadow: {
         users: '0px 3px 16px rgba(0, 0, 0, 0.15)',
+      },
+      borderRadius: {
+        xl: '1.5rem',
       }
     },
     container: {
@@ -62,6 +71,7 @@ module.exports = {
     },
     fontFamily: {
       sans: 'Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      serif: '"Lora", Georgia, Cambria, "Times New Roman", Times, serif',
     },
   },
   variants: {

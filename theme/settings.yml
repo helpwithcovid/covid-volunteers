@@ -6,25 +6,25 @@ features_enabled:
   success_stories: true
 
 project_categories:
-  - name: Medical
-    slug: medical
-    body: Support our overwhelmed health systems with medical innovation.
+  - name: Education
+    slug: education
+    body: Closing the gap in our education system
     project_types:
       - Scale testing
       - Medical facilities
       - Medical equipments
       - Treatment R&D
-    color: purple
-  - name: Prevention
-    slug: prevention
-    body: Inform, reduce, and control the spread of the outbreak.
+    color: cat-education
+  - name: Social Justice
+    slug: social-justice
+    body: Directly impact social inequalities
     project_types:
       - Track the outbreak
       - Reduce spread
-    color: orange
-  - name: Community
-    slug: community
-    body: Work together to help our stressed communities.
+    color: cat-social-justice
+  - name: Business Directory
+    slug: business-directory
+    body: Support black owned businesses
     project_types:
       - E-Learning
       - Job placement
@@ -33,4 +33,32 @@ project_categories:
       - Map volunteers to needs
       - News and information
       - Social giving
-    color: blue
+    color: cat-business-directory
+  - name: Health
+    slug: health
+    body: Prevention, wellness and cures
+    project_types:
+      - E-Learning
+      - Job placement
+      - Mental health
+      - Help out communities
+      - Map volunteers to needs
+      - News and information
+      - Social giving
+    color: cat-health
+  - name: Wealth
+    slug: wealth
+    body: Employment, funding and ownership
+    project_types:
+      - E-Learning
+      - Job placement
+      - Mental health
+      - Help out communities
+      - Map volunteers to needs
+      - News and information
+      - Social giving
+    color: cat-wealth
+
+google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
+
+homepage_featured_projects_count: 12
