@@ -38,6 +38,9 @@ Object.keys(themeColors).forEach((themeColor) => {
 module.exports = {
   theme: {
     extend: {
+      spacing: {
+        '2px': '2px',
+      },
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
