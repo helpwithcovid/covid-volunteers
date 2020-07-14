@@ -68,7 +68,7 @@ project_categories:
       - Grant Writing
     color: cat-wealth
 
-google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
+google_fonts_request: Lora&family=Roboto:wght@400;500;700
 
 homepage_featured_projects_count: 12
 
@@ -80,33 +80,33 @@ volunteer_skills:
 
 # Availability windows that are suggested to volunteers
 volunteer_availabilities:
-  - '1-2 hours a day'
-  - '2-4 hours a day'
-  - '4+ hours a day'
-  - 'Only on Weekends'
-  - 'Full Time'
+  - 1-2 hours a day
+  - 2-4 hours a day
+  - 4+ hours a day
+  - Only on Weekends
+  - Full Time
 
 # Options for how many volunteers a project might request
 volunteers_needed_for_project:
-  - '1-10'
-  - '10-50'
-  - '50-100'
-  - '100+'
+  - 1-10
+  - 10-50
+  - 50-100
+  - 100+
 
 for_profit_types:
-  - 'Black Businesses'
-  - 'Non-profit volunteering'
+  - Black Businesses
+  - Non-profit volunteering
 
 project_statuses:
-  - 'Just started'
-  - 'In progress'
-  - 'Launched'
+  - Just started
+  - In progress
+  - Launched
 
 organization_statuses:
-  - 'Non-profit'
-  - 'For-profit'
-  - 'Public Benefit Corporation'
-  - 'Not incorporated'
+  - Non-profit
+  - For-profit
+  - Public Benefit Corporation
+  - Not incorporated
 
 # If a project has less than N volunteers
 # it can ask to be highlighted.
