@@ -13,9 +13,30 @@ features_enabled:
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:
-  - Nunchucks
-  - Bow hunting
-  - Computer hacking
+  - Analytics
+  - Biology
+  - Biotech
+  - Community Outreach
+  - Content
+  - Data entry
+  - Design
+  - Funding
+  - Helpdesk
+  - Legal
+  - Localization
+  - Manufacturing
+  - Marketing
+  - Medicine
+  - Mechanics & Electronics
+  - Operations
+  - PM
+  - QA
+  - Sales
+  - Social Media
+  - Software
+  - Training Development
+  - Volunteer vetting
+  - Anything
 
 # Availability windows that are suggested to volunteers
 volunteer_availabilities:
