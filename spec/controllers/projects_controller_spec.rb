@@ -5,7 +5,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   let!(:user) { create(:user) }
   let!(:project) { create(:project, user: user) }
-  let(:valid_params) { { project: { name: 'My Project Name', status: ALL_PROJECT_STATUS.first } } }
+  let(:valid_params) { { project: { name: 'My Project Name', status: Settings.project_statuses.first } } }
 
   describe 'GET #index' do
     it 'works' do
@@ -41,9 +41,9 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'shows projects filtered by status' do
-        project.update_attribute(:status, ALL_PROJECT_STATUS.last)
-        project2 = create(:project, user: user, status: ALL_PROJECT_STATUS.first)
-        get :index, params: { status: ALL_PROJECT_STATUS.last }
+        project.update_attribute(:status, Settings.project_statuses.last)
+        project2 = create(:project, user: user, status: Settings.project_statuses.first)
+        get :index, params: { status: Settings.project_statuses.last }
         expect(assigns(:projects)).to include(project)
         expect(assigns(:projects)).to_not include(project2)
       end
@@ -86,7 +86,7 @@ RSpec.describe ProjectsController, type: :controller do
         get :show, params: { id: project.to_param }
         expect(response).to be_successful
         expect(response.body).to_not include('Number of volunteers')
-        expect(response.body).to_not include('Sign up to volunteer')  
+        expect(response.body).to_not include('Sign up to volunteer')
       end
 
       it 'show volunteer info' do

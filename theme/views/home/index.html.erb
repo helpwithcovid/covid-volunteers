@@ -1,40 +1,41 @@
 <!-- Hero -->
-<div class="bg-white -mt-10 pt-24 ">
-  <div class="container mb-4 text-center mb-24">
-    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight leading-tight">Support Black-owned businesses</h1>
-    <h2 class="sm:text-2xl tracking-tight leading-tight mt-2">A new fork of HelpWithCovid</h2>
+<div class="container">
+  <div class="rounded-xl bg-hero-black text-white overflow-hidden mb-24 flex">
+    <div class="w-5/12">
+      <%= image_pack_tag 'hero.jpg' %>
+    </div>
+    <div class="flex-1 flex flex-col justify-center py-8 lg:py-12 px-6 lg:px-8">
+      <h1 class="sm:text-xl text-2xl lg:text-4xl leading-tight font-serif">Projects to advance equity for the Black community.</h1>
 
-    <div class="relative w-64 mx-auto">
-      <%= form_with url: projects_path, local: true, method: :get, html: {'x-ref': 'searchForm'} do |form| %>
-        <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "border border-primary-100 p-2 pr-9 mt-4 rounded-full w-full text-center border-primary-400 text-primary-600 outline-none focus:border-primary-600", required: true %>
-        <button class="absolute inset-auto right-0 p-2 rounded-full cursor-pointer border-none shadow-none text-sm bg-transparent hover:bg-gray-100 transition duration-75" style="margin-top: 19px; margin-right: 5px" @click="$refs.searchForm.submit()">
-          <%= inline_svg_pack_tag 'media/svgs/magnifier.svg' %>
-        </button>
+      <div class="block w-1/4 border-t-4 border-white my-3 lg:my-8"></div>
+
+      <h2 class="sm:text-sm text-lg xl:text-xl xl:leading-loose mt-2">The HelpWith Foundation, a non-profit division of Deed has just launched HWBE! Inspired by the growth of Help With Covid, a clearing house for COVID-19 related projects and volunteers looking to help out. Our goal is to provide resources and opportunities for anyone working on projects related to Black equity.</h2>
+    </div>
+  </div>
+
+  <div class="my-16 flex">
+    <div class="w-1/3 font-serif text-lg md:text-2xl lg:text-4xl">
+      <div class="block w-1/4 border-t-4 border-black mb-2 lg:mb-4"></div>
+
+      <div class="block">Create a Mission.</div>
+      <div class="block">Make a Change.</div>
+      <div class="block">Action for Equity.</div>
+    </div>
+    <div class="flex-1 flex flex-col">
+      <% Settings.project_categories.each do |category| %>
+        <%= link_to category.slug, class: 'rounded overflow-hidden flex w-full mb-4 relative shadow-lg' do %>
+          <div class="w-2 bg-<%= category.color %>"></div>
+          <div class="w-56 font-medium px-8 py-4 bg-hero-black text-white text-lg"><%= category.name %></div>
+          <div class="flex-1 flex px-8 align-center items-center bg-gray-200"><%= category.body %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'absolute left-auto right-0 mr-2 h-8 w-8 fill-current' %></div>
+        <% end %>
       <% end %>
     </div>
-    <div class="text-primary-700 mt-4">
-      Featuring <%= number_with_delimiter round_number_to_closest(@project_count, 50) %>+ projects
-      supported by <%= number_with_delimiter round_number_to_closest(@volunteer_count, 1001) %>+ people
-    </div>
+  </div>
 
   <!-- Featured projects -->
   <div class="relative container z-10 pb-4">
     <%= render partial: 'partials/featured-projects', locals: {projects: @featured_projects, category: nil} %>
   </div>
-</div>
-
-<!-- Project categories -->
-<div class="relative featured-categories bg-primary-600 color-white pt-32 mb-16 sm:-mt-12 xl:-mt-24">
-  <div class="container z-10 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-4 md:gap-12 lg:gap-24 xl:gap-48 pb-24 sm:py-20 px-12 sm:px-0 lg:px-12 xl:px-24">
-    <%= render partial: 'featured-category', collection: @project_categories, as: :category %>
-  </div>
-</div>
-
-<!-- Project categories -->
-<div class="container">
-  <% cache @project_categories do %>
-    <%= render partial: 'project-category', collection: @project_categories, as: :category %>
-  <% end %>
 </div>
 
 <!-- Upcoming events -->

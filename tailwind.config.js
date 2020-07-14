@@ -1,5 +1,39 @@
+// Please read the Theming.md file on Tweaking colors before applying changes to this file.
+
 const plugin = require('tailwindcss/plugin')
-const colors = require('@tailwindcss/ui/colors')
+const uiColors = require('@tailwindcss/ui/colors')
+const fs = require('fs')
+const yaml = require('js-yaml')
+
+// Fetching the theme config
+let themeConfig
+const themeFile = './theme/tailwind.config.yml'
+try {
+    let fileContents = fs.readFileSync(themeFile, 'utf8')
+    themeConfig = yaml.safeLoad(fileContents)
+} catch (e) {
+    console.log(e)
+}
+
+// Setting defaults
+let themeColors = {
+  primary: uiColors.indigo,
+  secondary: uiColors.purple,
+}
+
+// Parsing the theme config
+Object.keys(themeColors).forEach((themeColor) => {
+  if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
+    if (themeConfig.colors[themeColor]) {
+      if (typeof themeConfig.colors[themeColor] === 'string' && themeConfig.colors[themeColor].startsWith('tailwind/ui/')) {
+        themeColors[themeColor] = uiColors[themeConfig.colors[themeColor].replace('tailwind/ui/', '')]
+      // arbitrary checking if this object has keys 50 & 900 corresponding to the tailwind color system
+      } else if (themeConfig.colors[themeColor][50] && themeConfig.colors[themeColor][900]) {
+        themeColors[themeColor] = themeConfig.colors[themeColor]
+      }
+    }
+  }
+})
 
 module.exports = {
   theme: {
@@ -7,12 +41,17 @@ module.exports = {
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
-          50: "#d4d272",
-          ...colors.yellow,
+          ...themeColors.primary,
         },
         secondary: {
-          ...colors.black,
+          ...themeColors.secondary,
         },
+        'hero-black': '#3D3D3D',
+        'cat-education': '#F82B2B',
+        'cat-social-justice': '#FD813B',
+        'cat-business-directory': '#8921DC',
+        'cat-health': '#2987DE',
+        'cat-wealth': '#12CFA1',
       },
       maxHeight: {
         '400px': '400px',
@@ -22,6 +61,9 @@ module.exports = {
       },
       boxShadow: {
         users: '0px 3px 16px rgba(0, 0, 0, 0.15)',
+      },
+      borderRadius: {
+        xl: '1.5rem',
       }
     },
     container: {
@@ -29,6 +71,7 @@ module.exports = {
     },
     fontFamily: {
       sans: 'Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      serif: '"Lora", Georgia, Cambria, "Times New Roman", Times, serif',
     },
   },
   variants: {

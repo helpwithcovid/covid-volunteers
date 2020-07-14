@@ -83,8 +83,8 @@ class ApplicationController < ActionController::Base
 
     @users = @users.includes(:skills).page(params[:page]).per(24)
 
-    @index_from = (@users.prev_page || 0) * @users.current_per_page + 1
-    @index_to = [@index_from + @users.current_per_page - 1, @users.total_count].min
+    @index_from = (@users.prev_page || 0) * @users.limit_value + 1
+    @index_to = [@index_from + @users.limit_value - 1, @users.total_count].min
     @total_count = @users.total_count
   end
 

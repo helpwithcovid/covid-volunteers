@@ -68,7 +68,7 @@ RSpec.describe Project, type: :model do
   it 'it sets default status' do
     project = build(:project, status: nil)
     project.save
-    expect(project.status).to eq(ALL_PROJECT_STATUS.first)
+    expect(project.status).to eq(Settings.project_statuses.first)
   end
 
   it 'is invalid without a status' do

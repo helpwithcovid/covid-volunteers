@@ -71,7 +71,7 @@
               </div>
               <div class="mt-4 sm:mt-0 sm:col-span-2">
                 <div class="max-w-lg">
-                  <% ALL_PROJECT_TYPES.each do |project_type| %>
+                  <% Settings.project_types.each do |project_type| %>
                     <div class="relative flex items-start">
                       <div class="absolute flex items-center h-5">
                       <%= f.check_box :project_type_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, project_type, nil %>
@@ -103,7 +103,7 @@
                 <div class="max-w-lg">
                   <div class="relative flex items-start">
                     <label class="font-medium text-gray-700">
-                      <%= f.select :status, ALL_PROJECT_STATUS, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
+                      <%= f.select :status, Settings.project_statuses, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
                     </label>
                   </div>
                 </div>
@@ -274,7 +274,7 @@
               </div>
               <div class="mt-4 sm:mt-0 sm:col-span-2">
                 <div class="max-w-lg">
-                  <% ALL_SKILLS.each do |skill| %>
+                  <% Settings.volunteer_skills.each do |skill| %>
                     <div class="relative flex items-start">
                       <div class="absolute flex items-center h-5">
                       <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, skill, nil %>
@@ -304,7 +304,7 @@
               </div>
               <div class="mt-4 sm:mt-0 sm:col-span-2">
                 <div class="max-w-lg">
-                  <% ALL_NUMBER_OF_VOLUNTEERS.each do |number_of_volunteers| %>
+                  <% Settings.volunteers_needed_for_project.each do |number_of_volunteers| %>
                     <div class="relative flex items-start">
                       <div class="absolute flex items-center h-5">
                         <%= f.radio_button :number_of_volunteers, number_of_volunteers, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out"} %>
@@ -348,7 +348,7 @@
                 <div class="max-w-lg">
                   <div class="relative flex items-start">
                     <label class="font-medium text-gray-700">
-                      <%= f.select :organization_status, ALL_ORGANIZATION_STATUS, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
+                      <%= f.select :organization_status, Settings.organization_statuses, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
                     </label>
                   </div>
 

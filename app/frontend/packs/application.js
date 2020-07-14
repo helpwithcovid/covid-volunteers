@@ -15,9 +15,23 @@ require('@rails/activestorage').start()
 // or the `imagePath` JavaScript helper below.
 //
 const images = require.context('../images', true)
-const imagePath = (name) => images(name, true)
+let themeImages = null;
+
+try {
+  themeImages = require.context('../../../theme/assets/images', true)
+} catch (err) {}
+const imagePath = (name) => (themeImages ? (themeImages(name, true) || images(name, true)) : images(name, true))
+
 const svgs = require.context('../svgs', true)
-const svgPath = (name) => svgs(name, true)
+let themeSvgs = null;
+
+try {
+  themeSvgs = require.context('../../../theme/assets/svgs', true)
+} catch (err) {}
+const svgPath = (name) => (themeSvgs ? (themeSvgs(name, true) || svgs(name, true)) : svgs(name, true))
+
+// Append the theme version.
+
 
 // Tailwind.
 import './../styles/application.css'
@@ -29,6 +43,10 @@ $.fancybox.defaults.hash = false
 document.addEventListener("turbolinks:before-cache", function() {
   $('.js-remove-before-navigation').remove()
 })
+
+import I18n from 'i18n-js'
+global.I18n = I18n
+
 
 // Main App.
 import Covid from '../covid'

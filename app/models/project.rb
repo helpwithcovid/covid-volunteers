@@ -27,12 +27,12 @@ class Project < ApplicationRecord
     end
   end
 
-  validates :status, inclusion: { in: ALL_PROJECT_STATUS }
+  validates :status, inclusion: { in: Settings.project_statuses }
 
   before_validation :default_values
 
   def default_values
-    self.status = ALL_PROJECT_STATUS.first if self.status.blank?
+    self.status = Settings.project_statuses.first if self.status.blank?
   end
 
   def to_param
@@ -99,12 +99,17 @@ class Project < ApplicationRecord
       if self.image.present?
         cdn_variant(resize_to_limit: [600, 600])
       else
-        "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
+        # FIXME use slug of category instead? and fallback if this is missing
+        filename = category_override.blank? ? self.category.downcase.gsub(' ', '-') : category_override.downcase
+
+        # There is no `image_pack_path` -- see https://github.com/rails/webpacker/issues/2562
+        ActionController::Base.helpers.asset_pack_path "media/images/#{filename}-default.png"
       end
     end
   end
 
   def self.get_featured_projects
-    Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(3).order('RANDOM()')
+    projects_count = Settings.homepage_featured_projects_count
+    Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(projects_count).order('RANDOM()')
   end
 end

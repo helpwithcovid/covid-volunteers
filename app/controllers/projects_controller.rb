@@ -51,8 +51,8 @@ class ProjectsController < ApplicationController
     params[:page] ||= 1
 
     @projects = current_user.volunteered_projects.page(params[:page]).per(25)
-    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
-    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+    @index_from = (@projects.prev_page || 0) * @projects.limit_value + 1
+    @index_to = [@index_from + @projects.limit_value - 1, @projects.total_count].min
 
     @projects_header = I18n.t('volunteered_projects')
     @projects_subheader = I18n.t('these_are_the_projects_where_you_volunteered')
@@ -65,8 +65,8 @@ class ProjectsController < ApplicationController
 
     @projects = current_user.projects.page(params[:page]).per(25)
 
-    @index_from = (@projects.prev_page || 0) * @projects.current_per_page + 1
-    @index_to = [@index_from + @projects.current_per_page - 1, @projects.total_count].min
+    @index_from = (@projects.prev_page || 0) * @projects.limit_value + 1
+    @index_to = [@index_from + @projects.limit_value - 1, @projects.total_count].min
 
     @projects_header = I18n.t('own_projects')
     @projects_subheader = I18n.t('these_are_the_projects_you_created')

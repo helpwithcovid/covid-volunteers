@@ -11,7 +11,7 @@
         </div>
         <% if user.level_of_availability %>
           <div class="text-secondary-600 text-sm fill-current leading-loose">
-            <%= inline_svg_pack_tag 'media/svgs/calendar.svg', class: 'h-4 inline' %><%= user.level_of_availability %>
+            <%= inline_svg_pack_tag 'media/svgs/calendar.svg', class: 'h-4 inline stroke-current' %><%= user.level_of_availability %>
           </div>
           <% end %>
       </div>

@@ -33,7 +33,7 @@
           </div>
           <div class="mt-4 sm:mt-0 sm:col-span-2">
             <div class="max-w-lg">
-              <% ALL_SKILLS.each do |skill| %>
+              <% Settings.volunteer_skills.each do |skill| %>
                 <div class="relative flex items-start">
                   <div class="absolute flex items-center h-5">
                   <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, skill, nil %>
@@ -62,7 +62,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:col-span-2">
               <div class="max-w-lg">
-                <% ALL_AVAILABILITY.each do |availability| %>
+                <% Settings.volunteer_availabilities.each do |availability| %>
                   <div class="relative flex items-start">
                     <div class="absolute flex items-center h-5">
                       <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out"} %>
