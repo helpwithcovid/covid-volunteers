@@ -108,8 +108,6 @@ organization_statuses:
   - 'Public Benefit Corporation'
   - 'Not incorporated'
 
-discord_link: 'https://example.com?no_discord_yet=sorry'
-
 # If a project has less than N volunteers
 # it can ask to be highlighted.
 max_volunteers_for_highlight_offer: 30
