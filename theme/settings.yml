@@ -16,53 +16,49 @@ project_categories:
     slug: education
     body: Closing the gap in our education system
     project_types:
-      - Scale testing
-      - Medical facilities
-      - Medical equipments
-      - Treatment R&D
+      - School-based
+      - College affordability
+      - STEM
+      - Support HBCU’s
     color: cat-education
   - name: Social Justice
     slug: social-justice
     body: Directly impact social inequalities
     project_types:
-      - Track the outbreak
-      - Reduce spread
+      - Demonstrations
+      - Policies
+      - Voting & Elections
+      - Criminal Justice
+      - Income Inequality/Poverty
     color: cat-social-justice
   - name: Business Directory
     slug: business-directory
     body: Support black owned businesses
     project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
+      - Technology
+      - Retail & Manufacturing
+      - Professional Services
+      - Food & Beverage
+      - Health & Beauty
     color: cat-business-directory
   - name: Health
     slug: health
     body: Prevention, wellness and cures
     project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
+      - Prevention
+      - COVID-19
+      - Access
+      - Wellness
     color: cat-health
   - name: Wealth
     slug: wealth
     body: Employment, funding and ownership
     project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
+      - Jobs
+      - Investors
+      - Purchase Orders
+      - Request for Proposal
+      - Grant Writing
     color: cat-wealth
 
 google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
