@@ -64,12 +64,6 @@ project_categories:
 google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
 
 homepage_featured_projects_count: 12
-# Site features
-features_enabled:
-  volunteer_directory: true
-  resources: true
-  office_hours: true
-  success_stories: true
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:
@@ -112,36 +106,6 @@ discord_link: 'https://example.com?no_discord_yet=sorry'
 # If a project has less than N volunteers
 # it can ask to be highlighted.
 max_volunteers_for_highlight_offer: 30
-
-project_categories:
-  - name: Medical
-    slug: medical
-    body: Support our overwhelmed health systems with medical innovation.
-    project_types:
-      - Scale testing
-      - Medical facilities
-      - Medical equipments
-      - Treatment R&D
-    color: purple
-  - name: Prevention
-    slug: prevention
-    body: Inform, reduce, and control the spread of the outbreak.
-    project_types:
-      - Track the outbreak
-      - Reduce spread
-    color: orange
-  - name: Community
-    slug: community
-    body: Work together to help our stressed communities.
-    project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
-    color: blue
 
 global_announcements:
 #  - title: Helpful resources for your projects
