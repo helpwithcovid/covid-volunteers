@@ -99,8 +99,11 @@ class Project < ApplicationRecord
       if self.image.present?
         cdn_variant(resize_to_limit: [600, 600])
       else
-        filename = category_override.blank? ? self.category.downcase : category_override.downcase
-        "/images/#{filename}-default.png"
+        # FIXME use slug of category instead? and fallback if this is missing
+        filename = category_override.blank? ? self.category.downcase.gsub(' ', '-') : category_override.downcase
+
+        # There is no `image_pack_path` -- see https://github.com/rails/webpacker/issues/2562
+        ActionController::Base.helpers.asset_pack_path "media/images/#{filename}-default.png"
       end
     end
   end
