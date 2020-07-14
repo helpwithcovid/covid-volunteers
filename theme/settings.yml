@@ -74,9 +74,32 @@ homepage_featured_projects_count: 12
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:
-  - Nunchucks
-  - Bow hunting
-  - Computer hacking
+  - Analytics
+  - Biology
+  - Biotech
+  - Community Outreach
+  - Content
+  - Customer
+  - Data entry
+  - Design
+  - Donate
+  - Funding
+  - Helpdesk
+  - Legal
+  - Localization
+  - Manufacturing
+  - Marketing
+  - Medicine
+  - Mechanics & Electronics
+  - Operations
+  - PM
+  - QA
+  - Sales
+  - Social Media
+  - Software
+  - Training Development
+  - Volunteer vetting
+  - Anything
 
 # Availability windows that are suggested to volunteers
 volunteer_availabilities:
