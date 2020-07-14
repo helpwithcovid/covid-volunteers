@@ -99,12 +99,14 @@ class Project < ApplicationRecord
       if self.image.present?
         cdn_variant(resize_to_limit: [600, 600])
       else
-        "/images/#{category_override.blank? ? self.category.downcase : category_override.downcase}-default.jpg"
+        filename = category_override.blank? ? self.category.downcase : category_override.downcase
+        "/images/#{filename}-default.png"
       end
     end
   end
 
   def self.get_featured_projects
-    Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(Settings.homepage_featured_projects_count).order('RANDOM()')
+    projects_count = Settings.homepage_featured_projects_count
+    Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(projects_count).order('RANDOM()')
   end
 end
