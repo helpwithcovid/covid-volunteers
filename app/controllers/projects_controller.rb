@@ -23,6 +23,9 @@ class ProjectsController < ApplicationController
 
       if @project_category.present?
         @applied_filters[:project_types] = @project_category[:project_types]
+        # Execute the project_types query once more if the user landed on a category page
+        @projects = @projects.tagged_with(@applied_filters[:project_types], any: true, on: :project_types)
+
         @featured_projects = Rails.cache.read "project_category_#{@project_category[:name].downcase}_featured_projects"
       end
     else
