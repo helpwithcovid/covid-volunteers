@@ -174,6 +174,7 @@ class ProjectsController < ApplicationController
       @projects = Project
       @projects = @projects.tagged_with(params[:skills], any: true, on: :skills) if params[:skills].present?
       @projects = @projects.tagged_with(params[:project_types], any: true, on: :project_types) if params[:project_types].present?
+      @projects = @projects.tagged_with(params[:for_profit_type], any: true, on: :for_profit_type) if params[:for_profit_type].present?
       @projects = @projects.where(accepting_volunteers: params[:accepting_volunteers] == '1') if params[:accepting_volunteers].present?
       @projects = @projects.where(highlight: true) if params[:highlight].present?
       @projects = @projects.where(target_country: params[:target_country]) if params[:target_country].present?
@@ -193,6 +194,10 @@ class ProjectsController < ApplicationController
 
       if params[:project_types].present?
         @applied_filters[:project_types] = params[:project_types]
+      end
+
+      if params[:for_profit_type].present?
+        @applied_filters[:for_profit_type] = params[:for_profit_type]
       end
 
       if params[:skills].present?

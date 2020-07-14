@@ -10,6 +10,7 @@ features_enabled:
   resources: true
   office_hours: true
   success_stories: true
+  for_profit_projects: true
 
 project_categories:
   - name: Education
@@ -86,7 +87,7 @@ volunteers_needed_for_project:
   - '50-100'
   - '100+'
 
-project_types:
+for_profit_types:
   - 'Black Businesses'
   - 'Non-profit volunteering'
 

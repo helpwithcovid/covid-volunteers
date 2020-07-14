@@ -87,6 +87,7 @@ en:
   write_a_few_sentences_about_what_you_are_making_an: "Write a few sentences about what you are making and the end goal."
   image: "Image"
   project_type: "Project type"
+  for_profit_type: "For profit"
   project_status: "Project status"
   who_is_already_working_on_this: "Who is already working on this?"
   tell_volunteers_about_you_and_your_teammates: "Tell volunteers about you and your teammates."
