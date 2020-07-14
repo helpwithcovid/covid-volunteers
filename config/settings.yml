@@ -4,6 +4,10 @@ site_subtitle: 'A clearing house for projects and volunteers that want to help w
 site_url: https://www.helpwithcovid.com
 share_image: https://www.helpwithcovid.com/share-image.png
 
+# Linked in the footer
+contact_email: helpwithcovid@gmail.com
+discord_link: https://discord.gg/8nAJfFN
+
 # Site features
 features_enabled:
   volunteer_directory: true
@@ -47,8 +51,6 @@ organization_statuses:
   - 'For-profit'
   - 'Public Benefit Corporation'
   - 'Not incorporated'
-
-discord_link: 'https://example.com?no_discord_yet=sorry'
 
 # If a project has less than N volunteers
 # it can ask to be highlighted.

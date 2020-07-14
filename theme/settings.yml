@@ -4,6 +4,11 @@ site_subtitle: Projects to advance equity for the Black community
 site_url: https://helpwithblackequity.herokuapp.com
 share_image: https://helpwithblackequity.herokuapp.com/share-image.png
 
+# Linked in the footer
+# Not displayed if blank
+contact_email: helpwithblackequity@gmail.com
+discord_link: ''
+
 # Site features
 features_enabled:
   volunteer_directory: true

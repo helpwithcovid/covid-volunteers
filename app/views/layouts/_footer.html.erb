@@ -13,7 +13,9 @@
               <path d="M214 1346 c-17 -8 -41 -27 -52 -44 -21 -29 -22 -37 -22 -482 -1 -505 -2 -493 70 -531 33 -18 67 -19 588 -19 610 0 604 -1 642 62 19 32 20 49 20 489 0 453 0 457 -22 484 -43 55 -40 55 -640 55 -442 -1 -559 -3 -584 -14z m1049 -123 c9 -6 -11 -20 -266 -193 l-197 -134 -213 144 c-260 176 -256 173 -257 182 0 8 920 9 933 1z m-734 -303 c137 -93 255 -172 263 -175 8 -3 128 72 271 170 142 97 262 173 266 170 5 -3 10 -156 10 -340 l2 -335 -541 0 -540 0 0 334 c1 298 3 346 17 346 2 0 116 -76 252 -170z"/>
             </g>
           </svg>
-          <span class="text-gray-800 text-s">Contact <%= mail_to ENV['EMAIL_ADDRESS'], nil, target: :_blank, class: 'font-bold mr-6' %></span>
+          <% if Settings.contact_email.present? %>
+            <span class="text-gray-800 text-s">Contact <%= mail_to Settings.contact_email, nil, target: :_blank, class: 'font-bold mr-6' %></span>
+          <% end %>
         </span>
         <span class="flex sm:px-3 py-1 sm:mr-6">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 160.000000 164.000000" preserveAspectRatio="xMidYMid meet">
@@ -23,7 +25,9 @@
               <path d="M834 882 c-16 -11 -34 -48 -34 -72 0 -27 43 -70 70 -70 12 0 32 11 45 25 47 46 23 125 -38 125 -18 0 -37 -4 -43 -8z"/>
             </g>
           </svg>
-          <span class="text-gray-800 text-sm">Join the <%= link_to 'Discord', 'https://discord.gg/8nAJfFN', target: :_blank, class: 'font-bold' %></span>
+          <% if Settings.discord_link.present? %>
+            <span class="text-gray-800 text-sm">Join the <%= link_to 'Discord', Settings.discord_link, target: :_blank, class: 'font-bold' %></span>
+          <% end %>
         </span>
         <span class="flex pt-1">
           <a href="https://www.facebook.com/HelpwithCOVID" target="_blank" class="mr-2">
