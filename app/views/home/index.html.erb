@@ -1,6 +1,6 @@
 <!-- Hero -->
 <div class="bg-white -mt-10 pt-24 ">
-  <div class="container mb-4 text-center mb-24">
+  <div class="container text-center mb-24">
     <h1 class="text-2xl sm:text-4xl font-bold tracking-tight leading-tight">Volunteer for COVID-19 projects</h1>
     <h2 class="sm:text-2xl tracking-tight leading-tight mt-2">We help people find the resources they need.</h2>
 
@@ -15,6 +15,7 @@
     <div class="text-primary-700 mt-4">
       We are <%= number_with_delimiter round_number_to_closest(@project_count, 50) %>+ projects
       and <%= number_with_delimiter round_number_to_closest(@volunteer_count, 1001) %>+ volunteers strong.
+    </div>
   </div>
 
   <!-- Featured projects -->
