@@ -18,7 +18,7 @@ const images = require.context('../images', true)
 let themeImages = null;
 
 try {
-  themeImages = require.context('../../../theme/images', true)
+  themeImages = require.context('../../../theme/assets/images', true)
 } catch (err) {}
 const imagePath = (name) => (themeImages ? (themeImages(name, true) || images(name, true)) : images(name, true))
 
