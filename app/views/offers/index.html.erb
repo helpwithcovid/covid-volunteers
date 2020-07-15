@@ -16,7 +16,7 @@
 
 <%= render partial: 'partials/events' %>
 
-<%= render partial: 'funding-resources' %>
+<%= render partial: 'resources-links', locals: { title: t('funding_volunteers_research_resources'), resources: Settings.funding_resources, html_id: 'resource_funding' } %>
 
 <%= render partial: 'partner-resources' %>
 
