@@ -1,3 +1,10 @@
 colors:
-  primary: 'tailwind/ui/gray'
-  secondary: 'tailwind/ui/yellow'
+  primary: tailwind/ui/gray
+  secondary: tailwind/ui/yellow
+  accent:
+    default: '#FFCE3D'
+    hover: '#ffe085'
+    text: '#000'
+    border: '#8e4b10'
+    active: '#8e4b10'
+    focus: '#8e4b10'

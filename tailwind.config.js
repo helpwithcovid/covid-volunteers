@@ -21,19 +21,40 @@ let themeColors = {
   secondary: uiColors.purple,
 }
 
+// adding accent colors
+themeColors.accent = {
+  default: '#FFCE3D',
+  text: uiColors.black,
+  hover: '#ffe085',
+  border: themeColors.secondary['700'],
+  active: themeColors.secondary['700'],
+  focus: themeColors.secondary['700'],
+}
+
 // Parsing the theme config
-Object.keys(themeColors).forEach((themeColor) => {
-  if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
-    if (themeConfig.colors[themeColor]) {
-      if (typeof themeConfig.colors[themeColor] === 'string' && themeConfig.colors[themeColor].startsWith('tailwind/ui/')) {
-        themeColors[themeColor] = uiColors[themeConfig.colors[themeColor].replace('tailwind/ui/', '')]
+if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
+  Object.keys(themeColors).forEach((colorKey) => {
+    if (themeConfig.colors[colorKey]) {
+      if (typeof themeConfig.colors[colorKey] === 'string') {
+        if (themeConfig.colors[colorKey].startsWith('tailwind/ui/')) {
+          const themedColor = themeConfig.colors[colorKey].replace('tailwind/ui/', '')
+          themeColors[colorKey] = uiColors[themedColor]
+        } else {
+          themeColors[colorKey] = themeConfig.colors[colorKey]
+        }
       // arbitrary checking if this object has keys 50 & 900 corresponding to the tailwind color system
-      } else if (themeConfig.colors[themeColor][50] && themeConfig.colors[themeColor][900]) {
-        themeColors[themeColor] = themeConfig.colors[themeColor]
+      } else if (themeConfig.colors[colorKey][50] && themeConfig.colors[colorKey][900]) {
+        themeColors[colorKey] = themeConfig.colors[colorKey]
+      } else if (themeConfig.colors[colorKey] && Object.keys(themeConfig.colors[colorKey]).length > 0) {
+        Object.keys(themeConfig.colors[colorKey]).forEach((themeConfigColorKey) => {
+          const themedColor = themeConfig.colors[colorKey][themeConfigColorKey].replace('tailwind/ui/', '')
+
+          themeColors[colorKey][themeConfigColorKey] = themedColor
+        })
       }
     }
-  }
-})
+  })
+}
 
 module.exports = {
   theme: {
@@ -48,6 +69,9 @@ module.exports = {
         },
         secondary: {
           ...themeColors.secondary,
+        },
+        accent: {
+          ...themeColors.accent,
         },
         'hero-black': '#3D3D3D',
         'cat-education': '#F82B2B',
