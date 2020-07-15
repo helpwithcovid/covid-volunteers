@@ -16,18 +16,26 @@
 
 <%= render partial: 'partials/events' %>
 
-<%# can't use :collection rendering because this partial iterates over the collection on its own %>
+<%# Not using :collection because this partial iterates over the collection on its own; cheating with local_assigns %>
 <%= render partial: 'funding-resources', locals: { resources: Settings.funding_resources, title: t('funding_volunteers_research_resources') } %>
 
 <section class="resource-section" id="resource-engaging-policy-makers">
   <div class="container mb-8">
     <div class="flex-shrink-0 text-center mb-6">
-      <h2>How to Engage Policy Makers written by Chris Clark</h2>
-      <p>Achieving meaningful federal level action in the current political environment will be very challenging, but even teeing up comprehensive legislation that could quickly be passed in early 2021 under a new administration would be good. This legislation being drafted in the House with the help of the Congressional Black Caucus would have significant nationwide impact if it one day becomes law. There appears to be bipartisan support for reform right now, so once it becomes more clear what reforms both sides are willing to try to pass, I would strongly encourage those who are interested to research the positions of their representatives in the House and Senate, and if they aren’t leaning the way you want, contact them!</p>
-      <p>In the meantime, the state and local officials can act, and state legislation would especially help set more uniform standards across jurisdictions. In California, the Governor is trying to spur the legislature to draft police reform bills that could be passed this year. I encourage those interested to find out who your state rep and senator are and contact them either while those plans are being drafted or once they are introduced and start being heard in committee.</p>
-      <p>Your county and city level reps also have a lot of power over local policing in California. Most cities are now formulating police reform plans in response to what has happened recently, and I encourage you to follow and engage in those reform planning processes. NOTE: A well researched and thoughtfully written email is much more likely to get your local officials’ attention than a form email or template that an advocacy org drafted.</p>
-      <p>Most importantly, VOTE if you can! I can’t emphasize how much this impacts how much progress is made over 2-4 years, especially at the local level.  Thoroughly research the candidates in your area, especially the local candidates. They hold more power than most people recognize, and those elections are often close. Even a single seat can shift the balance of power at the local level, so it is worth spending the time to learn more about them. The League of Women Voters will often provide impartial snapshots of the candidates, and many local advocacy organizations will make endorsements/recommendations that you can use to inform your decisions. For example, pro-housing groups, young dems/reps, and many others will endorse candidates in the various races.</p>
-      <p><a href="https://www.voteriders.org/what-we-do/mission/">https://www.voteriders.org/what-we-do/mission/</a></p>
+      <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+        How to Engage Policy Makers by Chris Clark
+      </h2>
+      <p class="mt-8 text-sm leading-5 text-gray-600 w-2/3 m-auto">
+        Achieving meaningful federal level action in the current political environment will be very challenging, but even teeing up comprehensive legislation that could quickly be passed in early 2021 under a new administration would be good. This legislation being drafted in the House with the help of the Congressional Black Caucus would have significant nationwide impact if it one day becomes law. There appears to be bipartisan support for reform right now, so once it becomes more clear what reforms both sides are willing to try to pass, I would strongly encourage those who are interested to research the positions of their representatives in the House and Senate, and if they aren’t leaning the way you want, contact them!
+        <br/><br/>
+        In the meantime, the state and local officials can act, and state legislation would especially help set more uniform standards across jurisdictions. In California, the Governor is trying to spur the legislature to draft police reform bills that could be passed this year. I encourage those interested to find out who your state rep and senator are and contact them either while those plans are being drafted or once they are introduced and start being heard in committee.
+        <br/><br/>
+        Your county and city level reps also have a lot of power over local policing in California. Most cities are now formulating police reform plans in response to what has happened recently, and I encourage you to follow and engage in those reform planning processes. NOTE: A well researched and thoughtfully written email is much more likely to get your local officials’ attention than a form email or template that an advocacy org drafted.
+        <br/><br/>
+        Most importantly, VOTE if you can! I can’t emphasize how much this impacts how much progress is made over 2-4 years, especially at the local level.  Thoroughly research the candidates in your area, especially the local candidates. They hold more power than most people recognize, and those elections are often close. Even a single seat can shift the balance of power at the local level, so it is worth spending the time to learn more about them. The League of Women Voters will often provide impartial snapshots of the candidates, and many local advocacy organizations will make endorsements/recommendations that you can use to inform your decisions. For example, pro-housing groups, young dems/reps, and many others will endorse candidates in the various races.
+        <br/><br/>
+        <a href="https://www.voteriders.org/what-we-do/mission/">https://www.voteriders.org/what-we-do/mission/</a>
+      </p>
     </div>
   </div>
 </section>
