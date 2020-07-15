@@ -6,7 +6,7 @@
       <span class="submenu-item"><%= link_to t('upcoming_events'), '#resources_upcoming_events' %></span>
       <span class="submenu-item"><%= link_to t('past_events'), '#resources_past_events' %></span>
       <span class="submenu-item"><%= link_to t('funding_resources'), '#resource_funding' %></span>
-      <span class="submenu-item"><%= link_to t('partner_resources'), '#partner_resource' %></span>
+      <span class="submenu-item"><%= link_to 'Educational Resources', '#resource_education' %></span>
       <span class="submenu-item"><%= link_to t('deals'), '#resource_deals' %></span>
     </div>
   </div>
@@ -15,7 +15,7 @@
 <%= render partial: 'partials/events' %>
 
 <%# Not using :collection because this partial iterates over the collection on its own; cheating with local_assigns %>
-<%= render partial: 'funding-resources', locals: { resources: Settings.funding_resources, title: t('funding_volunteers_research_resources') } %>
+<%= render partial: 'resources-links', locals: { resources: Settings.funding_resources, title: t('funding_volunteers_research_resources'), html_id: "resource_funding" } %>
 
 <section class="resource-section" id="resource-engaging-policy-makers">
   <div class="container mb-8">
@@ -40,9 +40,7 @@
 
 <%#= render partial: 'partner-resources' %>
 
-<%= render partial: 'funding-resources', locals: { resources: Settings.educational_resources, title: "Educational Resources" } %>
-
-<%= render partial: 'funding-resources', locals: { resources: Settings.educational_articles, title: "Educational Articles" } %>
+<%= render partial: 'resources-links', locals: { resources: Settings.educational_resources, title: "Educational Resources", html_id: "resource_education" } %>
 
 <section class="resource-section" id="resource_deals">
   <div class="container mb-8">
