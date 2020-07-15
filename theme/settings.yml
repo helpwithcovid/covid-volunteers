@@ -6,7 +6,9 @@ share_image: https://helpwithblackequity.herokuapp.com/share-image.png
 
 # Linked in the footer
 contact_email: helpwithblackequity@gmail.com
-discord_link: ''
+discord_link:
+twitter_link:
+facebook_link: https://www.facebook.com/deedapp
 
 # Site features
 features_enabled:
@@ -141,6 +143,10 @@ global_announcements:
 #    cta_url: /offers
 
 events:
+  - title: Running list of events and protests in the Bay Area
+    sub_title: Get involved
+    cta_text: View more
+    cta_url: https://sf.funcheap.com/city-guide/list-upcoming-black-lives-matter-protests-sf-bay-area/
   # - title: Private Group Office Hours with Sam Altman
   #   sub_title: Sam does GOH with three HelpWithCovid teams
   #   cta_text: View recording
@@ -263,6 +269,12 @@ educational_articles:
     cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
   - cta_text: Netflix will shift $100M of cash into Black-owned banks
     cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
+
+mental_health_resources:
+  - cta_text: Virtual mental health resources supporting Black people right now
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=26e96e5e76&e=09341c6e55
+
+donation_resources:
 
 media_kit:
   - name: HWC badges

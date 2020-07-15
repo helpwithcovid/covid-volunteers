@@ -7,6 +7,8 @@ share_image: https://www.helpwithcovid.com/share-image.png
 # Linked in the footer
 contact_email: helpwithcovid@gmail.com
 discord_link: https://discord.gg/8nAJfFN
+twitter_link: https://twitter.com/helpwithcovid
+facebook_link: https://www.facebook.com/HelpwithCOVID
 
 # Site features
 features_enabled:
@@ -59,7 +61,7 @@ volunteers_needed_for_project:
   - 100+
 
 project_types:
-  - Black Businesses
+  - Black Business Owners
   - Non-profit volunteering
 
 project_statuses:
