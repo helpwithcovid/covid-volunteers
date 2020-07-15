@@ -42,7 +42,7 @@ project_categories:
     color: cat-social-justice
   - name: Business Directory
     slug: business-directory
-    body: Support black owned businesses
+    body: Support Black owned businesses
     project_types:
       - Technology
       - Retail & Manufacturing
@@ -163,7 +163,7 @@ funding_resources:
     cta_url: https://www.blackangeltechfund.com/
   - cta_text: Black Angels Miami
     cta_url: https://www.blackangels.miami/
-  - cta_text: VCs pledging to fund black owned companies
+  - cta_text: VCs pledging to fund Black owned companies
     cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
   - cta_text: Netflix will shift $100M of cash into Black-owned banks
     cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
@@ -197,7 +197,7 @@ educational_resources:
     cta_url: https://www.blackangeltechfund.com/
   - cta_text: Black Angels Miami
     cta_url: https://www.blackangels.miami/
-  - cta_text: VCs pledging to fund black owned companies
+  - cta_text: VCs pledging to fund Black owned companies
     cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
   - cta_text: Netflix will shift $100M of cash into Black-owned banks
     cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
@@ -207,7 +207,7 @@ educational_articles:
     cta_url: https://www.blackangeltechfund.com/
   - cta_text: Black Angels Miami
     cta_url: https://www.blackangels.miami/
-  - cta_text: VCs pledging to fund black owned companies
+  - cta_text: VCs pledging to fund Black owned companies
     cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
   - cta_text: Netflix will shift $100M of cash into Black-owned banks
     cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
