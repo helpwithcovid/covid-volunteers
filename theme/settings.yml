@@ -5,7 +5,6 @@ site_url: https://helpwithblackequity.herokuapp.com
 share_image: https://helpwithblackequity.herokuapp.com/share-image.png
 
 # Linked in the footer
-# Not displayed if blank
 contact_email: helpwithblackequity@gmail.com
 discord_link: ''
 
@@ -203,43 +202,67 @@ upcoming_events:
 #    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NWZvanJyZzYybGM2dmhodmc1YmdsNmRpZWcgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
 
 funding_resources:
-  - cta_text: YC S2020 Application
-    cta_url: https://www.ycombinator.com/apply/
-  - cta_text: WeFunder
-    cta_url: https://wefunder.com/raise-money
-  - cta_text: 80,000 Hours
-    cta_url: https://mailtrack.io/trace/link/8c8d1564095e2d5ec067747e4b3a6f862edfc731?url=https%3A%2F%2F80000hours.org%2F2020%2F04%2Fopportunities-to-work-on-covid-19%2F&userId=2861473&signature=3d3d868b7658ace5
-  - cta_text: Association of Fundraising Professionals
-    cta_url: https://afpglobal.org/
-  - cta_text: Covid Accelerator
-    cta_url: https://covidaccelerator.com/
-  - cta_text: Covid19-Response
-    cta_url: https://www.covid19-response.com/
-  - cta_text: Plug and Play
-    cta_url: https://www.plugandplaytechcenter.com/covid-19/?utm_campaign=Health_Newsletter_May%202019&utm_source=hs_email&utm_medium=email&utm_content=85778878&_hsenc=p2ANqtz-8AHUCNB-yeVfppjjjjE5b9GKQdFVnuA6FcmSMy3uJOVWtyLW2-DVKL6ybPr8AWWk9VRfO2TotPM8zP-ZUxkNmrusZNqw&_hsmi=85779062
-  - cta_text: MIT Covid-19 Research
-    cta_url: https://computing.mit.edu/computation-support-covid-19
-  - cta_text: H.E.L.P
-    cta_url: https://www.helpvolunteer.app/
+  - cta_text: Black Angel Tech Fund
+    cta_url: https://www.blackangeltechfund.com/
+  - cta_text: Black Angels Miami
+    cta_url: https://www.blackangels.miami/
+  - cta_text: VCs pledging to fund black owned companies
+    cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
+  - cta_text: Netflix will shift $100M of cash into Black-owned banks
+    cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
+  - cta_text: Salesforce, People, Philanthropy, Purchasing, and Policy
+    cta_url: https://www.salesforce.com/company/news-press/stories/2020/6/racial-equality-and-justice/
+  - cta_text: Microsoft spending $50 million on Black-owned small businesses
+    cta_url: https://blogs.microsoft.com/blog/2020/06/23/addressing-racial-injustice/
+  - cta_text: Google, $175 million commitment to help create economic opportunity
+    cta_url: https://www.blog.google/inside-google/company-announcements/commitments-racial-equity/
+  - cta_text: Sony Music Group announces $100 million-global-social-justice-fund
+    cta_url: https://www.sonymusic.com/sonymusic/sony-music-group-announces-100-million-global-social-justice-fund/
+  - cta_text: Comcast-announces-100-million-multiyear-plan-social-justice-and-equality
+    cta_url: https://www.sonymusic.com/sonymusic/sony-music-group-announces-100-million-global-social-justice-fund/
+  - cta_text: Mastercard Foundation works almost exclusively in Africa
+    cta_url: https://mastercardfdn.org/foundation/
+  - cta_text: Nike $40 million commitment to black community
+    cta_url: https://news.nike.com/news/nike-commitment-to-black-community
 
 partner_resources:
-  - name: AWS
-    description: $10,000 in AWS credits for approved projects. Your project must be a corporate entity. Email helpwithcovid@gmail.com
-    mail_to: helpwithcovid@gmail.com
-  - name: ClozeLoop
-    description: |+
-      Complete Sales Effectiveness Assessments for three companies we choose. The Sales Effectiveness Assessment is an evaluation of your company’s sales Strategy, Systems, Staff and Skills aligned with short and long-term revenue goals. The assessment provides a prioritized high-impact roadmap, and clear recommendations for growth.
-      $2500 value.
-    cta_link: https://clozeloop.typeform.com/to/ccPwVe
-  - name: Turtle
-    description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtle's developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
-    cta_link: https://forms.gle/8UaPv6Qjaw8sFBNy9
-  - name: Blind
-    description: |+
-      We are offering promotion at no cost for 4 projects
-      - Support 3 projects with native advertising
-      - Support 1 project with sponsored AMA post
-    cta_link: https://bit.ly/helpwithcovid_blind
+  # - name: AWS
+  #   description: $10,000 in AWS credits for approved projects. Your project must be a corporate entity. Email helpwithcovid@gmail.com
+  #   mail_to: helpwithcovid@gmail.com
+  # - name: ClozeLoop
+  #   description: |+
+  #     Complete Sales Effectiveness Assessments for three companies we choose. The Sales Effectiveness Assessment is an evaluation of your company’s sales Strategy, Systems, Staff and Skills aligned with short and long-term revenue goals. The assessment provides a prioritized high-impact roadmap, and clear recommendations for growth.
+  #     $2500 value.
+  #   cta_link: https://clozeloop.typeform.com/to/ccPwVe
+  # - name: Turtle
+  #   description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtle's developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
+  #   cta_link: https://forms.gle/8UaPv6Qjaw8sFBNy9
+  # - name: Blind
+  #   description: |+
+  #     We are offering promotion at no cost for 4 projects
+  #     - Support 3 projects with native advertising
+  #     - Support 1 project with sponsored AMA post
+  #   cta_link: https://bit.ly/helpwithcovid_blind
+
+educational_resources:
+  - cta_text: Black Angel Tech Fund
+    cta_url: https://www.blackangeltechfund.com/
+  - cta_text: Black Angels Miami
+    cta_url: https://www.blackangels.miami/
+  - cta_text: VCs pledging to fund black owned companies
+    cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
+  - cta_text: Netflix will shift $100M of cash into Black-owned banks
+    cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
+
+educational_articles:
+  - cta_text: Black Angel Tech Fund
+    cta_url: https://www.blackangeltechfund.com/
+  - cta_text: Black Angels Miami
+    cta_url: https://www.blackangels.miami/
+  - cta_text: VCs pledging to fund black owned companies
+    cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
+  - cta_text: Netflix will shift $100M of cash into Black-owned banks
+    cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
 
 media_kit:
   - name: HWC badges

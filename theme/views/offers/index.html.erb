@@ -1,0 +1,62 @@
+<%- share_title t('resources') %>
+
+<div class="-mt-6 pb-4 w-full flex flex-col sm:flex-row justify-center border-b border-gray-200 sm:visible invisible">
+  <div class="w-full sm:w-auto mx-auto sm:mx-0 overflow-x-auto scrolling-touch scrollbar-hidden sm:overflow-x-auto">
+    <div class="flex flex-row flex-no-wrap h-full resource-submenu">
+      <span class="submenu-item"><%= link_to t('playbook'), '#resource_playbook' %></span>
+      <span class="submenu-item"><%= link_to t('upcoming_events'), '#resources_upcoming_events' %></span>
+      <span class="submenu-item"><%= link_to t('recorded_panels'), '#resources_recorded_live_panels' %></span>
+      <span class="submenu-item"><%= link_to t('funding_resources'), '#resource_funding' %></span>
+      <span class="submenu-item"><%= link_to t('partner_resources'), '#partner_resource' %></span>
+      <span class="submenu-item"><%= link_to t('deals'), '#resource_deals' %></span>
+      <span class="submenu-item "><%= link_to t('media_kit'), '#media_kit' %></span>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'partials/events' %>
+
+<%# can't use :collection rendering because this partial iterates over the collection on its own %>
+<%= render partial: 'funding-resources', locals: { resources: Settings.funding_resources, title: t('funding_volunteers_research_resources') } %>
+
+<section class="resource-section" id="resource-engaging-policy-makers">
+  <div class="container mb-8">
+    <div class="flex-shrink-0 text-center mb-6">
+      <h2>How to Engage Policy Makers written by Chris Clark</h2>
+      <p>Achieving meaningful federal level action in the current political environment will be very challenging, but even teeing up comprehensive legislation that could quickly be passed in early 2021 under a new administration would be good. This legislation being drafted in the House with the help of the Congressional Black Caucus would have significant nationwide impact if it one day becomes law. There appears to be bipartisan support for reform right now, so once it becomes more clear what reforms both sides are willing to try to pass, I would strongly encourage those who are interested to research the positions of their representatives in the House and Senate, and if they aren’t leaning the way you want, contact them!</p>
+      <p>In the meantime, the state and local officials can act, and state legislation would especially help set more uniform standards across jurisdictions. In California, the Governor is trying to spur the legislature to draft police reform bills that could be passed this year. I encourage those interested to find out who your state rep and senator are and contact them either while those plans are being drafted or once they are introduced and start being heard in committee.</p>
+      <p>Your county and city level reps also have a lot of power over local policing in California. Most cities are now formulating police reform plans in response to what has happened recently, and I encourage you to follow and engage in those reform planning processes. NOTE: A well researched and thoughtfully written email is much more likely to get your local officials’ attention than a form email or template that an advocacy org drafted.</p>
+      <p>Most importantly, VOTE if you can! I can’t emphasize how much this impacts how much progress is made over 2-4 years, especially at the local level.  Thoroughly research the candidates in your area, especially the local candidates. They hold more power than most people recognize, and those elections are often close. Even a single seat can shift the balance of power at the local level, so it is worth spending the time to learn more about them. The League of Women Voters will often provide impartial snapshots of the candidates, and many local advocacy organizations will make endorsements/recommendations that you can use to inform your decisions. For example, pro-housing groups, young dems/reps, and many others will endorse candidates in the various races.</p>
+      <p><a href="https://www.voteriders.org/what-we-do/mission/">https://www.voteriders.org/what-we-do/mission/</a></p>
+    </div>
+  </div>
+</section>
+
+<%#= render partial: 'partner-resources' %>
+
+<%= render partial: 'funding-resources', locals: { resources: Settings.educational_resources, title: "Educational Resources" } %>
+
+<%= render partial: 'funding-resources', locals: { resources: Settings.educational_articles, title: "Educational Articles" } %>
+
+<section class="resource-section" id="resource_deals">
+  <div class="container mb-8">
+    <div class="px-4 sm:px-0 mt-10 mb-3 font-bold text-center">
+      <%= t('deals_from_organizations_that_want_to_help_out_wit') %>
+    </div>
+
+    <div class="flex-shrink-0 text-center mb-6">
+      <span class="inline-flex rounded-md shadow-sm">
+        <%= link_to new_offer_path do %>
+          <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline-primary- focus:border-primary-700 active:bg-primary-700">
+            <%= t('create_resource') %>
+          </button>
+        <% end %>
+      </span>
+
+    </div>
+  </div>
+
+  <%= render partial: 'offers' %>
+
+  <%= render partial: 'media-kit' %>
+</section>
