@@ -19,6 +19,7 @@ features_enabled:
   for_profit_projects: true
   playbook: false
 
+# Define how projects are organized. Slugs must not have spaces
 project_categories:
   - name: Education
     slug: education
@@ -147,42 +148,6 @@ events:
     sub_title: Get involved
     cta_text: View more
     cta_url: https://sf.funcheap.com/city-guide/list-upcoming-black-lives-matter-protests-sf-bay-area/
-  # - title: Private Group Office Hours with Sam Altman
-  #   sub_title: Sam does GOH with three HelpWithCovid teams
-  #   cta_text: View recording
-  #   cta_url: https://drive.google.com/file/d/1RW1WBc0OabPD-qg73e_j8oNjuwhCF53t/view?usp=sharing
-  # - title: Lean thinking in a Crisis. Live Panel with Eric Ries
-  #   sub_title: Eric is an entrepreneur and the author of the New York Times bestseller The Lean Startup. He is the creator of the Lean Startup methodology, which has become a global movement in business, practiced by individuals and companies around the world.
-  #   cta_text: View recording
-  #   cta_url: https://drive.google.com/a/openai.com/file/d/1r8PBT_h2ZcnyMExV_hx6B7W8-n35BpgE/view?usp=drive_web
-  # - title: A Global Perspective on Problems Needing Solutions Regarding COVID-19 Response. Live Panel with Ambika Bumb
-  #   sub_title: Ambika is a Health, Science and Technology Advisor focusing on Crisis Management and Strategy
-  #   cta_text: View recording
-  #   cta_url: https://drive.google.com/a/openai.com/file/d/1I3TjGcWQUsoKGP5dbPT7WD244UjDYiXf/view?usp=drive_web
-  # - title: Rethinking Resumes | Creating Impact in the age of Insta-everything
-  #   sub_title: Jaimie Lynn Craig Feliz, Founder of The Hire Standard and Bay Area search and resume guru gives actionable insights and tactics to influence, connect and ultimately be seen as the expert you are.
-  #   cta_text: View recording
-  #   cta_url: https://drive.google.com/drive/u/0/folders/13GJiASpNx_FLu3DsMN2pDoExaDrE-J8l
-  # - title: Sourcing a Volunteer Workforce from TeamBlind’s 3.5MM+ Professionals with Kyum Kim
-  #   sub_title: Tuesday, April 21st 12pm-12:30pm PST
-  #   cta_text: View recording
-  #   cta_url: https://drive.google.com/drive/u/0/folders/1tst9ZLbB7hWGgQE7NpI4P3CjtctI7gT2
-  # - title: Live panel on Philanthropic Fundraising
-  #   sub_title: Jennifer Pisansky has 10 years of experience in philanthropic fundraising and talks about raising from foundations.
-  #   cta_text: View recording
-  #   cta_url: https://openai.zoom.us/rec/share/3dZaM6vJy1NJfp3c2UHkfa8oQL-7T6a82yRN-fsOmkl9jfRS3GPg-L-gS4Y9zJu3
-  # - title: Live panel on How to Scale Volunteers
-  #   sub_title: Glen Moriarty, founder of 7cups on how he manages 320k volunteers.
-  #   cta_text: View recording
-  #   cta_url: https://openai.zoom.us/rec/play/vZN-dbuq-m03TNKSsASDAfEtW466J6qs1XQWrvtYxRvmU3QDNVv0NLJGYbffjdiMo1gf68qHVnbe2mOi?continueMode=true
-  # - title: Live panel on Picking Ideas to Work On
-  #   sub_title: Ivan Gayton, former Head of Mission and Board Member at Doctors without Border, talks about building technology for humanitarian/emergency purposes.
-  #   cta_text: View recording
-  #   cta_url: https://zoom.us/rec/share/5sttA5fAsWxLT6_Nx2-Yd7IEDqfuaaa823JI8_tcyUYSZzIbgvNy717m1UGGegEf
-  # - title: Live panel on How to Sell and Know Your Audience
-  #   sub_title: ClozeLoop Founders, Hilmon Sorey and Cory Bray, talk about understanding your audience and selling to them.
-  #   cta_text: See slides and recording
-  #   cta_url: https://drive.google.com/drive/u/0/folders/1NATDm5yVsYUo8jRY7svE2fqwm1OwcpMu
 
 upcoming_events:
   # - title: COVID 19 Global Hackathon 2.0 - Social & Mental Health.
@@ -192,20 +157,6 @@ upcoming_events:
   #   month: July
   #   day: 3
   #   time: 10:00 AM
-  # - title: COVID 19 Global Hackathon 2.0 - Keynote speaker with Justin Kan, Help With Covid, Deed, 7 Cups
-  #   sub_title: Join us for the hackathon kickoff
-  #   cta_text: Add to calendar
-  #   cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=MHRzdGg1cnQwbDNsZW52NTRlaGc1Z2tsdXEgY3J0dGYub3JnX2ZxYWxqM2NsNWpjOHJkcTk3aHBwZTVjZGNzQGc&tmsrc=crttf.org_fqalj3cl5jc8rdq97hppe5cdcs%40group.calendar.google.com
-  #   month: July
-  #   day: 5
-  #   time: 10:00 AM
-#  - title: Private Group Office Hours with Radu
-#    sub_title: Wednesday, May 6th 3:30pm - 4:30pm
-#    month: May
-#    day: 6
-#    time: 3:30 PM - 4:30 PM PST
-#    cta_text: Add to Calendar
-#    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=NWZvanJyZzYybGM2dmhodmc1YmdsNmRpZWcgb3BlbmFpLmNvbV9wOW5mZ2MyZjltcnJkaGE1OW52M2tjYnNya0Bn&tmsrc=openai.com_p9nfgc2f9mrrdha59nv3kcbsrk%40group.calendar.google.com
 
 funding_resources:
   - cta_text: Black Angel Tech Fund
@@ -240,15 +191,6 @@ partner_resources:
   #     Complete Sales Effectiveness Assessments for three companies we choose. The Sales Effectiveness Assessment is an evaluation of your company’s sales Strategy, Systems, Staff and Skills aligned with short and long-term revenue goals. The assessment provides a prioritized high-impact roadmap, and clear recommendations for growth.
   #     $2500 value.
   #   cta_link: https://clozeloop.typeform.com/to/ccPwVe
-  # - name: Turtle
-  #   description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtle's developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
-  #   cta_link: https://forms.gle/8UaPv6Qjaw8sFBNy9
-  # - name: Blind
-  #   description: |+
-  #     We are offering promotion at no cost for 4 projects
-  #     - Support 3 projects with native advertising
-  #     - Support 1 project with sponsored AMA post
-  #   cta_link: https://bit.ly/helpwithcovid_blind
 
 educational_resources:
   - cta_text: Black Angel Tech Fund
