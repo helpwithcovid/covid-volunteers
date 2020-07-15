@@ -163,7 +163,7 @@ const Covid = {
         return this.selected.some(selected => selected === option)
       },
       dropDownLabel() {
-        return pluralize(this.label, this.selected.length)
+        return this.label;
       }
     }
   },
