@@ -69,3 +69,7 @@ There are some views that you will most likely always want to change. These are:
 3) views/home/about
 
 In general it's best to avoid overwriting lots of views because that would make updates harder.
+
+## Public directory
+
+There's a symlink from `/theme/public/` to `/public/theme` so we can reference things like this `https://helpwith.com/theme/favicons/favicon-16x16/png`.

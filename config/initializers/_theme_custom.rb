@@ -13,3 +13,5 @@ Settings.add_source!({
 })
 
 Settings.reload!
+
+require Rails.root.join('theme', 'initializer.rb').to_s
