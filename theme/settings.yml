@@ -194,21 +194,67 @@ partner_resources:
   #     $2500 value.
   #   cta_link: https://clozeloop.typeform.com/to/ccPwVe
 
+educational_articles:
+  - cta_text: Standing United Deck
+    cta_url: https://docs.google.com/presentation/d/1ltJmjs20m1rQGXPesYRi7zLq35mgWELQO8oFOrD1UlM/edit?usp=sharing
+  - cta_text: A Letter to Corporate Leaders
+    cta_url: https://medium.com/@aasu/a-letter-to-corporate-leaders-bd931d5326ab
+  - cta_text: The forgotten struggle for civil rights in the northern U.S.
+    cta_url: https://www.mprnews.org/story/2018/03/30/the-forgotten-struggle-for-civil-rights-in-the-northern-us
+  - cta_text: Racism, whiteness, and burnout in antiracism movements - How white racial justice activists elevate burnout in racial justice activists of color in the United States
+    cta_url: http://edchange.org/publications/White-Activists-Causing-Burnout-Racial-Justice-Activists-Gorski-Erakat.pdf
+  - cta_text: Twitter thread on how to be an ally
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=b8a8113b78&e=09341c6e55
+  - cta_text: An article on how to be an ally at work this week
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=a5caeab50e&e=09341c6e55
+  - cta_text: Some advice on how to check on your Black friends
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=4b908c852d&e=09341c6e55
+  - cta_text: Visual representation to help you combat covert or “socially acceptable” forms of racism
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=1ab4c3dfdd&e=09341c6e55
+  - cta_text: 75 things White people can do for racial justice
+    cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=52d9136378&e=09341c6e55
+  - cta_text: Barack Obama - How to make this moment the turning point for real change
+    cta_url: https://medium.com/@BarackObama/how-to-make-this-moment-the-turning-point-for-real-change-9fa209806067
+  - cta_text: Obama.org - Anguish and Action
+    cta_url: https://www.obama.org/anguish-and-action/
+
 educational_resources:
-  - cta_text: Black Angel Tech Fund
-    cta_url: https://www.blackangeltechfund.com/
-  - cta_text: Black Angels Miami
-    cta_url: https://www.blackangels.miami/
-  - cta_text: VCs pledging to fund Black owned companies
-    cta_url: https://docs.google.com/spreadsheets/d/19O1BTO6p2tBbLJA9n-TTaxTCzIVT3hBMdbJUbBpFoLo/edit?ts=5ee416b9#gid=0
-  - cta_text: Netflix will shift $100M of cash into Black-owned banks
-    cta_url: https://www.bloomberg.com/news/articles/2020-06-30/netflix-will-shift-100-million-of-cash-into-black-owned-banks
+  - cta_text: 21 day racial equity and social justice challenge
+    cta_url: https://www.ywcaofcleveland.org/2020-21-day-racial-equity-and-social-justice-challenge/
+  - cta_text: Huge list of resources for being an ally (Anti-Racism and Allyship Resource Kit)
+    cta_url: https://drive.google.com/file/d/1IqR6NzB6ifdNlpI2Vv5bQjYiega97W4w/view?usp=sharing
+  - cta_text: Anti Racism Resources for White People
+    cta_url: https://docs.google.com/document/u/1/d/1BRlF2_zhNe86SGgHa6-VlBO-QgirITwCTugSfKie5Fs/mobilebasic
+  - cta_text: Broken Policing System - Hasan (video)
+    cta_url: https://www.youtube.com/watch?v=km4uCOAzrbM
+  - cta_text: the show must be paused
+    cta_url: https://www.theshowmustbepaused.com/
+  - cta_text: Use of force project
+    cta_url: http://useofforceproject.org/#project
 
 mental_health_resources:
   - cta_text: Virtual mental health resources supporting Black people right now
     cta_url: https://insideoutincubator.us17.list-manage.com/track/click?u=7e29d413829f23aa51172807d&id=26e96e5e76&e=09341c6e55
 
 donation_resources:
+  - cta_text: Campaign Zero
+    cta_url: https://www.joincampaignzero.org/
+  - cta_text: NAACP
+    cta_url: https://www.naacp.org
+  - cta_text: NAACP Legal Defense Fund
+    cta_url: https://www.naacpldf.org/
+  - cta_text: ACLU
+    cta_url: https://www.aclu.org/
+  - cta_text: Legal Rights Center
+    cta_url: https://www.legalrightscenter.org/
+  - cta_text: Northstar Health Collective
+    cta_url: https://www.northstarhealthcollective.org/
+  - cta_text: Real Justice PAC
+    cta_url: https://realjusticepac.org/
+  - cta_text: Open Philantrhopy Grants Database
+    cta_url: https://www.openphilanthropy.org/giving/grants
+  - cta_text: Color of Change
+    cta_url: https://colorofchange.org/
 
 media_kit:
   - name: HWC badges

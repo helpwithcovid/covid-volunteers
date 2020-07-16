@@ -6,7 +6,10 @@
       <span class="submenu-item"><%= link_to t('upcoming_events'), '#resources_upcoming_events' %></span>
       <span class="submenu-item"><%= link_to t('past_events'), '#resources_past_events' %></span>
       <span class="submenu-item"><%= link_to t('funding_resources'), '#resource_funding' %></span>
-      <span class="submenu-item"><%= link_to 'Educational Resources', '#resource_education' %></span>
+      <span class="submenu-item"><%= link_to 'Articles', '#resource_articles' %></span>
+      <span class="submenu-item"><%= link_to 'Education', '#resource_education' %></span>
+      <span class="submenu-item"><%= link_to 'Mental Health', '#resource_mental_health' %></span>
+      <span class="submenu-item"><%= link_to 'Organizations Seeking Donations', '#resource_donations' %></span>
       <span class="submenu-item"><%= link_to t('deals'), '#resource_deals' %></span>
     </div>
   </div>
@@ -40,7 +43,13 @@
 
 <%#= render partial: 'partner-resources' %>
 
+<%= render partial: 'resources-links', locals: { resources: Settings.educational_articles, title: "Articles", html_id: "resource_articles" } %>
+
 <%= render partial: 'resources-links', locals: { resources: Settings.educational_resources, title: "Educational Resources", html_id: "resource_education" } %>
+
+<%= render partial: 'resources-links', locals: { resources: Settings.mental_health_resources, title: "Mental Health Resources", html_id: "resource_mental_health" } %>
+
+<%= render partial: 'resources-links', locals: { resources: Settings.donation_resources, title: "Organizations Seeking Donations", html_id: "resource_donations" } %>
 
 <section class="resource-section" id="resource_deals">
   <div class="container mb-8">
