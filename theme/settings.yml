@@ -44,7 +44,7 @@ project_categories:
     color: cat-social-justice
   - name: Business Directory
     slug: business-directory
-    body: Support Black owned businesses
+    body: Support Black business owners. If you are a BIPOC, please create a project and add your business!
     project_types:
       - Technology
       - Retail & Manufacturing
