@@ -23,12 +23,16 @@ let themeColors = {
 
 // adding accent colors
 themeColors.accent = {
-  default: '#FFCE3D',
-  text: uiColors.black,
-  hover: '#ffe085',
-  border: themeColors.secondary['700'],
-  active: themeColors.secondary['700'],
-  focus: themeColors.secondary['700'],
+  default: themeColors.primary[600],
+  text: uiColors.white.default,
+  hover: themeColors.primary[500],
+  border: themeColors.primary[700],
+  active: themeColors.primary[700],
+  focus: themeColors.primary[700],
+  sub_navbar_bg: uiColors.white.default,
+  sub_navbar_text: uiColors.black.default,
+  filters_navbar_bg: themeColors.primary[100],
+  filters_navbar_text: uiColors.black.default,
 }
 
 // Parsing the theme config

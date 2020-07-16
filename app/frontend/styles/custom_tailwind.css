@@ -3,5 +3,5 @@
 }
 
 .submenu-item-active {
-  @apply font-bold border-b-2 border-primary-600;
+  @apply font-bold border-b-2 border-accent;
 }

@@ -4,7 +4,11 @@ colors:
   accent:
     default: '#FFCE3D'
     hover: '#ffe085'
-    text: '#000'
+    text: '#000000'
     border: '#8e4b10'
     active: '#8e4b10'
     focus: '#8e4b10'
+    sub_navbar_bg: '#3D3D3D'
+    sub_navbar_text: '#ffffff'
+    filters_navbar_bg: '#3D3D3D'
+    filters_navbar_text: '#ffffff'
