@@ -18,6 +18,7 @@ features_enabled:
   office_hours: true
   success_stories: true
   playbook: true
+  projects_sort_by_filter: true # should the 'Sort by' filter be visible on /projects?
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:

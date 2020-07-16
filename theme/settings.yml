@@ -19,6 +19,7 @@ features_enabled:
   success_stories: true
   for_profit_projects: true
   playbook: false
+  projects_sort_by_filter: false
 
 # Define how projects are organized. Slugs must not have spaces
 project_categories:
