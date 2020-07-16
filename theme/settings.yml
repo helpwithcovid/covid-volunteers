@@ -62,7 +62,7 @@ project_categories:
     color: cat-health
   - name: Wealth
     slug: wealth
-    body: Employment, funding and ownership
+    body: Employment and Funding
     project_types:
       - Jobs
       - Investors
