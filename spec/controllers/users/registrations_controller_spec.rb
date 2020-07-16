@@ -283,4 +283,36 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let!(:user) { create(:user) }
+    let(:params) { { id: '1982738917269816' } }
+    # let(:real_params) { { "user"=>{"name"=>"something", "about"=>"somethi", "skill_list"=>["Analytics"], 
+    #   "level_of_availability"=>"1-2 hours a day", "profile_links"=>"s", "location"=>"someth", 
+    #   "visibility"=>"0", "pair_with_projects"=>"0", "email"=>"cat@gmail.com", 
+    #   "password"=>"", "password_confirmation"=>"", "current_password"=>""} } }
+
+    before do
+      sign_in user
+    end
+
+    it 'we should be on projects path' do
+      put :update, params: params
+
+      expect(user.email).to eq('newemail@gmail.com')
+    end
+
+    # it 'redirects to previous page' do
+    #   put :update, params: params, session: { return_to: volunteers_path }
+    #   expect(response).to redirect_to volunteers_path
+    # end
+  end
 end
+
+    # <ActionController::Parameters {"_method"=>"put", 
+    # "authenticity_token"=>"Yh3ojJLMOoiWH4wROxI6lMi9PGTHBlCMmyu4ZbWousJ0o+wMTXpXsC1VbRTJ/Gd4Qb2589yxzfojb5G0ZB5Syg==", 
+    # "user"=>{"name"=>"something", "about"=>"somethi", "skill_list"=>["Analytics"], 
+    #   "level_of_availability"=>"1-2 hours a day", "profile_links"=>"s", "location"=>"someth", 
+    #   "visibility"=>"0", "pair_with_projects"=>"0", "email"=>"cat@gmail.com", 
+    #   "password"=>"", "password_confirmation"=>"", "current_password"=>""}, 
+    #   "controller"=>"users/registrations", "action"=>"update"} permitted: false>

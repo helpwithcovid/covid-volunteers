@@ -30,14 +30,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+  	session[:return_to] ||= request.referer
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    # byebug
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -89,4 +90,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return 'created_at desc' if params[:sort_by] == 'latest'
       return 'created_at asc' if params[:sort_by] == 'earliest'
     end
+
+    def after_update_path_for(resource)
+    	session.delete(:return_to)
+    end
+
 end
