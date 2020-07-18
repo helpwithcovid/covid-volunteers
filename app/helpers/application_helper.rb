@@ -244,7 +244,8 @@ module ApplicationHelper
   end
 
   def url_from_string(string)
-    URI.parse(string[URI.regexp(%w(http https mailto))]) rescue nil
+    string_with_links = Rinku.auto_link(sanitize(string))
+    URI.parse(string_with_links[URI.regexp(%w(http https mailto))]) rescue nil
   end
 
   def shorten_url(url)
