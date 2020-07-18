@@ -219,7 +219,7 @@
           </div>
         </div>
         <% parsed_url_from_demo = url_from_string(@project.docs_and_demo) %>
-        <% if (@project.docs_and_demo.present? && parsed_url_from_demo) or true %>
+        <% if (@project.docs_and_demo.present? && parsed_url_from_demo) %>
           <div class="p-6 pt-3 pb-3 bg-primary-600 text-white">
             <a href="<%= parsed_url_from_demo %>" rel="nofollow noopener noreferrer" target="_blank" class="flex justify-center items-center text-sm font-medium">
               <span><%= shorten_url parsed_url_from_demo %></span>
