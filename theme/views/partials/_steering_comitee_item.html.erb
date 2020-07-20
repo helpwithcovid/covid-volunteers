@@ -4,7 +4,7 @@
   <div>
     <%= item.title %>
     <% if item.company.present? %>
-      , <span class="text-accent font-bold"><%= Rinku.auto_link(item.company).html_safe %></span>
+      , <span class="text-accent font-bold"><%= Rinku.auto_link(item.company, :all, 'target="_blank"').html_safe %></span>
     <% end %>
   </div>
 </div>
