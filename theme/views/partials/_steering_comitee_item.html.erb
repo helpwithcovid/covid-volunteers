@@ -1,0 +1,10 @@
+<div class="relative block shadow-users rounded-lg overflow-hidden text-gray-600 px-12 py-10 mb-6 text-sm">
+  <div class="mb-4 text-gray-600 leading-tight"><%= simple_format item.body, class: 'mb-3' %></div>
+  <div><%= item.name %></div>
+  <div>
+    <%= item.title %>
+    <% if item.company.present? %>
+      , <span class="text-accent font-bold"><%= Rinku.auto_link(item.company).html_safe %></span>
+    <% end %>
+  </div>
+</div>

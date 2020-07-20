@@ -16,7 +16,7 @@
         <template x-for="option in options" :key="option[0]">
           <div @click="toggleSelection(option[1])" class="relative flex mb-1 cursor-pointer z-10">
             <input type="checkbox" x-bind:checked="isSelected(option[1])" class="mr-2 mt-1">
-            <div x-text="option[0]"></div>
+            <div x-text="option[0]" class="text-gray-800"></div>
           </div>
         </template>
       </div>
