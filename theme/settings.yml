@@ -279,10 +279,6 @@ James earned his BSE in Electrical Engineering from University of Michigan and i
     name: James Norman
     title: CEO
     company: https://www.pilot.ly/our-story
-  - body: "<strong>Yonas</strong> is an Ethiopian-American born and raised in Maryland, and is Founder & CEO of StackShare. StackShare is one of the world's largest online networks for software developers- with over 500,000 engineers, CTOs, and VPs of Engineering from some of the world’s top startups, including Airbnb, Uber and Spotify. Yonas has raised over $7M in venture capital from Silicon Valley investors. Yonas is a Founding Board Member of Harambeans, an organization that supports high impact African entrepreneurs that have collectively raised over $400M in capital. Yonas also helped create The Black Founder List, and is also a mentor at Transparent Collective, a non-profit that supports underrepresented startup founders."
-    name: Yonas Beshawred
-    title: CEO
-    company: https://stackshare.io/yonasb
   - body: "<strong>Kessa Early</strong> is passionate and devoted to helping youth feel empowered, and has mastered the skill of creating a safe space for youth to feel respected and cared for while being educated.  Born and raised in Marin County, she has devoted 19 years helping advocate and support youth as an educator in Novato Unified School District. Before founding <a href='https://www.earlyvibes.org/about-us' target='_blank'>Early Vibes Incorporated</a> in 2018, Kessa served solely as a principal of alternative education for 12 years.  She continues in her principal role where she works alongside students who seek an alternative pathway to receive their high school diploma.
 
 
@@ -290,3 +286,7 @@ Kessa completed her Master’s degree in Educational Administration and earned h
     name: Kessa Early
     title: CEO
     company: <a href="https://www.earlyvibes.org/programs" target="_blank">Early Vibes Inc</a>
+  - body: "<strong>Yonas</strong> is an Ethiopian-American born and raised in Maryland, and is Founder & CEO of StackShare. StackShare is one of the world's largest online networks for software developers- with over 500,000 engineers, CTOs, and VPs of Engineering from some of the world’s top startups, including Airbnb, Uber and Spotify. Yonas has raised over $7M in venture capital from Silicon Valley investors. Yonas is a Founding Board Member of Harambeans, an organization that supports high impact African entrepreneurs that have collectively raised over $400M in capital. Yonas also helped create The Black Founder List, and is also a mentor at Transparent Collective, a non-profit that supports underrepresented startup founders."
+    name: Yonas Beshawred
+    title: CEO
+    company: https://stackshare.io/yonasb
