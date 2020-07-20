@@ -4,11 +4,11 @@
       <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
         Steering Committee
       </h2>
-      <p class="mt-8 text-center text-sm leading-5 text-gray-600 max-w">
+      <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
         Our Steering Committee is composed of BIPOC who will offer guidance and input on how HWBE can best serve the needs of our black community.
       </p>
     </div>
-    <div class="container mt-12">
+    <div class="container mt-10">
       <div class="grid grid-cols-2 gap-8">
         <%
           odds = Settings.steering_comitee.each_with_index.select { |p, index| index % 2 == 0 }.map(&:first)
