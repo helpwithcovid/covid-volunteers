@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="container mt-10">
-      <div class="grid grid-cols-2 gap-8">
+      <div class="grid md:grid-cols-2 gap-8">
         <%
           odds = Settings.steering_comitee.each_with_index.select { |p, index| index % 2 == 0 }.map(&:first)
           evens = Settings.steering_comitee.each_with_index.select { |p, index| index % 2 != 0 }.map(&:first)
