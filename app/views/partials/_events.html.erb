@@ -1,32 +1,34 @@
 <div class="container pb-8">
-  <section class="resource-section" id="resource_playbook">
-    <div class="px-4 sm:px-0 my-6 font-bold text-center">
-      <%= t('get_the_playbook') %>
-    </div>
-
-    <div class="mx-4 sm:mx-0 flex flex-wrap mb-3 text-sm rounded-lg shadow overflow-hidden">
-      <div class="w-full sm:w-2/6 text-center px-4 py-2 text-white bg-primary-600 font-bold">
-        <div class="flex items-center justify-center h-full">
-          <%= t('hwc_volunteer_playbook_the_project_guide') %>
-        </div>
+  <% if feature_enabled? 'playbook' %>
+    <section class="resource-section" id="resource_playbook">
+      <div class="px-4 sm:px-0 my-6 font-bold text-center">
+        <%= t('get_the_playbook') %>
       </div>
-      <div class="w-full sm:w-4/6 bg-white py-4">
-        <div class="flex flex-wrap h-full items-center justify-center">
-          <div class="w-full sm:w-9/12 px-8 text-gray-500">
-            <%= t('a_short_guide_created_by_our_team_to_help_you_succ') %>
-          </div>
 
-          <div class="w-full sm:w-3/12 text-center mt-8 sm:mt-0">
-            <%= link_to "https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view", target: '_blank' do %>
-              <span class="text-sm relative inline-flex items-center px-4 py-2 border border-transparent leading-5 rounded-md font-bold   text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline-primary- focus:border-primary-700 active:bg-primary-700">
-                <%= t('download_playbook') %>
-              </span>
-            <% end %>
+      <div class="mx-4 sm:mx-0 flex flex-wrap mb-3 text-sm rounded-lg shadow overflow-hidden">
+        <div class="w-full sm:w-2/6 text-center px-4 py-2 text-white bg-primary-600 font-bold">
+          <div class="flex items-center justify-center h-full">
+            <%= t('hwc_volunteer_playbook_the_project_guide') %>
           </div>
         </div>
+        <div class="w-full sm:w-4/6 bg-white py-4">
+          <div class="flex flex-wrap h-full items-center justify-center">
+            <div class="w-full sm:w-9/12 px-8 text-gray-500">
+              <%= t('a_short_guide_created_by_our_team_to_help_you_succ') %>
+            </div>
+
+            <div class="w-full sm:w-3/12 text-center mt-8 sm:mt-0">
+              <%= link_to "https://docs.google.com/document/d/1f_-g893NGawa5n4KyDw6zjrocO2VBS5b2siQIZ6csY0/view", target: '_blank' do %>
+                <span class="text-sm relative inline-flex items-center px-4 py-2 border border-transparent leading-5 rounded-md font-bold   text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline-primary- focus:border-primary-700 active:bg-primary-700">
+                  <%= t('download_playbook') %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <% end %>
 
   <% if Settings.upcoming_events.present? %>
     <section class="resource-section" id="resources_upcoming_events">
@@ -38,11 +40,13 @@
     </section>
   <% end %>
 
-  <section class="resource-section" id="resources_recorded_live_panels">
-    <div class="px-4 sm:px-0 mt-10 mb-6 font-bold text-center">
-      <%= t('recorded_live_panels') %>
-    </div>
+  <% if Settings.events.present? %>
+    <section class="resource-section" id="resources_past_events">
+      <div class="px-4 sm:px-0 mt-10 mb-6 font-bold text-center">
+        <%= t('past_events') %>
+      </div>
 
-    <%= render partial: "layouts/resource_previous_events" %>
-  </section>
+      <%= render partial: "layouts/resource_previous_events" %>
+    </section>
+  <% end %>
 </div>

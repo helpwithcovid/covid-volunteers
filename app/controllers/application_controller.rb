@@ -91,7 +91,6 @@ class ApplicationController < ActionController::Base
   private
     def set_theme_view_if_present
       prepend_view_path "#{Rails.root.join('theme', 'views')}"
-
     end
 
     def hydrate_project_categories

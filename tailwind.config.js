@@ -21,23 +21,51 @@ let themeColors = {
   secondary: uiColors.purple,
 }
 
+// adding accent colors
+themeColors.accent = {
+  default: themeColors.primary[600],
+  text: uiColors.white.default,
+  hover: themeColors.primary[500],
+  border: themeColors.primary[700],
+  active: themeColors.primary[700],
+  focus: themeColors.primary[700],
+  sub_navbar_bg: uiColors.white.default,
+  sub_navbar_text: uiColors.black.default,
+  filters_navbar_bg: themeColors.primary[100],
+  filters_navbar_text: uiColors.black.default,
+}
+
 // Parsing the theme config
-Object.keys(themeColors).forEach((themeColor) => {
-  if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
-    if (themeConfig.colors[themeColor]) {
-      if (typeof themeConfig.colors[themeColor] === 'string' && themeConfig.colors[themeColor].startsWith('tailwind/ui/')) {
-        themeColors[themeColor] = uiColors[themeConfig.colors[themeColor].replace('tailwind/ui/', '')]
+if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
+  Object.keys(themeColors).forEach((colorKey) => {
+    if (themeConfig.colors[colorKey]) {
+      if (typeof themeConfig.colors[colorKey] === 'string') {
+        if (themeConfig.colors[colorKey].startsWith('tailwind/ui/')) {
+          const themedColor = themeConfig.colors[colorKey].replace('tailwind/ui/', '')
+          themeColors[colorKey] = uiColors[themedColor]
+        } else {
+          themeColors[colorKey] = themeConfig.colors[colorKey]
+        }
       // arbitrary checking if this object has keys 50 & 900 corresponding to the tailwind color system
-      } else if (themeConfig.colors[themeColor][50] && themeConfig.colors[themeColor][900]) {
-        themeColors[themeColor] = themeConfig.colors[themeColor]
+      } else if (themeConfig.colors[colorKey][50] && themeConfig.colors[colorKey][900]) {
+        themeColors[colorKey] = themeConfig.colors[colorKey]
+      } else if (themeConfig.colors[colorKey] && Object.keys(themeConfig.colors[colorKey]).length > 0) {
+        Object.keys(themeConfig.colors[colorKey]).forEach((themeConfigColorKey) => {
+          const themedColor = themeConfig.colors[colorKey][themeConfigColorKey].replace('tailwind/ui/', '')
+
+          themeColors[colorKey][themeConfigColorKey] = themedColor
+        })
       }
     }
-  }
-})
+  })
+}
 
 module.exports = {
   theme: {
     extend: {
+      spacing: {
+        '2px': '2px',
+      },
       colors: {
         smoke: 'rgba(0, 0, 0, 0.5)',
         primary: {
@@ -45,6 +73,9 @@ module.exports = {
         },
         secondary: {
           ...themeColors.secondary,
+        },
+        accent: {
+          ...themeColors.accent,
         },
         'hero-black': '#3D3D3D',
         'cat-education': '#F82B2B',
@@ -77,6 +108,7 @@ module.exports = {
   variants: {
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
     display: ['responsive', 'hover', 'focus', 'group-hover'],
+    width: ['responsive', 'hover', 'focus', 'group-hover'],
   },
   plugins: [
     require('@tailwindcss/ui'),

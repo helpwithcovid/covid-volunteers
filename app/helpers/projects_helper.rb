@@ -27,4 +27,19 @@ module ProjectsHelper
       capture(&block)
     end
   end
+
+  def project_status_tag(project)
+    if project.status == "Just started"
+      icon = 'glowing-lightbulb'
+      label = t('idea_stage')
+    elsif project.status == "In progress"
+      icon = 'half-dotted-circle'
+      label = t('in_progress')
+    elsif project.status == "Launched"
+      icon = 'sparkling-stars'
+      label = t('launched')
+    end
+
+    render partial: 'partials/project_status_tag', locals: { icon: icon, label: label }
+  end
 end

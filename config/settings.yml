@@ -1,8 +1,15 @@
 # Main
 site_title: Help With COVID
-site_subtitle: 'A clearing house for projects and volunteers that want to help with the COVID-19 crisis'
+site_subtitle: A clearing house for projects and volunteers that want to help with the COVID-19 crisis
 site_url: https://www.helpwithcovid.com
 share_image: https://www.helpwithcovid.com/share-image.png
+
+# Linked in the footer
+contact_email: helpwithcovid@gmail.com
+discord_link: https://discord.gg/8nAJfFN
+twitter_link: https://twitter.com/helpwithcovid
+facebook_link: https://www.facebook.com/HelpwithCOVID
+instagram_link:
 
 # Site features
 features_enabled:
@@ -10,6 +17,8 @@ features_enabled:
   resources: true
   office_hours: true
   success_stories: true
+  playbook: true
+  projects_sort_by_filter: true # should the 'Sort by' filter be visible on /projects?
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:
@@ -40,35 +49,33 @@ volunteer_skills:
 
 # Availability windows that are suggested to volunteers
 volunteer_availabilities:
-  - '1-2 hours a day'
-  - '2-4 hours a day'
-  - '4+ hours a day'
-  - 'Only on Weekends'
-  - 'Full Time'
+  - 1-2 hours a day
+  - 2-4 hours a day
+  - 4+ hours a day
+  - Only on Weekends
+  - Full Time
 
 # Options for how many volunteers a project might request
 volunteers_needed_for_project:
-  - '1-10'
-  - '10-50'
-  - '50-100'
-  - '100+'
+  - 1-10
+  - 10-50
+  - 50-100
+  - 100+
 
 project_types:
-  - 'Black Businesses'
-  - 'Non-profit volunteering'
+  - Black Business Owners
+  - Non-profit volunteering
 
 project_statuses:
-  - 'Just started'
-  - 'In progress'
-  - 'Launched'
+  - Just started
+  - In progress
+  - Launched
 
 organization_statuses:
-  - 'Non-profit'
-  - 'For-profit'
-  - 'Public Benefit Corporation'
-  - 'Not incorporated'
-
-discord_link: 'https://example.com?no_discord_yet=sorry'
+  - Non-profit
+  - For-profit
+  - Public Benefit Corporation
+  - Not incorporated
 
 # If a project has less than N volunteers
 # it can ask to be highlighted.
@@ -201,7 +208,7 @@ partner_resources:
       $2500 value.
     cta_link: https://clozeloop.typeform.com/to/ccPwVe
   - name: Turtle
-    description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtle's developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
+    description: 40 hours of freelance engineering help is available for three companies chosen by the Turtle team. Turtles developer network is currently specialized to React, React Native, iOS and Android. Based on your project specs and requirements, Turtle will match you with a highly qualified freelance engineer and you'll have full access to the Turtle platform to work together and manage your project. A one hour complimentary product planning session with Turtle's founders will also be available to you.
     cta_link: https://forms.gle/8UaPv6Qjaw8sFBNy9
   - name: Blind
     description: |+
@@ -218,6 +225,6 @@ media_kit:
     description: Logos, wordmark and banner for any media coverage about HWC
     cta_link: https://helpwithcovid.com/HWC-media-kit-logos.zip
 
-google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
+google_fonts_request: Lora&family=Roboto:wght@400;500;700
 
 homepage_featured_projects_count: 3
