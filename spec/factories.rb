@@ -35,7 +35,7 @@ FactoryBot.define do
     about { 'About' }
     profile_links { 'Profile' }
     location { 'location' }
-    skill_list { ['Analaytics'] }
+    skill_list { ['Analytics'] }
   end
 
   factory :project do
