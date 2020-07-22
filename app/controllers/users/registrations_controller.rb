@@ -31,12 +31,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-  	session[:return_to] ||= request.referer
+  	super
+    session[:return_to] ||= request.referer
   end
 
   # PUT /resource
   def update
-    # byebug
     super
   end
 
@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
     end
 
     # The path used after sign up.
@@ -92,7 +92,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def after_update_path_for(resource)
-    	session.delete(:return_to)
+      session.delete(:return_to)
     end
-
 end
