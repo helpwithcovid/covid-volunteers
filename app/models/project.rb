@@ -99,17 +99,21 @@ class Project < ApplicationRecord
       if self.image.present?
         cdn_variant(resize_to_limit: [600, 600])
       else
-        # FIXME use slug of category instead? and fallback if this is missing
-        filename = category_override.blank? ? self.category.downcase.gsub(' ', '-') : category_override.downcase
-
         # There is no `image_pack_path` -- see https://github.com/rails/webpacker/issues/2562
+        filename = cover_photo_filename(category_override)
         ActionController::Base.helpers.asset_pack_path "media/images/#{filename}-default.png"
       end
     end
+  end
+
+  def cover_photo_filename(category_override = nil)
+    # FIXME use slug of category instead? and fallback if this is missing
+    category_override.blank? ? self.category.downcase.gsub(' ', '-') : category_override.downcase
   end
 
   def self.get_featured_projects
     projects_count = Settings.homepage_featured_projects_count
     Project.where(highlight: true).includes(:project_types, :skills, :volunteers).limit(projects_count).order('RANDOM()')
   end
+
 end

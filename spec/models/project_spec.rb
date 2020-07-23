@@ -51,15 +51,16 @@ RSpec.describe Project, type: :model do
       end
     end
 
-    it 'project defaults to medical with no type' do
-      expect(project.category).to eq('Community')
+    it 'project category defaults to last one in list' do
+      default_category = Settings.project_categories.last
+      expect(project.category).to eq(default_category.name)
     end
 
     describe '#cover_photo' do
       let(:subject) { project.cover_photo(name)}
       let(:helpers) { double() }
 
-      before do 
+      before do
         allow(ActionController::Base).to receive(:helpers).and_return(helpers)
         allow(helpers).to receive(:asset_pack_path)
       end
@@ -68,10 +69,9 @@ RSpec.describe Project, type: :model do
         let(:name) { nil }
 
         it 'calls asset_pack_path with the correct parameter' do
-          project.project_type_list.add('Reduce spread')
-
-          expect(helpers).to receive(:asset_pack_path).with('media/images/prevention-default.png')
-
+          # project.project_type_list.add('Reduce spread')
+          default_category = Settings.project_categories.last
+          expect(helpers).to receive(:asset_pack_path).with("media/images/#{project.cover_photo_filename}-default.png")
           subject
         end
       end
