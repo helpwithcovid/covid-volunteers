@@ -69,7 +69,6 @@ RSpec.describe Project, type: :model do
         let(:name) { nil }
 
         it 'calls asset_pack_path with the correct parameter' do
-          # project.project_type_list.add('Reduce spread')
           default_category = Settings.project_categories.last
           expect(helpers).to receive(:asset_pack_path).with("media/images/#{project.cover_photo_filename}-default.png")
           subject
@@ -81,7 +80,6 @@ RSpec.describe Project, type: :model do
 
         it 'calls asset_pack_path with the correct parameter' do
           expect(helpers).to receive(:asset_pack_path).with('media/images/test-default.png')
-
           subject
         end
       end
