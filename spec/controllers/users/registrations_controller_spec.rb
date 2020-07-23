@@ -29,6 +29,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     context 'with one volunteer' do
       let!(:user) { create(:user_visible) }
+      before(:all){ User.delete_all } # clean slate to avoid data pollution issue in CircleCI builds
 
       context 'with no sign-in' do
         before { do_request }
