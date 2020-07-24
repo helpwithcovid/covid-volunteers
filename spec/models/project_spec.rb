@@ -55,13 +55,36 @@ RSpec.describe Project, type: :model do
       expect(project.category).to eq('Community')
     end
 
-    it 'returns correct cover photo' do
-      project.project_type_list.add('Reduce spread')
-      expect(project.cover_photo).to eq('/images/prevention-default.jpg')
-    end
+    describe '#cover_photo' do
+      let(:subject) { project.cover_photo(name)}
+      let(:helpers) { double() }
 
-    it 'allow override of default cover photo' do
-      expect(project.cover_photo('Test')).to eq('/images/test-default.jpg')
+      before do 
+        allow(ActionController::Base).to receive(:helpers).and_return(helpers)
+        allow(helpers).to receive(:asset_pack_path)
+      end
+
+      context 'when no filename is provided' do
+        let(:name) { nil }
+
+        it 'calls asset_pack_path with the correct parameter' do
+          project.project_type_list.add('Reduce spread')
+
+          expect(helpers).to receive(:asset_pack_path).with('media/images/prevention-default.png')
+
+          subject
+        end
+      end
+
+      context 'when a filename is provided' do
+        let(:name) { 'Test' }
+
+        it 'calls asset_pack_path with the correct parameter' do
+          expect(helpers).to receive(:asset_pack_path).with('media/images/test-default.png')
+
+          subject
+        end
+      end
     end
   end
 
