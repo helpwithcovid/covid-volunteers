@@ -30,14 +30,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+  	super
+    session[:return_to] ||= request.referer
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -61,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :about, :profile_links, :location, :visibility, :pair_with_projects,  :level_of_availability, skill_list: []])
     end
 
     # The path used after sign up.
@@ -88,5 +89,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def get_order_param
       return 'created_at desc' if params[:sort_by] == 'latest'
       return 'created_at asc' if params[:sort_by] == 'earliest'
+    end
+
+    def after_update_path_for(resource)
+      session.delete(:return_to)
     end
 end

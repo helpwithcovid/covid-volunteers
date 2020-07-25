@@ -284,4 +284,28 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let!(:user) { create(:user_complete_profile) }
+    let(:params) { { user: { id: user.id, email: 'changed@gmail.com' } } }
+
+    before do
+      sign_in user
+      session[:return_to] = projects_path
+    end
+
+    it 'we should be on projects path' do
+      put :update, params: params
+      
+      user.reload
+      expect(user.email).to eq('changed@gmail.com')
+    end
+
+    it 'should redirect to return_to cookie path' do
+      put :update, params: params
+
+      expect(response).to redirect_to projects_path
+    end
+
+  end
 end
