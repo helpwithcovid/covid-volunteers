@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
 
   before_action :set_theme_view_if_present
-
   before_action :show_global_announcements
   before_action :set_bg_gray
+  around_action :switch_locale
 
   def ensure_admin
     redirect_to projects_path if !current_user || !current_user.is_admin?
@@ -89,6 +89,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
     def set_theme_view_if_present
       prepend_view_path "#{Rails.root.join('theme', 'views')}"
     end
@@ -108,4 +109,17 @@ class ApplicationController < ActionController::Base
     def track_event(event_name)
       session[:track_event] = event_name
     end
+
+    def switch_locale(&action)
+      locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
+      logger.debug "* Locale: overriding with ?locale param=#{params[:locale].inspect}" if params[:locale].present?
+      logger.debug "* Locale: HTTP Accept-Language: #{extract_locale_from_accept_language_header.inspect}" if extract_locale_from_accept_language_header.present?
+      logger.info "* Locale set to #{locale.inspect}"
+      I18n.with_locale(locale, &action)
+    end
+
+    def extract_locale_from_accept_language_header
+      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    end
+
 end
