@@ -146,10 +146,6 @@ global_announcements:
 #    cta_url: /offers
 
 events:
-  - title: <a class='text-gray-900' href="https://blackeconomicalliance.org/" target="_blank">Black Economic Alliance</a> panel
-    sub_title: "Join us for a live panel with <a class='text-gray-900' href='https://www.linkedin.com/in/david-clunie-422911121/' target='_blank'>David Clunie</a> the Executive Director of <a class='text-gray-900' href='https://blackeconomicalliance.org/' target='_blank'>BEA</a> as he shares his strategy on how to advance an economic policy agenda focused on improving economic outcomes in three core areas: <strong>work, wages, and wealth</strong>."
-    cta_text: Add to your calendar here
-    cta_url: https://calendar.google.com/event?action=TEMPLATE&tmeid=N3NsOTdlamRiZDhqNzFmMm44MmFkYWp0YnEgY19pN2lqZW05bmp0ZW8zOWFoZXY1NTRlaTg3Z0Bn&tmsrc=c_i7ijem9njteo39ahev554ei87g%40group.calendar.google.com
   - title: Running list of events and protests in the Bay Area
     sub_title: Get involved
     cta_text: View more
