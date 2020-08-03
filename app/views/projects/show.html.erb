@@ -209,10 +209,6 @@
               </span>
             </div>
             <div class="flex items-center text-primary-600 col-span-1">
-              <%= inline_svg_pack_tag 'media/svgs/time-ago.svg', class: 'h-6 mr-2 text-primary-600 fill-current' %>
-              <span class="text-gray-500 text-xs font-bold leading-tight">Created <%= time_ago_in_words(@project.created_at) %> ago</span>
-            </div>
-            <div class="flex items-center text-primary-600 col-span-1">
               <%= inline_svg_pack_tag 'media/svgs/people.svg', class: 'h-6 mr-2 text-primary-600 fill-current' %>
               <span class="text-gray-500 text-xs font-bold leading-tight"><%= @project.volunteers.count %> <%= 'Volunteer'.pluralize @project.volunteers.count %></span>
             </div>

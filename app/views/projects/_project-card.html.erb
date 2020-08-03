@@ -43,7 +43,6 @@
             <%= t('no_volunteers') %>
           <% end %>
         </div>
-        <div class="text-gray-500"><%= time_ago_in_words project.created_at %> ago</div>
       </div>
       <% if project.volunteer_location? %>
         <div class="text-right leading-snug"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.volunteer_location %></div>
