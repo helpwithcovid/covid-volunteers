@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :business do
-    name { "MyString" }
-    link { "MyString" }
-    description { "MyText" }
-  end
-
   factory :post do
     title { Faker::Lorem.sentence }
     body { Faker::Lorem.paragraphs(number: rand(4...20)).join("\n") }
@@ -65,5 +59,12 @@ FactoryBot.define do
     limitations { 'Contains gluten' }
     redemption { 'https://veggieboigas.com' }
     location { 'N/A' }
+  end
+
+  factory :business do
+    association :user
+    name { "MyString" }
+    link { "MyString" }
+    description { "MyText" }
   end
 end
