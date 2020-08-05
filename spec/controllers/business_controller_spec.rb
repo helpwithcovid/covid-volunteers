@@ -15,6 +15,7 @@ RSpec.describe BusinessesController, type: :controller do
 
     context 'when user is signed in' do
       let(:user) { create(:user) }
+      
       before { sign_in user }
 
       it 'is successful' do
@@ -88,9 +89,9 @@ RSpec.describe BusinessesController, type: :controller do
     context 'when user is signed in' do
       let(:user) { create(:user) }
 
-      it 'is successful' do
-        sign_in user
+      before { sign_in user }
 
+      it 'is successful' do
         get :show, params: params
 
         expect(response).to be_successful
@@ -112,9 +113,9 @@ RSpec.describe BusinessesController, type: :controller do
     context 'when user is signed in' do
       let(:user) { create(:user) }
 
-      it 'is successful' do
-        sign_in user
+      before { sign_in user }
 
+      it 'is successful' do
         get :index
 
         expect(response).to be_successful
@@ -124,8 +125,6 @@ RSpec.describe BusinessesController, type: :controller do
         let!(:business) { create(:business) }
 
         it 'displays business' do
-          sign_in user
-
           get :index
 
           expect(response.body).to include(business.id.to_s)
