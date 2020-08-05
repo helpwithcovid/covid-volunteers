@@ -100,4 +100,40 @@ RSpec.describe BusinessesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #index' do
+    context 'when user is signed out' do
+      it 'is unsuccessful' do
+        get :index
+
+        expect(response).to_not be_successful
+      end
+    end
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
+
+      it 'is successful' do
+        sign_in user
+
+        get :index
+
+        expect(response).to be_successful
+      end
+
+      context 'when a business exists' do
+        let!(:business) { create(:business) }
+
+        it 'displays business' do
+          sign_in user
+
+          get :index
+
+          expect(response.body).to include(business.id.to_s)
+          expect(response.body).to include(business.name)
+          expect(response.body).to include(business.link)
+          expect(response.body).to include(business.description)
+        end
+      end
+    end
+  end
 end
