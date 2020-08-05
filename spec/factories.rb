@@ -60,4 +60,15 @@ FactoryBot.define do
     redemption { 'https://veggieboigas.com' }
     location { 'N/A' }
   end
+
+  factory :business do
+    association :user
+    name { "business name" }
+    link { "business link" }
+    description { "business desc" }
+
+    trait :invalid do
+      name { nil }
+    end
+  end
 end

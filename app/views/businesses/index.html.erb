@@ -1,0 +1,40 @@
+<h1>Businesses</h1>
+
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+ 
+<div>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Link</th>
+      <th>Description</th>
+    </tr>
+  <% @businesses.each do |b| %>
+    <tr>
+      <td><%= b.id %></td>
+      <td><%= b.name %></td>
+      <td><%= b.link %></td>
+      <td><%= b.description %></td>
+    </tr>
+  <% end %>
+</table>  
+</div>
