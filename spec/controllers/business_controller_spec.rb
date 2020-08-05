@@ -72,4 +72,32 @@ RSpec.describe BusinessesController, type: :controller do
       end
     end    
   end
+
+  describe 'GET #show' do
+    let(:business) { create(:business) }
+    let(:params) { { id: business.id } }
+
+    context 'when user is signed out' do
+      it 'is unsuccessful' do
+        get :show, params: params
+
+        expect(response).to_not be_successful
+      end
+    end
+
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
+
+      it 'is successful' do
+        sign_in user
+
+        get :show, params: params
+
+        expect(response).to be_successful
+        expect(response.body).to include(business.name)
+        expect(response.body).to include(business.link)
+        expect(response.body).to include(business.description)
+      end
+    end
+  end
 end
