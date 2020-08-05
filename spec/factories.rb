@@ -63,9 +63,9 @@ FactoryBot.define do
 
   factory :business do
     association :user
-    name { "MyString" }
-    link { "MyString" }
-    description { "MyText" }
+    name { "business name" }
+    link { "business link" }
+    description { "business desc" }
 
     trait :invalid do
       name { nil }
