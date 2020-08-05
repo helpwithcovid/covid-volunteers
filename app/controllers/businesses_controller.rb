@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   # before_action :set_business, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [ :new ]
+  before_action :authenticate_user!, only: [ :new, :create ]
 
   # GET /businesses
   # GET /businesses.json
@@ -26,12 +26,14 @@ class BusinessesController < ApplicationController
   # POST /businesses.json
   def create
     @business = Business.new(business_params)
+    @business.user_id = current_user.id
 
     respond_to do |format|
       if @business.save
         format.html { redirect_to @business, notice: 'Business was successfully created.' }
         format.json { render :show, status: :created, location: @business }
       else
+        flash[:error] = 'Error creating business'
         format.html { render :new }
         format.json { render json: @business.errors, status: :unprocessable_entity }
       end

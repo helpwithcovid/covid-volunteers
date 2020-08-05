@@ -66,5 +66,9 @@ FactoryBot.define do
     name { "MyString" }
     link { "MyString" }
     description { "MyText" }
+
+    trait :invalid do
+      name { nil }
+    end
   end
 end
