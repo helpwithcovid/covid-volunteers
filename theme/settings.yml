@@ -36,10 +36,14 @@ project_categories:
   - name: Founders
     slug: founders
     body: Reach out to Founders directly for investment inquiries
+    project_types:
+      - Founders project type 
     color: cat-founders
   - name: Professionals
     slug: professionals
     body: Search by industry and hire your next black employee
+    project_types:
+      - Professionals project type
     color: cat-professionals
 
 google_fonts_request: Lora&family=Roboto:wght@400;500;700
