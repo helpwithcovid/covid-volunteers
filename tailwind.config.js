@@ -78,11 +78,9 @@ module.exports = {
           ...themeColors.accent,
         },
         'hero-black': '#3D3D3D',
-        'cat-education': '#F82B2B',
-        'cat-social-justice': '#FD813B',
         'cat-business-directory': '#8921DC',
-        'cat-health': '#2987DE',
-        'cat-wealth': '#12CFA1',
+        'cat-founders': '#2987DE',
+        'cat-professionals': '#12CFA1',
       },
       maxHeight: {
         '400px': '400px',

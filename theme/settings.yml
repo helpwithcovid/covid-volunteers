@@ -23,28 +23,9 @@ features_enabled:
 
 # Define how projects are organized. Slugs must not have spaces
 project_categories:
-  - name: Education
-    slug: education
-    body: Closing the gap in our education system
-    project_types:
-      - School-based
-      - College affordability
-      - STEM
-      - Support HBCU’s
-    color: cat-education
-  - name: Social Justice
-    slug: social-justice
-    body: Directly impact social inequalities
-    project_types:
-      - Demonstrations
-      - Policies
-      - Voting & Elections
-      - Criminal Justice
-      - Income Inequality/Poverty
-    color: cat-social-justice
   - name: Business Directory
     slug: business-directory
-    body: Support Black business owners. If you are a BIPOC, please create a project and add your business!
+    body: Sort by category and geographic location to find a black owned business.
     project_types:
       - Technology
       - Retail & Manufacturing
@@ -52,25 +33,14 @@ project_categories:
       - Food & Beverage
       - Health & Beauty
     color: cat-business-directory
-  - name: Health
-    slug: health
-    body: Prevention, wellness and cures
-    project_types:
-      - Prevention
-      - COVID-19
-      - Access
-      - Wellness
-    color: cat-health
-  - name: Wealth
-    slug: wealth
-    body: Employment and Funding
-    project_types:
-      - Jobs
-      - Investors
-      - Purchase Orders
-      - Request for Proposal
-      - Grant Writing
-    color: cat-wealth
+  - name: Founders
+    slug: founders
+    body: Reach out to Founders directly for investment inquiries
+    color: cat-founders
+  - name: Professionals
+    slug: professionals
+    body: Search by industry and hire your next black employee
+    color: cat-professionals
 
 google_fonts_request: Lora&family=Roboto:wght@400;500;700
 
