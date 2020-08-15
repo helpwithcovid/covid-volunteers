@@ -119,6 +119,7 @@ GEM
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
     crass (1.0.6)
+    csv (3.1.7)
     deep_merge (1.2.1)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -388,6 +389,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   config
+  csv
   devise
   dotenv-rails
   exception_notification!
