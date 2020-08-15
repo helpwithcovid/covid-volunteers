@@ -57,7 +57,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :businesses, only: [:new, :create, :show, :index]
-
   get '/:category_slug(/p/:page)', to: 'projects#index', action: :index
 end
