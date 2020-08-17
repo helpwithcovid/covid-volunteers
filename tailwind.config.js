@@ -19,7 +19,7 @@ try {
 let themeColors = {
   primary: uiColors.indigo,
   secondary: uiColors.purple,
-  'cat-foobar': '#0800ff'
+  'cat-foobar': '#ffffff'
 }
 
 // adding accent colors
