@@ -12,3 +12,4 @@ colors:
     sub_navbar_text: '#ffffff'
     filters_navbar_bg: '#3D3D3D'
     filters_navbar_text: '#ffffff'
+  'cat-foobar': '#0800ff'

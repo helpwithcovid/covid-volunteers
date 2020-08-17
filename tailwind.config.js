@@ -19,6 +19,7 @@ try {
 let themeColors = {
   primary: uiColors.indigo,
   secondary: uiColors.purple,
+  'cat-foobar': '#0800ff'
 }
 
 // adding accent colors
@@ -67,16 +68,8 @@ module.exports = {
         '2px': '2px',
       },
       colors: {
+        ...themeColors,
         smoke: 'rgba(0, 0, 0, 0.5)',
-        primary: {
-          ...themeColors.primary,
-        },
-        secondary: {
-          ...themeColors.secondary,
-        },
-        accent: {
-          ...themeColors.accent,
-        },
         'hero-black': '#3D3D3D',
         'cat-education': '#F82B2B',
         'cat-social-justice': '#FD813B',
