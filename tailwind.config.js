@@ -19,7 +19,6 @@ try {
 let themeColors = {
   primary: uiColors.indigo,
   secondary: uiColors.purple,
-  'cat-foobar': '#ffffff'
 }
 
 // adding accent colors
@@ -34,6 +33,11 @@ themeColors.accent = {
   sub_navbar_text: uiColors.black.default,
   filters_navbar_bg: themeColors.primary[100],
   filters_navbar_text: uiColors.black.default,
+}
+
+themeColors = {
+  ...themeColors,
+  ...themeConfig.colors.categories,
 }
 
 // Parsing the theme config
@@ -71,11 +75,6 @@ module.exports = {
         ...themeColors,
         smoke: 'rgba(0, 0, 0, 0.5)',
         'hero-black': '#3D3D3D',
-        'cat-education': '#F82B2B',
-        'cat-social-justice': '#FD813B',
-        'cat-business-directory': '#8921DC',
-        'cat-health': '#2987DE',
-        'cat-wealth': '#12CFA1',
       },
       maxHeight: {
         '400px': '400px',
