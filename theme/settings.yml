@@ -31,7 +31,7 @@ project_categories:
       - College affordability
       - STEM
       - Support HBCU’s
-    color: cat-foobar
+    color: cat-education
   - name: Social Justice
     slug: social-justice
     body: Directly impact social inequalities
