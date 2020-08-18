@@ -35,6 +35,11 @@ themeColors.accent = {
   filters_navbar_text: uiColors.black.default,
 }
 
+themeColors = {
+  ...themeColors,
+  ...themeConfig.colors.categories,
+}
+
 // Parsing the theme config
 if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length > 0) {
   Object.keys(themeColors).forEach((colorKey) => {
@@ -67,22 +72,9 @@ module.exports = {
         '2px': '2px',
       },
       colors: {
+        ...themeColors,
         smoke: 'rgba(0, 0, 0, 0.5)',
-        primary: {
-          ...themeColors.primary,
-        },
-        secondary: {
-          ...themeColors.secondary,
-        },
-        accent: {
-          ...themeColors.accent,
-        },
         'hero-black': '#3D3D3D',
-        'cat-education': '#F82B2B',
-        'cat-social-justice': '#FD813B',
-        'cat-business-directory': '#8921DC',
-        'cat-health': '#2987DE',
-        'cat-wealth': '#12CFA1',
       },
       maxHeight: {
         '400px': '400px',

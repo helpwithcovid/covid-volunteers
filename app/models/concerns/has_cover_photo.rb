@@ -1,4 +1,3 @@
-
 module HasCoverPhoto
   extend ActiveSupport::Concern
   included do
