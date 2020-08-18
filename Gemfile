@@ -109,3 +109,7 @@ gem 'iso_country_codes', '~> 0.7.8'
 
 # JS Translations
 gem 'i18n-js'
+
+# Importing CSVs
+gem 'csv'
+
