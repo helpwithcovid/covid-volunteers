@@ -5,7 +5,6 @@
   }
 
   # We need to explicitly write the full color instead of interpolating it so tailwind can later safely purge the unused css classes.
-  # Refactor?
   case @project_category[:color]
   when 'primary'
     bg_color = 'bg-primary-600'
