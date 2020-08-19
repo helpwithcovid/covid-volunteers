@@ -5,13 +5,10 @@
 
   <div class="px-5 pt-5 pb-6">
     <div class="text-lg font-medium truncate leading-tight mb-2"><%= project.name %></div>
+    
     <div class="flex items-center mb-2">
-      <% if project.organization_status === 'For-profit' %>
-        <div class="rounded-full py-1 px-1 bg-indigo-600 text-xs text-white mr-2 h-6 w-6"><%= inline_svg_pack_tag "media/svgs/business.svg", class: 'text-white inline-block -mt-2px' %></div>
-      <% end %>
-      <div class="rounded-full py-1 px-2 bg-gray-600 text-xs text-white"><%= inline_svg_pack_tag "media/svgs/category-#{category[:name].parameterize.downcase}.svg", class: 'text-white inline-block -mt-2px mr-1' %><%= project.category %></div>
-      <div class="ml-2">
-        <%= project_status_tag project %>
+      <div class="rounded-full py-1 px-2 bg-gray-600 text-xs text-white">
+        <%= inline_svg_pack_tag "media/svgs/category-#{category[:name].parameterize.downcase}.svg", class: 'text-white inline-block -mt-2px mr-1' %><%= project.category %>
       </div>
     </div>
 
@@ -20,22 +17,6 @@
         <%= project.short_description %>
       <% else %>
         <%= project.description.truncate 150 %>
-      <% end %>
-    </div>
-
-    <div class="relative grid grid-cols-2 gap-2 text-xs mt-3">
-      <div>
-        <% total_volunteers = project.volunteers.length %>
-        <div class="font-bold">
-          <% if total_volunteers > 0 %>
-            <%= total_volunteers %> <%= t('volunteer').pluralize total_volunteers %>
-          <% else %>
-            <%= t('no_volunteers') %>
-          <% end %>
-        </div>
-      </div>
-      <% if project.volunteer_location? %>
-        <div class="text-right leading-snug"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.volunteer_location %></div>
       <% end %>
     </div>
   </div>
