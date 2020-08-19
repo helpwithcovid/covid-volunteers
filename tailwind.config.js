@@ -66,13 +66,6 @@ if (themeConfig && themeConfig.colors && Object.keys(themeConfig.colors).length 
 }
 
 module.exports = {
-  purge: [
-    './app/helpers/**/*.rb',
-    './app/views/**/*.html',
-    './app/views/**/*.html.erb',
-    './app/frontend/**/*.vue',
-    './app/frontend/**/*.js',
-  ],
   theme: {
     extend: {
       spacing: {
