@@ -13,8 +13,6 @@ colors:
     filters_navbar_bg: '#3D3D3D'
     filters_navbar_text: '#ffffff'
   categories:
-    cat-education: '#F82B2B'
-    cat-social-justice: '#FD813B'
     cat-business-directory: '#8921DC'
-    cat-health: '#2987DE'
+    cat-founder: '#2987DE'
     cat-wealth: '#12CFA1'
