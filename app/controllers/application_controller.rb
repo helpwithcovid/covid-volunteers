@@ -115,7 +115,11 @@ class ApplicationController < ActionController::Base
       logger.debug "* Locale: overriding with ?locale param=#{params[:locale].inspect}" if params[:locale].present?
       logger.debug "* Locale: HTTP Accept-Language: #{extract_locale_from_accept_language_header.inspect}" if extract_locale_from_accept_language_header.present?
       logger.info "* Locale set to #{locale.inspect}"
-      I18n.with_locale(locale, &action)
+      begin
+        I18n.with_locale(locale, &action)
+      rescue => exception
+        I18n.with_locale(I18n.default_locale, &action)
+      end
     end
 
     def extract_locale_from_accept_language_header
