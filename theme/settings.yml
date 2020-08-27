@@ -47,12 +47,6 @@ project_categories:
     project_types:
       - Example food and beverage project type
     color: cat-food-and-beverage
-  - name: Health & Beauty
-    slug: health_and_beauty
-    body: Health & Beauty
-    project_types:
-      - Example health and beauty project type
-    color: cat-health-and-beauty
 
 google_fonts_request: Lora&family=Roboto:wght@400;500;700
 
