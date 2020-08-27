@@ -23,32 +23,36 @@ features_enabled:
 
 # Define how projects are organized. Slugs must not have spaces
 project_categories:
-  - name: Business Directory
-    slug: business-directory
-    body: Sort by category and geographic location to find a black owned business
+  - name: Technology
+    slug: technology
+    body: Technology
     project_types:
-      - Technology
-      - Retail & Manufacturing
-      - Professional Services
-      - Food & Beverage
-      - Health & Beauty
-    color: cat-business-directory
-  - name: Founders
-    slug: founders
-    body: Reach out to Founders directly for investment inquiries
+      - Example technology project type
+    color: cat-technology
+  - name: Retail & Manufacturing
+    slug: retail_and_manufacturing
+    body: Retail & Manufacturing
     project_types:
-      - Example Founder Project Type
-    color: cat-founder
-  - name: Wealth
-    slug: wealth
-    body: Search by industry and hire your next black employee
+      - Example retail & manufacturing project type
+    color: cat-retail-and-manufacturing
+  - name: Professional Services
+    slug: professional_services
+    body: Professional Services
     project_types:
-      - Jobs
-      - Investors
-      - Purchase Orders
-      - Request for Proposal
-      - Grant Writing
-    color: cat-wealth
+      - Example professional services project type
+    color: cat-professional-services
+  - name: Food & Beverage
+    slug: food_and_beverage
+    body: Food & Beverage
+    project_types:
+      - Example food and beverage project type
+    color: cat-food-and-beverage
+  - name: Health & Beauty
+    slug: health_and_beauty
+    body: Health & Beauty
+    project_types:
+      - Example health and beauty project type
+    color: cat-health-and-beauty
 
 google_fonts_request: Lora&family=Roboto:wght@400;500;700
 

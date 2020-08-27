@@ -1,23 +1,22 @@
 <%
   @project_category ||= {
-    name: t('all_categories'),
+    name: t('business_directory'),
     color: 'primary',
+    body: 'Pick a category to find a black-owned business'
   }
 
   # We need to explicitly write the full color instead of interpolating it so tailwind can later safely purge the unused css classes.
   case @project_category[:color]
-  when 'primary'
-    bg_color = 'bg-primary-600'
-  when 'cat-education'
-    bg_color = 'bg-cat-education'
-  when 'cat-social-justice'
-    bg_color = 'bg-cat-social-justice'
-  when 'cat-business-directory'
-    bg_color = 'bg-cat-business-directory'
-  when 'cat-health'
-    bg_color = 'bg-cat-health'
-  when 'cat-wealth'
-    bg_color = 'bg-cat-wealth'
+  when 'cat-technology'
+    bg_color = 'bg-cat-technology'
+  when 'cat-retail-and-manufacturing'
+    bg_color = 'bg-cat-retail-and-manufacturing'
+  when 'cat-professional-services'
+    bg_color = 'bg-cat-professional-services'
+  when 'cat-food-and-beverage'
+    bg_color = 'bg-cat-food-and-beverage'
+  when 'cat-health-and-beauty'
+    bg_color = 'bg-cat-health-and-beauty'
   when 'secondary'
     bg_color = 'bg-secondary-600'
   else
