@@ -6,12 +6,6 @@
   <div class="px-5 pt-5 pb-6">
     <div class="text-lg font-medium truncate leading-tight mb-2"><%= project.name %></div>
     
-    <div class="flex items-center mb-2">
-      <div class="rounded-full py-1 px-2 bg-gray-600 text-xs text-white">
-        <%= inline_svg_pack_tag "media/svgs/category-#{category[:name].parameterize.downcase}.svg", class: 'text-white inline-block -mt-2px mr-1' %><%= project.category %>
-      </div>
-    </div>
-
     <div class="text-gray-500 text-sm mb-5 leading-tight overflow-hidden" style="height: 50px;">
       <% if project.short_description.present? %>
         <%= project.short_description %>
