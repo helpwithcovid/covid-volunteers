@@ -2,10 +2,10 @@
 <div class="container">
   <div class="rounded-xl bg-hero-black text-white overflow-hidden mb-24 mx-4 sm:mx-0 flex flex-col md:flex-row">
     <div class="relative w-full md:w-5/12 pb-7/12 md:pb-0 overflow-hidden">
-      <%= image_pack_tag 'hero.jpg', class: 'absolute h-full w-full object-cover object-center md:relative' %>
+      <%= image_pack_tag 'fists.jpeg', class: 'absolute h-full w-full object-cover object-center md:relative' %>
     </div>
     <div class="flex-1 flex flex-col justify-center py-8 lg:py-12 px-6 lg:px-8">
-      <h1 class="sm:text-xl text-2xl lg:text-4xl leading-tight font-serif">Projects to advance equity for the Black community.</h1>
+      <h1 class="sm:text-xl text-2xl lg:text-4xl leading-tight font-serif">Wealth distribution that has generational impact</h1>
 
       <div class="block w-1/4 border-t-4 border-white my-3 lg:my-8"></div>
 
@@ -20,11 +20,11 @@
       <div class="block">Wealth distribution that has generational impact. We aren’t asking you to give money to black people. We are asking for you to give them an equal opportunity to earn their wealth.</div>
     </div>
     <div class="flex-1 flex flex-col mx-4 sm:mx-0">
-      <% Settings.project_categories.each do |category| %>
-        <%= link_to category.slug, class: 'rounded overflow-hidden w-full mb-4 relative shadow-lg flex flex-col sm:flex-row group' do %>
-          <div class="transition-all duration-150 ease-in-out sm:group-hover:w-4 w-full sm:w-2 h-2 sm:h-auto sm:min-h-full bg-<%= category.color %>"></div>
-          <div class="w-full flex items-center sm:w-56 font-medium px-8 py-4 bg-hero-black text-white text-md md:text-lg"><%= category.name %></div>
-          <div class="flex-1 flex px-8 align-center items-center bg-gray-200 py-4 md:py-0"><%= category.body %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'absolute left-auto right-0 mr-2 h-8 w-8 fill-current' %></div>
+      <% Settings.entities.each do |entity| %>
+        <%= link_to entity.slug, class: 'rounded overflow-hidden w-full mb-4 relative shadow-lg flex flex-col sm:flex-row group' do %>
+          <div class="transition-all duration-150 ease-in-out sm:group-hover:w-4 w-full sm:w-2 h-2 sm:h-auto sm:min-h-full bg-<%= entity.color %>"></div>
+          <div class="w-full flex items-center sm:w-56 font-medium px-8 py-4 bg-hero-black text-white text-md md:text-lg"><%= entity.name %></div>
+          <div class="flex-1 flex px-8 align-center items-center bg-gray-200 py-4 md:py-0"><%= entity.body %> <%= inline_svg_pack_tag 'media/svgs/chevron-right.svg', class: 'absolute left-auto right-0 mr-2 h-8 w-8 fill-current' %></div>
         <% end %>
       <% end %>
     </div>
