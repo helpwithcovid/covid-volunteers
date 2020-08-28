@@ -22,6 +22,20 @@ features_enabled:
   projects_sort_by_filter: false
 
 # Define how projects are organized. Slugs must not have spaces
+entities:
+  - name: Business Directory
+    slug: projects
+    body: Sort by category to find a black owned business
+    color: cat-business-directory
+  - name: Founders
+    slug: founders
+    body: Reach out to Founders directly for investment inquiries
+    color: cat-founders
+  - name: Wealth
+    slug: wealth
+    body: Search by industry and hire your next black employee
+    color: cat-wealth
+
 project_categories:
   - name: Technology
     slug: technology

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  #temporary redirections
+  get '/founders', to: 'projects#index', action: :index
+  get '/wealth', to: 'projects#index', action: :index
+
   get '/about', to: 'home#about', as: 'about'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
