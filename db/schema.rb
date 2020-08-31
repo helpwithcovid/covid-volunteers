@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_100213) do
+ActiveRecord::Schema.define(version: 2020_08_31_152954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_100213) do
     t.decimal "longitude"
     t.decimal "latitude"
     t.boolean "multiple_locations"
+    t.string "source"
   end
 
   create_table "success_stories", force: :cascade do |t|
