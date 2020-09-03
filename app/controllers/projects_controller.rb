@@ -178,6 +178,7 @@ class ProjectsController < ApplicationController
       @projects = @projects.where(needs_funding: params[:needs_funding]) if params[:needs_funding].present?
       @projects = @projects.tagged_with(params[:project_types], any: true, on: :project_types) if params[:project_types].present?
 
+      @projects = @projects.includes(:project_types)
       @projects = @projects.search(params[:query]) if params[:query].present?
     end
 

@@ -22,41 +22,6 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]['description']).to be_present
       expect(json[0]['to_param']).to be_present
     end
-
-    describe 'Volunteering' do
-      let!(:no_volunteers_project) { create(:project, user: user, accepting_volunteers: false) }
-
-      it 'filters by ?accepting_volunteers=0' do
-        get :index, params: { accepting_volunteers: '0' }
-        expect(response).to be_successful
-        expect(assigns(:projects)).to include(no_volunteers_project)
-        expect(assigns(:projects)).to_not include(project)
-      end
-
-      it 'filters by ?accepting_volunteers=1' do
-        get :index, params: { accepting_volunteers: '1' }
-        expect(response).to be_successful
-        expect(assigns(:projects)).to_not include(no_volunteers_project)
-        expect(assigns(:projects)).to include(project)
-      end
-
-      it 'shows projects filtered by status' do
-        project.update_attribute(:status, Settings.project_statuses.last)
-        project2 = create(:project, user: user, status: Settings.project_statuses.first)
-        get :index, params: { status: Settings.project_statuses.last }
-        expect(assigns(:projects)).to include(project)
-        expect(assigns(:projects)).to_not include(project2)
-      end
-    end
-
-    it 'shows highlighted projects only' do
-      project.update_attribute(:highlight, true)
-      reg_project = create(:project, user: user, highlight: false)
-      get :index, params: { highlight: true }
-      expect(response).to be_successful
-      expect(assigns(:projects)).to include(project)
-      expect(assigns(:projects)).to_not include(reg_project)
-    end
   end
 
   describe 'GET #show' do
