@@ -22,6 +22,60 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]['description']).to be_present
       expect(json[0]['to_param']).to be_present
     end
+
+    context 'when searching' do
+      let!(:project) { create(:project, user: user, name: 'amazon') }
+      let!(:project_two) { create(:project, user: user, name: 'dell') }
+
+      before { get :index, params: { query: 'amazon' } }
+
+      it 'works' do
+        expect(response).to be_successful
+        expect(response.body).to include('amazon')
+        expect(response.body).to_not include('dell')
+      end
+    end
+
+    context 'when filtering' do
+      let!(:project) { create(:project, user: user, needs_funding: false, name: 'amazon') }
+      let!(:project_two) { create(:project, user: user, needs_funding: true, name: 'dell') }      
+
+      before { get :index, params: params }
+
+      context 'by projects that need funding' do
+        let(:params) { { needs_funding: true } }
+        
+        it 'works' do
+          expect(response.body).to include('dell')
+          expect(response.body).to_not include('amazon')
+        end
+      end
+
+      context 'by projects that do not need funding' do
+        let(:params) { { needs_funding: false } }
+
+        it 'works' do
+          expect(response.body).to include('amazon')
+          expect(response.body).to_not include('dell')
+        end
+      end
+    end
+
+    context 'when searching' do
+      let!(:project_two) { create(:project, user: user, name: 'dell') }
+
+      before do
+        project.update_attribute(:name, 'amazon')
+      end
+
+      it 'works' do
+        get :index, params: { query: 'amazon' }
+        
+        expect(response).to be_successful
+        expect(response.body).to include('amazon')
+        expect(response.body).to_not include('dell')
+      end
+    end
   end
 
   describe 'GET #show' do
