@@ -6,10 +6,6 @@
     <div class="absolute left-0 mt-2 p-4 bg-white z-30 shadow-lg w-full sm:w-48 flex flex-col">
       <div class="bg-white mb-2">
         <div class="font-semibold uppercase text-xs mb-1"><%= t('select') %></div>
-        <div class="flex">
-          <button class="button button-sm w-1/2 mb-2 mr-2" @click="selectAll()"><%= t('all') %></button>
-          <button class="button button-sm w-1/2 mb-2" @click="resetFilters()"><%= t('none') %></button>
-        </div>
         <button class="button button-primary w-full mb-2" @click="applyFilters()"><%= t('apply_filters') %></button>
       </div>
       <div class="relative overflow-auto max-h-400px scroll-shadow">
