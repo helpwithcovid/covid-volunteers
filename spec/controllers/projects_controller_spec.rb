@@ -60,22 +60,6 @@ RSpec.describe ProjectsController, type: :controller do
         end
       end
     end
-
-    context 'when searching' do
-      let!(:project_two) { create(:project, user: user, name: 'dell') }
-
-      before do
-        project.update_attribute(:name, 'amazon')
-      end
-
-      it 'works' do
-        get :index, params: { query: 'amazon' }
-        
-        expect(response).to be_successful
-        expect(response.body).to include('amazon')
-        expect(response.body).to_not include('dell')
-      end
-    end
   end
 
   describe 'GET #show' do
