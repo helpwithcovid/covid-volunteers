@@ -23,39 +23,42 @@ RSpec.describe ProjectsController, type: :controller do
       expect(json[0]['to_param']).to be_present
     end
 
-    describe 'Volunteering' do
-      let!(:no_volunteers_project) { create(:project, user: user, accepting_volunteers: false) }
+    context 'when searching' do
+      let!(:project) { create(:project, user: user, name: 'amazon') }
+      let!(:project_two) { create(:project, user: user, name: 'dell') }
 
-      it 'filters by ?accepting_volunteers=0' do
-        get :index, params: { accepting_volunteers: '0' }
+      before { get :index, params: { query: 'amazon' } }
+
+      it 'works' do
         expect(response).to be_successful
-        expect(assigns(:projects)).to include(no_volunteers_project)
-        expect(assigns(:projects)).to_not include(project)
-      end
-
-      it 'filters by ?accepting_volunteers=1' do
-        get :index, params: { accepting_volunteers: '1' }
-        expect(response).to be_successful
-        expect(assigns(:projects)).to_not include(no_volunteers_project)
-        expect(assigns(:projects)).to include(project)
-      end
-
-      it 'shows projects filtered by status' do
-        project.update_attribute(:status, Settings.project_statuses.last)
-        project2 = create(:project, user: user, status: Settings.project_statuses.first)
-        get :index, params: { status: Settings.project_statuses.last }
-        expect(assigns(:projects)).to include(project)
-        expect(assigns(:projects)).to_not include(project2)
+        expect(response.body).to include('amazon')
+        expect(response.body).to_not include('dell')
       end
     end
 
-    it 'shows highlighted projects only' do
-      project.update_attribute(:highlight, true)
-      reg_project = create(:project, user: user, highlight: false)
-      get :index, params: { highlight: true }
-      expect(response).to be_successful
-      expect(assigns(:projects)).to include(project)
-      expect(assigns(:projects)).to_not include(reg_project)
+    context 'when filtering' do
+      let!(:project) { create(:project, user: user, needs_funding: false, name: 'amazon') }
+      let!(:project_two) { create(:project, user: user, needs_funding: true, name: 'dell') }      
+
+      before { get :index, params: params }
+
+      context 'by projects that need funding' do
+        let(:params) { { needs_funding: true } }
+        
+        it 'works' do
+          expect(response.body).to include('dell')
+          expect(response.body).to_not include('amazon')
+        end
+      end
+
+      context 'by projects that do not need funding' do
+        let(:params) { { needs_funding: false } }
+
+        it 'works' do
+          expect(response.body).to include('amazon')
+          expect(response.body).to_not include('dell')
+        end
+      end
     end
   end
 
