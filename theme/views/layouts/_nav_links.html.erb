@@ -1,3 +1,7 @@
+<%= link_to about_path, class: "#{about_nav_link_class(variant)}" do %>
+  <%= t('about') %>
+<% end %>
+
 <%= link_to projects_path, class: "#{all_projects_nav_link_class(variant)}" do %>
   <%= t('business_directory') %>
 <% end %>
