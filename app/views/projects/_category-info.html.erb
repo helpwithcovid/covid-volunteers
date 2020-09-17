@@ -24,14 +24,4 @@
 <div class="mx-auto w-full text-center mt-8">
   <div class="rounded-full bg-white w-24 h-24 flex justify-center items-center mx-auto my-4 text-white <%= bg_color %>"><%= inline_svg_pack_tag "media/svgs/category-#{@project_category[:name].parameterize.downcase}.svg", class: 'text-white h-12 w-12' %></div>
   <div class="font-bold text-2xl mb-4 text-gray-700"><%= @project_category[:name] %></div>
-  <div class="mb-4 leading-tight text-gray-700"><%= @project_category[:body] %></div>
 </div>
-<% if @project_category[:project_types].present? %>
-  <div class="w-full flex justify-center mb-8 flex-grow-0 flex-shrink-0 flex-wrap">
-    <% @project_category[:project_types].each do |type| %>
-      <div class="inline-block m-1">
-        <%= filter_badge label: type, model: 'projects', filter_by: :project_types, value: type %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
