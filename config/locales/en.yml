@@ -260,4 +260,6 @@ en:
   edit_profile: "Edit Profile"
   link: "Link"
   business_directory: 'Business Directory'
+  business_website: 'Business website'
+  need_funding?: 'Do you need funding?'
   

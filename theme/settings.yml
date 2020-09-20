@@ -41,25 +41,25 @@ project_categories:
     slug: technology
     body: Technology
     project_types:
-      - Example technology project type
+      - E-learning
     color: cat-technology
   - name: Retail & Manufacturing
     slug: retail_and_manufacturing
     body: Retail & Manufacturing
     project_types:
-      - Example retail & manufacturing project type
+      - Fashion
     color: cat-retail-and-manufacturing
   - name: Professional Services
     slug: professional_services
     body: Professional Services
     project_types:
-      - Example professional services project type
+      - Law
     color: cat-professional-services
   - name: Food & Beverage
     slug: food_and_beverage
     body: Food & Beverage
     project_types:
-      - Example food and beverage project type
+      - Coffee
     color: cat-food-and-beverage
 
 google_fonts_request: Lora&family=Roboto:wght@400;500;700
