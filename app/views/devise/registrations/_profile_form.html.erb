@@ -22,73 +22,15 @@
     </div>
   </div>
 
-  <div class="mt-6 sm:mt-5">
-    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-      <fieldset>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-          <div>
-            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              <%= t('skills_you_can_help_with') %>
-            </legend>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg">
-              <% Settings.volunteer_skills.each do |skill| %>
-                <div class="relative flex items-start">
-                  <div class="absolute flex items-center h-5">
-                  <%= f.check_box :skill_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, skill, nil %>
-                  </div>
-                  <div class="pl-7 text-sm leading-5">
-                    <label for="user_skill_list_<%= skill.downcase.gsub(' & ', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
-                      <%= skill %>
-                    </label>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="mt-6 sm:mt-5">
-      <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-        <fieldset>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-            <div>
-              <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                <%= t('level_of_availability') %>
-              </legend>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg">
-                <% Settings.volunteer_availabilities.each do |availability| %>
-                  <div class="relative flex items-start">
-                    <div class="absolute flex items-center h-5">
-                      <%= f.radio_button :level_of_availability, availability, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out"} %>
-                    </div>
-                    <div class="pl-7 text-sm leading-5">
-                      <label class="font-medium text-gray-700">
-                        <%= availability %>
-                      </label>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
   <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
     <label for="profile_links" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-      <%= t('links_to_places_where_people_can_get_to_know_you_b') %>
+      <%= t('profile_link') %>
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <div class="max-w-lg flex rounded-md shadow-sm">
-        <%= f.text_area "profile_links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+        <%= f.text_field "profile_links", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
-      <p class="mt-2 text-sm text-gray-500"><%= t('for_instance_your_ar_xiv_git_hub_linked_in_twitter') %></p>
+      <p class="mt-2 text-sm text-gray-500"><%= t('for_instance_your_linked_in') %></p>
     </div>
   </div>
 
@@ -101,43 +43,6 @@
         <%= f.text_field "location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
       </div>
       <p class="mt-2 text-sm text-gray-500"><%= t('city_state_country_ideally_don_t_be_too_specific') %></p>
-    </div>
-  </div>
-
-  <div class="mt-6 sm:mt-5">
-    <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-      <fieldset>
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-          <div>
-            <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-              <%= t('options') %>
-            </legend>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:col-span-2">
-            <div class="max-w-lg">
-              <div class="relative flex items-start">
-                <div class="absolute flex items-center h-5">
-                  <%= f.check_box "visibility", class: "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out5" %>
-                </div>
-                <div class="pl-7 text-sm leading-5">
-                  <%= f.label 'visibility', 'Visibility', class: 'font-medium text-gray-700' %>
-                  <p class="text-gray-500"><%= t('i_want_my_information_including_my_email_to_be_vis') %></p>
-                </div>
-              </div>
-              <br />
-              <div class="relative flex items-start">
-                <div class="absolute flex items-center h-5">
-                  <%= f.check_box "pair_with_projects", class: "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out5" %>
-                </div>
-                <div class="pl-7 text-sm leading-5">
-                  <%= f.label 'pair_with_projects', 'Pair me with projects', class: 'font-medium text-gray-700' %>
-                  <p class="text-gray-500"><%= t('i_want_to_be_paired_with_relevant_projects_based_o') %></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
     </div>
   </div>
 </div>
