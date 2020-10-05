@@ -1,13 +1,12 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-200">
-  <div class="container">
-    <div class="relative flex justify-between h-16 px-4 sm:px-0">
+<nav x-data="{ open: false }" class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex justify-between h-16">
       <a href="/" class="hover:text-primary-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out flex items-center px-2 cursor-pointer -mx-2">
-        <div class="ml-2 sm:ml-0 h-6 w-10">
-            <%= inline_svg_pack_tag 'media/svgs/logo.svg', class: 'inline-block h-5 text-primary-500 fill-current -mr-1' %>
+        <div class="h-10 w-10 bg-center bg-no-repeat bg-cover" style="background-image: url('<%= asset_path('logo-n.svg') %>')">
         </div>
-        <span class="ml-1 block font-bold leading-tight"><%= Settings.site_title %></span>
+        <span class="ml-2 md:hidden lg:block">City Help with COVID<br><b><%= CITY_NAME %></b></span>
       </a>
-      <div class="relative inset-y-0 right-0 flex items-center md:hidden">
+      <div class="absolute inset-y-0 right-0 flex items-center md:hidden">
         <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
           <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -15,8 +14,10 @@
           </svg>
         </button>
       </div>
-      <div class="hidden md:flex flex-grow-0 flex-shrink-0 sm:mr-2">
-        <%= render partial: 'layouts/nav_links', locals: { variant: 'DESKTOP' } %>
+      <div class="flex flex-grow-0 flex-shrink-0">
+        <div class="hidden sm:mr-2 md:flex">
+          <%= render partial: 'layouts/nav_links', locals: { variant: 'DESKTOP' } %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <%= link_to category[:slug], class: 'relative z-10 text-white text-center group h-full flex flex-col justify-between' do %>
   <div>
-    <div class="rounded-full bg-white fill-current text-primary-600 w-24 h-24 flex justify-center items-center mx-auto my-4"><%= inline_svg_pack_tag "media/svgs/category-#{category[:name].downcase}.svg", class: 'fill-current text-primary-600' %></div>
+    <div class="rounded-full bg-white fill-current text-primary-600 w-24 h-24 flex justify-center items-center mx-auto my-4"><%= inline_svg_pack_tag "media/svgs/category-#{category[:slug].downcase}.svg", class: 'text-primary-600' %></div>
     <div class="font-bold text-lg mb-4"><%= category[:name] %></div>
     <div class="mb-4 leading-tight"><%= category[:body] %></div>
   </div>
