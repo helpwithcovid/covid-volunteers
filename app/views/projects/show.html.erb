@@ -158,36 +158,6 @@
       <%= render partial: 'volunteer_button' %>
     </div>
     <div class="mt-0 mx-4 gap-0 rounded-lg bg-white shadow overflow-hidden sm:mx-0 sm:grid sm:grid-cols-2">
-      <div class="sm:col-span-1 relative h-40 sm:h-auto bg-cover bg-center" style="background-image: url(<%= @project.image.present? ? @project.cover_photo : '/images/project-default.png' %>);">
-        <% if @project.status.present? %>
-          <div class="absolute top-4 left-4 rounded-full overflow-hidden">
-            <% if @project.status == "Just started" %>
-              <div class="bg-orange-500 flex items-center px-3 py-1 opacity-75">
-                <%= inline_svg_pack_tag 'media/svgs/glowing-lightbulb.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold"><%= t('idea_stage') %></span>
-              </div>
-            <% elsif @project.status == "In progress" %>
-              <div class="bg-green-500 flex items-center px-3 py-1 opacity-75">
-                <%= inline_svg_pack_tag 'media/svgs/half-dotted-circle.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold"><%= t('in_progress') %></span>
-              </div>
-            <% elsif @project.status == "Launched" %>
-              <div class="bg-teal-500 flex items-center px-3 py-1 opacity-75">
-                <%= inline_svg_pack_tag 'media/svgs/sparkling-stars.svg', class: 'mr-1 text-white fill-current' %>
-                <span class="text-white text-sm font-bold"><%= t('launched') %></span>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-        <% if @project.accepting_volunteers? %>
-          <div class="absolute top-4 right-4 rounded-full overflow-hidden">
-            <div class="flex items-center px-3 py-1" style="background-color: rgba(0, 0, 0, 0.5)">
-              <%= inline_svg_pack_tag 'media/svgs/lightning.svg', class: 'mr-1 text-white fill-current' %>
-              <span class="text-white text-sm font-bold"><%= t('actively_recruiting') %></span>
-            </div>
-          </div>
-        <% end %>
-      </div>
       <div class="sm:col-span-1 flex-col justify-between">
         <div class="p-4 sm:p-6 pb-7">
           <h1 class="text-xl leading-tight text-primary-600 font-bold">
@@ -284,17 +254,6 @@
               </dd>
             </div>
           <% end %>
-
-          <% if @project.accepting_volunteers? %>
-            <div class="p-4 sm:px-6 sm:pt-4 sm:pb-2">
-              <dt class="text-sm leading-5 font-bold text-gray-800">
-                <%= t('tasks_that_need_to_get_done') %>
-              </dt>
-              <dd class="mt-2 text-sm leading-5 text-gray-600">
-                <%= simple_format @project.looking_for, class: 'mb-3' %>
-              </dd>
-            </div>
-          <% end %>
         </div>
       </div>
 
@@ -308,11 +267,6 @@
             <div class="p-4 sm:px-6 sm:py-3 bg-secondary-200 border-b border-primary-400">
               <h3 class="text-primary-700 font-bold"><%= t('project_details') %></h3>
             </div>
-
-            <div class="p-6 space-y-4">
-              <%= project_panel_item(title: t('who_is_already_working_on_this')) do %>
-                <%= simple_format Rinku.auto_link(sanitize(@project.participants), :all, 'class="text-primary-500" rel="nofollow noopener noreferrer"'), { class: 'mb-3' }, sanitize: false %>
-              <% end %>
 
               <% if @project.links.present? %>
                 <%= project_panel_item(title: t('helpful_links')) do %>
@@ -340,24 +294,6 @@
                 <% if @project.volunteer_location.present? %>
                   <%= project_panel_item(title: t('preferred_volunteer_location')) do %>
                     <%= @project.volunteer_location %>
-                  <% end %>
-                <% end %>
-
-                <%= project_panel_item(title: t('organization_status')) do %>
-                  <% if @project.organization_status.present? %>
-                    <div class="flex items-end">
-                      <%= @project.organization_status %>
-
-                      <% if @project.organization_status == "Non-profit" && @project.ein.present? %>
-                        <span class="ml-1">
-                          (EIN: <%= @project.ein %>)
-                        </span>
-                      <% end %>
-                    </div>
-                  <% else %>
-                    <div class="flex items-end">
-                      <%= t('not_specified') %>
-                    </div>
                   <% end %>
                 <% end %>
               </div>
