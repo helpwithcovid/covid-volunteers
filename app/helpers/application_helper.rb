@@ -101,7 +101,7 @@ module ApplicationHelper
     base_class
   end
 
-  def filter_badge(label: nil, model: nil, filter_by: nil, color: nil, title: nil, value: nil)
+  def filter_badge(label: nil, model: nil, filter_by: nil, color: 'primary', title: nil, value: nil)
     if model.present?
       query_string = build_query_string(toggle_filter(filter_by, value || label))
       url = "/#{model}"
@@ -124,8 +124,11 @@ module ApplicationHelper
     when 'orange'
       classes = 'bg-orange-100 text-orange-800'
       classes += ' bg-orange-300' if applied
+    when 'red'
+      classes = 'bg-gray-100 text-red-800'
+      classes += 'bg-gray-300' if applied
     else
-      classes = 'bg-primary-100 text-primary-800'
+      classes = 'bg-gray-100 text-black-800'
       classes += ' bg-primary-300' if applied
     end
 
@@ -175,7 +178,7 @@ module ApplicationHelper
   def skill_badges(items, limit: nil, color: 'primary', title: '', model: '', filter_by: '')
     limit ||= items.count
 
-    render partial: 'partials/skill_badges', locals: { color: color, items: items, limit: limit, title: title, model: model, filter_by: filter_by }
+    render partial: 'partials/skill_badges', locals: { color: 'primary', items: items, limit: limit, title: title, model: model, filter_by: filter_by }
   end
 
   def sort_drop_down(&block)

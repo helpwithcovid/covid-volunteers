@@ -10,4 +10,4 @@ colors:
     700: '#b20427'
     800: '#ab0020'
     900: '#a30018'
-  secondary: '#000000'
+  secondary: uiColors.gray
