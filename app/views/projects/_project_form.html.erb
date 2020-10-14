@@ -12,7 +12,7 @@
     <div class="mt-6 sm:mt-5">
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <label for="name" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('title of volunteer position') %><span class="text-red-500">*</span>
+          <%= t('title_of_volunteer_position') %><span class="text-red-500">*</span>
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <div class="max-w-lg flex rounded-md shadow-sm">
@@ -33,8 +33,58 @@
       </div>
 
       <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="organization_mission" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+          <%= t('mission_of_organization') %><span class="text-red-500">*</span>
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+          <div class="max-w-lg flex rounded-md shadow-sm">
+            <%= f.text_area :organization_mission, rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 sm:mt-5">
+        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+          <fieldset>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+              <div>
+                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                  <%= t('are_you_a_registered_organization') %><span class="text-red-500">*</span>
+                </legend>
+              </div>
+              <div class="mt-4 sm:mt-0 sm:col-span-2">
+                <div class="max-w-lg">
+                  <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :organization_registered, true, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <label class="font-medium text-gray-700">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :organization_registered, false, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <label class="font-medium text-gray-700">
+                        No
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <label for="description" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('describe_your_project') %>
+          <%= t('describe_your_project_and_the_volunteer_position.') %><span class="text-red-500">*</span>
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <div class="max-w-lg flex rounded-md shadow-sm">
@@ -44,144 +94,6 @@
         </div>
       </div>
 
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="image" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
-          <%= t('image') %><br/>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <% if @project.image.present? %>
-            <div class="py-2">
-              <%= render partial: 'partials/image-thumbnail', locals: {project: @project} %>
-            </div>
-          <% end %>
-
-          <%= f.file_field :image, multiple: false, direct_upload: true, onchange: 'Covid.ensureFileType()', accept: 'image/x-png,image/gif,image/jpeg',  class: 'js-projects-image-upload-field py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out' %>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5">
-        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-          <fieldset>
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-              <div>
-                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                  <%= t('project_type') %>
-                </legend>
-              </div>
-              <div class="mt-4 sm:mt-0 sm:col-span-2">
-                <div class="max-w-lg">
-                  <% Settings.project_types.each do |project_type| %>
-                    <div class="relative flex items-start">
-                      <div class="absolute flex items-center h-5">
-                        <%= f.check_box :project_type_list, { multiple: true, class:  "form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out"}, project_type, nil %>
-                      </div>
-                      <div class="pl-7 text-sm leading-5">
-                        <label for="project_project_type_list_<%= project_type.downcase.gsub('&', '__').gsub(' ', '_') %>" class="font-medium text-gray-700">
-                          <%= project_type %>
-                        </label>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5">
-        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-          <fieldset>
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-              <div>
-                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                  <%= t('project_status') %>
-                </legend>
-              </div>
-              <div class="mt-4 sm:mt-0 sm:col-span-2">
-                <div class="max-w-lg">
-                  <div class="relative flex items-start">
-                    <label class="font-medium text-gray-700">
-                      <%= f.select :status, Settings.project_statuses, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="participants" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('who_is_already_working_on_this') %>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_area "participants", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('tell_volunteers_about_you_and_your_teammates') %></p>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="progress" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('how_far_along_are_you') %>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_area "progress", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('tell_volunteers_about_the_progress_you_ve_made') %></p>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="docs_and_demo" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('do_you_have_a_demo_or_extra_documentation') %>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_area "docs_and_demo", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('demo_can_be_anything_that_shows_volunteers_how_the') %></p>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5">
-        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
-            <div>
-              <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                <%= t('target_country') %>
-              </legend>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg">
-                <div class="relative flex items-start">
-                  <label class="font-medium text-gray-700">
-                    <%= f.select "target_country", get_country_fields(), {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
-                  </label>
-                </div>
-              </div>
-              <p class="mt-2 text-sm text-gray-500"><%= t('is_this_project_only_targeting_people_in_a_specifi') %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-        <label for="target_location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('target_location') %><br/>
-          <span class="text-xs"><%= t('optional') %></span>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_field "target_location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('specific_state_province_or_city_within_that_countr') %></p>
-        </div>
-      </div>
 
       <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <label for="contact" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
@@ -205,7 +117,7 @@
           <div class="max-w-lg flex rounded-md shadow-sm">
             <%= f.text_area "links", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
           </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('any_other_relevant_links_for_instance_git_hub_or_s') %></p>
+          <p class="mt-2 text-sm text-gray-500"><%= t('any_other_relevant_links_such_as_the_organizations_website_or_social_media') %></p>
         </div>
       </div>
     </div>
@@ -247,18 +159,6 @@
               </div>
             </div>
           </fieldset>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 is-accepting-volunteers">
-        <label for="looking_for" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('what_tasks_need_to_get_done') %>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_area "looking_for", rows: 3, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('tell_volunteers_how_they_might_help_you_be_specifi') %></p>
         </div>
       </div>
 
@@ -322,48 +222,190 @@
         </div>
       </div>
 
-      <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 is-accepting-volunteers">
-        <label for="volunteer_location" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('volunteer_location') %>
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_field "volunteer_location", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: false %>
-          </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('do_volunteers_need_to_live_in_a_certain_location_w') %></p>
-        </div>
-      </div>
-
-      <div class="mt-6 sm:mt-5 is-accepting-volunteers">
+      <div class="mt-6 sm:mt-5">
         <div class="sm:border-t sm:border-gray-200 sm:pt-5">
           <fieldset>
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
               <div>
                 <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
-                  <%= t('organization_status') %>
+                  Level of Exposure<span class="text-red-500">*</span>
+                </legend>
+              </div>
+              <div class="mt-4 sm:mt-0 sm:col-span-2">
+                <div class="max-w-lg">
+                  <% ALL_LEVELS_OF_EXPOSURE.each do |level_of_exposure| %>
+                    <div class="relative flex items-start">
+                      <div class="absolute flex items-center h-5">
+                        <%= f.radio_button :level_of_exposure, level_of_exposure, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                      </div>
+                      <div class="pl-7 text-sm leading-5">
+                        <label class="font-medium text-gray-700">
+                          <%= level_of_exposure %>
+                        </label>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <span class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">Guidelines</span>
+              <ul class="list-disc text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                <li>
+                  I: No risk/from home
+                  <ul class="list-disc pl-8">
+                    <li>M1, M2, M3, M4</li>
+                    <li>Mask production at home</li>
+                    <li>Creating cards/posters/videos of encouragement</li>
+                    <li>Call center staffing from home</li>
+                    <li>Call center staffing if proper social distancing is guaranteed</li>
+                    <li>Check in calls to particularly vulnerable patients and/or to staff who were exposed</li>
+                  </ul>
+                </li>
+                <li>II: Low risk and minimal human contact
+                  <ul class="list-disc pl-8">
+                    <li>M1, M2, M3, M4</li>
+                  </ul>
+                </li>
+                <li>III: Potential for human contact
+                  <ul class="list-disc pl-8">
+                    <li>M1, M2, M3, M4</li>
+                    <li>Child care needs of “mission-critical on-site” staff during COVID-19 outbreak</li>
+                    <li>Meal preparation, distributing food, washing dishes</li>
+                    <li>Essential transportation needs for family members</li>
+                  </ul>
+                </li>
+                <li>IV: Non-clinical but in hospital or office setting
+                  <ul class="list-disc pl-8">
+                    <li>M1, M2, M3, M4</li>
+                    <li>Staff support in non-clinical dept of hospital or office practice (e.g. information desk)</li>
+                    <li>Duties usually performed by hospital volunteers</li>
+                  </ul>
+                </li>
+                <li>V: Clinical and direct human contact
+                  <ul class="list-disc pl-8">
+                    <li>M3, M4</li>
+                    <li>Thermal imaging of hospital or office entrants</li>
+                    <li>H&P’s, IV’s, blood draws etc</li>
+                  </ul>
+                </li>
+                <ul>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="mt-6 sm:mt-5">
+        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+          <fieldset>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+              <div>
+                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                  Background screening required?<span class="text-red-500">*</span>
                 </legend>
               </div>
               <div class="mt-4 sm:mt-0 sm:col-span-2">
                 <div class="max-w-lg">
                   <div class="relative flex items-start">
-                    <label class="font-medium text-gray-700">
-                      <%= f.select :organization_status, Settings.organization_statuses, {}, {multiple: false, class: "form-select relative block w-full rounded bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" } %>
-                    </label>
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :background_screening_required, true, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <label class="font-medium text-gray-700">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                  <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :background_screening_required, false, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <label class="font-medium text-gray-700">
+                        No
+                      </label>
+                    </div>
                   </div>
 
-                  <div class="for-profit-warning hidden">
-                    <div class="relative mt-4 text-sm text-gray-500">
-                      <div class="-ml-7 top-0 absolute hidden sm:block">
-                        <svg class="h-5 w-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                      </div>
-                      You are about to select <span class="text-orange-400">for-profit</span> for your project
-                    </div>
-                    <div class="text-xs text-gray-500">
-                      <div class="mt-4"><%= t('the_u_s_department_of_labor_has_indicated_that_und') %></div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
 
-                      <div class="mt-4"><%= t('please_consult_the_relevant_rules_in_your_country_') %></div>
+
+      <div class="mt-6 sm:mt-5">
+        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+          <fieldset>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+              <div>
+                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                  Location<span class="text-red-500">*</span>
+                </legend>
+              </div>
+              <div class="mt-4 sm:mt-0 sm:col-span-2">
+                <div class="max-w-lg">
+                  <% ALL_LOCATIONS.each do |location| %>
+                    <div class="relative flex items-start">
+                      <div class="absolute flex items-center h-5">
+                        <%= f.radio_button :volunteer_location, location, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                      </div>
+                      <div class="pl-7 text-sm leading-5">
+                        <label class="font-medium text-gray-700">
+                          <%= location %>
+                        </label>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+          Start Date<span class="text-red-500">*</span>
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+          <div class="max-w-lg flex rounded-md shadow-sm">
+            <%= f.date_field :start_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 sm:mt-5">
+        <div class="sm:border-t sm:border-gray-200 sm:pt-5">
+          <fieldset>
+            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
+              <div>
+                <legend class="text-base leading-6 font-medium text-gray-900 sm:text-sm sm:leading-5 sm:text-gray-700">
+                  End date<span class="text-red-500">*</span>
+                </legend>
+              </div>
+              <div class="mt-4 sm:mt-0 sm:col-span-2">
+                <div class="max-w-lg">
+                  <div class="relative flex items-start">
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :end_date_recurring, false, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <p class="mb-2">
+                        <label class="font-medium text-gray-700">
+                          On date:
+                        </label>
+                      </p>
+                      <%= f.date_field :end_date, class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                    </div>
+                  </div>
+                  <div class="relative flex items-start mt-2">
+                    <div class="absolute flex items-center h-5">
+                      <%= f.radio_button :end_date_recurring, true, { :multiple => false, class:  "form-radio h-4 w-4 text-primary-600 transition duration-150 ease-in-out", required: true} %>
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                      <label class="font-medium text-gray-700">
+                        Recurring
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -373,29 +415,28 @@
         </div>
       </div>
 
-      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 is-non-profit is-accepting-volunteers">
-        <label for="ein" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
-          <%= t('your_non_profit_ein') %>
+
+      <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+        <label for="compensation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+          Compensation<br/>
+          <span class="text-xs">(optional)</span>
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <div class="max-w-lg flex rounded-md shadow-sm">
-            <%= f.text_field "ein", maxlength: 129, class: "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            <%= f.text_field "compensation", class: "flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
           </div>
-          <p class="mt-2 text-sm text-gray-500"><%= t('this_is_important_to_a_lot_of_volunteers_write_not') %></p>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-
-
-<div class="mt-8 border-t border-gray-200 pt-5">
-  <div class="flex justify-end">
+      <div class="mt-8 border-t border-gray-200 pt-5">
+        <div class="flex justify-end">
     <span class="ml-3 inline-flex rounded-md shadow-sm">
       <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary- active:bg-primary-700 transition duration-150 ease-in-out">
         <%= cta %>
       </button>
     </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
