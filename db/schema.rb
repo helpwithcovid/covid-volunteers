@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_215346) do
+ActiveRecord::Schema.define(version: 2020_05_27_191511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_215346) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "contents", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "offers", force: :cascade do |t|
@@ -76,19 +71,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_215346) do
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
-    t.string "organization", default: ""
-    t.string "level_of_urgency", default: "", null: false
-    t.date "start_date"
-    t.date "end_date"
-    t.string "compensation", default: ""
-    t.boolean "background_screening_required"
-    t.string "level_of_exposure"
-    t.boolean "visible", default: true
-    t.boolean "was_helpful", default: true
-    t.string "exit_comments", default: ""
-    t.string "organization_mission"
-    t.boolean "organization_registered"
-    t.boolean "end_date_recurring"
     t.string "links", default: ""
     t.string "status", default: "", null: false
     t.boolean "accepting_volunteers", default: true
@@ -157,12 +139,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_215346) do
     t.string "level_of_availability"
     t.boolean "pair_with_projects", default: false
     t.boolean "deactivated", default: false, null: false
-    t.string "phone", default: ""
-    t.string "affiliation", default: ""
-    t.string "resume", default: ""
-    t.string "remote_location", default: ""
-    t.boolean "newsletter_consent"
-    t.boolean "age_consent", default: false
     t.text "office_hour_description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
