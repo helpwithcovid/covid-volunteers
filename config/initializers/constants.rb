@@ -15,6 +15,7 @@ INSTAGRAM_LINK = 'https://www.instagram.com/athensmutualaid.net_updates/?hl=en'
 FACEBOOK_LINK = 'https://www.facebook.com/New-Haven-Help-with-Covid-19-100919271572189'
 TWITTER_LINK = 'https://twitter.com/AthensAid'
 NEWSLETTER_LINK = 'http://eepurl.com/g3hEa5'
+LOCAL_AFFILIATES = 'University of Georgia, UNG, Piedmont College, etc.'
 ALL_PROJECT_TYPES = [
     'Contact tracing',
     'Reduce spread',
