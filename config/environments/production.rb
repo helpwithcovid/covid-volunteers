@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -20,7 +21,10 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  #config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  #TODO dont do this
+  config.serve_static_assets = true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -29,14 +33,14 @@ Rails.application.configure do
   # config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = ENV['CDN_URL'] if ENV['CDN_URL'].present?
+  # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon
+  config.active_storage.service = :local
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -66,12 +70,29 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  aws_credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
-  Aws::Rails.add_action_mailer_delivery_method(:aws_ses, credentials: aws_credentials, region: ENV['AWS_REGION'])
+  # NOTE: This configures the mailer to use gmail for both sending and receiving,
+  # so the no-reply@newhavenhelpwithcovid.com account won't actually be used.
+  # The commented out lines below might be on the right track to fix this, but
+  # it's completely untested.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      user_name: ENV['SMTP_USERNAME'],
+      password: ENV['SMTP_PASSWORD'],
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
 
-  config.action_mailer.delivery_method = :aws_ses
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  address: 'localhost',
+  #  port: 25,
+  #  authentication: :plain,
+  #  enable_starttls_auto: true
+  #}
 
-  config.action_mailer.default_url_options = { host: 'helpwithcovid.com', protocol: 'http' }
+  config.action_mailer.default_url_options = { :host => 'newhavenhelpwithcovid.com', protocol: 'http' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -87,7 +108,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -118,9 +139,12 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-  email: {
-    email_prefix: '[HelpWithCovid] ',
-    sender_address: %{"Help With Covid" <no-reply@helpwithcovid.com>},
-    exception_recipients: ENV['EXCEPTION_NOTIFIERS']&.split(',')
-  }
+                                          email: {
+                                              email_prefix: '[HelpWithCovidNewHaven] ',
+                                              sender_address: %{"Help With Covid" #{ENV['SMTP_NOREPLY']}},
+                                              exception_recipients: [ENV['SMTP_USERNAME']]
+                                          }
+
+  # MailChimp list ID
+  config.list_id = 'ba7ec53410'
 end
