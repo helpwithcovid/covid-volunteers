@@ -3,18 +3,22 @@
     <div class="flex flex-1 flex-col lg:flex-row items-center w-full lg:mr-4 mb-4 lg:mb-0">
       <div class="font-bold mb-2 lg:mb-0 mr-2"><%= t('filter_by') %></div>
       <div class="flex flex-col sm:flex-row w-full lg:w-auto">
+       <!--
         <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 sm:w-auto">
           <%= filter_bar_filter 'Project Types', :project_types, Settings.project_types.map { |o| [o, o] } %>
         </div>
+        -->
         <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 sm:w-auto">
           <%= filter_bar_filter 'Skills', :skills, Settings.volunteer_skills.map { |o| [o, o] } %>
         </div>
+        <!--
         <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 sm:mr-4 md:mb-0 sm:w-auto">
           <%= filter_bar_filter 'Countries', :target_country, get_present_country_fields %>
         </div>
         <div class="flex-1 lg:flex-none mb-2 w-full md:w-auto sm:mb-0 md:mb-0 sm:w-auto">
           <%= filter_bar_filter 'Status', :status, Settings.project_statuses.map { |o| [o, o] }  %>
         </div>
+        -->
       </div>
     </div>
     <div class="flex flex-col lg:flex-row items-center lg:mb-0 w-full lg:w-auto">
@@ -23,8 +27,8 @@
         <%= sort_drop_down do %>
           <%= sort_drop_down_option(request.path, t('sort_by')) %>
           <%= sort_drop_down_option(request.path, t('volunteers_needed'), 'volunteers_needed') %>
-          <%= sort_drop_down_option(request.path, t('latest'), 'latest') %>
-          <%= sort_drop_down_option(request.path, t('earliest'), 'earliest') %>
+          <%= sort_drop_down_option(request.path, t('most_recent'), 'latest') %>
+          <%= sort_drop_down_option(request.path, t('oldest'), 'earliest') %>
         <% end %>
       </div>
     </div>
