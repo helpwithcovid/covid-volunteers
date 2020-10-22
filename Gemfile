@@ -108,3 +108,8 @@ gem 'iso_country_codes', '~> 0.7.8'
 
 # JS Translations
 gem 'i18n-js'
+
+# Captcha
+gem "json", '~> 2.1.0'
+gem "recaptcha"
+gem "gibbon", "~> 3.3"

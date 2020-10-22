@@ -1,4 +1,7 @@
 require 'csv'
+require 'gibbon'
+require 'net/https'
+require 'json'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -77,7 +80,7 @@ class User < ApplicationRecord
   def subscribe_to_mailchimp(action = true)
     gibbon = Gibbon::Request.new
     gibbon.timeout = 15
-    list_id = Rails.application.config.list_id
+    list_id = Settings.list_id
 
     response = gibbon.lists(list_id).members(Digest::MD5.hexdigest(self.email)).upsert(body: {
         email_address: self.email,
