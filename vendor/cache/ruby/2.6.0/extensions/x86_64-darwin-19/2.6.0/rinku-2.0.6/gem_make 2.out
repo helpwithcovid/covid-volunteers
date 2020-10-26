@@ -1,0 +1,19 @@
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/rinku-2.0.6/ext/rinku
+/Users/jakegaliano/.rbenv/versions/2.6.3/bin/ruby -I /Users/jakegaliano/.rbenv/versions/2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201015-62587-5mar8h.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR=" clean
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR="
+compiling autolink.c
+compiling buffer.c
+compiling rinku.c
+compiling rinku_rb.c
+compiling utf8.c
+linking shared-object rinku.bundle
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 rinku.bundle ./.gem.20201015-62587-47sh8g

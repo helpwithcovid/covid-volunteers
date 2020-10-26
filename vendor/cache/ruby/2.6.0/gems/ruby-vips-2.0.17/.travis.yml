@@ -1,0 +1,57 @@
+dist: xenial
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - VIPS_VERSION_MAJOR=8
+    - VIPS_VERSION_MINOR=7
+    - VIPS_VERSION_MICRO=2
+    - PATH=$HOME/vips/bin:$PATH
+    - LD_LIBRARY_PATH=$HOME/vips/lib:$LD_LIBRARY_PATH
+    - PKG_CONFIG_PATH=$HOME/vips/lib/pkgconfig:$PKG_CONFIG_PATH
+
+addons:
+  apt:
+    packages:
+      - libexpat1-dev
+      - gettext
+      - libglib2.0-dev
+      - liborc-0.4-dev
+      - libfftw3-dev
+      - liblcms2-dev
+      - libmagickwand-dev
+      - libopenexr-dev
+      - libcfitsio3-dev
+      - libgif-dev
+      - libgsf-1-dev
+      - libmatio-dev
+      - libopenslide-dev
+      - libpango1.0-dev
+      - libpoppler-glib-dev
+      - librsvg2-dev
+      - libwebp-dev
+
+cache:
+  bundler: true
+  directories:
+    - $HOME/vips
+
+language: ruby
+rvm:
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
+
+script: bundle exec rake spec
+
+gemfile:
+  - Gemfile
+
+before_install:
+  - uname -a
+  - bash install-vips.sh

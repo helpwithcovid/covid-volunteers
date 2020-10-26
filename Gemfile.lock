@@ -175,7 +175,12 @@ GEM
     factory_bot_rails (5.2.0)
       factory_bot (~> 5.2.0)
       railties (>= 4.2.0)
+    faraday (1.0.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
+    gibbon (3.3.3)
+      faraday (>= 0.16.0)
+      multi_json (>= 1.11.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gravatar_image_tag (1.2.0)
@@ -196,6 +201,7 @@ GEM
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
+    json (2.1.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -226,6 +232,8 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     msgpack (1.3.3)
+    multi_json (1.14.1)
+    multipart-post (2.1.1)
     nio4r (2.5.2)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
@@ -280,6 +288,8 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recaptcha (5.5.0)
+      json
     redis (4.1.4)
     regexp_parser (1.7.0)
     responders (3.0.0)
@@ -386,6 +396,7 @@ DEPENDENCIES
   dotenv-rails
   exception_notification!
   factory_bot_rails
+  gibbon (~> 3.3)
   gravatar_image_tag
   i18n-js
   icalendar
@@ -393,6 +404,7 @@ DEPENDENCIES
   inline_svg
   iso_country_codes (~> 0.7.8)
   jbuilder (~> 2.7)
+  json (~> 2.1.0)
   kaminari
   listen (>= 3.0.5, < 3.2)
   pg
@@ -400,6 +412,7 @@ DEPENDENCIES
   puma (~> 4.3)
   rails (~> 6.0.3)
   rails-controller-testing
+  recaptcha
   redis (~> 4.0)
   rinku
   rspec-rails (~> 4.0.0.rc1)

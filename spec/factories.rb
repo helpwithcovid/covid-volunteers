@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :content do
+    
+  end
+
   factory :post do
     title { Faker::Lorem.sentence }
     body { Faker::Lorem.paragraphs(number: rand(4...20)).join("\n") }

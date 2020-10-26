@@ -91,6 +91,9 @@ gem 'pg_search'
 # Email obfuscation
 gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-encoded_mail_to', branch: 'feature/fix-vanilla-mail-to'
 
+# Environment variables
+gem 'dotenv-rails'
+
 # Gravatar images
 gem 'gravatar_image_tag'
 
@@ -108,3 +111,8 @@ gem 'iso_country_codes', '~> 0.7.8'
 
 # JS Translations
 gem 'i18n-js'
+
+# Captcha
+gem "json", '~> 2.1.0'
+gem "recaptcha"
+gem "gibbon", "~> 3.3"

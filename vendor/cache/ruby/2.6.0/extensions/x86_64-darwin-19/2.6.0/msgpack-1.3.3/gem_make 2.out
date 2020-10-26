@@ -1,0 +1,42 @@
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/msgpack-1.3.3/ext/msgpack
+/Users/jakegaliano/.rbenv/versions/2.6.3/bin/ruby -I /Users/jakegaliano/.rbenv/versions/2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201015-62587-h3l0eb.rb extconf.rb
+checking for ruby/st.h... yes
+checking for st.h... yes
+checking for rb_str_replace() in ruby.h... yes
+checking for rb_intern_str() in ruby.h... yes
+checking for rb_sym2str() in ruby.h... yes
+checking for rb_str_intern() in ruby.h... yes
+checking for rb_block_lambda() in ruby.h... yes
+checking for rb_hash_dup() in ruby.h... yes
+checking for rb_hash_clear() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/msgpack-1.3.3/ext/msgpack
+make "DESTDIR=" clean
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/msgpack-1.3.3/ext/msgpack
+make "DESTDIR="
+compiling buffer.c
+compiling buffer_class.c
+compiling extension_value_class.c
+compiling factory_class.c
+compiling packer.c
+compiling packer_class.c
+compiling packer_ext_registry.c
+compiling rbinit.c
+compiling rmem.c
+compiling unpacker.c
+compiling unpacker_class.c
+unpacker_class.c:128:1: warning: function 'raise_unpacker_error' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+{
+^
+unpacker_class.c:216:14: warning: unused function 'Unpacker_peek_next_type' [-Wunused-function]
+static VALUE Unpacker_peek_next_type(VALUE self)
+             ^
+2 warnings generated.
+compiling unpacker_ext_registry.c
+linking shared-object msgpack/msgpack.bundle
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/msgpack-1.3.3/ext/msgpack
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 msgpack.bundle ./.gem.20201015-62587-1y2mcq2/msgpack
