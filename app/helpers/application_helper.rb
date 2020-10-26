@@ -207,32 +207,12 @@ module ApplicationHelper
     "<option value='#{path}' #{'selected' if active}>#{title}</option>".html_safe
   end
 
-  def format_country(country)
-    return country if (country == '' || country == 'Global')
-
-    begin
-      return IsoCountryCodes.find(country).name
-    rescue
-      # Fallback to raw value
-      return country
-    end
-  end
-
-  def get_country_fields
-    [ 'Global' ].concat(IsoCountryCodes.for_select)
-  end
-
-  def get_present_country_fields
-    present_countries = Project.group(:target_country).select(:target_country).map(&:target_country).reject { |c| c.blank? }
-    [['Global', 'Global'], ['United States of America', 'US']].concat(IsoCountryCodes.for_select).uniq.filter { |c| present_countries.include? c[1] }
-  end
-
   def filter_bar_filter(label, filter, options)
     render partial: 'projects/filter-bar-filter', locals: {options: options, label: label, filter: filter.to_s}
   end
 
   def google_analytics_id
-    Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
+    #Rails.env.production? ? 'UA-162054776-1' : 'UA-162054776-2'
   end
 
   def track_ga_event_if_needed

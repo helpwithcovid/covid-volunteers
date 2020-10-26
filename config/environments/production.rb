@@ -145,6 +145,4 @@ Rails.application.configure do
                                               exception_recipients: [ENV['SMTP_USERNAME']]
                                           }
 
-  # MailChimp list ID
-  config.list_id = 'ba7ec53410'
-end
+  end
