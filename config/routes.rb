@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get '/about', to: 'home#about', as: 'about'
 
+  get '/admin' => 'admin#index'
+  get '/admin/edit' => 'admin#edit_site', as: 'edit_site'
+  post '/admin/edit' => 'admin#edit_site'
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     get '/users/p/:page' => 'users/registrations#index', as: 'users_with_pagination'
@@ -57,5 +61,8 @@ Rails.application.routes.draw do
     end
   end
 
+
   get '/:category_slug(/p/:page)', to: 'projects#index', action: :index
+
+
 end

@@ -1,0 +1,10 @@
+.DS_Store
+coverage
+/.bundle
+vendor/bundle
+bin/
+tmp/
+.idea/
+Gemfile.lock
+spec/examples.txt
+pkg/
