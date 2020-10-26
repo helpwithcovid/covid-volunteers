@@ -1,0 +1,19 @@
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/byebug-11.1.3/ext/byebug
+/Users/jakegaliano/.rbenv/versions/2.6.3/bin/ruby -I /Users/jakegaliano/.rbenv/versions/2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201026-5882-18rc00h.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20201026-5882-l4at9f/byebug
