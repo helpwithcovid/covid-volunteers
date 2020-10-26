@@ -31,7 +31,7 @@
 
       <div class="text-gray-500 w-full text-center"><%= time_ago_in_words project.created_at %> ago</div>
 
-      <% if project.target_location? %>
+      <% if project.volunteer_location? %>
         <div class="text-right"><%= inline_svg_pack_tag 'media/svgs/project-card-location.svg', class: 'inline' %><%= project.target_location %></div>
       <% end %>
     </div>

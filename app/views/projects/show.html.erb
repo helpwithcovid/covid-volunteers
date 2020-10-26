@@ -175,7 +175,7 @@
             <div class="flex items-center text-primary-600 col-span-1">
               <%= inline_svg_pack_tag 'media/svgs/location-pin.svg', class: 'h-6 mr-2 text-primary-600 fill-current' %>
               <span class="text-gray-500 text-xs font-bold leading-tight">
-                <%= (@project.target_country.blank? || @project.target_country == "Global") ? "Global" : "Serves in #{format_country(@project.target_country)}" %>
+                <%= @project.volunteer_location %>
               </span>
             </div>
             <div class="flex items-center text-primary-600 col-span-1">
