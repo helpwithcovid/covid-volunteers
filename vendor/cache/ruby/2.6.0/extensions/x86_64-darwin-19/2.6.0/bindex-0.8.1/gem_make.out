@@ -1,0 +1,15 @@
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/jakegaliano/.rbenv/versions/2.6.3/bin/ruby -I /Users/jakegaliano/.rbenv/versions/2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201027-73992-u0szkf.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20201027-73992-10t4v9m/skiptrace/internal
