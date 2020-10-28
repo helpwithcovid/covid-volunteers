@@ -18,7 +18,7 @@ try {
 // Setting defaults
 let themeColors = {
   primary: uiColors.indigo,
-  secondary: uiColors.purple,
+  secondary: uiColors.gray,
 }
 
 // Parsing the theme config
