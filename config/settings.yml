@@ -1,29 +1,33 @@
 # Main
-site_title: Help With COVID
+site_title: Athens Help With COVID
 site_subtitle: 'A clearing house for projects and volunteers that want to help with the COVID-19 crisis'
-site_url: https://www.helpwithcovid.com
+site_url: https://www.athenshelpwithcovid.com
 share_image: https://www.helpwithcovid.com/share-image.png
 
 # Site features
 features_enabled:
   volunteer_directory: true
-  resources: true
-  office_hours: true
-  success_stories: true
+  resources: false
+  office_hours: false
+  success_stories: false
 
 # These are the skills that volunteers can have and projects can request.
 volunteer_skills:
   - Analytics
   - Biology
   - Biotech
+  - Childcare
+  - Communications
   - Community Outreach
   - Content
-  - Data entry
+  - Data Entry
+  - Delivery
   - Design
+  - Food preparation
   - Funding
   - Helpdesk
+  - Healthcare
   - Legal
-  - Localization
   - Manufacturing
   - Marketing
   - Medicine
@@ -35,8 +39,8 @@ volunteer_skills:
   - Social Media
   - Software
   - Training Development
-  - Volunteer vetting
-  - Anything
+  - Tutoring
+  - Other
 
 # Availability windows that are suggested to volunteers
 volunteer_availabilities:
@@ -68,41 +72,24 @@ organization_statuses:
   - 'Public Benefit Corporation'
   - 'Not incorporated'
 
-discord_link: 'https://example.com?no_discord_yet=sorry'
 
 # If a project has less than N volunteers
 # it can ask to be highlighted.
 max_volunteers_for_highlight_offer: 30
 
 project_categories:
-  - name: Medical
-    slug: medical
-    body: Support our overwhelmed health systems with medical innovation.
+  - name: On Site
+    slug: onsite
+    body: Volunteer positions that take place in-person.
     project_types:
-      - Scale testing
-      - Medical facilities
-      - Medical equipments
-      - Treatment R&D
+      - (on site)
     color: purple
-  - name: Prevention
-    slug: prevention
-    body: Inform, reduce, and control the spread of the outbreak.
+  - name: Remote
+    slug: remote
+    body: Volunteer positions that can be done remotely.
     project_types:
-      - Track the outbreak
-      - Reduce spread
+      - Remote
     color: orange
-  - name: Community
-    slug: community
-    body: Work together to help our stressed communities.
-    project_types:
-      - E-Learning
-      - Job placement
-      - Mental health
-      - Help out communities
-      - Map volunteers to needs
-      - News and information
-      - Social giving
-    color: blue
 
 global_announcements:
 #  - title: Helpful resources for your projects
@@ -221,3 +208,5 @@ media_kit:
 google_fonts_request: 'Lora&family=Roboto:wght@400;500;700'
 
 homepage_featured_projects_count: 3
+
+list_id: ba7ec53410

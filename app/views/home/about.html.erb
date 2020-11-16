@@ -1,219 +1,80 @@
-<div class="container">
-  <div class="flex flex-col justify-center sm:px-6 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-lg">
-      <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-        About HelpWithCovid.com
-      </h2>
-      <p class="mt-8 text-center text-sm leading-5 text-gray-600 max-w">
-        Help With Covid is a clearing house for COVID-19 related projects and volunteers looking to help out.<br/><br/>
-        It is run by a team from across the world that is passionate about helping out with the current crisis. Find us on <%= link_to 'Discord', 'https://discord.gg/8nAJfFN', target: '_blank', class: 'text-primary-500' %> on #hwc-com-development.
+<div class="flex flex-col justify-center sm:px-6 lg:px-8">
+  <div class="mx-auto w-full max-w-3xl">
+    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      About Us
+    </h2>
+    <p class="mt-8 text-center text-sm leading-5 text-gray-600 max-w">
+      Athens Help With COVID launched in March 2020 by a group of <%= CITY_NAME %> residents in response
+      to local nonprofits’ increased need for volunteers as they built up capacity
+      to support the community during COVID-19 and the ongoing economic crisis.
+      Athens Help With COVID is a partnership platform where nonprofits can
+      efficiently recruit volunteers in the Athens area for in-person
+      <u>and</u> remote opportunities.
+    </p>
+    <p class="mt-4 text-center text-sm leading-5 text-gray-600 max-w">
+      500+ volunteers with various skills from mask-making and grocery deliveries
+      to social media management and computer programming skills have signed up,
+      and 20+ nonprofits, big and small, have successfully found their volunteers
+      here.
+    </p>
+    <p class="mt-4 text-center text-sm leading-5 text-gray-600 max-w">
+      If you are an <%= CITY_NAME %> nonprofit interested in learning more about
+      how our platform can best support you, contact us at
+      <%= mail_to AFFILIATE_EMAIL, nil, target: '_blank', class: 'text-primary-500' %>.
+      We send out weekly newsletters to our volunteers about the latest opportunities,
+      and our team is happy to provide custom support for your organization—from
+      posting opportunities and collecting applications to targeted recruiting.
+    </p>
+    <p class="mt-4 text-center text-sm leading-5 text-gray-600 max-w">
+      We believe good tools should be shared. If you are currently outside of
+      <%= CITY_NAME %> and think that your local community could use a partnership
+      platform like ours, reach out to us at
+      <%= mail_to AFFILIATE_EMAIL, nil, target: '_blank', class: 'text-primary-500' %>.
+      We are happy to discuss about sharing code and best practices.
+    </p>
+    <p class="mt-4 mb-4 text-center text-sm leading-5 text-gray-600 max-w">
+      Credits to
+      <%= link_to 'HelpWithCovid.com', 'https://helpwithcovid.com/', target: '_blank', class: 'text-primary-500' %>
+      for the general template for this website.
+    </p>
+  </div>
 
-        <br /><br />
-        This site is open-source and we invite your contributions
-        <%= link_to "github.com/helpwithcovid/covid-volunteers", "https://github.com/helpwithcovid/covid-volunteers", class: 'text-primary-500' %>
-      </p>
-    </div>
-
-    <div class="flex flex-col mt-6">
-      <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-          <table class="min-w-full">
-            <tbody>
-              <% striped_classes_cycle = [ "bg-white", "bg-gray-50" ] %>
-
+  <div class="flex flex-col mt-8">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <table class="min-w-full">
+          <tbody>
+          <% striped_classes_cycle = [ "bg-white", "bg-gray-50" ] %>
+          <% TEAM.each do |group, team| %>
+            <% if !group.empty? %>
               <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Tinnei Pang
+                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-white text-center bg-primary-500">
+                  <%= html_escape group %>
                 </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Operations
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/tinnnei", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/tinneipang/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
+                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center bg-primary-500">
                 </td>
               </tr>
+            <% end %>
+            <% team.each do |name, role| %>
               <tr class="<%= cycle striped_classes_cycle %>">
                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Misa Beach
+                  <%= html_escape name %>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Partnerships & Panels
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/misajbeach/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
+                  <%= html_escape role %>
                 </td>
               </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Jamie Wilkinson
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Product
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/jamiew", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/jamiedubs/", target: "_blank", class: "text-primary-500" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Casey Pugh
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Product
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/caseypugh", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/caseypugh/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Cathy Liu
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  UX
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/cathyliiiu", target: "_blank", class: "text-primary-500" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/cathyliu94/", target: "_blank", class: "text-primary-500" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Colin Johnston
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  UX
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/colinjohnston", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/colinleejohnston/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Jamie Murphey
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  UX
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/jamiemurphey/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Adrian Marin
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Development
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/adrianthedev", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Nagesh Bansal
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Development
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/bansalnagesh/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Ryan Hefner
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Development
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/ryanhefner", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/ryanhefner/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Kinjal Poonatar
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Account management
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/kinjalvalue/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Pim de Witte
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Advice and guidance
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/PimDeWitte", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                  &nbsp;/&nbsp;
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/pimdw/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Ambika Bumb
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Advice and guidance
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "LinkedIn", "https://www.linkedin.com/in/ambikabumb/", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Radu Spineanu
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Coffee getter
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/rspineanu", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-              <tr class="<%= cycle striped_classes_cycle %>">
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
-                  Sam Altman
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  Big picture
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 text-center">
-                  <%= link_to "Twitter", "https://twitter.com/sama", target: "_blank", class: "text-primary-500", rel: "nofollow noopener noreferrer" %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
 
-    <div class="sm:mx-auto sm:w-full sm:max-w-lg">
-      <p class="mt-8 text-center text-sm leading-5 text-gray-600 max-w">
-        Started based on a discussion between Dustin Moskovitz &amp; Sam Altman.
-      </p>
-
-      <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-        Thank you to all volunteers!
-      </h2>
-    </div>
+  <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+    <h2 class="mt-8 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      Thank you to all volunteers!
+    </h2>
   </div>
 </div>

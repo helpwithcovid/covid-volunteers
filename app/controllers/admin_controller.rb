@@ -1,6 +1,14 @@
 class AdminController < ApplicationController
   before_action :ensure_admin
 
+  def index
+
+  end
+
+  def edit_site
+
+  end
+
   def delete_user
     @user = User.find(params[:user_id])
     @user.destroy!

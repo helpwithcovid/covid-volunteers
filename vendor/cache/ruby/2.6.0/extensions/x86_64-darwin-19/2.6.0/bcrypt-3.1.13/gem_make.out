@@ -1,0 +1,35 @@
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bcrypt-3.1.13/ext/mri
+/Users/jakegaliano/.rbenv/versions/2.6.3/bin/ruby -I /Users/jakegaliano/.rbenv/versions/2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201116-78167-184stn.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bcrypt-3.1.13/ext/mri
+make "DESTDIR=" clean
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bcrypt-3.1.13/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+bcrypt_ext.c:17:25: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+            NIL_P(input) ? 0 : RSTRING_LEN(input));
+                               ^~~~~~~~~~~~~~~~~~
+/Users/jakegaliano/.rbenv/versions/2.6.3/include/ruby-2.6.0/ruby/ruby.h:1000:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/jakegaliano/.rbenv/versions/2.6.3/include/ruby-2.6.0/ruby/ruby.h:996:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bcrypt_ext.c:17:25: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+            NIL_P(input) ? 0 : RSTRING_LEN(input));
+                               ^~~~~~~~~~~~~~~~~~
+/Users/jakegaliano/.rbenv/versions/2.6.3/include/ruby-2.6.0/ruby/ruby.h:1001:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+2 warnings generated.
+compiling crypt_blowfish.c
+clang  -D__SKIP_GNU -I/Users/jakegaliano/.rbenv/versions/2.6.3/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -c -o x86.o x86.S
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.bundle
+
+current directory: /Users/jakegaliano/Desktop/NHHWC/covid-volunteers/vendor/cache/ruby/2.6.0/gems/bcrypt-3.1.13/ext/mri
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 bcrypt_ext.bundle ./.gem.20201116-78167-aqk246
