@@ -1,0 +1,48 @@
+# Notes
+
+- We should support complex constants, eg: 
+
+	Complex(1, 2)
+	=> (1+2i)
+
+# Common operations
+
+- Lint.
+
+	bundle exec rake rubocop
+
+- Reinstall local copy of gem after a change.
+
+	bundle exec rake install
+
+- Run test suite.
+
+	bundle exec rake 
+
+- Version bump.
+
+	edit lib/vips/version.rb 
+	edit VERSION
+
+- Regenerate autodocs.
+
+	cd lib/vips
+	ruby > methods.rb
+	require 'vips'; Vips::Yard.generate
+	^D
+
+- Regenerate `.rubocop_todo.yml`.
+
+	bundle exec rubocop --auto-gen-config
+
+- Regenerate docs.
+
+	bundle exec rake yard
+
+- Push new gem to rubygems, tag repository with version.
+
+	bundle exec rake release
+
+  There's an invisible prompt for the authenticator code. Enter eg. 123456, 
+  press return and the upload should work.
+
