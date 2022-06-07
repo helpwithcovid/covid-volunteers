@@ -195,7 +195,7 @@ GEM
     iso_country_codes (0.7.8)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
